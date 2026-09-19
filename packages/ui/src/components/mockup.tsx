@@ -69,9 +69,9 @@ export interface MockupPhoneProps extends React.HTMLAttributes<HTMLDivElement> {
   time?: string;
   /** Streepje onderaan voor het vegen. */
   homeBar?: boolean;
-  /** Kleur van het frame, bijvoorbeeld "#ff8938". */
+  /** Kleur van de metalen rand, bijvoorbeeld "#ff8938". */
   frameColor?: string;
-  /** Zijknoppen (volume en aan/uit) tonen. */
+  /** Zijknoppen (stil, volume, aan/uit) tonen. Standaard uit. */
   buttons?: boolean;
 }
 
@@ -85,7 +85,7 @@ export const MockupPhone = React.forwardRef<HTMLDivElement, MockupPhoneProps>(fu
     time = "9:41",
     homeBar = true,
     frameColor,
-    buttons = true,
+    buttons = false,
     className,
     children,
     style,
@@ -100,7 +100,7 @@ export const MockupPhone = React.forwardRef<HTMLDivElement, MockupPhoneProps>(fu
       style={
         {
           "--pxui-phone-w": `${width}px`,
-          ...(frameColor ? { "--pxui-phone-frame": frameColor } : {}),
+          ...(frameColor ? { "--pxui-phone-ring": frameColor } : {}),
           ...style,
         } as React.CSSProperties
       }

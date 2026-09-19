@@ -2639,14 +2639,14 @@
         "name": "frameColor",
         "required": false,
         "type": "string",
-        "description": "Kleur van het frame, bijvoorbeeld \"#ff8938\"."
+        "description": "Kleur van de metalen rand, bijvoorbeeld \"#ff8938\"."
       },
       {
         "name": "buttons",
         "required": false,
         "type": "boolean",
-        "description": "Zijknoppen (volume en aan/uit) tonen.",
-        "default": "true"
+        "description": "Zijknoppen (stil, volume, aan/uit) tonen. Standaard uit.",
+        "default": "false"
       }
     ]
   },
