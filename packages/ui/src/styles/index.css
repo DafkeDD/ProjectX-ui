@@ -55,6 +55,8 @@
 @import "../components/radio-group.css";
 @import "../components/resource-columns.css";
 @import "../components/rich-editor.css";
+@import "../components/resizable.css";
+@import "../components/scroll-area.css";
 @import "../components/section-header.css";
 @import "../components/segmented.css";
 @import "../components/select.css";

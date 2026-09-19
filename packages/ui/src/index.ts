@@ -78,6 +78,8 @@ export * from "./components/qr-code";
 export * from "./components/radio-group";
 export * from "./components/resource-columns";
 export * from "./components/rich-editor";
+export * from "./components/resizable";
+export * from "./components/scroll-area";
 export * from "./components/section-header";
 export * from "./components/segmented";
 export * from "./components/select";

@@ -1,0 +1,52 @@
+/* ============================ ScrollArea ============================ */
+.pxui-scroll-area {
+  --pxui-scroll-duim: color-mix(in srgb, var(--text) 22%, transparent);
+  position: relative; min-height: 0; overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color var(--dur) var(--ease);
+  overscroll-behavior: contain;
+}
+.pxui-scroll-vertical { overflow-x: hidden; overflow-y: auto; }
+.pxui-scroll-horizontal { overflow-x: auto; overflow-y: hidden; }
+
+/* De balk verschijnt bij hoveren of zodra je erin scrollt met het toetsenbord. */
+.pxui-scroll-area:hover,
+.pxui-scroll-area:focus-within,
+.pxui-scroll-visible { scrollbar-color: var(--pxui-scroll-duim) transparent; }
+
+.pxui-scroll-area::-webkit-scrollbar { width: 10px; height: 10px; }
+.pxui-scroll-area::-webkit-scrollbar-track { background: transparent; }
+.pxui-scroll-area::-webkit-scrollbar-thumb {
+  background: transparent; border-radius: var(--r-full);
+  border: 3px solid transparent; background-clip: content-box;
+  transition: background var(--dur) var(--ease);
+}
+.pxui-scroll-area:hover::-webkit-scrollbar-thumb,
+.pxui-scroll-area:focus-within::-webkit-scrollbar-thumb,
+.pxui-scroll-visible::-webkit-scrollbar-thumb {
+  background: var(--pxui-scroll-duim); background-clip: content-box;
+}
+.pxui-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--text) 38%, transparent); background-clip: content-box;
+}
+.pxui-scroll-area::-webkit-scrollbar-corner { background: transparent; }
+
+/* Vervaging aan de rand waar nog inhoud zit. */
+.pxui-scroll-area[data-fade-top],
+.pxui-scroll-area[data-fade-bottom],
+.pxui-scroll-area[data-fade-left],
+.pxui-scroll-area[data-fade-right] {
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+.pxui-scroll-area[data-fade-top] { mask-image: linear-gradient(to bottom, transparent 0, #000 22px); }
+.pxui-scroll-area[data-fade-bottom] { mask-image: linear-gradient(to top, transparent 0, #000 22px); }
+.pxui-scroll-area[data-fade-top][data-fade-bottom] {
+  mask-image: linear-gradient(to bottom, transparent 0, #000 22px, #000 calc(100% - 22px), transparent 100%);
+}
+.pxui-scroll-area[data-fade-left] { mask-image: linear-gradient(to right, transparent 0, #000 22px); }
+.pxui-scroll-area[data-fade-right] { mask-image: linear-gradient(to left, transparent 0, #000 22px); }
+.pxui-scroll-area[data-fade-left][data-fade-right] {
+  mask-image: linear-gradient(to right, transparent 0, #000 22px, #000 calc(100% - 22px), transparent 100%);
+}

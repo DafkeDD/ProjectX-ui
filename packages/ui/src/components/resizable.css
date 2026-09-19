@@ -1,0 +1,40 @@
+/* ============================ Resizable ============================ */
+.pxui-resizable { display: flex; width: 100%; min-height: 0; overflow: hidden; }
+.pxui-resizable-horizontal { flex-direction: row; }
+.pxui-resizable-vertical { flex-direction: column; }
+
+.pxui-resizable-panel { flex-grow: 0; flex-shrink: 0; min-width: 0; min-height: 0; overflow: auto; }
+
+.pxui-resizable-handle {
+  position: relative; flex: none;
+  display: grid; place-items: center;
+  background: var(--border);
+  transition: background var(--dur-fast) var(--ease);
+}
+.pxui-resizable-horizontal > .pxui-resizable-handle { width: 1px; cursor: col-resize; }
+.pxui-resizable-vertical > .pxui-resizable-handle { height: 1px; cursor: row-resize; }
+
+/* Ruimer aanraakvlak dan de zichtbare lijn. */
+.pxui-resizable-handle::before {
+  content: ""; position: absolute; z-index: 1;
+}
+.pxui-resizable-horizontal > .pxui-resizable-handle::before { inset: 0 -5px; }
+.pxui-resizable-vertical > .pxui-resizable-handle::before { inset: -5px 0; }
+
+.pxui-resizable-handle:hover,
+.pxui-resizable-handle[data-dragging] { background: var(--accent); }
+.pxui-resizable-handle:focus-visible { outline: none; background: var(--accent); box-shadow: var(--ring); }
+
+.pxui-resizable-grip {
+  position: relative; z-index: 2;
+  display: block; border-radius: var(--r-full);
+  background: var(--border-strong);
+  transition: background var(--dur-fast) var(--ease);
+}
+.pxui-resizable-horizontal > .pxui-resizable-handle .pxui-resizable-grip { width: 4px; height: 26px; }
+.pxui-resizable-vertical > .pxui-resizable-handle .pxui-resizable-grip { width: 26px; height: 4px; }
+.pxui-resizable-handle:hover .pxui-resizable-grip,
+.pxui-resizable-handle[data-dragging] .pxui-resizable-grip { background: var(--accent); }
+
+/* Tijdens het slepen mag er niets geselecteerd worden. */
+.pxui-resizable:has(.pxui-resizable-handle[data-dragging]) { user-select: none; }
