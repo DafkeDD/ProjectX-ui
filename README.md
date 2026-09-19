@@ -14,7 +14,7 @@ code van shadcn, Radix, Headless UI, cva of clsx**. Alles staat in `packages/ui/
 
 ```bash
 npm install
-npm run dev        # documentatiesite op http://localhost:3000
+npm run dev        # documentatiesite op http://localhost:3000 (of 3001, 3002, ... als 3000 bezet is)
 ```
 
 | Commando | Wat het doet |
@@ -60,6 +60,7 @@ cd packages/cli && npm link            # daarna werkt `projectx-ui` overal op je
 npx projectx-ui init                   # tokens, base-CSS en hulpfuncties
 npx projectx-ui add button card dialog # componenten kopiëren (+ afhankelijkheden)
 npx projectx-ui add --all              # alles in één keer
+npx projectx-ui update                 # alles bijwerken + nieuwe componenten erbij
 npx projectx-ui list                   # overzicht
 npx projectx-ui add button --registry https://raw.githubusercontent.com/<jij>/<repo>/main/registry/index.json
 ```
@@ -67,6 +68,12 @@ npx projectx-ui add button --registry https://raw.githubusercontent.com/<jij>/<r
 De CLI schrijft naar `components/ui/` (instelbaar in `projectx-ui.json`), herschrijft de imports naar
 één platte map en houdt `components/ui/ui.css` (CSS-imports) en `components/ui/index.ts` (exports) bij. Importeer dat ene
 bestand in je globale stylesheet en je bent klaar.
+
+`update` haalt de nieuwste versie van alles wat al in je project staat, installeert meteen de componenten
+die sinds je laatste update in de registry bijgekomen zijn, en laat bestanden die je zelf aangepast hebt met
+rust — die worden overgeslagen tenzij je `--force` meegeeft. Wat er precies zou gebeuren zie je vooraf met
+`--dry-run`; met `--only-installed` blijf je bij wat je al hebt. De CLI houdt daarvoor `projectx-ui.lock.json`
+bij (welke componenten je hebt + een hash per bestand) — commit dat bestand mee.
 
 ---
 

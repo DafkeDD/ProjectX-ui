@@ -6,12 +6,14 @@
  *   npx projectx-ui init
  *   npx projectx-ui add button card dialog
  *   npx projectx-ui add --all
+ *   npx projectx-ui update
  *   npx projectx-ui list
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join, dirname, basename, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createInterface } from "node:readline/promises";
+import { createHash } from "node:crypto";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const cwd = process.cwd();
@@ -42,7 +44,38 @@ const DEFAULT_CONFIG = {
   importAlias: "@/components/ui",
 };
 
+const LOCK_FILE = "projectx-ui.lock.json";
+
 let registryPath = null;
+
+/* ------------------------------------------------------------------ */
+/* Lockfile: welke componenten staan er, en met welke inhoud           */
+/* ------------------------------------------------------------------ */
+const hash = (content) => createHash("sha256").update(content).digest("hex").slice(0, 16);
+
+function readLock() {
+  const path = join(cwd, LOCK_FILE);
+  if (!existsSync(path)) return { aanwezig: false, version: null, shared: {}, components: {} };
+  const lock = JSON.parse(readFileSync(path, "utf8"));
+  return {
+    aanwezig: true,
+    version: lock.version ?? null,
+    shared: lock.shared ?? {},
+    components: lock.components ?? {},
+  };
+}
+
+function writeLock(lock, registry) {
+  const ordered = {
+    name: "projectx-ui",
+    version: registry.version,
+    bijgewerkt: new Date().toISOString(),
+    shared: lock.shared,
+    components: Object.fromEntries(Object.keys(lock.components).sort().map((key) => [key, lock.components[key]])),
+  };
+  writeFileSync(join(cwd, LOCK_FILE), `${JSON.stringify(ordered, null, 2)}
+`);
+}
 
 /* ------------------------------------------------------------------ */
 /* Registry vinden: --registry -> env -> monorepo -> meegeleverde kopie */
@@ -157,6 +190,24 @@ function report(status, target) {
   else warn(`${shown} bestaat al — gebruik --force om te overschrijven`);
 }
 
+/**
+ * Schrijft een registry-bestand plat in componentsDir en houdt CSS-import,
+ * index.ts en de lockfile bij.
+ */
+function installFile(config, file, force, record) {
+  const name = basename(file.path);
+  const target = join(cwd, config.componentsDir, name);
+  const content = rewriteImports(file.content);
+  const status = writeFileSafe(target, content, force);
+
+  if (name.endsWith(".css")) ensureCssImport(config, name);
+  else ensureIndexExport(config, name);
+  if (status !== "bestaat") record?.(name, hash(content));
+
+  report(status, target);
+  return status;
+}
+
 function flag(args, name) {
   const index = args.indexOf(name);
   return index === -1 ? undefined : args[index + 1];
@@ -191,15 +242,16 @@ async function cmdInit(args) {
     warn(`${CONFIG_FILE} bestaat al — gebruik --force om opnieuw te configureren.`);
   }
 
+  const lock = readLock();
+
   log();
   log(`${c.bold}Gedeelde bestanden${c.reset}`);
   for (const file of registry.shared) {
-    const name = basename(file.path);
-    const target = join(cwd, config.componentsDir, name);
-    report(writeFileSafe(target, rewriteImports(file.content), force), target);
-    if (name.endsWith(".css")) ensureCssImport(config, name);
-    else ensureIndexExport(config, name);
+    installFile(config, file, force, (name, digest) => {
+      lock.shared[name] = digest;
+    });
   }
+  writeLock(lock, registry);
 
   log();
   ok("Klaar. Importeer het verzamelbestand in je globale stylesheet:");
@@ -250,21 +302,150 @@ async function cmdAdd(args) {
   };
   requested.forEach(push);
 
+  const lock = readLock();
+
   for (const component of queue) {
     const payload = await readComponentPayload(component.name);
     log();
     log(`${c.bold}${payload.title}${c.reset} ${c.dim}${payload.description}${c.reset}`);
+    const bestanden = (lock.components[component.name] ??= {});
     for (const file of payload.files) {
-      const name = basename(file.path);
-      const target = join(cwd, config.componentsDir, name);
-      report(writeFileSafe(target, rewriteImports(file.content), force), target);
-      if (name.endsWith(".css")) ensureCssImport(config, name);
-      else ensureIndexExport(config, name);
+      installFile(config, file, force, (name, digest) => {
+        bestanden[name] = digest;
+      });
     }
   }
+  writeLock(lock, registry);
 
   log();
   ok(`${queue.length} component(en) klaar in ${config.componentsDir}/`);
+}
+
+/**
+ * Werkt alles bij naar de huidige registry: gedeelde bestanden, de componenten
+ * die al in je project staan, en standaard ook componenten die nieuw zijn in de
+ * registry. Bestanden die je zelf aangepast hebt blijven staan (tenzij --force).
+ */
+async function cmdUpdate(args) {
+  const registry = await loadRegistry(flag(args, "--registry"));
+  const config = readConfig();
+  if (!config) fail(`Geen ${CONFIG_FILE} gevonden. Draai eerst \`npx projectx-ui init\`.`);
+
+  const force = args.includes("--force") || args.includes("-f");
+  const dryRun = args.includes("--dry-run") || args.includes("-n");
+  const alleenBestaande = args.includes("--only-installed");
+  const lock = readLock();
+
+  /** Staat dit component al in het project? Lockfile eerst, anders de bestanden zelf. */
+  const isGeinstalleerd = (component) =>
+    Boolean(lock.components[component.name]) ||
+    component.files.every((file) => existsSync(join(cwd, config.componentsDir, basename(file))));
+
+  const bestaande = registry.components.filter(isGeinstalleerd);
+  const nieuwe = alleenBestaande ? [] : registry.components.filter((component) => !isGeinstalleerd(component));
+  const verdwenen = Object.keys(lock.components).filter(
+    (name) => !registry.components.some((component) => component.name === name)
+  );
+
+  const telling = { bijgewerkt: 0, nieuw: 0, ongewijzigd: 0, overgeslagen: 0 };
+  // Sommige bestanden zitten in meer dan een component; elk pad hoeft maar een keer.
+  const gedaan = new Set();
+
+  /** Eén bestand vergelijken met de registry en beslissen wat ermee moet. */
+  const verwerk = (file, opgeslagen) => {
+    const name = basename(file.path);
+    const target = join(cwd, config.componentsDir, name);
+    if (gedaan.has(name)) {
+      opgeslagen[name] ??= hash(rewriteImports(file.content));
+      return;
+    }
+    gedaan.add(name);
+    const content = rewriteImports(file.content);
+    const toon = relative(cwd, target).split("\\").join("/");
+
+    if (!existsSync(target)) {
+      if (!dryRun) {
+        mkdirSync(dirname(target), { recursive: true });
+        writeFileSync(target, content);
+        if (name.endsWith(".css")) ensureCssImport(config, name);
+        else ensureIndexExport(config, name);
+      }
+      opgeslagen[name] = hash(content);
+      telling.nieuw += 1;
+      ok(`${toon} ${c.dim}(nieuw)${c.reset}`);
+      return;
+    }
+
+    const huidig = readFileSync(target, "utf8");
+    if (huidig === content) {
+      opgeslagen[name] = hash(content);
+      telling.ongewijzigd += 1;
+      return;
+    }
+
+    // Zonder lockfile-hash weten we niet of dit bestand van ons komt. Bij een
+    // bestaande lockfile is dat verdacht (zelf gezet?), dus dan blijven we eraf.
+    const verwacht = opgeslagen[name];
+    const zelfAangepast = verwacht !== undefined && hash(huidig) !== verwacht;
+    const onbekend = verwacht === undefined && lock.aanwezig;
+    if ((zelfAangepast || onbekend) && !force) {
+      telling.overgeslagen += 1;
+      const reden = zelfAangepast ? "zelf aangepast" : "niet door de CLI gezet";
+      warn(`${toon} — ${reden}, overgeslagen (gebruik --force om te overschrijven)`);
+      return;
+    }
+
+    if (!dryRun) {
+      writeFileSync(target, content);
+      if (name.endsWith(".css")) ensureCssImport(config, name);
+      else ensureIndexExport(config, name);
+    }
+    opgeslagen[name] = hash(content);
+    telling.bijgewerkt += 1;
+    ok(`${toon} ${c.dim}(bijgewerkt)${c.reset}`);
+  };
+
+  log();
+  log(`${c.bold}Gedeelde bestanden${c.reset}`);
+  for (const file of registry.shared) verwerk(file, lock.shared);
+
+  if (bestaande.length > 0) {
+    log();
+    log(`${c.bold}Bestaande componenten${c.reset} ${c.dim}(${bestaande.length})${c.reset}`);
+    for (const component of bestaande) {
+      const payload = await readComponentPayload(component.name);
+      const opgeslagen = (lock.components[component.name] ??= {});
+      for (const file of payload.files) verwerk(file, opgeslagen);
+    }
+  }
+
+  if (nieuwe.length > 0) {
+    log();
+    log(`${c.bold}Nieuw in de registry${c.reset} ${c.dim}(${nieuwe.length})${c.reset}`);
+    for (const component of nieuwe) {
+      const payload = await readComponentPayload(component.name);
+      log(`${c.teal}${component.name}${c.reset} ${c.dim}${component.description}${c.reset}`);
+      const opgeslagen = (lock.components[component.name] ??= {});
+      for (const file of payload.files) verwerk(file, opgeslagen);
+    }
+  }
+
+  for (const name of verdwenen) {
+    warn(`${name} staat niet meer in de registry — bestanden blijven staan, verwijder ze zelf als je wil.`);
+  }
+
+  if (!dryRun) writeLock(lock, registry);
+
+  log();
+  const delen = [
+    `${telling.bijgewerkt} bijgewerkt`,
+    `${telling.nieuw} nieuw`,
+    `${telling.ongewijzigd} ongewijzigd`,
+  ];
+  if (telling.overgeslagen > 0) delen.push(`${telling.overgeslagen} overgeslagen`);
+  ok(`registry v${registry.version} — ${delen.join(", ")}${dryRun ? `  ${c.amber}(--dry-run: niets geschreven)${c.reset}` : ""}`);
+  if (alleenBestaande) log(`${c.dim}--only-installed: nieuwe componenten niet meegenomen.${c.reset}`);
+  log();
 }
 
 async function cmdList(args) {
@@ -296,6 +477,9 @@ async function main() {
       return cmdInit(args);
     case "add":
       return cmdAdd(args);
+    case "update":
+    case "up":
+      return cmdUpdate(args);
     case "list":
     case "ls":
       return cmdList(args);
@@ -309,9 +493,10 @@ async function main() {
       log(`  ${c.teal}init${c.reset}                 tokens, basis-CSS en hulpfuncties kopieren`);
       log(`  ${c.teal}add <namen...>${c.reset}       componenten kopieren (met hun afhankelijkheden)`);
       log(`  ${c.teal}add --all${c.reset}            alles in een keer`);
+      log(`  ${c.teal}update${c.reset}               alles bijwerken + nieuwe componenten erbij`);
       log(`  ${c.teal}list${c.reset}                 toont alle beschikbare componenten`);
       log();
-      log(`${c.dim}Opties: --force  --yes  --registry <pad|url>${c.reset}`);
+      log(`${c.dim}Opties: --force  --yes  --dry-run  --only-installed  --registry <pad|url>${c.reset}`);
       log();
       return undefined;
   }

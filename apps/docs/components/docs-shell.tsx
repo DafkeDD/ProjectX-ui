@@ -25,9 +25,6 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
           </Link>
           <Badge tone="accent" size="sm">v0.1.0</Badge>
           <span style={{ flex: 1 }} />
-          <span style={{ fontSize: 12.5, color: "var(--text-3)" }} className="hide-sm">
-            Eigen componenten — geen externe UI-library
-          </span>
           <ThemeToggle size="sm" />
         </header>
         {children}

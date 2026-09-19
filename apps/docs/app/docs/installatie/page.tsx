@@ -14,7 +14,7 @@ export default function InstallatiePage() {
       <div className="docs-section">
         <h2 className="docs-section-title">1 · De monorepo lokaal draaien</h2>
         <p className="docs-p">Dit is de documentatiesite die je nu bekijkt, met alle bronbestanden ernaast.</p>
-        <CodeBlock standalone code={"npm install\nnpm run dev      # documentatiesite op http://localhost:3000\nnpm run registry # registry + props-tabellen opnieuw genereren"} />
+        <CodeBlock standalone code={"npm install\nnpm run dev      # documentatiesite op http://localhost:3000 (of 3001, 3002, ... als 3000 bezet is)\nnpm run registry # registry + props-tabellen opnieuw genereren"} />
         <p className="docs-p">
           Structuur: <code className="docs-inline-code">packages/ui</code> (de library),
           <code className="docs-inline-code">packages/cli</code> (de <code className="docs-inline-code">add</code>-CLI),
@@ -34,7 +34,7 @@ export default function InstallatiePage() {
           current={2}
           style={{ marginTop: 18, marginBottom: 22 }}
         />
-        <CodeBlock standalone code={"# eenmalig: tokens, basis-CSS en hulpfuncties\nnpx projectx-ui init\n\n# daarna per component\nnpx projectx-ui add button card dialog\n\n# alles in één keer\nnpx projectx-ui add --all\n\n# overzicht van wat er beschikbaar is\nnpx projectx-ui list"} />
+        <CodeBlock standalone code={"# eenmalig: tokens, basis-CSS en hulpfuncties\nnpx projectx-ui init\n\n# daarna per component\nnpx projectx-ui add button card dialog\n\n# alles in één keer\nnpx projectx-ui add --all\n\n# later: alles bijwerken + nieuwe componenten erbij\nnpx projectx-ui update\n\n# overzicht van wat er beschikbaar is\nnpx projectx-ui list"} />
         <p className="docs-p">
           <code className="docs-inline-code">init</code> maakt <code className="docs-inline-code">projectx-ui.json</code> aan
           met je paden en kopieert de gedeelde bestanden (tokens, base-CSS, <code className="docs-inline-code">cn()</code>,
@@ -51,6 +51,15 @@ export default function InstallatiePage() {
         <p className="docs-p">
           De CLI houdt ook <code className="docs-inline-code">components/ui/index.ts</code> bij, zodat je alles
           importeert via <code className="docs-inline-code">@/components/ui</code>.
+        </p>
+        <p className="docs-p">
+          <code className="docs-inline-code">update</code> haalt de nieuwste versie van alles wat al in je project
+          staat en installeert meteen de componenten die intussen aan de registry zijn toegevoegd. Bestanden die je
+          zelf aangepast hebt blijven staan &mdash; die worden overgeslagen tenzij je{" "}
+          <code className="docs-inline-code">--force</code> meegeeft. Bekijk vooraf wat er zou gebeuren met{" "}
+          <code className="docs-inline-code">--dry-run</code>, of blijf bij wat je al hebt met{" "}
+          <code className="docs-inline-code">--only-installed</code>. Daarvoor houdt de CLI{" "}
+          <code className="docs-inline-code">projectx-ui.lock.json</code> bij; commit dat bestand mee.
         </p>
       </div>
 
