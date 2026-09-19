@@ -1,0 +1,77 @@
+/* ============================ Mockups ============================ */
+.pxui-mockup {
+  --pxui-mockup-chrome: var(--surface-2);
+  --pxui-mockup-line: var(--border);
+  display: flex; flex-direction: column; overflow: hidden;
+  border: 1px solid var(--pxui-mockup-line); border-radius: var(--r-lg);
+  background: var(--surface); box-shadow: var(--sh-md);
+}
+.pxui-mockup-dark {
+  --pxui-mockup-chrome: #1b2231;
+  --pxui-mockup-line: #2b3446;
+  color-scheme: dark;
+}
+
+.pxui-mockup-bar {
+  display: flex; align-items: center; gap: 12px; flex: none;
+  height: 38px; padding: 0 12px;
+  background: var(--pxui-mockup-chrome);
+  border-bottom: 1px solid var(--pxui-mockup-line);
+}
+
+.pxui-mockup-dots { display: inline-flex; gap: 6px; flex: none; }
+.pxui-mockup-dots > span {
+  width: 10px; height: 10px; border-radius: var(--r-full); background: var(--border-strong);
+}
+.pxui-mockup-dots > span:nth-child(1) { background: #ec6a5e; }
+.pxui-mockup-dots > span:nth-child(2) { background: #f4bf4f; }
+.pxui-mockup-dots > span:nth-child(3) { background: #61c554; }
+
+.pxui-mockup-url {
+  flex: 1; min-width: 0; height: 24px; padding: 0 12px;
+  display: flex; align-items: center;
+  background: var(--surface); border: 1px solid var(--pxui-mockup-line);
+  border-radius: var(--r-full);
+  font-size: 12px; color: var(--text-3);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.pxui-mockup-dark .pxui-mockup-url { background: #131926; }
+
+.pxui-mockup-title {
+  flex: 1; text-align: center; font-size: 12.5px; font-weight: 600; color: var(--text-2);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+/* De stippen links even breed compenseren, zodat de titel echt centreert. */
+.pxui-mockup-window .pxui-mockup-dots + .pxui-mockup-title { margin-right: 42px; }
+
+.pxui-mockup-screen { flex: 1; min-height: 0; overflow: auto; background: var(--surface); }
+.pxui-mockup-dark .pxui-mockup-screen { background: #0f1520; }
+
+/* ---------- Telefoon ---------- */
+.pxui-mockup-phone { display: inline-block; }
+.pxui-mockup-phone-frame {
+  position: relative; width: 100%;
+  padding: 11px; border-radius: 40px;
+  background: linear-gradient(160deg, #262f3e, #0d1119);
+  box-shadow: var(--sh-lg), inset 0 0 0 2px rgba(255, 255, 255, .06);
+}
+.pxui-mockup-phone-frame > .pxui-mockup-screen {
+  width: 100%; height: 100%; border-radius: 30px; overflow: auto;
+}
+
+.pxui-mockup-phone-top {
+  position: absolute; top: 20px; left: 50%; translate: -50% 0; z-index: 2;
+  background: #05070b; border-radius: var(--r-full);
+}
+.pxui-mockup-phone-island { width: 84px; height: 24px; }
+.pxui-mockup-phone-notch { width: 132px; height: 26px; top: 11px; border-radius: 0 0 16px 16px; }
+
+.pxui-mockup-phone-home {
+  position: absolute; bottom: 20px; left: 50%; translate: -50% 0; z-index: 2;
+  width: 108px; height: 4px; border-radius: var(--r-full);
+  background: color-mix(in srgb, var(--text) 35%, transparent);
+}
+
+@media (max-width: 480px) {
+  .pxui-mockup-phone { max-width: 100%; }
+}

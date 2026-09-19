@@ -636,6 +636,31 @@ export const COMPONENTS: ComponentEntry[] = [
     props: ["BarChartProps", "LineChartProps", "DonutChartProps", "SparklineProps"],
   },
   {
+    slug: "timeline",
+    name: "Timeline",
+    description: "Verticale lijn met gebeurtenissen: audit-log, dossierverloop, statuswissels.",
+    category: "Data",
+    files: ["timeline.tsx", "timeline.css"],
+    demos: [{ key: "timeline-basic", title: "Verloop van een dossier", description: "Stippen met icoon, tijd, auteur en een onderbroken lijn voor wat nog komt.", align: "block" }],
+    props: ["TimelineProps", "TimelineItemProps"],
+    notes: ["Niet te verwarren met TimeSlotList: die toont een dag in uren, dit toont gebeurtenissen na elkaar."],
+    isNew: true,
+  },
+  {
+    slug: "message-thread",
+    name: "MessageThread",
+    description: "Verloop van een gesprek: ticket, interne notities of chat.",
+    category: "Data",
+    files: ["message-thread.tsx", "message-thread.css"],
+    demos: [{ key: "messagethread-basic", title: "Ticketgesprek", description: "Met dagscheiding, systeemregel, interne notitie en de Composer eronder.", align: "block" }],
+    props: ["MessageThreadProps", "MessageProps"],
+    notes: [
+      "Combineert met Composer voor de invoer eronder.",
+      "Een bericht met internal krijgt een amber bel met het label \"Interne notitie\" — handig voor wat de klant niet ziet.",
+    ],
+    isNew: true,
+  },
+  {
     slug: "qr-code",
     name: "QrCode",
     description: "Echte, scanbare QR-code; zelf geschreven encoder zonder dependencies.",
@@ -725,6 +750,20 @@ export const COMPONENTS: ComponentEntry[] = [
     notes: [
       "Het breekpunt (stackAt) kijkt naar de breedte van het werkblad zelf via een container query, niet naar het venster. Zo stapelt het ook correct wanneer het werkblad in een smalle kolom staat, en blijft het pure CSS: geen flits bij het laden, geen meting in JavaScript.",
     ],
+  },
+  {
+    slug: "mockup",
+    name: "Mockup",
+    description: "Een scherm in een browser-, venster- of telefoonframe zetten.",
+    category: "Layout",
+    files: ["mockup.tsx", "mockup.css"],
+    demos: [{ key: "mockup-basic", title: "Drie frames", description: "MockupBrowser, MockupWindow en MockupPhone met echte inhoud erin.", align: "block" }],
+    props: ["MockupBrowserProps", "MockupWindowProps", "MockupPhoneProps"],
+    notes: [
+      "Bedoeld voor documentatie, release-notes en marketingpagina's — niet voor de app zelf.",
+      "MockupPhone schaalt op breedte; de hoogte volgt uit ratio (standaard 19,5:9).",
+    ],
+    isNew: true,
   },
   {
     slug: "auth-layout",

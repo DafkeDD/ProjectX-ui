@@ -43,6 +43,8 @@
 @import "../components/kbd.css";
 @import "../components/label.css";
 @import "../components/list-row.css";
+@import "../components/message-thread.css";
+@import "../components/mockup.css";
 @import "../components/otp-input.css";
 @import "../components/pagination.css";
 @import "../components/period-nav.css";
@@ -73,6 +75,7 @@
 @import "../components/theme.css";
 @import "../components/time-field.css";
 @import "../components/time-slot-list.css";
+@import "../components/timeline.css";
 @import "../components/toast.css";
 @import "../components/toolbar.css";
 @import "../components/tooltip.css";
