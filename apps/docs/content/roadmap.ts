@@ -36,11 +36,12 @@ export const ROADMAP: RoadmapStep[] = [
   },
   {
     title: "Data & layout",
-    description: "Stat, ListRow, TaskItem, DataPill, Charts, Toolbar, Sidebar, AppShell, Workspace, SectionHeader, EntityHeader, AuthLayout.",
+    description: "Stat, ListRow, TaskItem, DataPill, Charts, Toolbar, Sidebar, AppShell, Workspace, SectionHeader, EntityHeader, AuthLayout, ConfettiBurst.",
+    done: true,
   },
   {
     title: "Extra's",
-    description: "Slider, OtpInput, FileDrop, SwatchPicker, AvatarUpload, Composer, VoiceButton, PulseDot, ConfettiBurst.",
+    description: "Slider, OtpInput, FileDrop, SwatchPicker, AvatarUpload, Composer, VoiceButton, PulseDot.",
   },
   {
     title: "CLI & registry",

@@ -1,15 +1,12 @@
 "use client";
-import { Card, CardContent, CopyButton, Icon } from "@projectx/ui";
+import { Card, CardContent, CopyButton, DataPill, Icon } from "@projectx/ui";
 
 export default function Demo() {
   return (
     <Card style={{ maxWidth: 460 }}>
       <CardContent>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 8, flex: 1, fontSize: 14 }}>
-            <Icon name="phone" size={15} />
-            +32 476 21 33 08
-          </span>
+          <DataPill icon={<Icon name="phone" />} label="Telefoon" value="+32 476 21 33 08" />
           <CopyButton value="+32 476 21 33 08" />
         </div>
 

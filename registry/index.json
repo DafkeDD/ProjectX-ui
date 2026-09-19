@@ -584,6 +584,157 @@
       ]
     },
     {
+      "name": "stat",
+      "title": "Stat",
+      "description": "KPI-tegel met waarde, icoon, trend en grafiekje.",
+      "category": "Data",
+      "dependencies": [
+        "chart"
+      ],
+      "files": [
+        "components/stat.tsx",
+        "components/stat.css"
+      ]
+    },
+    {
+      "name": "data-pill",
+      "title": "DataPill",
+      "description": "Compacte meetwaarde: label, waarde en eenheid op één regel.",
+      "category": "Data",
+      "dependencies": [],
+      "files": [
+        "components/data-pill.tsx",
+        "components/data-pill.css"
+      ]
+    },
+    {
+      "name": "list-row",
+      "title": "ListRow",
+      "description": "Rij in een lijst: afspraak, document, gebruiker of melding.",
+      "category": "Data",
+      "dependencies": [],
+      "files": [
+        "components/list-row.tsx",
+        "components/list-row.css"
+      ]
+    },
+    {
+      "name": "task-item",
+      "title": "TaskItem",
+      "description": "Eén taak in een lijst: afvinken, prioriteit, labels en deeltaken.",
+      "category": "Data",
+      "dependencies": [
+        "confetti"
+      ],
+      "files": [
+        "components/task-item.tsx",
+        "components/task-item.css"
+      ]
+    },
+    {
+      "name": "chart",
+      "title": "Charts",
+      "description": "Sparkline, staaf-, lijn- en donutgrafiek — eigen SVG, geen bibliotheek.",
+      "category": "Data",
+      "dependencies": [],
+      "files": [
+        "components/chart.tsx",
+        "components/chart.css"
+      ]
+    },
+    {
+      "name": "toolbar",
+      "title": "Toolbar",
+      "description": "Knoppenrij met groepen, scheidingslijnen en aan/uit-knoppen.",
+      "category": "Navigatie",
+      "dependencies": [],
+      "files": [
+        "components/toolbar.tsx",
+        "components/toolbar.css"
+      ]
+    },
+    {
+      "name": "section-header",
+      "title": "SectionHeader",
+      "description": "Compacte kop boven een blok, met gekleurd staafje en acties.",
+      "category": "Layout",
+      "dependencies": [],
+      "files": [
+        "components/section-header.tsx",
+        "components/section-header.css"
+      ]
+    },
+    {
+      "name": "entity-header",
+      "title": "EntityHeader",
+      "description": "Kop van een dossier: media, naam, kerngegevens, labels en acties.",
+      "category": "Layout",
+      "dependencies": [],
+      "files": [
+        "components/entity-header.tsx",
+        "components/entity-header.css"
+      ]
+    },
+    {
+      "name": "sidebar",
+      "title": "Sidebar",
+      "description": "Navigatiekolom met secties, badges en inklapstand.",
+      "category": "Navigatie",
+      "dependencies": [
+        "app-shell"
+      ],
+      "files": [
+        "components/sidebar.tsx",
+        "components/sidebar.css"
+      ]
+    },
+    {
+      "name": "app-shell",
+      "title": "AppShell",
+      "description": "Layout met vaste zijbalk, bovenbalk en inhoudskolom.",
+      "category": "Layout",
+      "dependencies": [],
+      "files": [
+        "components/app-shell.tsx",
+        "components/app-shell.css"
+      ]
+    },
+    {
+      "name": "workspace",
+      "title": "Workspace",
+      "description": "Werkblad met smalle rails links en rechts naast de inhoud.",
+      "category": "Layout",
+      "dependencies": [
+        "section-header"
+      ],
+      "files": [
+        "components/workspace.tsx",
+        "components/workspace.css"
+      ]
+    },
+    {
+      "name": "auth-layout",
+      "title": "AuthLayout",
+      "description": "Aanmeldscherm: merkpaneel, kaart, scheiding en SSO-knoppen.",
+      "category": "Layout",
+      "dependencies": [],
+      "files": [
+        "components/auth-layout.tsx",
+        "components/auth-layout.css"
+      ]
+    },
+    {
+      "name": "confetti",
+      "title": "ConfettiBurst",
+      "description": "Kleine explosie van snippers bij iets dat af is.",
+      "category": "Feedback",
+      "dependencies": [],
+      "files": [
+        "components/confetti.tsx",
+        "components/confetti.css"
+      ]
+    },
+    {
       "name": "theme",
       "title": "Theme",
       "description": "Licht/donker met ThemeProvider, useTheme en ThemeToggle.",

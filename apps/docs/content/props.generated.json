@@ -108,6 +108,214 @@
       }
     ]
   },
+  "AppShellProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "defaultCollapsed",
+        "required": false,
+        "type": "boolean",
+        "description": "",
+        "default": "false"
+      },
+      {
+        "name": "collapsed",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "onCollapsedChange",
+        "required": false,
+        "type": "(collapsed: boolean) => void",
+        "description": ""
+      }
+    ]
+  },
+  "TopbarProps": {
+    "extends": "React.HTMLAttributes<HTMLElement>",
+    "props": [
+      {
+        "name": "hideMenuButton",
+        "required": false,
+        "type": "boolean",
+        "description": "Verbergt de hamburgerknop op mobiel."
+      }
+    ]
+  },
+  "TopbarSearchProps": {
+    "extends": "React.InputHTMLAttributes<HTMLInputElement>",
+    "props": [
+      {
+        "name": "shortcut",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Sneltoets rechts in het veld, bv. \"⌘K\"."
+      }
+    ]
+  },
+  "ContentProps": {
+    "extends": "React.HTMLAttributes<HTMLElement>",
+    "props": [
+      {
+        "name": "wide",
+        "required": false,
+        "type": "boolean",
+        "description": "Volle breedte in plaats van de standaard maximumbreedte."
+      }
+    ]
+  },
+  "PageHeaderProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"title\">",
+    "props": [
+      {
+        "name": "title",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "description",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "actions",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Knoppen rechts van de titel."
+      },
+      {
+        "name": "breadcrumb",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Kruimelpad boven de titel."
+      }
+    ]
+  },
+  "AuthLayoutProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "variant",
+        "required": false,
+        "type": "\"split\" | \"centered\"",
+        "description": "\"split\" zet een gekleurd paneel naast het formulier (verdwijnt op mobiel), \"centered\" zet de kaart midden op een zachte achtergrond.",
+        "default": "\"split\""
+      },
+      {
+        "name": "aside",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Inhoud van het zijpaneel bij `split`."
+      },
+      {
+        "name": "asideTone",
+        "required": false,
+        "type": "\"accent\" | \"ink\"",
+        "description": "Donker paneel in plaats van het accentverloop.",
+        "default": "\"accent\""
+      },
+      {
+        "name": "asidePosition",
+        "required": false,
+        "type": "\"left\" | \"right\"",
+        "description": "Zijpaneel links of rechts.",
+        "default": "\"left\""
+      }
+    ]
+  },
+  "AuthCardProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLElement>, \"title\">",
+    "props": [
+      {
+        "name": "brand",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Merknaam en logo bovenaan."
+      },
+      {
+        "name": "title",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "description",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "footer",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Inhoud onder de kaart, bv. \"Nog geen account?\"."
+      },
+      {
+        "name": "as",
+        "required": false,
+        "type": "\"div\" | \"form\"",
+        "description": "Rendert een <form> in plaats van een <div>.",
+        "default": "\"form\""
+      }
+    ]
+  },
+  "AuthDividerProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "",
+        "default": "\"of\""
+      }
+    ]
+  },
+  "SsoButtonProps": {
+    "extends": "React.ButtonHTMLAttributes<HTMLButtonElement>",
+    "props": [
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Logo of icoon links."
+      },
+      {
+        "name": "label",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "description",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Kleine regel onder het label."
+      },
+      {
+        "name": "loading",
+        "required": false,
+        "type": "boolean",
+        "description": "Toont een spinner en blokkeert de knop."
+      },
+      {
+        "name": "loadingLabel",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "",
+        "default": "\"Aanmelden…\""
+      },
+      {
+        "name": "color",
+        "required": false,
+        "type": "string",
+        "description": "Merkkleur van de aanbieder, bv. de itsme®-oranje."
+      }
+    ]
+  },
   "AvatarProps": {
     "extends": "React.HTMLAttributes<HTMLSpanElement>",
     "props": [
@@ -314,6 +522,235 @@
         "required": false,
         "type": "boolean",
         "description": "Verwijdert de standaard binnenmarge (bv. als er een tabel in staat)."
+      }
+    ]
+  },
+  "ChartDatum": {
+    "extends": "",
+    "props": [
+      {
+        "name": "label",
+        "required": true,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "value",
+        "required": true,
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "color",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"var(--chart-1)\""
+      }
+    ]
+  },
+  "SparklineProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "data",
+        "required": true,
+        "type": "number[]",
+        "description": ""
+      },
+      {
+        "name": "height",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "40"
+      },
+      {
+        "name": "color",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"var(--chart-1)\""
+      },
+      {
+        "name": "filled",
+        "required": false,
+        "type": "boolean",
+        "description": "Vult het vlak onder de lijn.",
+        "default": "true"
+      },
+      {
+        "name": "strokeWidth",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "2"
+      }
+    ]
+  },
+  "BarChartProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "data",
+        "required": true,
+        "type": "ChartDatum[]",
+        "description": ""
+      },
+      {
+        "name": "height",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "40"
+      },
+      {
+        "name": "showValues",
+        "required": false,
+        "type": "boolean",
+        "description": "Toont de waarde boven elke staaf."
+      },
+      {
+        "name": "formatValue",
+        "required": false,
+        "type": "(value: number) => string",
+        "description": ""
+      },
+      {
+        "name": "color",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"var(--chart-1)\""
+      }
+    ]
+  },
+  "LineSeries": {
+    "extends": "",
+    "props": [
+      {
+        "name": "name",
+        "required": true,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "data",
+        "required": true,
+        "type": "number[]",
+        "description": ""
+      },
+      {
+        "name": "color",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"var(--chart-1)\""
+      }
+    ]
+  },
+  "LineChartProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "series",
+        "required": true,
+        "type": "LineSeries[]",
+        "description": ""
+      },
+      {
+        "name": "labels",
+        "required": false,
+        "type": "string[]",
+        "description": ""
+      },
+      {
+        "name": "height",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "40"
+      },
+      {
+        "name": "area",
+        "required": false,
+        "type": "boolean",
+        "description": "Vult het vlak onder de lijn."
+      },
+      {
+        "name": "grid",
+        "required": false,
+        "type": "boolean",
+        "description": "Toont horizontale hulplijnen.",
+        "default": "true"
+      },
+      {
+        "name": "legend",
+        "required": false,
+        "type": "boolean",
+        "description": "",
+        "default": "true"
+      }
+    ]
+  },
+  "DonutChartProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "data",
+        "required": true,
+        "type": "ChartDatum[]",
+        "description": ""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "160"
+      },
+      {
+        "name": "thickness",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "22"
+      },
+      {
+        "name": "centerLabel",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "centerValue",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "legend",
+        "required": false,
+        "type": "boolean",
+        "description": "",
+        "default": "true"
+      }
+    ]
+  },
+  "ChartLegendProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "items",
+        "required": true,
+        "type": "Array<{ label: string; color: string; value?: number | string }>",
+        "description": ""
+      },
+      {
+        "name": "vertical",
+        "required": false,
+        "type": "boolean",
+        "description": ""
       }
     ]
   },
@@ -610,6 +1047,44 @@
       }
     ]
   },
+  "ConfettiBurstProps": {
+    "extends": "React.HTMLAttributes<HTMLSpanElement>",
+    "props": [
+      {
+        "name": "count",
+        "required": false,
+        "type": "number",
+        "description": "Aantal snippers.",
+        "default": "14"
+      },
+      {
+        "name": "colors",
+        "required": false,
+        "type": "string[]",
+        "description": "Kleuren; standaard de accent- en statuskleuren van het thema."
+      },
+      {
+        "name": "spread",
+        "required": false,
+        "type": "number",
+        "description": "Hoe ver de snippers vliegen, in pixels.",
+        "default": "42"
+      },
+      {
+        "name": "duration",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "700"
+      },
+      {
+        "name": "onDone",
+        "required": false,
+        "type": "() => void",
+        "description": "Wordt aangeroepen wanneer de animatie klaar is."
+      }
+    ]
+  },
   "CopyButtonProps": {
     "extends": "Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, \"value\">",
     "props": [
@@ -651,6 +1126,49 @@
         "required": false,
         "type": "(value: string) => void",
         "description": ""
+      }
+    ]
+  },
+  "DataPillProps": {
+    "extends": "React.HTMLAttributes<HTMLSpanElement>",
+    "props": [
+      {
+        "name": "label",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "value",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "unit",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Eenheid achter de waarde, bv. \"mmHg\" of \"µm\"."
+      },
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "tone",
+        "required": false,
+        "type": "\"neutral\" | \"accent\" | \"green\" | \"amber\" | \"red\" | \"blue\" | \"violet\"",
+        "description": "",
+        "default": "\"neutral\""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\"",
+        "description": "",
+        "default": "\"md\""
       }
     ]
   },
@@ -1122,6 +1640,96 @@
       }
     ]
   },
+  "EntityDetail": {
+    "extends": "",
+    "props": [
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "label",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "onClick",
+        "required": false,
+        "type": "() => void",
+        "description": "Maakt van het detail een knop."
+      },
+      {
+        "name": "href",
+        "required": false,
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  "EntityHeaderProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"title\">",
+    "props": [
+      {
+        "name": "media",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Avatar, logo of icoontegel links."
+      },
+      {
+        "name": "title",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "titleSuffix",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Lichtere toevoeging achter de titel, bv. \"V, 68j\"."
+      },
+      {
+        "name": "meta",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Regel onder de titel, bv. geboortedatum en nummers."
+      },
+      {
+        "name": "tags",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Badges of labels."
+      },
+      {
+        "name": "details",
+        "required": false,
+        "type": "EntityDetail[]",
+        "description": "Contactgegevens of snelle links, rechts van de tags."
+      },
+      {
+        "name": "actions",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Knoppen rechts."
+      },
+      {
+        "name": "divider",
+        "required": false,
+        "type": "boolean",
+        "description": "Lijn onder de kop.",
+        "default": "true"
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\"",
+        "description": "",
+        "default": "\"md\""
+      }
+    ]
+  },
   "FieldProps": {
     "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"id\">",
     "props": [
@@ -1231,6 +1839,125 @@
         "required": false,
         "type": "boolean",
         "description": "Toont een rood sterretje."
+      }
+    ]
+  },
+  "RowListProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "bordered",
+        "required": false,
+        "type": "boolean",
+        "description": "Rand en schaduw rond de hele lijst."
+      },
+      {
+        "name": "separated",
+        "required": false,
+        "type": "boolean",
+        "description": "Losse rijen met ruimte ertussen in plaats van scheidingslijnen."
+      },
+      {
+        "name": "dense",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
+  "ListRowProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"title\">",
+    "props": [
+      {
+        "name": "leading",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Avatar, icoontegel of vinkje links."
+      },
+      {
+        "name": "title",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "subtitle",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "lead",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Vaste kolom vóór de titel, bv. een tijdstip."
+      },
+      {
+        "name": "trailing",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Badges of tekst rechts van de titel."
+      },
+      {
+        "name": "actions",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Knoppen helemaal rechts."
+      },
+      {
+        "name": "clickable",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "selected",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "asChild",
+        "required": false,
+        "type": "boolean",
+        "description": "Rendert je eigen element (link, button) met behoud van stijl."
+      },
+      {
+        "name": "accent",
+        "required": false,
+        "type": "string",
+        "description": "Gekleurd streepje links, bv. per type of status."
+      }
+    ]
+  },
+  "RowIconProps": {
+    "extends": "React.HTMLAttributes<HTMLSpanElement>",
+    "props": [
+      {
+        "name": "tone",
+        "required": false,
+        "type": "\"accent\" | \"green\" | \"amber\" | \"red\" | \"blue\" | \"violet\" | \"neutral\"",
+        "description": "",
+        "default": "\"neutral\""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "36"
+      },
+      {
+        "name": "square",
+        "required": false,
+        "type": "boolean",
+        "description": ""
       }
     ]
   },
@@ -1744,6 +2471,61 @@
       }
     ]
   },
+  "SectionHeaderProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"title\">",
+    "props": [
+      {
+        "name": "title",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "tone",
+        "required": false,
+        "type": "SectionTone",
+        "description": "Kleur van het staafje links.",
+        "default": "\"accent\""
+      },
+      {
+        "name": "count",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Telling of korte toevoeging achter de titel."
+      },
+      {
+        "name": "description",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Uitleg onder de titel."
+      },
+      {
+        "name": "actions",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Knoppen of badges rechts."
+      },
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\"",
+        "description": "",
+        "default": "\"md\""
+      },
+      {
+        "name": "divider",
+        "required": false,
+        "type": "boolean",
+        "description": "Lijn onder de kop over de volle breedte."
+      }
+    ]
+  },
   "SegmentedOption": {
     "extends": "",
     "props": [
@@ -1952,6 +2734,77 @@
       }
     ]
   },
+  "SidebarProps": {
+    "extends": "React.HTMLAttributes<HTMLElement>",
+    "props": [
+      {
+        "name": "hideCollapse",
+        "required": false,
+        "type": "boolean",
+        "description": "Verbergt de inklapknop onderaan."
+      },
+      {
+        "name": "tone",
+        "required": false,
+        "type": "\"surface\" | \"inverted\"",
+        "description": "\"surface\" volgt de achtergrond van de app (standaard). \"inverted\" geeft een donkere, teal-getinte rail — ook in lichtmodus.",
+        "default": "\"surface\""
+      }
+    ]
+  },
+  "SidebarBrandProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "logo",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Logo of merkteken links."
+      },
+      {
+        "name": "name",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": "",
+        "default": "\"x\""
+      },
+      {
+        "name": "subtitle",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
+  "SidebarItemProps": {
+    "extends": "React.ButtonHTMLAttributes<HTMLButtonElement>",
+    "props": [
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "active",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "badge",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Telling of status rechts."
+      },
+      {
+        "name": "asChild",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
   "SkeletonProps": {
     "extends": "React.HTMLAttributes<HTMLDivElement>",
     "props": [
@@ -1997,6 +2850,54 @@
         "required": false,
         "type": "string",
         "description": "Toegankelijk label; laat leeg voor decoratief gebruik."
+      }
+    ]
+  },
+  "StatProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "label",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "value",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "tone",
+        "required": false,
+        "type": "\"accent\" | \"green\" | \"amber\" | \"red\" | \"blue\" | \"violet\"",
+        "description": "Kleur van het icoonvlak.",
+        "default": "\"accent\""
+      },
+      {
+        "name": "delta",
+        "required": false,
+        "type": "number",
+        "description": "Verandering t.o.v. vorige periode, bv. +12.4."
+      },
+      {
+        "name": "deltaLabel",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Tekst achter de delta, bv. \"vs. vorige maand\"."
+      },
+      {
+        "name": "chart",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Kleine grafiek onderaan (bv. <Sparkline/>)."
       }
     ]
   },
@@ -2353,6 +3254,115 @@
         "required": false,
         "type": "boolean",
         "description": "Houdt de inhoud gemonteerd wanneer het tabblad niet actief is."
+      }
+    ]
+  },
+  "TaskMetaTag": {
+    "extends": "",
+    "props": [
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "label",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": "",
+        "default": "\"Openen\""
+      },
+      {
+        "name": "tone",
+        "required": false,
+        "type": "\"neutral\" | \"accent\" | \"green\" | \"amber\" | \"red\" | \"blue\" | \"violet\"",
+        "description": "Kleur van het label, bv. rood voor een verlopen deadline."
+      },
+      {
+        "name": "dot",
+        "required": false,
+        "type": "string",
+        "description": "Gekleurd bolletje vóór het label, bv. de kleur van een lijst."
+      }
+    ]
+  },
+  "TaskItemProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"title\" | \"onToggle\">",
+    "props": [
+      {
+        "name": "title",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "done",
+        "required": false,
+        "type": "boolean",
+        "description": "",
+        "default": "false"
+      },
+      {
+        "name": "priority",
+        "required": false,
+        "type": "TaskPriority",
+        "description": "",
+        "default": "\"none\""
+      },
+      {
+        "name": "tags",
+        "required": false,
+        "type": "TaskMetaTag[]",
+        "description": "Labels onder de titel: lijst, deadline, herhaling …"
+      },
+      {
+        "name": "progress",
+        "required": false,
+        "type": "{ done: number; total: number }",
+        "description": "Voortgang van deeltaken, bv. { done: 2, total: 5 }."
+      },
+      {
+        "name": "onToggle",
+        "required": false,
+        "type": "(done: boolean) => void",
+        "description": "Wordt aangeroepen bij het aan- of afvinken."
+      },
+      {
+        "name": "onOpen",
+        "required": false,
+        "type": "() => void",
+        "description": "Klik op de rij zelf."
+      },
+      {
+        "name": "onDelete",
+        "required": false,
+        "type": "() => void",
+        "description": "Toont een verwijderknop; de rij schuift weg vóór de aanroep."
+      },
+      {
+        "name": "celebrate",
+        "required": false,
+        "type": "boolean",
+        "description": "Confetti bij het afvinken.",
+        "default": "true"
+      },
+      {
+        "name": "actions",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Extra knoppen rechts."
+      }
+    ]
+  },
+  "TaskListProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "bordered",
+        "required": false,
+        "type": "boolean",
+        "description": "Rand en schaduw rond de lijst."
       }
     ]
   },
@@ -2769,6 +3779,49 @@
       }
     ]
   },
+  "ToolbarProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\"",
+        "description": "",
+        "default": "\"md\""
+      },
+      {
+        "name": "bordered",
+        "required": false,
+        "type": "boolean",
+        "description": "Rand en achtergrond rond de balk.",
+        "default": "true"
+      },
+      {
+        "name": "orientation",
+        "required": false,
+        "type": "\"horizontal\" | \"vertical\"",
+        "description": "",
+        "default": "\"horizontal\""
+      }
+    ]
+  },
+  "ToolbarButtonProps": {
+    "extends": "React.ButtonHTMLAttributes<HTMLButtonElement>",
+    "props": [
+      {
+        "name": "active",
+        "required": false,
+        "type": "boolean",
+        "description": "Ingedrukte staat, bv. vet of cursief dat aan staat."
+      },
+      {
+        "name": "label",
+        "required": false,
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
   "TooltipProps": {
     "extends": "",
     "props": [
@@ -2953,6 +4006,75 @@
         "required": false,
         "type": "(event: ScheduleEvent) => React.ReactNode",
         "description": "Eigen inhoud in een blok."
+      }
+    ]
+  },
+  "WorkspaceProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "left",
+        "required": false,
+        "type": "number | string",
+        "description": "Breedte van de linkerkolom; weglaten = geen linkerrail."
+      },
+      {
+        "name": "right",
+        "required": false,
+        "type": "number | string",
+        "description": "Breedte van de rechterkolom."
+      },
+      {
+        "name": "gap",
+        "required": false,
+        "type": "number",
+        "description": "Ruimte tussen de kolommen.",
+        "default": "20"
+      },
+      {
+        "name": "stackAt",
+        "required": false,
+        "type": "number",
+        "description": "Breedte waaronder de kolommen onder elkaar komen. Dit kijkt naar de breedte van het werkblad zelf (container query), niet naar het scherm — zo klopt het ook wanneer het werkblad in een smallere kolom staat.",
+        "default": "1000"
+      }
+    ]
+  },
+  "WorkspaceRailProps": {
+    "extends": "React.HTMLAttributes<HTMLElement>",
+    "props": [
+      {
+        "name": "side",
+        "required": false,
+        "type": "\"left\" | \"right\"",
+        "description": "",
+        "default": "\"left\""
+      },
+      {
+        "name": "sticky",
+        "required": false,
+        "type": "boolean | number",
+        "description": "Blijft meescrollen tot deze afstand van de bovenkant.",
+        "default": "true"
+      },
+      {
+        "name": "stackOrder",
+        "required": false,
+        "type": "number",
+        "description": "Volgorde na het stapelen (lager komt hoger te staan).",
+        "default": "0"
+      }
+    ]
+  },
+  "WorkspaceMainProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "stackOrder",
+        "required": false,
+        "type": "number",
+        "description": "Volgorde na het stapelen; standaard bovenaan.",
+        "default": "0"
       }
     ]
   },
