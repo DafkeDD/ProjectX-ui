@@ -4,7 +4,7 @@ import { cn } from "../lib/cn";
 import { Portal } from "../lib/portal";
 import { Slot, composeRefs } from "../lib/slot";
 import { useAnchorPosition, type Align, type Side } from "../lib/anchor";
-import { useControllableState, useEscapeKey, useOutsideClick } from "../lib/hooks";
+import { useControllableState, useEscapeKey, useOutsideClick, usePresence } from "../lib/hooks";
 
 interface PopoverContextValue {
   open: boolean;
@@ -89,10 +89,12 @@ export const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentPro
     const { open, setOpen, anchorRef, contentRef } = usePopover("PopoverContent");
     const position = useAnchorPosition(anchorRef, contentRef, open, { side, align, offset, matchWidth });
 
+    const { render, state } = usePresence(open, contentRef, 180);
+
     useEscapeKey(() => setOpen(false), open);
     useOutsideClick([anchorRef, contentRef], () => setOpen(false), open);
 
-    if (!open) return null;
+    if (!render) return null;
 
     return (
       <Portal>
@@ -100,6 +102,7 @@ export const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentPro
           ref={composeRefs(ref, contentRef)}
           role="dialog"
           data-side={position.side}
+          data-state={state}
           className={cn("pxui-popover", flush && "pxui-popover-flush", className)}
           style={{ ...position.style, ...style, opacity: position.ready ? 1 : 0 }}
           {...rest}

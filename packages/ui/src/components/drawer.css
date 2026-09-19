@@ -46,3 +46,19 @@
   display: flex; gap: 10px; justify-content: flex-end;
   padding: 16px 22px; border-top: 1px solid var(--border); flex: none;
 }
+
+/* ---------- Sluiten ---------- */
+.pxui-overlay-plain[data-state="closed"] { animation: pxui-overlay-out .2s var(--ease) both; }
+.pxui-drawer-right[data-state="closed"] { animation: pxui-drawer-right-out .24s var(--ease) both; }
+.pxui-drawer-left[data-state="closed"] { animation: pxui-drawer-left-out .24s var(--ease) both; }
+.pxui-drawer-top[data-state="closed"] { animation: pxui-drawer-top-out .24s var(--ease) both; }
+.pxui-drawer-bottom[data-state="closed"] { animation: pxui-drawer-bottom-out .24s var(--ease) both; }
+
+@keyframes pxui-drawer-right-out { from { transform: none; } to { transform: translateX(100%); } }
+@keyframes pxui-drawer-left-out { from { transform: none; } to { transform: translateX(-100%); } }
+@keyframes pxui-drawer-top-out { from { transform: none; } to { transform: translateY(-100%); } }
+@keyframes pxui-drawer-bottom-out { from { transform: none; } to { transform: translateY(100%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .pxui-drawer, .pxui-drawer[data-state="closed"] { animation-duration: .01ms; }
+}

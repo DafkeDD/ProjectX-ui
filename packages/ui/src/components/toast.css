@@ -59,3 +59,15 @@
   .pxui-toaster-top-right, .pxui-toaster-top-left, .pxui-toaster-top-center { top: 12px; }
   .pxui-toast { min-width: 0; }
 }
+
+/* ---------- Sluiten ---------- */
+.pxui-toast[data-state="closed"] { animation: pxui-toast-out .18s var(--ease) both; }
+
+@keyframes pxui-toast-out {
+  from { opacity: 1; transform: none; max-height: 200px; }
+  to { opacity: 0; transform: translateX(12px) scale(.97); max-height: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pxui-toast, .pxui-toast[data-state="closed"] { animation-duration: .01ms; }
+}

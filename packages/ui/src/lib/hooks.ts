@@ -198,3 +198,54 @@ export function useCopyToClipboard(timeout = 1600) {
 
   return { copied, copy };
 }
+
+/**
+ * Houdt een element nog even in de DOM nadat het gesloten is, zodat er een
+ * uitgaande animatie kan lopen. Geeft terug of er nog gerenderd moet worden en
+ * in welke staat het element staat.
+ *
+ * De duur komt uit de CSS: het element krijgt data-state="closed" en de hook
+ * wacht op animationend/transitionend, met `fallback` als vangnet wanneer er
+ * geen animatie draait (bijvoorbeeld bij prefers-reduced-motion).
+ */
+export function usePresence(
+  open: boolean,
+  ref: React.RefObject<HTMLElement | null>,
+  fallback = 220
+): { render: boolean; state: "open" | "closed" } {
+  const [render, setRender] = React.useState(open);
+
+  // Bij openen meteen tonen, nog tijdens deze render: anders staat de inhoud er
+  // pas een frame later en grijpt code die de focus zet ernaast.
+  if (open && !render) setRender(true);
+
+  React.useEffect(() => {
+    if (open || !render) return;
+
+    const node = ref.current;
+    let timer = 0;
+    let klaar = false;
+
+    const afsluiten = () => {
+      if (klaar) return;
+      klaar = true;
+      window.clearTimeout(timer);
+      node?.removeEventListener("animationend", afsluiten);
+      node?.removeEventListener("transitionend", afsluiten);
+      setRender(false);
+    };
+
+    // Het vangnet mag nooit korter zijn dan de animatie zelf.
+    timer = window.setTimeout(afsluiten, fallback);
+    node?.addEventListener("animationend", afsluiten);
+    node?.addEventListener("transitionend", afsluiten);
+
+    return () => {
+      window.clearTimeout(timer);
+      node?.removeEventListener("animationend", afsluiten);
+      node?.removeEventListener("transitionend", afsluiten);
+    };
+  }, [open, render, ref, fallback]);
+
+  return { render, state: open ? "open" : "closed" };
+}

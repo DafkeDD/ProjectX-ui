@@ -284,6 +284,41 @@ async function testAlles(page, basis) {
     check("onderaan draait de vervaging om", eind.boven === true && eind.onder === false);
   }
 
+  console.log("\nUitgaande animaties");
+  await ga("/docs/componenten/dialog");
+  {
+    // Openen, dan sluiten: de dialoog hoort nog even te blijven staan met
+    // data-state="closed" en pas daarna te verdwijnen.
+    for (const knop of await page.$$("button")) {
+      const tekst = await page.evaluate((el) => el.innerText, knop);
+      if (tekst.includes("Tenant verwijderen")) await knop.click();
+    }
+    await wacht(400);
+    check("Dialog opent", Boolean(await page.$('[role="dialog"]')));
+
+    await page.keyboard.press("Escape");
+    await wacht(60);
+    const staat = await page
+      .$eval('[role="dialog"]', (el) => el.getAttribute("data-state"))
+      .catch(() => null);
+    check("Dialog blijft staan tijdens het sluiten", staat === "closed", `data-state: ${staat}`);
+
+    await wacht(500);
+    check("Dialog is daarna weg", !(await page.$('[role="dialog"]')));
+  }
+
+  await ga("/docs/componenten/accordion");
+  {
+    const hoogte = () =>
+      page.$eval(".pxui-accordion-content-wrap", (el) => Math.round(el.getBoundingClientRect().height));
+    const voor = await hoogte();
+    await (await page.$(".pxui-accordion-trigger")).click();
+    await wacht(600);
+    const na = await hoogte();
+    check("Accordion animeert de hoogte", voor !== na && (voor === 0 || na === 0), `${voor} -> ${na} px`);
+  }
+
+
   console.log("\nQrCode");
   await ga("/docs/componenten/qr-code");
   {

@@ -47,3 +47,18 @@
   .pxui-dialog-footer { flex-direction: column-reverse; }
   .pxui-dialog-footer > * { width: 100%; justify-content: center; }
 }
+
+/* ---------- Sluiten ---------- */
+.pxui-overlay[data-state="closed"] { animation: pxui-overlay-out .16s var(--ease) both; }
+.pxui-dialog[data-state="closed"] { animation: pxui-dialog-out .16s var(--ease) both; }
+
+@keyframes pxui-overlay-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes pxui-dialog-out {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: translateY(6px) scale(.98); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pxui-dialog, .pxui-dialog[data-state="closed"],
+  .pxui-overlay, .pxui-overlay[data-state="closed"] { animation-duration: .01ms; }
+}

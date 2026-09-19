@@ -3,7 +3,7 @@ import * as React from "react";
 import { cn } from "../lib/cn";
 import { Portal } from "../lib/portal";
 import { Slot } from "../lib/slot";
-import { useControllableState, useEscapeKey, useFocusTrap, useLockScroll } from "../lib/hooks";
+import { useControllableState, useEscapeKey, useFocusTrap, useLockScroll, usePresence } from "../lib/hooks";
 import { Button } from "./button";
 import { Icon } from "../icons/icon";
 
@@ -110,16 +110,19 @@ export const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps
     const { open, setOpen, titleId, descriptionId } = useDialog("DialogContent");
     const panelRef = React.useRef<HTMLDivElement>(null);
 
+    const { render, state } = usePresence(open, panelRef);
+
     useEscapeKey(() => setOpen(false), open);
     useLockScroll(open);
     useFocusTrap(panelRef, open);
 
-    if (!open) return null;
+    if (!render) return null;
 
     return (
       <Portal>
         <div
           className="pxui-overlay"
+          data-state={state}
           onMouseDown={(event) => {
             if (isStatic) return;
             if (event.target === event.currentTarget) setOpen(false);
@@ -137,6 +140,7 @@ export const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps
             aria-labelledby={titleId}
             aria-describedby={descriptionId}
             tabIndex={-1}
+            data-state={state}
             className={cn("pxui-dialog", `pxui-dialog-${size}`, className)}
             {...rest}
           >

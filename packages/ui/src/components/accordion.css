@@ -30,12 +30,23 @@
 .pxui-accordion-trigger[data-state="open"] .pxui-accordion-caret { transform: rotate(180deg); }
 .pxui-accordion-item[data-disabled] .pxui-accordion-trigger { opacity: .5; cursor: not-allowed; }
 
-.pxui-accordion-content { overflow: hidden; }
-.pxui-accordion-content[data-state="open"] { animation: pxui-accordion-open var(--dur-slow) var(--ease) both; }
+/* De hoogte groeit echt mee, met grid-template-rows van 0fr naar 1fr.
+   Zo hoeft de hoogte niet gemeten te worden en werkt het ook als de inhoud
+   onderweg verandert. */
+.pxui-accordion-content {
+  display: grid; grid-template-rows: 0fr; opacity: 0;
+  transition: grid-template-rows var(--dur-slow) var(--ease), opacity var(--dur) var(--ease);
+}
+.pxui-accordion-content[data-state="open"] { grid-template-rows: 1fr; opacity: 1; }
+.pxui-accordion-content-wrap { overflow: hidden; min-height: 0; }
+.pxui-accordion-content[data-state="closed"] .pxui-accordion-content-wrap {
+  visibility: hidden;
+  transition: visibility 0s linear var(--dur-slow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pxui-accordion-content { transition: none; }
+}
 .pxui-accordion-content-inner {
   padding: 0 18px 17px; font-size: 13.5px; color: var(--text-2); line-height: 1.6;
-}
-@keyframes pxui-accordion-open {
-  from { opacity: 0; transform: translateY(-6px); }
-  to { opacity: 1; transform: none; }
 }

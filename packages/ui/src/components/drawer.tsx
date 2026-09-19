@@ -3,7 +3,7 @@ import * as React from "react";
 import { cn } from "../lib/cn";
 import { Portal } from "../lib/portal";
 import { Slot } from "../lib/slot";
-import { useControllableState, useEscapeKey, useFocusTrap, useLockScroll } from "../lib/hooks";
+import { useControllableState, useEscapeKey, useFocusTrap, useLockScroll, usePresence } from "../lib/hooks";
 import { Button } from "./button";
 import { Icon } from "../icons/icon";
 
@@ -104,17 +104,20 @@ export const DrawerContent = React.forwardRef<HTMLDivElement, DrawerContentProps
     const { open, setOpen, titleId } = useDrawer("DrawerContent");
     const panelRef = React.useRef<HTMLDivElement>(null);
 
+    const { render, state } = usePresence(open, panelRef, 300);
+
     useEscapeKey(() => setOpen(false), open);
     useLockScroll(open);
     useFocusTrap(panelRef, open);
 
-    if (!open) return null;
+    if (!render) return null;
     const horizontal = side === "left" || side === "right";
 
     return (
       <Portal>
         <div
           className="pxui-overlay pxui-overlay-plain"
+          data-state={state}
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) setOpen(false);
           }}
@@ -129,6 +132,7 @@ export const DrawerContent = React.forwardRef<HTMLDivElement, DrawerContentProps
             aria-modal="true"
             aria-labelledby={titleId}
             tabIndex={-1}
+            data-state={state}
             className={cn("pxui-drawer", `pxui-drawer-${side}`, className)}
             style={{ ...(size ? { [horizontal ? "width" : "height"]: size } : {}), ...style }}
             {...rest}

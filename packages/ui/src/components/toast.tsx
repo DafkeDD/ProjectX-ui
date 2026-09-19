@@ -18,6 +18,8 @@ export interface ToastOptions {
 
 export interface ToastItem extends ToastOptions {
   id: string;
+  /** Staat op de uitgaande animatie te wachten voor hij uit de lijst gaat. */
+  leaving?: boolean;
 }
 
 interface ToastContextValue {
@@ -48,10 +50,19 @@ export function ToastProvider({
   const timers = React.useRef(new Map<string, number>());
 
   const dismiss = React.useCallback((id: string) => {
-    setToasts((prev) => prev.filter((toast) => toast.id !== id));
     const timer = timers.current.get(id);
     if (timer) window.clearTimeout(timer);
-    timers.current.delete(id);
+
+    // Eerst markeren als vertrekkend; pas als de uitgaande animatie klaar is
+    // verdwijnt de melding echt uit de lijst.
+    setToasts((prev) => prev.map((toast) => (toast.id === id ? { ...toast, leaving: true } : toast)));
+    timers.current.set(
+      id,
+      window.setTimeout(() => {
+        setToasts((prev) => prev.filter((toast) => toast.id !== id));
+        timers.current.delete(id);
+      }, 190)
+    );
   }, []);
 
   const push = React.useCallback(
@@ -100,7 +111,12 @@ export function Toaster({ position = "bottom-right" }: { position?: ToastProvide
         {context.toasts.map((toast) => {
           const tone = toast.tone ?? "neutral";
           return (
-            <div key={toast.id} className={cn("pxui-toast", `pxui-toast-${tone}`)} role="status">
+            <div
+              key={toast.id}
+              data-state={toast.leaving ? "closed" : "open"}
+              className={cn("pxui-toast", `pxui-toast-${tone}`)}
+              role="status"
+            >
               <span className="pxui-toast-icon">
                 {toast.icon ?? <Icon name={TONE_ICON[tone]} size={15} />}
               </span>

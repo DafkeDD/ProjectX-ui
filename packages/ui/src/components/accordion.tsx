@@ -134,12 +134,18 @@ export const AccordionContent = React.forwardRef<HTMLDivElement, React.HTMLAttri
     return (
       <div
         ref={ref}
-        hidden={!isOpen || undefined}
+        // Bewust geen hidden: display none zou de hoogte-animatie blokkeren.
+        // De CSS zet visibility hidden zodra hij dicht is.
+        aria-hidden={!isOpen || undefined}
         data-state={isOpen ? "open" : "closed"}
         className={cn("pxui-accordion-content", className)}
         {...rest}
       >
-        <div className="pxui-accordion-content-inner">{children}</div>
+        {/* De wikkel wordt door de grid-animatie naar nul geknepen; de padding
+            zit een niveau dieper, anders blijft die zichtbaar als hij dicht is. */}
+        <div className="pxui-accordion-content-wrap">
+          <div className="pxui-accordion-content-inner">{children}</div>
+        </div>
       </div>
     );
   }

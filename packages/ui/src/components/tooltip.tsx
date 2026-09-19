@@ -4,6 +4,7 @@ import { cn } from "../lib/cn";
 import { Portal } from "../lib/portal";
 import { composeRefs } from "../lib/slot";
 import { useAnchorPosition, type Align, type Side } from "../lib/anchor";
+import { usePresence } from "../lib/hooks";
 
 export interface TooltipProps {
   /** Inhoud van de tooltip. */
@@ -73,16 +74,19 @@ export function Tooltip({
     },
   } as Record<string, unknown>);
 
+  const { render, state } = usePresence(open, tipRef, 160);
+
   return (
     <>
       {trigger}
-      {open && (
+      {render && (
         <Portal>
           <div
             ref={tipRef}
             id={`pxui-tooltip-${id}`}
             role="tooltip"
             data-side={position.side}
+            data-state={state}
             className={cn("pxui-tooltip")}
             style={{ ...position.style, opacity: position.ready ? 1 : 0 }}
           >
