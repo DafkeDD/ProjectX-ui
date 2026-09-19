@@ -74,8 +74,21 @@ export const ROADMAP: RoadmapStep[] = [
     done: true,
   },
   {
-    title: "Volgende ronde",
+    title: "Animatie in de kern",
     description:
-      "Uitgaande animaties voor Dialog, Popover, Tooltip en Toast, de hoogte-animatie van Accordion, en de documentatieteksten zelf vertalen.",
+      "Uitgaande animaties voor Dialog, Drawer, Popover, Tooltip en Toast via de eigen hook usePresence, plus een echte hoogte-animatie voor Accordion. Zonder dependency.",
+    done: true,
+  },
+  {
+    title: "De lijst afgewerkt",
+    description:
+      "Rating, Countdown, Fab met SpeedDial, Indicator, AspectRatio, Fieldset en Menubar — de laatste gaten uit de vergelijking met shadcn/ui en daisyUI.",
+    done: true,
+  },
+  {
+    title: "Alles vertaald",
+    description:
+      "De introductie-, installatie- en themapagina, de labels op elke componentpagina en de props-tabellen staan nu in vier talen. De componentomschrijvingen zelf blijven voorlopig Nederlands.",
+    done: true,
   },
 ];

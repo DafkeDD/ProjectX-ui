@@ -5,19 +5,19 @@ Werkt zoals shadcn/ui — dezelfde compositie, dezelfde copy-paste-aanpak — ma
 code van shadcn, Radix, Headless UI, cva of clsx**. Alles staat in `packages/ui/src`.
 
 ```
-85 componenten · 4 talen · 2 thema's · 3 dichtheden · 0 UI-dependencies in de kern
+92 componenten · 4 talen · 2 thema's · 3 dichtheden · 0 UI-dependencies in de kern
 ```
 
 | Categorie | Aantal | Waarvoor |
 | --- | --- | --- |
 | Basis | 11 | Button, Badge, Card, Avatar, Icon, Kbd, Skeleton … |
-| Formulieren | 18 | Input, Select, Combobox, Toggle, RichEditor, OtpInput … |
+| Formulieren | 20 | Input, Select, Combobox, Toggle, Rating, Fieldset, RichEditor … |
 | Overlays | 11 | Dialog, AlertDialog, Drawer, Popover, ContextMenu, HoverCard … |
-| Data | 11 | Table, Chart, Stat, Timeline, MessageThread, Carousel, QrCode … |
-| Navigatie | 10 | Tabs, Sidebar, BottomNav, Collapsible, Stepper … |
+| Data | 12 | Table, Chart, Stat, Timeline, MessageThread, Carousel, Countdown … |
+| Navigatie | 12 | Tabs, Sidebar, BottomNav, Menubar, Fab, Collapsible, Stepper … |
 | Datum & planning | 8 | Calendar, WeekSchedule, ResourceColumns, Swimlanes … |
-| Layout | 9 | AppShell, Resizable, ScrollArea, Mockup, AuthLayout … |
-| Feedback | 4 | Alert, EmptyState, Confetti, PulseDot |
+| Layout | 10 | AppShell, Resizable, ScrollArea, AspectRatio, Mockup … |
+| Feedback | 5 | Alert, EmptyState, Indicator, Confetti, PulseDot |
 | Motion | 3 | Optioneel, achter `@projectx/ui/motion` |
 
 ---
@@ -47,7 +47,7 @@ projectx-ui/
 ├─ packages/
 │  ├─ ui/                 De library
 │  │  └─ src/
-│  │     ├─ components/   82 componenten (.tsx + .css per component)
+│  │     ├─ components/   89 componenten (.tsx + .css per component)
 │  │     ├─ motion/       3 componenten achter @projectx/ui/motion (optioneel)
 │  │     ├─ lib/          cn, variants, Slot, Portal, hooks, positionering, datums
 │  │     ├─ icons/        eigen icon set (één path per glyph)
@@ -88,6 +88,21 @@ die sinds je laatste update in de registry bijgekomen zijn, en laat bestanden di
 rust — die worden overgeslagen tenzij je `--force` meegeeft. Wat er precies zou gebeuren zie je vooraf met
 `--dry-run`; met `--only-installed` blijf je bij wat je al hebt. De CLI houdt daarvoor `projectx-ui.lock.json`
 bij (welke componenten je hebt + een hash per bestand) — commit dat bestand mee.
+
+---
+
+## Animatie in de kern
+
+Overlays komen zacht binnen én gaan zacht weg: Dialog, Drawer, Popover, Tooltip
+en Toast blijven na het sluiten kort in de DOM staan met `data-state="closed"`,
+zodat de CSS een uitgaande animatie kan draaien. Dat regelt de hook `usePresence`
+in `packages/ui/src/lib/hooks.ts` — ongeveer veertig regels, geen dependency.
+
+Accordion en Collapsible animeren hun hoogte met `grid-template-rows: 0fr → 1fr`.
+Zo hoeft de hoogte niet gemeten te worden en schuift ook inhoud die onderweg
+verandert netjes mee.
+
+Alles respecteert `prefers-reduced-motion`.
 
 ---
 
