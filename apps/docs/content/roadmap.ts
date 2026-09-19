@@ -47,5 +47,6 @@ export const ROADMAP: RoadmapStep[] = [
   {
     title: "CLI & registry",
     description: "npx projectx-ui init / add / list — componenten kopiëren naar andere projecten, zoals shadcn.",
+    done: true,
   },
 ];

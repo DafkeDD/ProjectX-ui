@@ -185,9 +185,28 @@ function readSource(relative) {
   return { path: clean, content: readFileSync(join(uiSrc, clean), "utf8") };
 }
 
+/**
+ * Voegt lib-/icon-bestanden toe die een component importeert maar niet zelf
+ * in de catalogus vermeldt (bv. lib/date.ts), zodat `add` altijd compileert.
+ */
+function withLibDependencies(files) {
+  const result = [...files];
+  const known = new Set([...sharedFiles, ...result.map((file) => file.path)]);
+  for (let index = 0; index < result.length; index += 1) {
+    for (const match of result[index].content.matchAll(/from "\.\.?\/(lib|icons)\/([\w-]+)"/g)) {
+      const base = `${match[1]}/${match[2]}`;
+      const path = [`${base}.ts`, `${base}.tsx`].find((candidate) => existsSync(join(uiSrc, candidate)));
+      if (!path || known.has(path)) continue;
+      known.add(path);
+      result.push({ path, content: readFileSync(join(uiSrc, path), "utf8") });
+    }
+  }
+  return result;
+}
+
 const index = [];
 for (const entry of components) {
-  const files = entry.files.map(readSource);
+  const files = withLibDependencies(entry.files.map(readSource));
   const payload = {
     name: entry.slug,
     title: entry.name,

@@ -507,7 +507,8 @@
       ],
       "files": [
         "components/date-picker.tsx",
-        "components/date-picker.css"
+        "components/date-picker.css",
+        "lib/date.ts"
       ]
     },
     {
@@ -544,7 +545,8 @@
       "files": [
         "components/week-schedule.tsx",
         "components/week-schedule.css",
-        "lib/date.ts"
+        "lib/date.ts",
+        "lib/schedule.ts"
       ]
     },
     {
@@ -556,7 +558,8 @@
       "files": [
         "components/resource-columns.tsx",
         "components/resource-columns.css",
-        "lib/schedule.ts"
+        "lib/schedule.ts",
+        "lib/date.ts"
       ]
     },
     {
@@ -568,7 +571,8 @@
       "files": [
         "components/swimlanes.tsx",
         "components/swimlanes.css",
-        "lib/schedule.ts"
+        "lib/schedule.ts",
+        "lib/date.ts"
       ]
     },
     {
@@ -580,7 +584,8 @@
       "files": [
         "components/time-slot-list.tsx",
         "components/time-slot-list.css",
-        "lib/schedule.ts"
+        "lib/schedule.ts",
+        "lib/date.ts"
       ]
     },
     {
