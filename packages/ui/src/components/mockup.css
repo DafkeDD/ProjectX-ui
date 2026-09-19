@@ -48,28 +48,113 @@
 .pxui-mockup-dark .pxui-mockup-screen { background: #0f1520; }
 
 /* ---------- Telefoon ---------- */
-.pxui-mockup-phone { display: inline-block; }
+/* Alle maten schalen mee met de breedte, zodat het toestel op elk formaat
+   dezelfde verhoudingen houdt. De schermradius is de framerandius min de
+   randdikte: anders lopen binnen- en buitenhoek niet concentrisch. */
+.pxui-mockup-phone {
+  --pxui-phone-w: 280px;
+  --pxui-phone-frame: #10141c;
+  --pxui-phone-rand: calc(var(--pxui-phone-w) * 0.042);
+  --pxui-phone-radius: calc(var(--pxui-phone-w) * 0.175);
+  display: inline-block; width: var(--pxui-phone-w); max-width: 100%;
+}
+
 .pxui-mockup-phone-frame {
   position: relative; width: 100%;
-  padding: 11px; border-radius: 40px;
-  background: linear-gradient(160deg, #262f3e, #0d1119);
-  box-shadow: var(--sh-lg), inset 0 0 0 2px rgba(255, 255, 255, .06);
-}
-.pxui-mockup-phone-frame > .pxui-mockup-screen {
-  width: 100%; height: 100%; border-radius: 30px; overflow: auto;
+  padding: var(--pxui-phone-rand);
+  border-radius: var(--pxui-phone-radius);
+  /* Metaalrand: licht aan de bovenkant, donker naar onderen. */
+  background:
+    linear-gradient(165deg,
+      color-mix(in srgb, var(--pxui-phone-frame) 62%, #ffffff) 0%,
+      var(--pxui-phone-frame) 38%,
+      color-mix(in srgb, var(--pxui-phone-frame) 78%, #000000) 100%);
+  box-shadow:
+    0 24px 54px -20px rgba(8, 12, 20, .6),
+    0 0 0 1px rgba(255, 255, 255, .14) inset;
 }
 
-.pxui-mockup-phone-top {
-  position: absolute; top: 20px; left: 50%; translate: -50% 0; z-index: 2;
-  background: #05070b; border-radius: var(--r-full);
+.pxui-mockup-phone-screen {
+  position: relative; display: flex; flex-direction: column;
+  width: 100%; height: 100%; overflow: hidden;
+  border-radius: calc(var(--pxui-phone-radius) - var(--pxui-phone-rand));
+  background: var(--surface); color: var(--text);
+  /* Zwarte scheiding tussen scherm en rand, anders lopen ze in donkere modus
+     in elkaar over. */
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .9);
 }
-.pxui-mockup-phone-island { width: 84px; height: 24px; }
-.pxui-mockup-phone-notch { width: 132px; height: 26px; top: 11px; border-radius: 0 0 16px 16px; }
+
+/* ---- Statusbalk: houdt de ruimte vrij waar de pil of inkeping staat ---- */
+.pxui-mockup-phone-status {
+  position: relative; z-index: 2; flex: none;
+  display: flex; align-items: center; justify-content: space-between;
+  height: calc(var(--pxui-phone-w) * 0.155);
+  padding: 0 calc(var(--pxui-phone-w) * 0.06) 0 calc(var(--pxui-phone-w) * 0.07);
+  font-size: calc(var(--pxui-phone-w) * 0.049);
+  font-weight: 650; letter-spacing: .01em; color: var(--text);
+}
+.pxui-mockup-phone-time { font-variant-numeric: tabular-nums; }
+.pxui-mockup-phone-icons {
+  display: inline-flex; align-items: center; gap: calc(var(--pxui-phone-w) * 0.018);
+  color: var(--text);
+}
+.pxui-mockup-phone-icons svg { width: auto; height: calc(var(--pxui-phone-w) * 0.034); display: block; }
+
+/* ---- Pil en inkeping ---- */
+.pxui-mockup-phone-top {
+  position: absolute; left: 50%; translate: -50% 0; z-index: 3;
+  background: #05070b;
+}
+.pxui-mockup-phone-island {
+  top: calc(var(--pxui-phone-w) * 0.032);
+  width: calc(var(--pxui-phone-w) * 0.28);
+  height: calc(var(--pxui-phone-w) * 0.085);
+  border-radius: var(--r-full);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .06);
+}
+.pxui-mockup-phone-notch {
+  top: 0;
+  width: calc(var(--pxui-phone-w) * 0.44);
+  height: calc(var(--pxui-phone-w) * 0.078);
+  border-radius: 0 0 calc(var(--pxui-phone-w) * 0.06) calc(var(--pxui-phone-w) * 0.06);
+}
+
+/* ---- Inhoud ---- */
+.pxui-mockup-phone-content {
+  flex: 1; min-height: 0; overflow: auto;
+  padding-bottom: calc(var(--pxui-phone-w) * 0.075);
+}
+/* Zonder pil of inkeping mag de inhoud tot bovenaan lopen. */
+.pxui-mockup-phone-screen[data-top="none"] .pxui-mockup-phone-status:empty { display: none; }
 
 .pxui-mockup-phone-home {
-  position: absolute; bottom: 20px; left: 50%; translate: -50% 0; z-index: 2;
-  width: 108px; height: 4px; border-radius: var(--r-full);
-  background: color-mix(in srgb, var(--text) 35%, transparent);
+  position: absolute; bottom: calc(var(--pxui-phone-w) * 0.028); left: 50%; translate: -50% 0; z-index: 3;
+  width: calc(var(--pxui-phone-w) * 0.38);
+  height: calc(var(--pxui-phone-w) * 0.016);
+  border-radius: var(--r-full);
+  background: color-mix(in srgb, var(--text) 42%, transparent);
+}
+
+/* ---- Zijknoppen ---- */
+.pxui-mockup-phone-btn {
+  position: absolute; z-index: 0;
+  background: color-mix(in srgb, var(--pxui-phone-frame) 80%, #ffffff);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .35);
+}
+.pxui-mockup-phone-silent,
+.pxui-mockup-phone-vol-up,
+.pxui-mockup-phone-vol-down {
+  left: calc(var(--pxui-phone-w) * -0.009);
+  width: calc(var(--pxui-phone-w) * 0.011);
+  border-radius: calc(var(--pxui-phone-w) * 0.008) 0 0 calc(var(--pxui-phone-w) * 0.008);
+}
+.pxui-mockup-phone-silent { top: 17%; height: 4%; }
+.pxui-mockup-phone-vol-up { top: 25%; height: 8%; }
+.pxui-mockup-phone-vol-down { top: 35%; height: 8%; }
+.pxui-mockup-phone-power {
+  right: calc(var(--pxui-phone-w) * -0.009); top: 27%; height: 12%;
+  width: calc(var(--pxui-phone-w) * 0.011);
+  border-radius: 0 calc(var(--pxui-phone-w) * 0.008) calc(var(--pxui-phone-w) * 0.008) 0;
 }
 
 @media (max-width: 480px) {

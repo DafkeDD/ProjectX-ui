@@ -2597,7 +2597,7 @@
         "name": "width",
         "required": false,
         "type": "number",
-        "description": "Breedte van het scherm in px; de hoogte volgt uit de verhouding.",
+        "description": "Breedte van het toestel in px; alles erin schaalt mee.",
         "default": "280"
       },
       {
@@ -2611,8 +2611,22 @@
         "name": "top",
         "required": false,
         "type": "\"island\" | \"notch\" | \"none\"",
-        "description": "\"island\" is de pil bovenaan, \"notch\" de bredere inkeping.",
+        "description": "\"island\" is de pil, \"notch\" de bredere inkeping, \"none\" laat het weg.",
         "default": "\"island\""
+      },
+      {
+        "name": "statusBar",
+        "required": false,
+        "type": "boolean | React.ReactNode",
+        "description": "Statusbalk met tijd, signaal, wifi en batterij. Geef eigen inhoud mee of false.",
+        "default": "true"
+      },
+      {
+        "name": "time",
+        "required": false,
+        "type": "string",
+        "description": "Tijd links in de statusbalk.",
+        "default": "\"9:41\""
       },
       {
         "name": "homeBar",
@@ -2622,10 +2636,17 @@
         "default": "true"
       },
       {
-        "name": "dark",
+        "name": "frameColor",
+        "required": false,
+        "type": "string",
+        "description": "Kleur van het frame, bijvoorbeeld \"#ff8938\"."
+      },
+      {
+        "name": "buttons",
         "required": false,
         "type": "boolean",
-        "description": ""
+        "description": "Zijknoppen (volume en aan/uit) tonen.",
+        "default": "true"
       }
     ]
   },

@@ -31,9 +31,20 @@ export default function Demo() {
       )}
 
       {soort === "phone" && (
-        <MockupPhone width={240}>
-          <Scherm compact />
-        </MockupPhone>
+        <div style={{ display: "flex", gap: 22, flexWrap: "wrap", justifyContent: "center" }}>
+          <div style={{ display: "grid", gap: 8, justifyItems: "center" }}>
+            <MockupPhone width={230} time="9:41">
+              <Scherm compact />
+            </MockupPhone>
+            <span style={{ fontSize: 11.5, color: "var(--text-3)" }}>top=&quot;island&quot;</span>
+          </div>
+          <div style={{ display: "grid", gap: 8, justifyItems: "center" }}>
+            <MockupPhone width={230} top="notch" frameColor="#3d2a1c">
+              <Scherm compact />
+            </MockupPhone>
+            <span style={{ fontSize: 11.5, color: "var(--text-3)" }}>top=&quot;notch&quot; + frameColor</span>
+          </div>
+        </div>
       )}
     </div>
   );
