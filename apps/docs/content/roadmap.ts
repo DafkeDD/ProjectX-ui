@@ -32,6 +32,7 @@ export const ROADMAP: RoadmapStep[] = [
   {
     title: "Datum & planning",
     description: "Datum-helpers, Calendar, DatePicker, TimeField, PeriodNav, WeekSchedule, ResourceColumns, Swimlanes, TimeSlotList.",
+    done: true,
   },
   {
     title: "Data & layout",

@@ -484,6 +484,106 @@
       ]
     },
     {
+      "name": "calendar",
+      "title": "Calendar",
+      "description": "Maandkalender met enkelvoudige, bereik- en meervoudige selectie.",
+      "category": "Datum & planning",
+      "dependencies": [],
+      "files": [
+        "components/calendar.tsx",
+        "components/calendar.css",
+        "lib/date.ts"
+      ]
+    },
+    {
+      "name": "date-picker",
+      "title": "DatePicker",
+      "description": "Datum of periode kiezen in een popover, met snelkeuzes.",
+      "category": "Datum & planning",
+      "dependencies": [
+        "calendar",
+        "popover",
+        "field"
+      ],
+      "files": [
+        "components/date-picker.tsx",
+        "components/date-picker.css"
+      ]
+    },
+    {
+      "name": "time-field",
+      "title": "TimeField",
+      "description": "Tijd invoeren met slimme parsing, stappen en tijdslotsuggesties.",
+      "category": "Datum & planning",
+      "dependencies": [
+        "field"
+      ],
+      "files": [
+        "components/time-field.tsx",
+        "components/time-field.css",
+        "lib/date.ts"
+      ]
+    },
+    {
+      "name": "period-nav",
+      "title": "PeriodNav",
+      "description": "Vorige en volgende door weken, maanden of elke andere periode.",
+      "category": "Datum & planning",
+      "dependencies": [],
+      "files": [
+        "components/period-nav.tsx",
+        "components/period-nav.css"
+      ]
+    },
+    {
+      "name": "week-schedule",
+      "title": "WeekSchedule",
+      "description": "Weekplanning met uurraster, overlappende blokken en drag & drop.",
+      "category": "Datum & planning",
+      "dependencies": [],
+      "files": [
+        "components/week-schedule.tsx",
+        "components/week-schedule.css",
+        "lib/date.ts"
+      ]
+    },
+    {
+      "name": "resource-columns",
+      "title": "ResourceColumns",
+      "description": "Dagagenda met een kolom per arts, kamer of medewerker.",
+      "category": "Datum & planning",
+      "dependencies": [],
+      "files": [
+        "components/resource-columns.tsx",
+        "components/resource-columns.css",
+        "lib/schedule.ts"
+      ]
+    },
+    {
+      "name": "swimlanes",
+      "title": "Swimlanes",
+      "description": "De agenda op zijn kant: een baan per resource, tijd van links naar rechts.",
+      "category": "Datum & planning",
+      "dependencies": [],
+      "files": [
+        "components/swimlanes.tsx",
+        "components/swimlanes.css",
+        "lib/schedule.ts"
+      ]
+    },
+    {
+      "name": "time-slot-list",
+      "title": "TimeSlotList",
+      "description": "De dag als verticale tijdlijn, met kaartjes per tijdstip.",
+      "category": "Datum & planning",
+      "dependencies": [],
+      "files": [
+        "components/time-slot-list.tsx",
+        "components/time-slot-list.css",
+        "lib/schedule.ts"
+      ]
+    },
+    {
       "name": "theme",
       "title": "Theme",
       "description": "Licht/donker met ThemeProvider, useTheme en ThemeToggle.",

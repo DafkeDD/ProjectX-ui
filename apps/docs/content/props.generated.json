@@ -654,6 +654,174 @@
       }
     ]
   },
+  "DatePickerProps": {
+    "extends": "CalendarOptions",
+    "props": [
+      {
+        "name": "value",
+        "required": false,
+        "type": "Date | null",
+        "description": ""
+      },
+      {
+        "name": "defaultValue",
+        "required": false,
+        "type": "Date | null",
+        "description": ""
+      },
+      {
+        "name": "onValueChange",
+        "required": false,
+        "type": "(date: Date | null) => void",
+        "description": ""
+      },
+      {
+        "name": "placeholder",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Kies een datum\""
+      },
+      {
+        "name": "format",
+        "required": false,
+        "type": "Intl.DateTimeFormatOptions",
+        "description": "Opmaak van de getoonde datum."
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\" | \"lg\"",
+        "description": "",
+        "default": "\"md\""
+      },
+      {
+        "name": "invalid",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "disabledInput",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "clearable",
+        "required": false,
+        "type": "boolean",
+        "description": "Toont een wisknop wanneer er een datum gekozen is."
+      },
+      {
+        "name": "showToday",
+        "required": false,
+        "type": "boolean",
+        "description": "Knop \"Vandaag\" onderaan de kalender.",
+        "default": "true"
+      },
+      {
+        "name": "id",
+        "required": false,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "className",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"pxui-datefield-icon\""
+      },
+      {
+        "name": "aria-describedby",
+        "required": false,
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  "DateRangePickerProps": {
+    "extends": "CalendarOptions",
+    "props": [
+      {
+        "name": "value",
+        "required": false,
+        "type": "DateRange | null",
+        "description": ""
+      },
+      {
+        "name": "defaultValue",
+        "required": false,
+        "type": "DateRange | null",
+        "description": ""
+      },
+      {
+        "name": "onValueChange",
+        "required": false,
+        "type": "(range: DateRange) => void",
+        "description": ""
+      },
+      {
+        "name": "placeholder",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Kies een datum\""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\" | \"lg\"",
+        "description": "",
+        "default": "\"md\""
+      },
+      {
+        "name": "invalid",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "disabledInput",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "clearable",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "numberOfMonths",
+        "required": false,
+        "type": "number",
+        "description": "Aantal maanden naast elkaar in de popover.",
+        "default": "2"
+      },
+      {
+        "name": "presets",
+        "required": false,
+        "type": "Array<{ label: string; range: DateRange }>",
+        "description": "Snelkeuzes links van de kalender, bv. \"Deze week\"."
+      },
+      {
+        "name": "id",
+        "required": false,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "className",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"pxui-datefield-icon\""
+      }
+    ]
+  },
   "DialogProps": {
     "extends": "",
     "props": [
@@ -1184,6 +1352,82 @@
       }
     ]
   },
+  "PeriodNavProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "label",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": "Tekst tussen de pijlen, bv. \"Week 12 · 16–20 mrt\"."
+      },
+      {
+        "name": "onPrevious",
+        "required": false,
+        "type": "() => void",
+        "description": ""
+      },
+      {
+        "name": "onNext",
+        "required": false,
+        "type": "() => void",
+        "description": ""
+      },
+      {
+        "name": "onToday",
+        "required": false,
+        "type": "() => void",
+        "description": "Toont een knop die terugspringt naar vandaag."
+      },
+      {
+        "name": "todayLabel",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Vandaag\""
+      },
+      {
+        "name": "previousLabel",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Vorige periode\""
+      },
+      {
+        "name": "nextLabel",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Volgende periode\""
+      },
+      {
+        "name": "disablePrevious",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "disableNext",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\"",
+        "description": "",
+        "default": "\"md\""
+      },
+      {
+        "name": "variant",
+        "required": false,
+        "type": "\"plain\" | \"boxed\"",
+        "description": "\"boxed\" zet de pijlen in een grijs kader, zoals in de planningsbalk.",
+        "default": "\"boxed\""
+      }
+    ]
+  },
   "PopoverProps": {
     "extends": "",
     "props": [
@@ -1422,6 +1666,81 @@
         "required": false,
         "type": "boolean",
         "description": "Rendert de optie als een klikbare kaart."
+      }
+    ]
+  },
+  "ResourceColumnsProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "resources",
+        "required": true,
+        "type": "ScheduleResource[]",
+        "description": "Kolommen: artsen, kamers, monteurs …"
+      },
+      {
+        "name": "events",
+        "required": true,
+        "type": "ScheduleEvent[]",
+        "description": ""
+      },
+      {
+        "name": "collapseEmpty",
+        "required": false,
+        "type": "boolean",
+        "description": "Lege kolommen krimpen tot een smalle rail met alleen de naam."
+      },
+      {
+        "name": "minColumnWidth",
+        "required": false,
+        "type": "number",
+        "description": "Minimale breedte van een kolom voordat er horizontaal gescrold wordt.",
+        "default": "230"
+      },
+      {
+        "name": "maxHeight",
+        "required": false,
+        "type": "number | string",
+        "description": "Maximale hoogte van de lijst in een kolom.",
+        "default": "460"
+      },
+      {
+        "name": "emptyLabel",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "",
+        "default": "\"Geen afspraken\""
+      },
+      {
+        "name": "countLabel",
+        "required": false,
+        "type": "string",
+        "description": "Tekst achter het aantal, bv. \"afspraken\".",
+        "default": "\"afspraken\""
+      },
+      {
+        "name": "onEventClick",
+        "required": false,
+        "type": "(event: ScheduleEvent) => void",
+        "description": ""
+      },
+      {
+        "name": "renderResourceActions",
+        "required": false,
+        "type": "(resource: ScheduleResource) => React.ReactNode",
+        "description": "Knoppen rechts in de kolomkop."
+      },
+      {
+        "name": "renderEventActions",
+        "required": false,
+        "type": "(event: ScheduleEvent) => React.ReactNode",
+        "description": "Knoppen rechts in een rij."
+      },
+      {
+        "name": "renderEvent",
+        "required": false,
+        "type": "(event: ScheduleEvent) => React.ReactNode",
+        "description": "Eigen inhoud voor een rij."
       }
     ]
   },
@@ -1729,6 +2048,110 @@
       }
     ]
   },
+  "SwimlanesProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "resources",
+        "required": true,
+        "type": "ScheduleResource[]",
+        "description": "Rijen: artsen, kamers, machines …"
+      },
+      {
+        "name": "events",
+        "required": true,
+        "type": "ScheduleEvent[]",
+        "description": ""
+      },
+      {
+        "name": "startHour",
+        "required": false,
+        "type": "number",
+        "description": "Eerste zichtbare uur.",
+        "default": "8"
+      },
+      {
+        "name": "endHour",
+        "required": false,
+        "type": "number",
+        "description": "Laatste zichtbare uur.",
+        "default": "18"
+      },
+      {
+        "name": "pxPerMinute",
+        "required": false,
+        "type": "number",
+        "description": "Breedte van één minuut in pixels.",
+        "default": "2.4"
+      },
+      {
+        "name": "laneHeight",
+        "required": false,
+        "type": "number",
+        "description": "Hoogte van een baan.",
+        "default": "54"
+      },
+      {
+        "name": "labelWidth",
+        "required": false,
+        "type": "number",
+        "description": "Breedte van de vaste kolom links.",
+        "default": "180"
+      },
+      {
+        "name": "nowIndicator",
+        "required": false,
+        "type": "boolean",
+        "description": "Verticale lijn op de huidige tijd.",
+        "default": "true"
+      },
+      {
+        "name": "now",
+        "required": false,
+        "type": "number",
+        "description": "Voor tests: vaste \"nu\"-tijd in minuten."
+      },
+      {
+        "name": "emptyLabel",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "",
+        "default": "\"— vrij —\""
+      },
+      {
+        "name": "countLabel",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"afspraken\""
+      },
+      {
+        "name": "onEventClick",
+        "required": false,
+        "type": "(event: ScheduleEvent) => void",
+        "description": ""
+      },
+      {
+        "name": "onSlotClick",
+        "required": false,
+        "type": "(resource: string, start: number) => void",
+        "description": "Klik op een leeg stuk van een baan."
+      },
+      {
+        "name": "step",
+        "required": false,
+        "type": "number",
+        "description": "Rooster waarop een klik vastklikt, in minuten.",
+        "default": "15"
+      },
+      {
+        "name": "renderEvent",
+        "required": false,
+        "type": "(event: ScheduleEvent) => React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
   "SwitchProps": {
     "extends": "Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, \"onChange\" | \"value\">",
     "props": [
@@ -2012,6 +2435,220 @@
       }
     ]
   },
+  "TimeFieldProps": {
+    "extends": "Omit<React.InputHTMLAttributes<HTMLInputElement>, \"value\" | \"defaultValue\" | \"onChange\" | \"size\" | \"min\" | \"max\" | \"step\">",
+    "props": [
+      {
+        "name": "value",
+        "required": false,
+        "type": "number | null",
+        "description": "Tijd in minuten sinds middernacht (09:30 = 570)."
+      },
+      {
+        "name": "defaultValue",
+        "required": false,
+        "type": "number | null",
+        "description": ""
+      },
+      {
+        "name": "onValueChange",
+        "required": false,
+        "type": "(minutes: number | null) => void",
+        "description": ""
+      },
+      {
+        "name": "step",
+        "required": false,
+        "type": "number",
+        "description": "Stap in minuten voor pijltjestoetsen en suggesties.",
+        "default": "15"
+      },
+      {
+        "name": "min",
+        "required": false,
+        "type": "number",
+        "description": "Vroegste toegestane tijd in minuten.",
+        "default": "0"
+      },
+      {
+        "name": "max",
+        "required": false,
+        "type": "number",
+        "description": "Laatste toegestane tijd in minuten.",
+        "default": "23"
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\" | \"lg\"",
+        "description": "",
+        "default": "\"md\""
+      },
+      {
+        "name": "invalid",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "suggestions",
+        "required": false,
+        "type": "boolean",
+        "description": "Toont een lijst met tijdstippen bij focus.",
+        "default": "true"
+      }
+    ]
+  },
+  "TimeRangeValue": {
+    "extends": "",
+    "props": [
+      {
+        "name": "start",
+        "required": true,
+        "type": "number | null",
+        "description": ""
+      },
+      {
+        "name": "end",
+        "required": true,
+        "type": "number | null",
+        "description": ""
+      }
+    ]
+  },
+  "TimeRangeFieldProps": {
+    "extends": "",
+    "props": [
+      {
+        "name": "value",
+        "required": false,
+        "type": "TimeRangeValue",
+        "description": ""
+      },
+      {
+        "name": "defaultValue",
+        "required": false,
+        "type": "TimeRangeValue",
+        "description": ""
+      },
+      {
+        "name": "onValueChange",
+        "required": false,
+        "type": "(value: TimeRangeValue) => void",
+        "description": ""
+      },
+      {
+        "name": "step",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "15"
+      },
+      {
+        "name": "min",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "0"
+      },
+      {
+        "name": "max",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "23"
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\" | \"lg\"",
+        "description": "",
+        "default": "\"md\""
+      },
+      {
+        "name": "invalid",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "className",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"pxui-timefield-icon\""
+      },
+      {
+        "name": "showDuration",
+        "required": false,
+        "type": "boolean",
+        "description": "Toont de duur rechts van de velden, bv. \"7 u 30\".",
+        "default": "true"
+      }
+    ]
+  },
+  "TimeSlotListProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "events",
+        "required": true,
+        "type": "ScheduleEvent[]",
+        "description": ""
+      },
+      {
+        "name": "resources",
+        "required": false,
+        "type": "ScheduleResource[]",
+        "description": "Resources voor kleur, avatar en het label rechts op een kaart."
+      },
+      {
+        "name": "showResource",
+        "required": false,
+        "type": "boolean",
+        "description": "Toont de naam van de resource als tag op elke kaart.",
+        "default": "true"
+      },
+      {
+        "name": "minCardWidth",
+        "required": false,
+        "type": "number",
+        "description": "Aantal kolommen waarin de kaarten van één tijdslot worden gelegd.",
+        "default": "230"
+      },
+      {
+        "name": "emptyLabel",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "",
+        "default": "\"Niets gepland\""
+      },
+      {
+        "name": "onEventClick",
+        "required": false,
+        "type": "(event: ScheduleEvent) => void",
+        "description": ""
+      },
+      {
+        "name": "renderEvent",
+        "required": false,
+        "type": "(event: ScheduleEvent, resource?: ScheduleResource) => React.ReactNode",
+        "description": "Eigen inhoud voor een kaart."
+      },
+      {
+        "name": "renderEventMeta",
+        "required": false,
+        "type": "(event: ScheduleEvent) => React.ReactNode",
+        "description": "Extra tekst of knoppen rechtsonder op een kaart."
+      }
+    ]
+  },
   "ToastOptions": {
     "extends": "",
     "props": [
@@ -2183,6 +2820,142 @@
       }
     ]
   },
+  "ScheduleChange": {
+    "extends": "",
+    "props": [
+      {
+        "name": "resource",
+        "required": true,
+        "type": "string",
+        "description": "Sleutel van de kolom waar het blok nu staat."
+      },
+      {
+        "name": "day",
+        "required": true,
+        "type": "string",
+        "description": "Zelfde waarde als `resource`; blijft bestaan voor bestaande code."
+      },
+      {
+        "name": "start",
+        "required": true,
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "end",
+        "required": true,
+        "type": "number",
+        "description": ""
+      }
+    ]
+  },
+  "WeekScheduleProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"onChange\">",
+    "props": [
+      {
+        "name": "resources",
+        "required": false,
+        "type": "ScheduleResource[]",
+        "description": "Kolommen: dagen, artsen, kamers … Gedeeld met de andere agendaweergaven."
+      },
+      {
+        "name": "days",
+        "required": false,
+        "type": "ScheduleResource[]",
+        "description": "Oude naam voor `resources`; blijft werken."
+      },
+      {
+        "name": "events",
+        "required": true,
+        "type": "WeekScheduleEvent[]",
+        "description": ""
+      },
+      {
+        "name": "startHour",
+        "required": false,
+        "type": "number",
+        "description": "Eerste zichtbare uur.",
+        "default": "7"
+      },
+      {
+        "name": "endHour",
+        "required": false,
+        "type": "number",
+        "description": "Laatste zichtbare uur.",
+        "default": "19"
+      },
+      {
+        "name": "hourHeight",
+        "required": false,
+        "type": "number",
+        "description": "Hoogte van één uur in pixels.",
+        "default": "56"
+      },
+      {
+        "name": "step",
+        "required": false,
+        "type": "number",
+        "description": "Rooster waarop verslepen vastklikt, in minuten.",
+        "default": "15"
+      },
+      {
+        "name": "minDuration",
+        "required": false,
+        "type": "number",
+        "description": "Kortste duur bij het verkleinen van een blok.",
+        "default": "15"
+      },
+      {
+        "name": "workingHours",
+        "required": false,
+        "type": "Record<string, { start: number; end: number } | null | undefined>",
+        "description": "Werkuren per kolomsleutel; daarbuiten wordt gearceerd."
+      },
+      {
+        "name": "nowIndicator",
+        "required": false,
+        "type": "boolean",
+        "description": "Lijn met de huidige tijd (alleen op de dag met `today`).",
+        "default": "true"
+      },
+      {
+        "name": "now",
+        "required": false,
+        "type": "number",
+        "description": "Voor tests: vaste \"nu\"-tijd in minuten."
+      },
+      {
+        "name": "readOnly",
+        "required": false,
+        "type": "boolean",
+        "description": "Blokken kunnen niet versleept of aangepast worden."
+      },
+      {
+        "name": "onEventClick",
+        "required": false,
+        "type": "(event: ScheduleEvent) => void",
+        "description": ""
+      },
+      {
+        "name": "onEventChange",
+        "required": false,
+        "type": "(id: string, change: ScheduleChange) => void",
+        "description": "Wordt aangeroepen na slepen of verkleinen."
+      },
+      {
+        "name": "onSlotClick",
+        "required": false,
+        "type": "(resource: string, start: number) => void",
+        "description": "Klik op een leeg stuk van een dagkolom."
+      },
+      {
+        "name": "renderEvent",
+        "required": false,
+        "type": "(event: ScheduleEvent) => React.ReactNode",
+        "description": "Eigen inhoud in een blok."
+      }
+    ]
+  },
   "AnchorOptions": {
     "extends": "",
     "props": [
@@ -2260,6 +3033,151 @@
         "description": ""
       }
     ]
+  },
+  "DateRange": {
+    "extends": "",
+    "props": [
+      {
+        "name": "from",
+        "required": false,
+        "type": "Date",
+        "description": ""
+      },
+      {
+        "name": "to",
+        "required": false,
+        "type": "Date",
+        "description": ""
+      }
+    ]
+  },
+  "ScheduleResource": {
+    "extends": "",
+    "props": [
+      {
+        "name": "key",
+        "required": true,
+        "type": "string",
+        "description": "Unieke sleutel; events verwijzen hiernaar."
+      },
+      {
+        "name": "label",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "sublabel",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Tweede regel, bv. het dagnummer of het aantal afspraken."
+      },
+      {
+        "name": "media",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Avatar of icoon links van het label."
+      },
+      {
+        "name": "color",
+        "required": false,
+        "type": "string",
+        "description": "Eigen kleur voor deze resource (koptekst, tag, blokken zonder eigen kleur)."
+      },
+      {
+        "name": "today",
+        "required": false,
+        "type": "boolean",
+        "description": "Markeert deze kolom als vandaag."
+      },
+      {
+        "name": "blocked",
+        "required": false,
+        "type": "boolean",
+        "description": "Hele kolom gearceerd, bv. een sluitingsdag of afwezigheid."
+      },
+      {
+        "name": "blockedLabel",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
+  "ScheduleEvent": {
+    "extends": "",
+    "props": [
+      {
+        "name": "id",
+        "required": true,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "resource",
+        "required": true,
+        "type": "string",
+        "description": "Sleutel van de resource (dag, arts, kamer …) waar dit item bij hoort."
+      },
+      {
+        "name": "start",
+        "required": true,
+        "type": "number",
+        "description": "Begin in minuten sinds middernacht (09:30 = 570)."
+      },
+      {
+        "name": "end",
+        "required": true,
+        "type": "number",
+        "description": "Einde in minuten sinds middernacht."
+      },
+      {
+        "name": "title",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "subtitle",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "tone",
+        "required": false,
+        "type": "ScheduleTone",
+        "description": ""
+      },
+      {
+        "name": "color",
+        "required": false,
+        "type": "string",
+        "description": "Eigen kleur; overschrijft `tone` en de kleur van de resource."
+      },
+      {
+        "name": "locked",
+        "required": false,
+        "type": "boolean",
+        "description": "Kan niet versleept of aangepast worden."
+      },
+      {
+        "name": "blocked",
+        "required": false,
+        "type": "boolean",
+        "description": "Geblokkeerde tijd: gearceerd, nooit versleepbaar, geen klikactie."
+      },
+      {
+        "name": "meta",
+        "required": false,
+        "type": "unknown",
+        "description": "Vrij veld voor je eigen gegevens."
+      }
+    ]
+  },
+  "LaidOutEvent": {
+    "extends": "<T extends",
+    "props": []
   },
   "SlotProps": {
     "extends": "React.HTMLAttributes<HTMLElement>",
