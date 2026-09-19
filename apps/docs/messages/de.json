@@ -11,7 +11,8 @@
     "installation": "Installation",
     "theming": "Theme & Tokens",
     "results": "{count} Treffer",
-    "new": "neu"
+    "new": "neu",
+    "updated": "aktualisiert"
   },
   "categories": {
     "basis": "Basis",

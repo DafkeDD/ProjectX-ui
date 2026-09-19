@@ -7,6 +7,8 @@ export interface DemoEntry {
   align?: "center" | "start" | "block";
   /** Toont een "nieuw"-label bij deze demo. */
   isNew?: boolean;
+  /** Toont een "bijgewerkt"-label bij deze demo. Wordt genegeerd als isNew aanstaat. */
+  isUpdated?: boolean;
 }
 
 export interface ComponentEntry {
@@ -24,6 +26,8 @@ export interface ComponentEntry {
   notes?: string[];
   /** Toont een "nieuw"-label in de navigatie en op de pagina. */
   isNew?: boolean;
+  /** Toont een "bijgewerkt"-label in de navigatie en op de pagina. Wordt genegeerd als isNew aanstaat. */
+  isUpdated?: boolean;
 }
 
 export const CATEGORIES = [
@@ -793,4 +797,15 @@ export function componentsByCategory(): Array<{ category: string; items: Compone
 
 export function newComponents(): ComponentEntry[] {
   return COMPONENTS.filter((component) => component.isNew);
+}
+
+export function updatedComponents(): ComponentEntry[] {
+  return COMPONENTS.filter((component) => component.isUpdated && !component.isNew);
+}
+
+/** Welk label hoort bij dit item: "new", "updated" of geen. */
+export function entryTag(entry: { isNew?: boolean; isUpdated?: boolean }): "new" | "updated" | null {
+  if (entry.isNew) return "new";
+  if (entry.isUpdated) return "updated";
+  return null;
 }

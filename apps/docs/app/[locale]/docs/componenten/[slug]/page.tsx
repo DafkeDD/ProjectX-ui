@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Alert, Badge, Button, Icon } from "@projectx/ui";
-import { COMPONENTS, componentBySlug } from "@/content/catalog";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { COMPONENTS, componentBySlug, entryTag } from "@/content/catalog";
 import { CodeBlock } from "@/components/code-block";
 import { Preview } from "@/components/preview";
 import { PropsTable } from "@/components/props-table";
@@ -20,8 +21,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function ComponentPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export default async function ComponentPage({
+  params,
+}: {
+  params: Promise<{ slug: string; locale: string }>;
+}) {
+  const { slug, locale } = await params;
+  setRequestLocale(locale);
+  const tNav = await getTranslations("nav");
   const component = componentBySlug(slug);
   if (!component) notFound();
 
@@ -35,9 +42,14 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
     <div className="docs-body">
       <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
         <Badge tone="accent">{component.category}</Badge>
-        {component.isNew && (
+        {entryTag(component) === "new" && (
           <Badge tone="green" icon={<Icon name="sparkles" size={12} />}>
-            nieuw
+            {tNav("new")}
+          </Badge>
+        )}
+        {entryTag(component) === "updated" && (
+          <Badge tone="amber" icon={<Icon name="refresh" size={12} />}>
+            {tNav("updated")}
           </Badge>
         )}
       </div>
@@ -78,9 +90,13 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
         <div className="docs-section" key={demo.key}>
           <h2 className="docs-section-title">
             {demo.title}
-            {demo.isNew && (
-              <Badge tone="green" size="sm" style={{ marginLeft: 10, verticalAlign: "middle" }}>
-                nieuw
+            {entryTag(demo) && (
+              <Badge
+                tone={entryTag(demo) === "new" ? "green" : "amber"}
+                size="sm"
+                style={{ marginLeft: 10, verticalAlign: "middle" }}
+              >
+                {tNav(entryTag(demo)!)}
               </Badge>
             )}
           </h2>

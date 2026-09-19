@@ -1,9 +1,15 @@
 import Link from "next/link";
 import { Alert, Badge, Button, Card, CardContent, Icon } from "@projectx/ui";
-import { COMPONENTS, componentsByCategory } from "@/content/catalog";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { COMPONENTS, componentsByCategory, entryTag } from "@/content/catalog";
+import { DocsTag } from "@/components/docs-tag";
 import { ROADMAP } from "@/content/roadmap";
 
-export default function DocsIntroPage() {
+export default async function DocsIntroPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const tNav = await getTranslations("nav");
+
   const groups = componentsByCategory();
   const done = ROADMAP.filter((step) => step.done).length;
 
@@ -93,7 +99,10 @@ export default function DocsIntroPage() {
                     background: "var(--surface)", textDecoration: "none",
                   }}
                 >
-                  <div style={{ fontSize: 13.5, fontWeight: 600 }}>{item.name}</div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13.5, fontWeight: 600 }}>
+                    {item.name}
+                    {entryTag(item) && <DocsTag kind={entryTag(item)!} label={tNav(entryTag(item)!)} />}
+                  </div>
                   <div style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>{item.description}</div>
                 </Link>
               ))}

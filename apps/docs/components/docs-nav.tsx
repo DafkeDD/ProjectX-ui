@@ -3,7 +3,8 @@ import * as React from "react";
 import { useTranslations } from "next-intl";
 import { Icon, Input } from "@projectx/ui";
 import { Link, usePathname } from "@/i18n/navigation";
-import { COMPONENTS, componentsByCategory } from "@/content/catalog";
+import { COMPONENTS, componentsByCategory, entryTag } from "@/content/catalog";
+import { DocsTag } from "./docs-tag";
 
 const START_LINKS = [
   { href: "/docs", key: "intro", icon: "sparkles" as const },
@@ -28,6 +29,11 @@ export function DocsNav({ open }: { open?: boolean }) {
   const [query, setQuery] = React.useState("");
   const t = useTranslations("nav");
   const tCategory = useTranslations("categories");
+
+  const tag = (entry: { isNew?: boolean; isUpdated?: boolean }) => {
+    const kind = entryTag(entry);
+    return kind ? <DocsTag kind={kind} label={t(kind)} /> : null;
+  };
 
   const hits = COMPONENTS.filter((c) => match(c.name, query) || match(c.description, query));
 
@@ -83,7 +89,7 @@ export function DocsNav({ open }: { open?: boolean }) {
             return (
               <Link key={item.slug} href={href} className="docs-nav-link" data-active={pathname === href ? "" : undefined}>
                 {item.name}
-                {item.isNew && <span className="docs-new">{t("new")}</span>}
+                {tag(item)}
               </Link>
             );
           })}

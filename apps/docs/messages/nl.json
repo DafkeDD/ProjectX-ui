@@ -11,7 +11,8 @@
     "installation": "Installatie",
     "theming": "Thema & tokens",
     "results": "{count} resultaten",
-    "new": "nieuw"
+    "new": "nieuw",
+    "updated": "bijgewerkt"
   },
   "categories": {
     "basis": "Basis",

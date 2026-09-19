@@ -3,9 +3,10 @@ import {
   Badge, Button, Card, CardDescription, CardHeader, CardTitle, Icon, ThemeToggle,
 } from "@projectx/ui";
 import { Link } from "@/i18n/navigation";
-import { COMPONENTS } from "@/content/catalog";
+import { COMPONENTS, entryTag } from "@/content/catalog";
 import { CodeBlock } from "@/components/code-block";
 import { LocaleSwitcher } from "@/components/locale-switcher";
+import { DocsTag } from "@/components/docs-tag";
 
 const FEATURES = [
   { key: "zeroDeps", icon: "shield" as const },
@@ -115,7 +116,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             >
               <Icon name="chevronRight" size={14} />
               {component.name}
-              {component.isNew && <span className="docs-new">{tNav("new")}</span>}
+              {entryTag(component) && (
+                <DocsTag kind={entryTag(component)!} label={tNav(entryTag(component)!)} />
+              )}
             </Link>
           ))}
         </div>

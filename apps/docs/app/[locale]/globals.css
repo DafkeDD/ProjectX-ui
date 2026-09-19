@@ -143,17 +143,23 @@ a { color: inherit; }
   .docs-title { font-size: 27px; }
 }
 
-/* ---------- "nieuw"-label ---------- */
-.docs-new {
+/* ---------- labels "nieuw" en "bijgewerkt" ---------- */
+.docs-tag {
   display: inline-flex; align-items: center; flex: none;
   margin-left: auto; padding: 1px 7px;
   border-radius: var(--r-full);
-  background: var(--green-tint); color: var(--green);
-  border: 1px solid var(--green-border);
   font-size: 9.5px; font-weight: 700; letter-spacing: .04em;
   text-transform: uppercase; line-height: 1.6;
 }
-.docs-nav-link .docs-new { margin-left: auto; }
+.docs-tag-new {
+  background: var(--green-tint); color: var(--green);
+  border: 1px solid var(--green-border);
+}
+.docs-tag-updated {
+  background: var(--amber-tint); color: var(--amber);
+  border: 1px solid var(--amber-border);
+}
+.docs-nav-link .docs-tag { margin-left: auto; }
 
 .docs-whatsnew {
   display: flex; flex-direction: column; gap: 10px;
