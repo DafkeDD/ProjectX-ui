@@ -53,7 +53,27 @@
 .pxui-btn-icon.pxui-btn-lg { width: calc(46px * var(--density)); }
 
 /* ---------- Button group ---------- */
-.pxui-btn-group { display: inline-flex; }
+.pxui-btn-group { display: inline-flex; gap: 8px; }
+.pxui-btn-group-vertical { flex-direction: column; align-items: stretch; }
+.pxui-btn-group-block { display: flex; width: 100%; }
+.pxui-btn-group-block > * { flex: 1; }
+
+/* Aan elkaar: gedeelde randen, alleen de buitenhoeken rond. */
+.pxui-btn-group-joined { gap: 0; }
+.pxui-btn-group-joined.pxui-btn-group-vertical > .pxui-btn { border-radius: 0; margin-left: 0; margin-top: -1px; }
+.pxui-btn-group-joined.pxui-btn-group-vertical > .pxui-btn:first-child {
+  border-radius: var(--r-sm) var(--r-sm) 0 0; margin-top: 0;
+}
+.pxui-btn-group-joined.pxui-btn-group-vertical > .pxui-btn:last-child {
+  border-radius: 0 0 var(--r-sm) var(--r-sm);
+}
+/* Ook toggles mogen in de groep staan. */
+.pxui-btn-group-joined > .pxui-toggle { border-radius: 0; margin-left: -1px; border-color: var(--border); }
+.pxui-btn-group-joined > .pxui-toggle:first-child { border-radius: var(--r-sm) 0 0 var(--r-sm); margin-left: 0; }
+.pxui-btn-group-joined > .pxui-toggle:last-child { border-radius: 0 var(--r-sm) var(--r-sm) 0; }
+.pxui-btn-group-joined > .pxui-toggle:hover,
+.pxui-btn-group-joined > .pxui-toggle:focus-visible,
+.pxui-btn-group-joined > .pxui-toggle[data-state="on"] { position: relative; z-index: 1; }
 .pxui-btn-group > .pxui-btn { border-radius: 0; margin-left: -1px; }
 .pxui-btn-group > .pxui-btn:first-child { border-radius: var(--r-sm) 0 0 var(--r-sm); margin-left: 0; }
 .pxui-btn-group > .pxui-btn:last-child { border-radius: 0 var(--r-sm) var(--r-sm) 0; }

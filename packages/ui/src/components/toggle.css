@@ -1,0 +1,50 @@
+/* ============================ Toggle ============================ */
+.pxui-toggle {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  height: calc(36px * var(--density)); padding: 0 12px;
+  border: 1px solid transparent; border-radius: var(--r-sm);
+  background: transparent; color: var(--text-2);
+  font: inherit; font-size: 13.5px; font-weight: 600; white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+.pxui-toggle:hover:not(:disabled) { background: var(--surface-3); color: var(--text); }
+.pxui-toggle:focus-visible { outline: none; box-shadow: var(--ring); }
+.pxui-toggle:disabled { opacity: .45; cursor: not-allowed; }
+
+.pxui-toggle[data-state="on"] {
+  background: var(--accent-tint); color: var(--accent); border-color: var(--accent-border);
+}
+.pxui-toggle[data-state="on"]:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--accent-tint) 72%, var(--accent));
+}
+
+.pxui-toggle-outline { border-color: var(--border); background: var(--surface); }
+.pxui-toggle-outline:hover:not(:disabled) { background: var(--surface-2); }
+
+.pxui-toggle-sm { height: calc(30px * var(--density)); padding: 0 9px; font-size: 12.5px; }
+.pxui-toggle-lg { height: calc(42px * var(--density)); padding: 0 16px; font-size: 14.5px; }
+
+.pxui-toggle-icon-only { padding: 0; width: calc(36px * var(--density)); }
+.pxui-toggle-sm.pxui-toggle-icon-only { width: calc(30px * var(--density)); }
+.pxui-toggle-lg.pxui-toggle-icon-only { width: calc(42px * var(--density)); }
+
+.pxui-toggle-icon { display: inline-flex; }
+.pxui-toggle-icon svg { width: 16px; height: 16px; }
+
+/* ---------- ToggleGroup ---------- */
+.pxui-toggle-group { display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+
+.pxui-toggle-group-joined { gap: 0; }
+.pxui-toggle-group-joined .pxui-toggle {
+  border-color: var(--border); background: var(--surface); border-radius: 0;
+}
+.pxui-toggle-group-joined .pxui-toggle + .pxui-toggle { margin-left: -1px; }
+.pxui-toggle-group-joined .pxui-toggle:first-child {
+  border-radius: var(--r-sm) 0 0 var(--r-sm);
+}
+.pxui-toggle-group-joined .pxui-toggle:last-child {
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+}
+.pxui-toggle-group-joined .pxui-toggle[data-state="on"] { position: relative; z-index: 1; }

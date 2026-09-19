@@ -1,0 +1,39 @@
+/* ============================ Carousel ============================ */
+.pxui-carousel { position: relative; }
+
+.pxui-carousel-track {
+  display: flex; gap: 12px;
+  overflow: auto; scroll-behavior: smooth;
+  scroll-snap-type: both mandatory;
+  scrollbar-width: none;
+  outline: none;
+}
+.pxui-carousel-track::-webkit-scrollbar { display: none; }
+.pxui-carousel-track:focus-visible { border-radius: var(--r-md); box-shadow: var(--ring); }
+
+.pxui-carousel-horizontal .pxui-carousel-track { flex-direction: row; }
+.pxui-carousel-vertical .pxui-carousel-track { flex-direction: column; }
+
+.pxui-carousel-item {
+  flex: 0 0 100%; min-width: 0; min-height: 0;
+  scroll-snap-align: start; scroll-snap-stop: always;
+}
+
+.pxui-carousel-btn { flex: none; }
+
+.pxui-carousel-dots {
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  margin-top: 12px;
+}
+.pxui-carousel-dot {
+  width: 7px; height: 7px; padding: 0; border: none; cursor: pointer;
+  border-radius: var(--r-full); background: var(--border-strong);
+  transition: width var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.pxui-carousel-dot:hover { background: var(--text-3); }
+.pxui-carousel-dot[data-active] { width: 18px; background: var(--accent); }
+.pxui-carousel-dot:focus-visible { outline: none; box-shadow: var(--ring); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pxui-carousel-track { scroll-behavior: auto; }
+}

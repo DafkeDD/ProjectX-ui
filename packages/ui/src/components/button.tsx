@@ -86,9 +86,35 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function 
 });
 
 /** Groepeert knoppen tot één samengesteld blok. */
-export const ButtonGroup = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  function ButtonGroup({ className, ...rest }, ref) {
-    return <div ref={ref} role="group" className={cn("pxui-btn-group", className)} {...rest} />;
-  }
-);
+export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+  orientation?: "horizontal" | "vertical";
+  /** Knoppen tegen elkaar met gedeelde randen (standaard), of los met tussenruimte. */
+  joined?: boolean;
+  /** Vult de beschikbare breedte; elke knop wordt even breed. */
+  block?: boolean;
+  /** Toegankelijk label voor de groep, bijvoorbeeld "Weergave". */
+  label?: string;
+}
+
+/** ButtonGroup — knoppen die bij elkaar horen, als één blok. Werkt ook met Toggle. */
+export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(function ButtonGroup(
+  { orientation = "horizontal", joined = true, block, label, className, ...rest },
+  ref
+) {
+  return (
+    <div
+      ref={ref}
+      role="group"
+      aria-label={label}
+      className={cn(
+        "pxui-btn-group",
+        `pxui-btn-group-${orientation}`,
+        joined && "pxui-btn-group-joined",
+        block && "pxui-btn-group-block",
+        className
+      )}
+      {...rest}
+    />
+  );
+});
 
