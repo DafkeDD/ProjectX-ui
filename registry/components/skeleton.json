@@ -4,6 +4,7 @@
   "description": "Laadplaceholder met shimmer.",
   "category": "Basis",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/skeleton.tsx",

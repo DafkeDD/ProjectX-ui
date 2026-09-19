@@ -4,6 +4,7 @@
   "description": "Layout met vaste zijbalk, bovenbalk en inhoudskolom.",
   "category": "Layout",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/app-shell.tsx",

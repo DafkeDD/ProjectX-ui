@@ -4,6 +4,7 @@
   "description": "Kruimelpad met scheidingstekens.",
   "category": "Navigatie",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/breadcrumb.tsx",

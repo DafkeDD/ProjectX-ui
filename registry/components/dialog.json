@@ -6,6 +6,7 @@
   "dependencies": [
     "button"
   ],
+  "requires": [],
   "files": [
     {
       "path": "components/dialog.tsx",

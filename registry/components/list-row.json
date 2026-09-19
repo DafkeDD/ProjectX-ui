@@ -4,6 +4,7 @@
   "description": "Rij in een lijst: afspraak, document, gebruiker of melding.",
   "category": "Data",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/list-row.tsx",

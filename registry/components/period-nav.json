@@ -4,6 +4,7 @@
   "description": "Vorige en volgende door weken, maanden of elke andere periode.",
   "category": "Datum & planning",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/period-nav.tsx",

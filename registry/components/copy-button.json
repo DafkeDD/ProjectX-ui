@@ -4,6 +4,7 @@
   "description": "Kopieert een waarde en bevestigt dat kort met een vinkje.",
   "category": "Basis",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/copy-button.tsx",

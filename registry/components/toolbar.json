@@ -4,6 +4,7 @@
   "description": "Knoppenrij met groepen, scheidingslijnen en aan/uit-knoppen.",
   "category": "Navigatie",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/toolbar.tsx",

@@ -4,6 +4,7 @@
   "description": "Tabbladen in drie stijlen, met pijltjesnavigatie.",
   "category": "Navigatie",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/tabs.tsx",

@@ -4,6 +4,7 @@
   "description": "Statusbolletje met kloppende halo, voor live of bezet.",
   "category": "Feedback",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/pulse-dot.tsx",

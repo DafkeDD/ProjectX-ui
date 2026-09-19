@@ -4,6 +4,7 @@
   "description": "Invoer van een verificatiecode, één teken per vakje.",
   "category": "Formulieren",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/otp-input.tsx",

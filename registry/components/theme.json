@@ -4,6 +4,7 @@
   "description": "Licht/donker met ThemeProvider, useTheme en ThemeToggle.",
   "category": "Layout",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/theme.tsx",

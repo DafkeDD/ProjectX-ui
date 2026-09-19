@@ -4,6 +4,7 @@
   "description": "Basiscontainer met kop, inhoud en voettekst.",
   "category": "Basis",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/card.tsx",

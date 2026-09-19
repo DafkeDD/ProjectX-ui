@@ -4,6 +4,7 @@
   "description": "De dag als verticale tijdlijn, met kaartjes per tijdstip.",
   "category": "Datum & planning",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/time-slot-list.tsx",

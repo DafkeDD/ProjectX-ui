@@ -4,6 +4,7 @@
   "description": "Compacte kop boven een blok, met gekleurd staafje en acties.",
   "category": "Layout",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/section-header.tsx",

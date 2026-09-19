@@ -4,6 +4,7 @@
   "description": "Klikbaar filterlabel, of een verwijderbare tag.",
   "category": "Basis",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/chip.tsx",

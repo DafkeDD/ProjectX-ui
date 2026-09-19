@@ -4,6 +4,7 @@
   "description": "Kleur kiezen uit een rij stalen, met optionele eigen kleur.",
   "category": "Formulieren",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/swatch-picker.tsx",

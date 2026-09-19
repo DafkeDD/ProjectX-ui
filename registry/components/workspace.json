@@ -6,6 +6,7 @@
   "dependencies": [
     "section-header"
   ],
+  "requires": [],
   "files": [
     {
       "path": "components/workspace.tsx",

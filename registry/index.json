@@ -53,6 +53,7 @@
       "dependencies": [
         "spinner"
       ],
+      "requires": [],
       "files": [
         "components/button.tsx",
         "components/button.css"
@@ -64,6 +65,7 @@
       "description": "Compact label voor status, categorie of telling.",
       "category": "Basis",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/badge.tsx",
         "components/badge.css"
@@ -75,6 +77,7 @@
       "description": "Basiscontainer met kop, inhoud en voettekst.",
       "category": "Basis",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/card.tsx",
         "components/card.css"
@@ -86,6 +89,7 @@
       "description": "Ronddraaiende laadindicator die de tekstkleur erft.",
       "category": "Basis",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/spinner.tsx",
         "components/spinner.css"
@@ -97,6 +101,7 @@
       "description": "Eigen icon set: één stroke-based glyph per naam.",
       "category": "Basis",
       "dependencies": [],
+      "requires": [],
       "files": [
         "icons/icon.tsx",
         "icons/icons.ts"
@@ -108,6 +113,7 @@
       "description": "Scheidingslijn, horizontaal of verticaal, met optioneel label.",
       "category": "Basis",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/separator.tsx",
         "components/separator.css"
@@ -119,6 +125,7 @@
       "description": "Toetsaanslag of sneltoets tonen.",
       "category": "Basis",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/kbd.tsx",
         "components/kbd.css"
@@ -130,6 +137,7 @@
       "description": "Laadplaceholder met shimmer.",
       "category": "Basis",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/skeleton.tsx",
         "components/skeleton.css"
@@ -141,6 +149,7 @@
       "description": "Foto of initialen, met statusstip en groepsweergave.",
       "category": "Basis",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/avatar.tsx",
         "components/avatar.css"
@@ -152,6 +161,7 @@
       "description": "Klikbaar filterlabel, of een verwijderbare tag.",
       "category": "Basis",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/chip.tsx",
         "components/chip.css"
@@ -163,6 +173,7 @@
       "description": "Kopieert een waarde en bevestigt dat kort met een vinkje.",
       "category": "Basis",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/copy-button.tsx",
         "components/copy-button.css"
@@ -174,6 +185,7 @@
       "description": "Bijschrift voor een formulierveld, met verplicht-markering.",
       "category": "Formulieren",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/label.tsx",
         "components/label.css"
@@ -187,6 +199,7 @@
       "dependencies": [
         "field"
       ],
+      "requires": [],
       "files": [
         "components/input.tsx",
         "components/input.css"
@@ -200,6 +213,7 @@
       "dependencies": [
         "field"
       ],
+      "requires": [],
       "files": [
         "components/textarea.tsx",
         "components/textarea.css"
@@ -213,6 +227,7 @@
       "dependencies": [
         "label"
       ],
+      "requires": [],
       "files": [
         "components/field.tsx",
         "components/field.css"
@@ -224,6 +239,7 @@
       "description": "Aanvinkvakje met derde staat en beschrijving.",
       "category": "Formulieren",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/checkbox.tsx",
         "components/checkbox.css"
@@ -235,6 +251,7 @@
       "description": "Groep keuzerondjes, ook als klikbare kaarten.",
       "category": "Formulieren",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/radio-group.tsx",
         "components/radio-group.css"
@@ -246,6 +263,7 @@
       "description": "Aan/uit-schakelaar met label en beschrijving.",
       "category": "Formulieren",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/switch.tsx",
         "components/switch.css"
@@ -257,6 +275,7 @@
       "description": "Eigen keuzelijst — geen native select, volledig stijlbaar.",
       "category": "Formulieren",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/select.tsx",
         "components/select.css"
@@ -268,6 +287,7 @@
       "description": "Inline melding met toon, titel en actie.",
       "category": "Feedback",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/alert.tsx",
         "components/alert.css"
@@ -279,6 +299,7 @@
       "description": "Lege lijst, geen resultaten of nog niets ingesteld.",
       "category": "Feedback",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/empty-state.tsx",
         "components/empty-state.css"
@@ -290,6 +311,7 @@
       "description": "Voortgangsbalk en ronde variant, ook onbepaald.",
       "category": "Data",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/progress.tsx",
         "components/progress.css"
@@ -301,6 +323,7 @@
       "description": "Tabbladen in drie stijlen, met pijltjesnavigatie.",
       "category": "Navigatie",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/tabs.tsx",
         "components/tabs.css"
@@ -312,6 +335,7 @@
       "description": "Compacte keuzeschakelaar voor weergaven en filters.",
       "category": "Navigatie",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/segmented.tsx",
         "components/segmented.css"
@@ -323,6 +347,7 @@
       "description": "In- en uitklapbare secties, enkel of meervoudig.",
       "category": "Navigatie",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/accordion.tsx",
         "components/accordion.css"
@@ -334,6 +359,7 @@
       "description": "Kruimelpad met scheidingstekens.",
       "category": "Navigatie",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/breadcrumb.tsx",
         "components/breadcrumb.css"
@@ -345,6 +371,7 @@
       "description": "Paginanavigatie met ellipsis en samenvatting.",
       "category": "Navigatie",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/pagination.tsx",
         "components/pagination.css"
@@ -356,6 +383,7 @@
       "description": "Voortgang door een meerstapsflow.",
       "category": "Navigatie",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/stepper.tsx",
         "components/stepper.css"
@@ -367,6 +395,7 @@
       "description": "Datatabel met sorteerbare koppen, dichte modus en toolbar.",
       "category": "Data",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/table.tsx",
         "components/table.css"
@@ -380,6 +409,7 @@
       "dependencies": [
         "button"
       ],
+      "requires": [],
       "files": [
         "components/dialog.tsx",
         "components/dialog.css"
@@ -394,6 +424,7 @@
         "dialog",
         "button"
       ],
+      "requires": [],
       "files": [
         "components/drawer.tsx",
         "components/drawer.css"
@@ -405,6 +436,7 @@
       "description": "Zwevend paneel dat automatisch flipt bij weinig ruimte.",
       "category": "Overlays",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/popover.tsx",
         "components/popover.css"
@@ -416,6 +448,7 @@
       "description": "Korte uitleg bij hover én toetsenbordfocus.",
       "category": "Overlays",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/tooltip.tsx",
         "components/tooltip.css"
@@ -429,6 +462,7 @@
       "dependencies": [
         "button"
       ],
+      "requires": [],
       "files": [
         "components/dropdown-menu.tsx",
         "components/dropdown-menu.css"
@@ -440,6 +474,7 @@
       "description": "Tijdelijke melding met toon, actie en automatische sluiting.",
       "category": "Overlays",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/toast.tsx",
         "components/toast.css"
@@ -453,6 +488,7 @@
       "dependencies": [
         "dialog"
       ],
+      "requires": [],
       "files": [
         "components/command.tsx",
         "components/command.css"
@@ -466,6 +502,7 @@
       "dependencies": [
         "select"
       ],
+      "requires": [],
       "files": [
         "components/combobox.tsx",
         "components/combobox.css"
@@ -479,6 +516,7 @@
       "dependencies": [
         "dialog"
       ],
+      "requires": [],
       "files": [
         "components/modal-manager.tsx"
       ]
@@ -489,6 +527,7 @@
       "description": "Maandkalender met enkelvoudige, bereik- en meervoudige selectie.",
       "category": "Datum & planning",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/calendar.tsx",
         "components/calendar.css",
@@ -505,6 +544,7 @@
         "popover",
         "field"
       ],
+      "requires": [],
       "files": [
         "components/date-picker.tsx",
         "components/date-picker.css",
@@ -519,6 +559,7 @@
       "dependencies": [
         "field"
       ],
+      "requires": [],
       "files": [
         "components/time-field.tsx",
         "components/time-field.css",
@@ -531,6 +572,7 @@
       "description": "Vorige en volgende door weken, maanden of elke andere periode.",
       "category": "Datum & planning",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/period-nav.tsx",
         "components/period-nav.css"
@@ -542,6 +584,7 @@
       "description": "Weekplanning met uurraster, overlappende blokken en drag & drop.",
       "category": "Datum & planning",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/week-schedule.tsx",
         "components/week-schedule.css",
@@ -555,6 +598,7 @@
       "description": "Dagagenda met een kolom per arts, kamer of medewerker.",
       "category": "Datum & planning",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/resource-columns.tsx",
         "components/resource-columns.css",
@@ -568,6 +612,7 @@
       "description": "De agenda op zijn kant: een baan per resource, tijd van links naar rechts.",
       "category": "Datum & planning",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/swimlanes.tsx",
         "components/swimlanes.css",
@@ -581,6 +626,7 @@
       "description": "De dag als verticale tijdlijn, met kaartjes per tijdstip.",
       "category": "Datum & planning",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/time-slot-list.tsx",
         "components/time-slot-list.css",
@@ -596,6 +642,7 @@
       "dependencies": [
         "chart"
       ],
+      "requires": [],
       "files": [
         "components/stat.tsx",
         "components/stat.css"
@@ -607,6 +654,7 @@
       "description": "Compacte meetwaarde: label, waarde en eenheid op één regel.",
       "category": "Data",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/data-pill.tsx",
         "components/data-pill.css"
@@ -618,6 +666,7 @@
       "description": "Rij in een lijst: afspraak, document, gebruiker of melding.",
       "category": "Data",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/list-row.tsx",
         "components/list-row.css"
@@ -631,6 +680,7 @@
       "dependencies": [
         "confetti"
       ],
+      "requires": [],
       "files": [
         "components/task-item.tsx",
         "components/task-item.css"
@@ -642,9 +692,23 @@
       "description": "Sparkline, staaf-, lijn- en donutgrafiek — eigen SVG, geen bibliotheek.",
       "category": "Data",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/chart.tsx",
         "components/chart.css"
+      ]
+    },
+    {
+      "name": "qr-code",
+      "title": "QrCode",
+      "description": "Echte, scanbare QR-code; zelf geschreven encoder zonder dependencies.",
+      "category": "Data",
+      "dependencies": [],
+      "requires": [],
+      "files": [
+        "components/qr-code.tsx",
+        "components/qr-encode.ts",
+        "components/qr-code.css"
       ]
     },
     {
@@ -653,6 +717,7 @@
       "description": "Knoppenrij met groepen, scheidingslijnen en aan/uit-knoppen.",
       "category": "Navigatie",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/toolbar.tsx",
         "components/toolbar.css"
@@ -664,6 +729,7 @@
       "description": "Compacte kop boven een blok, met gekleurd staafje en acties.",
       "category": "Layout",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/section-header.tsx",
         "components/section-header.css"
@@ -675,6 +741,7 @@
       "description": "Kop van een dossier: media, naam, kerngegevens, labels en acties.",
       "category": "Layout",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/entity-header.tsx",
         "components/entity-header.css"
@@ -688,9 +755,22 @@
       "dependencies": [
         "app-shell"
       ],
+      "requires": [],
       "files": [
         "components/sidebar.tsx",
         "components/sidebar.css"
+      ]
+    },
+    {
+      "name": "bottom-nav",
+      "title": "BottomNav",
+      "description": "Vaste navigatiebalk onderaan op mobiel, met iconen, labels en tellers.",
+      "category": "Navigatie",
+      "dependencies": [],
+      "requires": [],
+      "files": [
+        "components/bottom-nav.tsx",
+        "components/bottom-nav.css"
       ]
     },
     {
@@ -699,6 +779,7 @@
       "description": "Layout met vaste zijbalk, bovenbalk en inhoudskolom.",
       "category": "Layout",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/app-shell.tsx",
         "components/app-shell.css"
@@ -712,6 +793,7 @@
       "dependencies": [
         "section-header"
       ],
+      "requires": [],
       "files": [
         "components/workspace.tsx",
         "components/workspace.css"
@@ -723,6 +805,7 @@
       "description": "Aanmeldscherm: merkpaneel, kaart, scheiding en SSO-knoppen.",
       "category": "Layout",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/auth-layout.tsx",
         "components/auth-layout.css"
@@ -734,6 +817,7 @@
       "description": "Kleine explosie van snippers bij iets dat af is.",
       "category": "Feedback",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/confetti.tsx",
         "components/confetti.css"
@@ -745,6 +829,7 @@
       "description": "Schuifregelaar met waardeweergave en tonen.",
       "category": "Formulieren",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/slider.tsx",
         "components/slider.css"
@@ -756,6 +841,7 @@
       "description": "Invoer van een verificatiecode, één teken per vakje.",
       "category": "Formulieren",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/otp-input.tsx",
         "components/otp-input.css"
@@ -767,6 +853,7 @@
       "description": "Sleepzone voor bestanden, met bestandslijst.",
       "category": "Formulieren",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/file-drop.tsx",
         "components/file-drop.css"
@@ -778,6 +865,7 @@
       "description": "Kleur kiezen uit een rij stalen, met optionele eigen kleur.",
       "category": "Formulieren",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/swatch-picker.tsx",
         "components/swatch-picker.css"
@@ -791,6 +879,7 @@
       "dependencies": [
         "avatar"
       ],
+      "requires": [],
       "files": [
         "components/avatar-upload.tsx",
         "components/avatar-upload.css",
@@ -805,9 +894,22 @@
       "dependencies": [
         "voice-button"
       ],
+      "requires": [],
       "files": [
         "components/composer.tsx",
         "components/composer.css"
+      ]
+    },
+    {
+      "name": "rich-editor",
+      "title": "RichEditor",
+      "description": "Tekstvak met opmaakknoppen: vet, cursief, markeren en lijsten.",
+      "category": "Formulieren",
+      "dependencies": [],
+      "requires": [],
+      "files": [
+        "components/rich-editor.tsx",
+        "components/rich-editor.css"
       ]
     },
     {
@@ -816,6 +918,7 @@
       "description": "Microfoonknop op de spraakherkenning van de browser.",
       "category": "Formulieren",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/voice-button.tsx",
         "components/voice-button.css",
@@ -828,6 +931,7 @@
       "description": "Statusbolletje met kloppende halo, voor live of bezet.",
       "category": "Feedback",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/pulse-dot.tsx",
         "components/pulse-dot.css"
@@ -839,9 +943,57 @@
       "description": "Licht/donker met ThemeProvider, useTheme en ThemeToggle.",
       "category": "Layout",
       "dependencies": [],
+      "requires": [],
       "files": [
         "components/theme.tsx",
         "components/theme.css"
+      ]
+    },
+    {
+      "name": "motion-drawer",
+      "title": "MotionDrawerContent",
+      "description": "Drawer met veerbeweging, uitgaande animatie en wegvegen om te sluiten.",
+      "category": "Motion",
+      "dependencies": [
+        "drawer",
+        "button"
+      ],
+      "requires": [
+        "motion"
+      ],
+      "files": [
+        "motion/motion-drawer.tsx",
+        "motion/motion.css"
+      ]
+    },
+    {
+      "name": "reorder-list",
+      "title": "ReorderList",
+      "description": "Lijst waarvan je de volgorde sleept, met of zonder greepje.",
+      "category": "Motion",
+      "dependencies": [],
+      "requires": [
+        "motion"
+      ],
+      "files": [
+        "motion/reorder-list.tsx",
+        "motion/motion.css"
+      ]
+    },
+    {
+      "name": "motion-segmented",
+      "title": "MotionSegmented",
+      "description": "Segmented waarbij de actieve achtergrond meeschuift in plaats van verspringt.",
+      "category": "Motion",
+      "dependencies": [
+        "segmented"
+      ],
+      "requires": [
+        "motion"
+      ],
+      "files": [
+        "motion/motion-segmented.tsx",
+        "motion/motion.css"
       ]
     }
   ]

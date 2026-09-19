@@ -4,6 +4,7 @@
   "description": "Korte uitleg bij hover én toetsenbordfocus.",
   "category": "Overlays",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/tooltip.tsx",

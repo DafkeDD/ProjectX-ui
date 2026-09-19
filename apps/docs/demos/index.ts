@@ -12,6 +12,7 @@ import AvatarBasic from "./avatar-basic";
 import AvatarUploadBasic from "./avatar-upload-basic";
 import BadgeTones from "./badge-tones";
 import BadgeUsage from "./badge-usage";
+import BottomnavBasic from "./bottomnav-basic";
 import BreadcrumbBasic from "./breadcrumb-basic";
 import ButtonSizes from "./button-sizes";
 import ButtonStates from "./button-states";
@@ -46,15 +47,20 @@ import KbdBasic from "./kbd-basic";
 import LabelBasic from "./label-basic";
 import ListRowBasic from "./list-row-basic";
 import ModalManagerBasic from "./modal-manager-basic";
+import MotiondrawerBasic from "./motiondrawer-basic";
+import MotionsegmentedBasic from "./motionsegmented-basic";
 import OtpBasic from "./otp-basic";
 import PaginationBasic from "./pagination-basic";
 import PeriodnavBasic from "./periodnav-basic";
 import PopoverBasic from "./popover-basic";
 import ProgressBasic from "./progress-basic";
 import PulsedotBasic from "./pulsedot-basic";
+import QrBasic from "./qr-basic";
 import RadioBasic from "./radio-basic";
 import RadioCards from "./radio-cards";
+import ReorderBasic from "./reorder-basic";
 import ResourceColumnsBasic from "./resource-columns-basic";
+import RicheditorBasic from "./richeditor-basic";
 import ScheduleBasic from "./schedule-basic";
 import SectionHeaderBasic from "./section-header-basic";
 import SegmentedBasic from "./segmented-basic";
@@ -95,6 +101,7 @@ export const DEMOS: Record<string, ComponentType> = {
   "avatar-upload-basic": AvatarUploadBasic,
   "badge-tones": BadgeTones,
   "badge-usage": BadgeUsage,
+  "bottomnav-basic": BottomnavBasic,
   "breadcrumb-basic": BreadcrumbBasic,
   "button-sizes": ButtonSizes,
   "button-states": ButtonStates,
@@ -129,15 +136,20 @@ export const DEMOS: Record<string, ComponentType> = {
   "label-basic": LabelBasic,
   "list-row-basic": ListRowBasic,
   "modal-manager-basic": ModalManagerBasic,
+  "motiondrawer-basic": MotiondrawerBasic,
+  "motionsegmented-basic": MotionsegmentedBasic,
   "otp-basic": OtpBasic,
   "pagination-basic": PaginationBasic,
   "periodnav-basic": PeriodnavBasic,
   "popover-basic": PopoverBasic,
   "progress-basic": ProgressBasic,
   "pulsedot-basic": PulsedotBasic,
+  "qr-basic": QrBasic,
   "radio-basic": RadioBasic,
   "radio-cards": RadioCards,
+  "reorder-basic": ReorderBasic,
   "resource-columns-basic": ResourceColumnsBasic,
+  "richeditor-basic": RicheditorBasic,
   "schedule-basic": ScheduleBasic,
   "section-header-basic": SectionHeaderBasic,
   "segmented-basic": SegmentedBasic,

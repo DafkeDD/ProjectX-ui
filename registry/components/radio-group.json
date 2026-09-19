@@ -4,6 +4,7 @@
   "description": "Groep keuzerondjes, ook als klikbare kaarten.",
   "category": "Formulieren",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/radio-group.tsx",

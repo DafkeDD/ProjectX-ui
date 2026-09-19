@@ -4,6 +4,7 @@
   "description": "Dagagenda met een kolom per arts, kamer of medewerker.",
   "category": "Datum & planning",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/resource-columns.tsx",

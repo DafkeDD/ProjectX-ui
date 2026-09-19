@@ -4,6 +4,7 @@
   "description": "Toetsaanslag of sneltoets tonen.",
   "category": "Basis",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/kbd.tsx",

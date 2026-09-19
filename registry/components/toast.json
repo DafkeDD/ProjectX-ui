@@ -4,6 +4,7 @@
   "description": "Tijdelijke melding met toon, actie en automatische sluiting.",
   "category": "Overlays",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/toast.tsx",

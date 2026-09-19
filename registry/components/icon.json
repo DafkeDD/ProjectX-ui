@@ -4,6 +4,7 @@
   "description": "Eigen icon set: één stroke-based glyph per naam.",
   "category": "Basis",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "icons/icon.tsx",

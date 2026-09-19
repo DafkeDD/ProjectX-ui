@@ -4,6 +4,7 @@
   "description": "Maandkalender met enkelvoudige, bereik- en meervoudige selectie.",
   "category": "Datum & planning",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/calendar.tsx",

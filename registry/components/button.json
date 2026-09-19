@@ -6,6 +6,7 @@
   "dependencies": [
     "spinner"
   ],
+  "requires": [],
   "files": [
     {
       "path": "components/button.tsx",

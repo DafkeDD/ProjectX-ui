@@ -4,6 +4,7 @@
   "description": "Microfoonknop op de spraakherkenning van de browser.",
   "category": "Formulieren",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/voice-button.tsx",

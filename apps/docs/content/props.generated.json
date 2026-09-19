@@ -493,6 +493,53 @@
       }
     ]
   },
+  "BottomNavProps": {
+    "extends": "React.HTMLAttributes<HTMLElement>",
+    "props": [
+      {
+        "name": "always",
+        "required": false,
+        "type": "boolean",
+        "description": "Toont de balk ook op grote schermen; standaard alleen onder 860px."
+      },
+      {
+        "name": "safeArea",
+        "required": false,
+        "type": "boolean",
+        "description": "Houdt ruimte vrij voor de homebalk van iOS (standaard aan).",
+        "default": "true"
+      }
+    ]
+  },
+  "BottomNavItemProps": {
+    "extends": "React.ButtonHTMLAttributes<HTMLButtonElement>",
+    "props": [
+      {
+        "name": "icon",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "active",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "badge",
+        "required": false,
+        "type": "React.ReactNode | true",
+        "description": "Telling of stip rechtsboven het icoon. `true` toont een stip."
+      },
+      {
+        "name": "asChild",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
   "BreadcrumbProps": {
     "extends": "React.HTMLAttributes<HTMLElement>",
     "props": [
@@ -2662,6 +2709,121 @@
       }
     ]
   },
+  "QrCodeProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"children\">",
+    "props": [
+      {
+        "name": "value",
+        "required": true,
+        "type": "string",
+        "description": "De inhoud van de code: URL, otpauth-string, tekst …"
+      },
+      {
+        "name": "level",
+        "required": false,
+        "type": "QrErrorLevel",
+        "description": "Foutcorrectie: L ~7%, M ~15%, Q ~25%, H ~30%. Hoger = meer modules.",
+        "default": "\"M\""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "number",
+        "description": "Breedte en hoogte in pixels.",
+        "default": "160"
+      },
+      {
+        "name": "quietZone",
+        "required": false,
+        "type": "number",
+        "description": "Stille zone rondom, in modules. Scanners hebben er minstens 4 nodig.",
+        "default": "4"
+      },
+      {
+        "name": "mask",
+        "required": false,
+        "type": "number",
+        "description": "Vast maskerpatroon 0-7; standaard kiest de encoder het rustigste."
+      },
+      {
+        "name": "caption",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Tekst onder de code."
+      },
+      {
+        "name": "label",
+        "required": false,
+        "type": "string",
+        "description": "Beschrijving voor schermlezers. Standaard de waarde zelf."
+      },
+      {
+        "name": "framed",
+        "required": false,
+        "type": "boolean",
+        "description": "Rondom een kader en witte achtergrond (standaard aan).",
+        "default": "true"
+      }
+    ]
+  },
+  "QrEncodeOptions": {
+    "extends": "",
+    "props": [
+      {
+        "name": "level",
+        "required": false,
+        "type": "QrErrorLevel",
+        "description": "Foutcorrectie: L ~7%, M ~15%, Q ~25%, H ~30% herstelbaar."
+      },
+      {
+        "name": "mask",
+        "required": false,
+        "type": "number",
+        "description": "Vast maskerpatroon 0-7. Standaard kiest de encoder het beste."
+      },
+      {
+        "name": "minVersion",
+        "required": false,
+        "type": "number",
+        "description": "Minimale versie (1-10); de encoder kan hoger gaan als de data niet past."
+      }
+    ]
+  },
+  "QrResult": {
+    "extends": "",
+    "props": [
+      {
+        "name": "matrix",
+        "required": true,
+        "type": "boolean[][]",
+        "description": ""
+      },
+      {
+        "name": "version",
+        "required": true,
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "level",
+        "required": true,
+        "type": "QrErrorLevel",
+        "description": ""
+      },
+      {
+        "name": "mask",
+        "required": true,
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "size",
+        "required": true,
+        "type": "number",
+        "description": ""
+      }
+    ]
+  },
   "RadioGroupProps": {
     "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"onChange\" | \"defaultValue\">",
     "props": [
@@ -2805,6 +2967,85 @@
         "required": false,
         "type": "(event: ScheduleEvent) => React.ReactNode",
         "description": "Eigen inhoud voor een rij."
+      }
+    ]
+  },
+  "RichEditorProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"onChange\" | \"defaultValue\">",
+    "props": [
+      {
+        "name": "defaultValue",
+        "required": false,
+        "type": "string",
+        "description": "Begininhoud als HTML."
+      },
+      {
+        "name": "value",
+        "required": false,
+        "type": "string",
+        "description": "Inhoud van buitenaf sturen; wordt alleen toegepast als ze afwijkt van wat er staat."
+      },
+      {
+        "name": "onValueChange",
+        "required": false,
+        "type": "(html: string) => void",
+        "description": "Roept bij elke wijziging de nieuwe HTML terug."
+      },
+      {
+        "name": "tools",
+        "required": false,
+        "type": "RichEditorTool[]",
+        "description": "Welke knoppen in de werkbalk staan, in deze volgorde."
+      },
+      {
+        "name": "toolbar",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Vervangt de hele werkbalk."
+      },
+      {
+        "name": "footer",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Regel onder het tekstvak, bijvoorbeeld \"gemaakt door … op …\"."
+      },
+      {
+        "name": "placeholder",
+        "required": false,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "minHeight",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "130"
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "readOnly",
+        "required": false,
+        "type": "boolean",
+        "description": "Alleen lezen: geen werkbalk, geen cursor."
+      },
+      {
+        "name": "plainPaste",
+        "required": false,
+        "type": "boolean",
+        "description": "Plakt als platte tekst, zodat opmaak van elders niet meelift (standaard aan).",
+        "default": "true"
+      },
+      {
+        "name": "invalid",
+        "required": false,
+        "type": "boolean",
+        "description": ""
       }
     ]
   },
@@ -4952,6 +5193,122 @@
         "type": "number",
         "description": "",
         "default": "2"
+      }
+    ]
+  },
+  "MotionDrawerContentProps": {
+    "extends": "ZonderBotsingen",
+    "props": [
+      {
+        "name": "side",
+        "required": false,
+        "type": "\"left\" | \"right\" | \"top\" | \"bottom\"",
+        "description": "",
+        "default": "\"right\""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "number | string",
+        "description": "Breedte (links/rechts) of hoogte (boven/onder).",
+        "default": "\"sm\""
+      },
+      {
+        "name": "hideClose",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "swipeToClose",
+        "required": false,
+        "type": "boolean",
+        "description": "Wegvegen om te sluiten (standaard aan).",
+        "default": "true"
+      },
+      {
+        "name": "swipeThreshold",
+        "required": false,
+        "type": "number",
+        "description": "Hoeveel procent van het paneel je moet wegslepen om te sluiten.",
+        "default": "0.35"
+      },
+      {
+        "name": "handle",
+        "required": false,
+        "type": "boolean",
+        "description": "Greepje bovenaan, zoals bij een sheet van onderaf."
+      }
+    ]
+  },
+  "MotionSegmentedProps": {
+    "extends": "SegmentedProps",
+    "props": [
+      {
+        "name": "layoutId",
+        "required": false,
+        "type": "string",
+        "description": "Eigen id wanneer er meerdere schakelaars naast elkaar staan.",
+        "default": "\"pxui-segmented-indicator\""
+      }
+    ]
+  },
+  "ReorderListProps": {
+    "extends": "<T> extends Omit<ZonderBotsingen<HTMLUListElement>, \"onReorder\" | \"values\">",
+    "props": [
+      {
+        "name": "values",
+        "required": true,
+        "type": "T[]",
+        "description": "De huidige volgorde. Elke waarde moet uniek zijn."
+      },
+      {
+        "name": "onReorder",
+        "required": true,
+        "type": "(values: T[]) => void",
+        "description": ""
+      },
+      {
+        "name": "axis",
+        "required": false,
+        "type": "\"x\" | \"y\"",
+        "description": "",
+        "default": "\"y\""
+      },
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
+  "ReorderListItemProps": {
+    "extends": "<T> extends Omit<ZonderBotsingen<HTMLLIElement>, \"value\">",
+    "props": [
+      {
+        "name": "value",
+        "required": true,
+        "type": "T",
+        "description": ""
+      },
+      {
+        "name": "handle",
+        "required": false,
+        "type": "boolean",
+        "description": "Alleen aan de greep slepen in plaats van aan de hele rij."
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
       }
     ]
   }

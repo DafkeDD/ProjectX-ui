@@ -77,6 +77,65 @@ bij (welke componenten je hebt + een hash per bestand) — commit dat bestand me
 
 ---
 
+## Motion-laag (optioneel)
+
+De kern van de library heeft geen enkele dependency en dat blijft zo. Daarnaast staat er één
+map die wél iets nodig heeft: `packages/ui/src/motion`, met de dingen die in pure CSS veel te
+duur worden — gebaren, uitgaande animaties en meeschuivende layout.
+
+```bash
+npm i motion            # alleen nodig als je hieruit importeert
+```
+
+```tsx
+import { MotionDrawerContent, ReorderList, MotionSegmented } from "@projectx/ui/motion";
+```
+
+| Component | Wat het toevoegt |
+|---|---|
+| `MotionDrawerContent` | Vervangt `DrawerContent`: veerbeweging, echte exit-animatie, wegvegen om te sluiten |
+| `ReorderList` | Lijst waarvan je de volgorde sleept, met of zonder greepje |
+| `MotionSegmented` | Zelfde API als `Segmented`, maar de actieve achtergrond schuift mee |
+
+`motion` staat in `package.json` als **optionele** peer dependency: importeer je niets uit
+`@projectx/ui/motion`, dan hoef je het niet te installeren en komt het ook niet in je bundel.
+
+De CLI houdt dat onderscheid vast: `npx projectx-ui add --all` slaat deze drie over, en
+`npx projectx-ui update` installeert ze niet vanzelf. Je haalt ze er bewust bij met hun naam
+of met `--with-extras`; daarna vertelt de CLI welk npm-package je nog nodig hebt.
+
+Alle drie respecteren `prefers-reduced-motion`: dan vervagen ze in plaats van te bewegen en
+staat slepen uit.
+
+---
+
+## Meertalige documentatiesite
+
+De docs-site draait op [next-intl](https://next-intl.dev), opgezet zoals de ProjectX-frontend:
+
+```
+apps/docs/i18n/routing.ts      # locales + defaultLocale + localePrefix
+apps/docs/i18n/request.ts      # laadt messages/<locale>.json per request
+apps/docs/i18n/navigation.ts   # Link, redirect, usePathname, useRouter
+apps/docs/middleware.ts        # taaldetectie (Next 16 noemt dit proxy.ts)
+apps/docs/messages/*.json      # nl · fr · en · de
+apps/docs/app/[locale]/...     # alle routes onder een locale-segment
+```
+
+`localePrefix` staat op `never`: de URL blijft `/docs`, de taal komt uit de
+`NEXT_LOCALE`-cookie en anders uit de `Accept-Language`-header. De taalkiezer
+rechtsboven (`components/locale-switcher.tsx`) zet die cookie.
+
+Een tekst vertalen: sleutel toevoegen in alle vier de `messages/*.json`, daarna
+`useTranslations("namespace")` in een client component of
+`getTranslations("namespace")` in een server component.
+
+Vertaald zijn de metadata, de navigatie, de topbar en de homepage. De teksten op
+de documentatiepagina's zelf (introductie, installatie, theming, componentbeschrijvingen
+in `content/catalog.ts`) staan nog hardcoded in het Nederlands.
+
+---
+
 ## Design tokens
 
 **Alle kleuren komen uit `packages/ui/src/styles/tokens.css`** — exact overgenomen uit het

@@ -4,6 +4,7 @@
   "description": "Aanmeldscherm: merkpaneel, kaart, scheiding en SSO-knoppen.",
   "category": "Layout",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/auth-layout.tsx",

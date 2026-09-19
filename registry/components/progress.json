@@ -4,6 +4,7 @@
   "description": "Voortgangsbalk en ronde variant, ook onbepaald.",
   "category": "Data",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/progress.tsx",

@@ -4,6 +4,7 @@
   "description": "Scheidingslijn, horizontaal of verticaal, met optioneel label.",
   "category": "Basis",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/separator.tsx",

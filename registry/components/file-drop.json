@@ -4,6 +4,7 @@
   "description": "Sleepzone voor bestanden, met bestandslijst.",
   "category": "Formulieren",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/file-drop.tsx",

@@ -4,6 +4,7 @@
   "description": "Kop van een dossier: media, naam, kerngegevens, labels en acties.",
   "category": "Layout",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/entity-header.tsx",

@@ -6,6 +6,7 @@
   "dependencies": [
     "field"
   ],
+  "requires": [],
   "files": [
     {
       "path": "components/textarea.tsx",

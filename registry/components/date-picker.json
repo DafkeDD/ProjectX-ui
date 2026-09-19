@@ -8,6 +8,7 @@
     "popover",
     "field"
   ],
+  "requires": [],
   "files": [
     {
       "path": "components/date-picker.tsx",

@@ -6,6 +6,7 @@
   "dependencies": [
     "confetti"
   ],
+  "requires": [],
   "files": [
     {
       "path": "components/task-item.tsx",

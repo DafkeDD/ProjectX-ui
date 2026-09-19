@@ -6,6 +6,7 @@
   "dependencies": [
     "chart"
   ],
+  "requires": [],
   "files": [
     {
       "path": "components/stat.tsx",

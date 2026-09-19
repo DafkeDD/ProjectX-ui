@@ -4,6 +4,7 @@
   "description": "Kleine explosie van snippers bij iets dat af is.",
   "category": "Feedback",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/confetti.tsx",

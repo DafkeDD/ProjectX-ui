@@ -4,6 +4,7 @@
   "description": "Bijschrift voor een formulierveld, met verplicht-markering.",
   "category": "Formulieren",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/label.tsx",

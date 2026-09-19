@@ -6,6 +6,7 @@
   "dependencies": [
     "voice-button"
   ],
+  "requires": [],
   "files": [
     {
       "path": "components/composer.tsx",

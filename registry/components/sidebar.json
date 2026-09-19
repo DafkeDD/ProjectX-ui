@@ -6,6 +6,7 @@
   "dependencies": [
     "app-shell"
   ],
+  "requires": [],
   "files": [
     {
       "path": "components/sidebar.tsx",

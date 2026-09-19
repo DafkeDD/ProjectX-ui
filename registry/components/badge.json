@@ -4,6 +4,7 @@
   "description": "Compact label voor status, categorie of telling.",
   "category": "Basis",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/badge.tsx",

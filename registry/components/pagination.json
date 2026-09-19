@@ -4,6 +4,7 @@
   "description": "Paginanavigatie met ellipsis en samenvatting.",
   "category": "Navigatie",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/pagination.tsx",

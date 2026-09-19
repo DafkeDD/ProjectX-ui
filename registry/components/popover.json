@@ -4,6 +4,7 @@
   "description": "Zwevend paneel dat automatisch flipt bij weinig ruimte.",
   "category": "Overlays",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/popover.tsx",

@@ -4,6 +4,7 @@
   "description": "In- en uitklapbare secties, enkel of meervoudig.",
   "category": "Navigatie",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/accordion.tsx",

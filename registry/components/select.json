@@ -4,6 +4,7 @@
   "description": "Eigen keuzelijst — geen native select, volledig stijlbaar.",
   "category": "Formulieren",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/select.tsx",

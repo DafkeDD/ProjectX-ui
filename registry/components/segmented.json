@@ -4,6 +4,7 @@
   "description": "Compacte keuzeschakelaar voor weergaven en filters.",
   "category": "Navigatie",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/segmented.tsx",

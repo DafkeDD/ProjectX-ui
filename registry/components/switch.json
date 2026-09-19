@@ -4,6 +4,7 @@
   "description": "Aan/uit-schakelaar met label en beschrijving.",
   "category": "Formulieren",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/switch.tsx",

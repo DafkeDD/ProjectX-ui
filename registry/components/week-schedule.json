@@ -4,6 +4,7 @@
   "description": "Weekplanning met uurraster, overlappende blokken en drag & drop.",
   "category": "Datum & planning",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/week-schedule.tsx",

@@ -4,6 +4,7 @@
   "description": "Ronddraaiende laadindicator die de tekstkleur erft.",
   "category": "Basis",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/spinner.tsx",

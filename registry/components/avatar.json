@@ -4,6 +4,7 @@
   "description": "Foto of initialen, met statusstip en groepsweergave.",
   "category": "Basis",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/avatar.tsx",

@@ -4,6 +4,7 @@
   "description": "Compacte meetwaarde: label, waarde en eenheid op één regel.",
   "category": "Data",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/data-pill.tsx",

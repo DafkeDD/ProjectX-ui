@@ -4,6 +4,7 @@
   "description": "Voortgang door een meerstapsflow.",
   "category": "Navigatie",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/stepper.tsx",

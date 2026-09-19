@@ -4,6 +4,7 @@
   "description": "Inline melding met toon, titel en actie.",
   "category": "Feedback",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/alert.tsx",

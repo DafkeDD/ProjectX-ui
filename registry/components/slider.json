@@ -4,6 +4,7 @@
   "description": "Schuifregelaar met waardeweergave en tonen.",
   "category": "Formulieren",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/slider.tsx",

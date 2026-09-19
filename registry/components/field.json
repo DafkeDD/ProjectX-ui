@@ -6,6 +6,7 @@
   "dependencies": [
     "label"
   ],
+  "requires": [],
   "files": [
     {
       "path": "components/field.tsx",

@@ -4,6 +4,7 @@
   "description": "Datatabel met sorteerbare koppen, dichte modus en toolbar.",
   "category": "Data",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/table.tsx",

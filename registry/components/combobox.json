@@ -6,6 +6,7 @@
   "dependencies": [
     "select"
   ],
+  "requires": [],
   "files": [
     {
       "path": "components/combobox.tsx",

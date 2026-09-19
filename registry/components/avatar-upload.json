@@ -6,6 +6,7 @@
   "dependencies": [
     "avatar"
   ],
+  "requires": [],
   "files": [
     {
       "path": "components/avatar-upload.tsx",

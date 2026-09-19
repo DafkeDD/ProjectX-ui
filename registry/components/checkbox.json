@@ -4,6 +4,7 @@
   "description": "Aanvinkvakje met derde staat en beschrijving.",
   "category": "Formulieren",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/checkbox.tsx",

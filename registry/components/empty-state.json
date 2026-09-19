@@ -4,6 +4,7 @@
   "description": "Lege lijst, geen resultaten of nog niets ingesteld.",
   "category": "Feedback",
   "dependencies": [],
+  "requires": [],
   "files": [
     {
       "path": "components/empty-state.tsx",
