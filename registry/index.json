@@ -416,6 +416,21 @@
       ]
     },
     {
+      "name": "alert-dialog",
+      "title": "AlertDialog",
+      "description": "Bevestiging voor een actie die je niet zomaar terugdraait.",
+      "category": "Overlays",
+      "dependencies": [
+        "dialog",
+        "button"
+      ],
+      "requires": [],
+      "files": [
+        "components/alert-dialog.tsx",
+        "components/alert-dialog.css"
+      ]
+    },
+    {
       "name": "drawer",
       "title": "Drawer",
       "description": "Paneel dat vanaf een zijkant inschuift.",
@@ -443,6 +458,18 @@
       ]
     },
     {
+      "name": "hover-card",
+      "title": "HoverCard",
+      "description": "Kaartje met extra context bij hoveren, groter dan een tooltip.",
+      "category": "Overlays",
+      "dependencies": [],
+      "requires": [],
+      "files": [
+        "components/hover-card.tsx",
+        "components/hover-card.css"
+      ]
+    },
+    {
       "name": "tooltip",
       "title": "Tooltip",
       "description": "Korte uitleg bij hover én toetsenbordfocus.",
@@ -466,6 +493,20 @@
       "files": [
         "components/dropdown-menu.tsx",
         "components/dropdown-menu.css"
+      ]
+    },
+    {
+      "name": "context-menu",
+      "title": "ContextMenu",
+      "description": "Menu op de rechtermuisknop, op de plek van de cursor.",
+      "category": "Overlays",
+      "dependencies": [
+        "dropdown-menu"
+      ],
+      "requires": [],
+      "files": [
+        "components/context-menu.tsx",
+        "components/context-menu.css"
       ]
     },
     {
@@ -699,6 +740,30 @@
       ]
     },
     {
+      "name": "timeline",
+      "title": "Timeline",
+      "description": "Verticale lijn met gebeurtenissen: audit-log, dossierverloop, statuswissels.",
+      "category": "Data",
+      "dependencies": [],
+      "requires": [],
+      "files": [
+        "components/timeline.tsx",
+        "components/timeline.css"
+      ]
+    },
+    {
+      "name": "message-thread",
+      "title": "MessageThread",
+      "description": "Verloop van een gesprek: ticket, interne notities of chat.",
+      "category": "Data",
+      "dependencies": [],
+      "requires": [],
+      "files": [
+        "components/message-thread.tsx",
+        "components/message-thread.css"
+      ]
+    },
+    {
       "name": "qr-code",
       "title": "QrCode",
       "description": "Echte, scanbare QR-code; zelf geschreven encoder zonder dependencies.",
@@ -797,6 +862,18 @@
       "files": [
         "components/workspace.tsx",
         "components/workspace.css"
+      ]
+    },
+    {
+      "name": "mockup",
+      "title": "Mockup",
+      "description": "Een scherm in een browser-, venster- of telefoonframe zetten.",
+      "category": "Layout",
+      "dependencies": [],
+      "requires": [],
+      "files": [
+        "components/mockup.tsx",
+        "components/mockup.css"
       ]
     },
     {

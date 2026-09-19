@@ -5,6 +5,7 @@ import type { ComponentType } from "react";
 import AccordionBasic from "./accordion-basic";
 import AgendaViews from "./agenda-views";
 import AlertBasic from "./alert-basic";
+import AlertdialogBasic from "./alertdialog-basic";
 import AppshellBasic from "./appshell-basic";
 import AuthCentered from "./auth-centered";
 import AuthSplit from "./auth-split";
@@ -28,6 +29,7 @@ import ComboboxBasic from "./combobox-basic";
 import CommandBasic from "./command-basic";
 import ComposerBasic from "./composer-basic";
 import ConfettiBasic from "./confetti-basic";
+import ContextmenuBasic from "./contextmenu-basic";
 import CopybuttonBasic from "./copybutton-basic";
 import DatapillBasic from "./datapill-basic";
 import DatepickerBasic from "./datepicker-basic";
@@ -40,12 +42,15 @@ import EmptyBasic from "./empty-basic";
 import EntityHeaderBasic from "./entity-header-basic";
 import FieldBasic from "./field-basic";
 import FiledropBasic from "./filedrop-basic";
+import HovercardBasic from "./hovercard-basic";
 import IconGallery from "./icon-gallery";
 import InputAffix from "./input-affix";
 import InputBasic from "./input-basic";
 import KbdBasic from "./kbd-basic";
 import LabelBasic from "./label-basic";
 import ListRowBasic from "./list-row-basic";
+import MessagethreadBasic from "./messagethread-basic";
+import MockupBasic from "./mockup-basic";
 import ModalManagerBasic from "./modal-manager-basic";
 import MotiondrawerBasic from "./motiondrawer-basic";
 import MotionsegmentedBasic from "./motionsegmented-basic";
@@ -83,6 +88,7 @@ import TaskBasic from "./task-basic";
 import TextareaBasic from "./textarea-basic";
 import ThemeBasic from "./theme-basic";
 import TimefieldBasic from "./timefield-basic";
+import TimelineBasic from "./timeline-basic";
 import TimeslotBasic from "./timeslot-basic";
 import ToastBasic from "./toast-basic";
 import ToolbarBasic from "./toolbar-basic";
@@ -94,6 +100,7 @@ export const DEMOS: Record<string, ComponentType> = {
   "accordion-basic": AccordionBasic,
   "agenda-views": AgendaViews,
   "alert-basic": AlertBasic,
+  "alertdialog-basic": AlertdialogBasic,
   "appshell-basic": AppshellBasic,
   "auth-centered": AuthCentered,
   "auth-split": AuthSplit,
@@ -117,6 +124,7 @@ export const DEMOS: Record<string, ComponentType> = {
   "command-basic": CommandBasic,
   "composer-basic": ComposerBasic,
   "confetti-basic": ConfettiBasic,
+  "contextmenu-basic": ContextmenuBasic,
   "copybutton-basic": CopybuttonBasic,
   "datapill-basic": DatapillBasic,
   "datepicker-basic": DatepickerBasic,
@@ -129,12 +137,15 @@ export const DEMOS: Record<string, ComponentType> = {
   "entity-header-basic": EntityHeaderBasic,
   "field-basic": FieldBasic,
   "filedrop-basic": FiledropBasic,
+  "hovercard-basic": HovercardBasic,
   "icon-gallery": IconGallery,
   "input-affix": InputAffix,
   "input-basic": InputBasic,
   "kbd-basic": KbdBasic,
   "label-basic": LabelBasic,
   "list-row-basic": ListRowBasic,
+  "messagethread-basic": MessagethreadBasic,
+  "mockup-basic": MockupBasic,
   "modal-manager-basic": ModalManagerBasic,
   "motiondrawer-basic": MotiondrawerBasic,
   "motionsegmented-basic": MotionsegmentedBasic,
@@ -172,6 +183,7 @@ export const DEMOS: Record<string, ComponentType> = {
   "textarea-basic": TextareaBasic,
   "theme-basic": ThemeBasic,
   "timefield-basic": TimefieldBasic,
+  "timeline-basic": TimelineBasic,
   "timeslot-basic": TimeslotBasic,
   "toast-basic": ToastBasic,
   "toolbar-basic": ToolbarBasic,

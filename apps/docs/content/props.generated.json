@@ -72,6 +72,92 @@
       }
     ]
   },
+  "AlertDialogProps": {
+    "extends": "",
+    "props": [
+      {
+        "name": "open",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "defaultOpen",
+        "required": false,
+        "type": "boolean",
+        "description": "",
+        "default": "false"
+      },
+      {
+        "name": "onOpenChange",
+        "required": false,
+        "type": "(open: boolean) => void",
+        "description": ""
+      },
+      {
+        "name": "title",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "description",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Extra inhoud tussen de tekst en de knoppen."
+      },
+      {
+        "name": "confirmLabel",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "",
+        "default": "\"Bevestigen\""
+      },
+      {
+        "name": "cancelLabel",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "",
+        "default": "\"Annuleren\""
+      },
+      {
+        "name": "destructive",
+        "required": false,
+        "type": "boolean",
+        "description": "Rode bevestigknop en waarschuwingsicoon, voor onomkeerbare acties."
+      },
+      {
+        "name": "icon",
+        "required": false,
+        "type": "IconName | null",
+        "description": ""
+      },
+      {
+        "name": "onConfirm",
+        "required": false,
+        "type": "() => void | Promise<unknown>",
+        "description": "Wordt aangeroepen als de gebruiker bevestigt. Geef je een belofte terug, dan blijft de knop laden tot ze klaar is en sluit de dialoog daarna."
+      },
+      {
+        "name": "onCancel",
+        "required": false,
+        "type": "() => void",
+        "description": ""
+      },
+      {
+        "name": "className",
+        "required": false,
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
   "AlertProps": {
     "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"title\">",
     "props": [
@@ -1291,6 +1377,53 @@
       }
     ]
   },
+  "ContextMenuProps": {
+    "extends": "",
+    "props": [
+      {
+        "name": "open",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "defaultOpen",
+        "required": false,
+        "type": "boolean",
+        "description": "",
+        "default": "false"
+      },
+      {
+        "name": "onOpenChange",
+        "required": false,
+        "type": "(open: boolean) => void",
+        "description": ""
+      },
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
+  "ContextMenuTriggerProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "asChild",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
   "CopyButtonProps": {
     "extends": "Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, \"value\">",
     "props": [
@@ -2075,6 +2208,94 @@
       }
     ]
   },
+  "HoverCardProps": {
+    "extends": "",
+    "props": [
+      {
+        "name": "open",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "defaultOpen",
+        "required": false,
+        "type": "boolean",
+        "description": "",
+        "default": "false"
+      },
+      {
+        "name": "onOpenChange",
+        "required": false,
+        "type": "(open: boolean) => void",
+        "description": ""
+      },
+      {
+        "name": "openDelay",
+        "required": false,
+        "type": "number",
+        "description": "Wachttijd voor openen, in ms.",
+        "default": "260"
+      },
+      {
+        "name": "closeDelay",
+        "required": false,
+        "type": "number",
+        "description": "Wachttijd voor sluiten, zodat je met de muis naar de kaart kan.",
+        "default": "160"
+      },
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
+  "HoverCardTriggerProps": {
+    "extends": "React.HTMLAttributes<HTMLElement>",
+    "props": [
+      {
+        "name": "asChild",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
+  "HoverCardContentProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "side",
+        "required": false,
+        "type": "Side",
+        "description": "",
+        "default": "\"bottom\""
+      },
+      {
+        "name": "align",
+        "required": false,
+        "type": "Align",
+        "description": "",
+        "default": "\"start\""
+      },
+      {
+        "name": "offset",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "8"
+      },
+      {
+        "name": "width",
+        "required": false,
+        "type": "number | string",
+        "description": "",
+        "default": "280"
+      }
+    ]
+  },
   "InputProps": {
     "extends": "Omit<React.InputHTMLAttributes<HTMLInputElement>, \"size\" | \"prefix\">",
     "props": [
@@ -2246,6 +2467,162 @@
       },
       {
         "name": "square",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
+  "MessageThreadProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "autoScroll",
+        "required": false,
+        "type": "boolean",
+        "description": "Springt bij nieuwe berichten naar beneden (standaard aan).",
+        "default": "true"
+      }
+    ]
+  },
+  "MessageDayProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
+  "MessageProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "from",
+        "required": false,
+        "type": "\"me\" | \"them\" | \"system\"",
+        "description": "\"me\" rechts en in accentkleur, \"them\" links, \"system\" gecentreerd.",
+        "default": "\"them\""
+      },
+      {
+        "name": "author",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "time",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "avatar",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "status",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Statusregel onder de bel, bijvoorbeeld \"gelezen\" of \"verzonden\"."
+      },
+      {
+        "name": "internal",
+        "required": false,
+        "type": "boolean",
+        "description": "Interne notitie: amber, niet zichtbaar voor de klant."
+      },
+      {
+        "name": "footer",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Bijlagen of knoppen onder de tekst."
+      }
+    ]
+  },
+  "MockupBrowserProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "url",
+        "required": false,
+        "type": "string",
+        "description": "Adres in de balk."
+      },
+      {
+        "name": "hideDots",
+        "required": false,
+        "type": "boolean",
+        "description": "Verbergt de drie knopjes linksboven."
+      },
+      {
+        "name": "dark",
+        "required": false,
+        "type": "boolean",
+        "description": "Donkere chroom, ook in lichte modus."
+      }
+    ]
+  },
+  "MockupWindowProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"title\">",
+    "props": [
+      {
+        "name": "title",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "hideDots",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "dark",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
+  "MockupPhoneProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "width",
+        "required": false,
+        "type": "number",
+        "description": "Breedte van het scherm in px; de hoogte volgt uit de verhouding.",
+        "default": "280"
+      },
+      {
+        "name": "ratio",
+        "required": false,
+        "type": "number",
+        "description": "Verhouding hoogte/breedte. Standaard 19.5:9, zoals een moderne telefoon.",
+        "default": "19.5"
+      },
+      {
+        "name": "top",
+        "required": false,
+        "type": "\"island\" | \"notch\" | \"none\"",
+        "description": "\"island\" is de pil bovenaan, \"notch\" de bredere inkeping.",
+        "default": "\"island\""
+      },
+      {
+        "name": "homeBar",
+        "required": false,
+        "type": "boolean",
+        "description": "Streepje onderaan voor het vegen.",
+        "default": "true"
+      },
+      {
+        "name": "dark",
         "required": false,
         "type": "boolean",
         "description": ""
@@ -4353,6 +4730,65 @@
         "required": false,
         "type": "(event: ScheduleEvent) => React.ReactNode",
         "description": "Extra tekst of knoppen rechtsonder op een kaart."
+      }
+    ]
+  },
+  "TimelineProps": {
+    "extends": "React.HTMLAttributes<HTMLOListElement>",
+    "props": [
+      {
+        "name": "dense",
+        "required": false,
+        "type": "boolean",
+        "description": "Compacte variant met kleinere stippen en minder ruimte."
+      }
+    ]
+  },
+  "TimelineItemProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLLIElement>, \"title\">",
+    "props": [
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Icoon in de stip; zonder icoon blijft het een gevulde bol."
+      },
+      {
+        "name": "tone",
+        "required": false,
+        "type": "TimelineTone",
+        "description": "",
+        "default": "\"neutral\""
+      },
+      {
+        "name": "time",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Tijdstip of datum, rechts van de titel."
+      },
+      {
+        "name": "title",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "by",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Wie de gebeurtenis veroorzaakte."
+      },
+      {
+        "name": "active",
+        "required": false,
+        "type": "boolean",
+        "description": "Markeert dit als de huidige stap."
+      },
+      {
+        "name": "pending",
+        "required": false,
+        "type": "boolean",
+        "description": "Onderbroken lijn onder deze stip, voor wat nog moet komen."
       }
     ]
   },
