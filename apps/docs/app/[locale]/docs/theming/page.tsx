@@ -1,8 +1,15 @@
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Alert, Badge, Card, CardContent, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@projectx/ui";
 import { CodeBlock } from "@/components/code-block";
+import { richTags } from "@/components/rich";
 import { TOKEN_GROUPS, readTokens } from "@/lib/tokens";
 
-export default function ThemingPage() {
+export default async function ThemingPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("theming");
+  const tGroup = await getTranslations("tokenGroups");
+
   const tokens = readTokens();
   const find = (name: string) => tokens.find((token) => token.name === name);
   const radii = tokens.filter((token) => token.name.startsWith("--r-"));
@@ -10,24 +17,18 @@ export default function ThemingPage() {
 
   return (
     <div className="docs-body docs-body-wide">
-      <Badge tone="accent">Fundament</Badge>
-      <h1 className="docs-title" style={{ marginTop: 14 }}>Thema &amp; tokens</h1>
-      <p className="docs-lead">
-        Elke kleur in deze library komt uit één bestand: <code className="docs-inline-code">tokens.css</code>.
-        Componenten schrijven nooit een hex-waarde — ze gebruiken alleen variabelen. Pas een token aan en de
-        volledige UI verandert mee, in licht én donker.
-      </p>
+      <Badge tone="accent">{t("badge")}</Badge>
+      <h1 className="docs-title" style={{ marginTop: 14 }}>{t("title")}</h1>
+      <p className="docs-lead">{t.rich("lead", richTags)}</p>
 
-      <Alert tone="accent" title="Bron: het ProjectX UI-design" style={{ marginTop: 22 }}>
-        De waarden hieronder zijn exact overgenomen uit het admin-paneel-design. Wil je een tweede merk
-        ondersteunen? Kopieer het <code className="docs-inline-code">:root</code>-blok en overschrijf het onder een
-        eigen selector, bijvoorbeeld <code className="docs-inline-code">[data-brand=&quot;klant-x&quot;]</code>.
+      <Alert tone="accent" title={t("sourceTitle")} style={{ marginTop: 22 }}>
+        {t.rich("sourceBody", richTags)}
       </Alert>
 
       {TOKEN_GROUPS.map((group) => (
-        <div className="docs-section" key={group.title}>
-          <h2 className="docs-section-title">{group.title}</h2>
-          <p className="docs-section-desc">{group.description}</p>
+        <div className="docs-section" key={group.key}>
+          <h2 className="docs-section-title">{tGroup(group.key)}</h2>
+          <p className="docs-section-desc">{tGroup(`${group.key}Desc`)}</p>
           <div className="docs-swatches">
             {group.names.map((name) => {
               const token = find(name);
@@ -37,7 +38,7 @@ export default function ThemingPage() {
                   <div className="docs-swatch-meta">
                     <div className="docs-swatch-name">{name}</div>
                     <div className="docs-swatch-value">{token?.light ?? "—"}</div>
-                    {token?.dark && <div className="docs-swatch-value">donker: {token.dark}</div>}
+                    {token?.dark && <div className="docs-swatch-value">{t("dark")}: {token.dark}</div>}
                   </div>
                 </div>
               );
@@ -47,11 +48,11 @@ export default function ThemingPage() {
       ))}
 
       <div className="docs-section">
-        <h2 className="docs-section-title">Radius &amp; schaduw</h2>
+        <h2 className="docs-section-title">{t("radiusTitle")}</h2>
         <div className="docs-grid-2">
           <Card>
             <CardContent>
-              <div className="pxui-eyebrow" style={{ marginBottom: 14 }}>Radius</div>
+              <div className="pxui-eyebrow" style={{ marginBottom: 14 }}>{t("radius")}</div>
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                 {radii.map((token) => (
                   <div key={token.name} style={{ textAlign: "center" }}>
@@ -71,7 +72,7 @@ export default function ThemingPage() {
           </Card>
           <Card>
             <CardContent>
-              <div className="pxui-eyebrow" style={{ marginBottom: 14 }}>Schaduw</div>
+              <div className="pxui-eyebrow" style={{ marginBottom: 14 }}>{t("shadow")}</div>
               <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
                 {shadows.map((token) => (
                   <div key={token.name} style={{ textAlign: "center" }}>
@@ -93,8 +94,8 @@ export default function ThemingPage() {
       </div>
 
       <div className="docs-section">
-        <h2 className="docs-section-title">Herkleuren</h2>
-        <p className="docs-p">Eén variabele aanpassen volstaat om de hele library te herkleuren:</p>
+        <h2 className="docs-section-title">{t("recolorTitle")}</h2>
+        <p className="docs-p">{t("recolorText")}</p>
         <CodeBlock
           standalone
           code={`:root {
@@ -112,15 +113,8 @@ export default function ThemingPage() {
       </div>
 
       <div className="docs-section">
-        <h2 className="docs-section-title">
-          Dichtheid
-        </h2>
-        <p className="docs-p">
-          Naast licht en donker heeft de library één schaalknop:{" "}
-          <code className="docs-inline-code">--density</code>. Elke hoogte en padding is geschreven als{" "}
-          <code className="docs-inline-code">calc(Npx * var(--density))</code>, dus compact en ruim werken meteen
-          door in knoppen, velden, tabellen, lijsten en agenda&apos;s — zonder één component aan te passen.
-        </p>
+        <h2 className="docs-section-title">{t("densityTitle")}</h2>
+        <p className="docs-p">{t.rich("densityText", richTags)}</p>
         <CodeBlock
           standalone
           code={`:root { --density: 1; }
@@ -130,23 +124,17 @@ export default function ThemingPage() {
 /* in een component */
 .pxui-btn { height: calc(40px * var(--density)); }`}
         />
-        <p className="docs-p">
-          <code className="docs-inline-code">ThemeProvider</code> zet{" "}
-          <code className="docs-inline-code">data-density</code> op{" "}
-          <code className="docs-inline-code">&lt;html&gt;</code> en onthoudt de keuze;{" "}
-          <code className="docs-inline-code">DensityToggle</code> is de kant-en-klare schakelaar en{" "}
-          <code className="docs-inline-code">ThemeScript</code> zet ze terug vóór de eerste paint.
-        </p>
+        <p className="docs-p">{t.rich("densityProvider", richTags)}</p>
       </div>
 
       <div className="docs-section">
-        <h2 className="docs-section-title">Alle tokens</h2>
+        <h2 className="docs-section-title">{t("allTitle")}</h2>
         <Table dense minWidth={620}>
           <TableHeader>
             <TableRow>
-              <TableHead>Token</TableHead>
-              <TableHead>Licht</TableHead>
-              <TableHead>Donker</TableHead>
+              <TableHead>{t("token")}</TableHead>
+              <TableHead>{t("light")}</TableHead>
+              <TableHead>{t("darkCol")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

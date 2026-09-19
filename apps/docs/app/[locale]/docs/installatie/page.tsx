@@ -1,81 +1,69 @@
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Alert, Badge, Card, CardContent, Stepper } from "@projectx/ui";
 import { CodeBlock } from "@/components/code-block";
+import { richTags } from "@/components/rich";
 
-export default function InstallatiePage() {
+export default async function InstallatiePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("install");
+
   return (
     <div className="docs-body">
-      <Badge tone="accent">Aan de slag</Badge>
-      <h1 className="docs-title" style={{ marginTop: 14 }}>Installatie</h1>
-      <p className="docs-lead">
-        ProjectX UI werkt in elk React-project met een bundler (Next.js, Vite, Remix). Je hebt twee manieren:
-        componenten kopiëren met de CLI, of de monorepo rechtstreeks gebruiken.
-      </p>
+      <Badge tone="accent">{t("badge")}</Badge>
+      <h1 className="docs-title" style={{ marginTop: 14 }}>{t("title")}</h1>
+      <p className="docs-lead">{t("lead")}</p>
 
       <div className="docs-section">
-        <h2 className="docs-section-title">1 · De monorepo lokaal draaien</h2>
-        <p className="docs-p">Dit is de documentatiesite die je nu bekijkt, met alle bronbestanden ernaast.</p>
-        <CodeBlock standalone code={"npm install\nnpm run dev      # documentatiesite op http://localhost:3000 (of 3001, 3002, ... als 3000 bezet is)\nnpm run registry # registry + props-tabellen opnieuw genereren"} />
-        <p className="docs-p">
-          Structuur: <code className="docs-inline-code">packages/ui</code> (de library),
-          <code className="docs-inline-code">packages/cli</code> (de <code className="docs-inline-code">add</code>-CLI),
-          <code className="docs-inline-code">apps/docs</code> (deze site) en
-          <code className="docs-inline-code">registry/</code> (gegenereerde JSON).
-        </p>
+        <h2 className="docs-section-title">{t("s1Title")}</h2>
+        <p className="docs-p">{t("s1Text")}</p>
+        <CodeBlock
+          standalone
+          code={"npm install\nnpm run dev      # documentatiesite op http://localhost:3000 (of 3001, 3002, ... als 3000 bezet is)\nnpm run registry # registry + props-tabellen opnieuw genereren"}
+        />
+        <p className="docs-p">{t.rich("s1Structure", richTags)}</p>
       </div>
 
       <div className="docs-section">
-        <h2 className="docs-section-title">2 · Componenten in een bestaand project zetten</h2>
+        <h2 className="docs-section-title">{t("s2Title")}</h2>
         <Stepper
           steps={[
-            { label: "init", description: "tokens + basis" },
-            { label: "add", description: "component kopiëren" },
-            { label: "importeren", description: "css + component" },
+            { label: "init", description: t("stepInit") },
+            { label: "add", description: t("stepAdd") },
+            { label: t("stepImport"), description: t("stepImportDesc") },
           ]}
           current={2}
           style={{ marginTop: 18, marginBottom: 22 }}
         />
-        <CodeBlock standalone code={"# eenmalig: tokens, basis-CSS en hulpfuncties\nnpx projectx-ui init\n\n# daarna per component\nnpx projectx-ui add button card dialog\n\n# alles in één keer\nnpx projectx-ui add --all\n\n# later: alles bijwerken + nieuwe componenten erbij\nnpx projectx-ui update\n\n# overzicht van wat er beschikbaar is\nnpx projectx-ui list"} />
-        <p className="docs-p">
-          <code className="docs-inline-code">init</code> maakt <code className="docs-inline-code">projectx-ui.json</code> aan
-          met je paden en kopieert de gedeelde bestanden (tokens, base-CSS, <code className="docs-inline-code">cn()</code>,
-          <code className="docs-inline-code">variants()</code>, Slot, Portal, hooks en de icon set).
-        </p>
-        <Alert tone="blue" title="Nog niet op npm?" style={{ marginTop: 16 }}>
-          Koppel de CLI dan eenmalig vanuit deze monorepo met{" "}
-          <code className="docs-inline-code">cd packages/cli &amp;&amp; npm link</code>. Daarna werkt{" "}
-          <code className="docs-inline-code">projectx-ui init</code> in elk project op je machine, en vindt de CLI
-          de registry vanzelf. Of geef een pad of URL mee met{" "}
-          <code className="docs-inline-code">--registry</code>, bijvoorbeeld de raw-URL van{" "}
-          <code className="docs-inline-code">registry/index.json</code> op GitHub.
+        <CodeBlock
+          standalone
+          code={"# eenmalig: tokens, basis-CSS en hulpfuncties\nnpx projectx-ui init\n\n# daarna per component\nnpx projectx-ui add button card dialog\n\n# alles in één keer\nnpx projectx-ui add --all\n\n# later: alles bijwerken + nieuwe componenten erbij\nnpx projectx-ui update\n\n# overzicht van wat er beschikbaar is\nnpx projectx-ui list"}
+        />
+        <p className="docs-p">{t.rich("s2Init", richTags)}</p>
+
+        <Alert tone="blue" title={t("npmTitle")} style={{ marginTop: 16 }}>
+          {t.rich("npmBody", richTags)}
         </Alert>
-        <p className="docs-p">
-          De CLI houdt ook <code className="docs-inline-code">components/ui/index.ts</code> bij, zodat je alles
-          importeert via <code className="docs-inline-code">@/components/ui</code>.
-        </p>
-        <p className="docs-p">
-          <code className="docs-inline-code">update</code> haalt de nieuwste versie van alles wat al in je project
-          staat en installeert meteen de componenten die intussen aan de registry zijn toegevoegd. Bestanden die je
-          zelf aangepast hebt blijven staan &mdash; die worden overgeslagen tenzij je{" "}
-          <code className="docs-inline-code">--force</code> meegeeft. Bekijk vooraf wat er zou gebeuren met{" "}
-          <code className="docs-inline-code">--dry-run</code>, of blijf bij wat je al hebt met{" "}
-          <code className="docs-inline-code">--only-installed</code>. Daarvoor houdt de CLI{" "}
-          <code className="docs-inline-code">projectx-ui.lock.json</code> bij; commit dat bestand mee.
-        </p>
+
+        <p className="docs-p">{t.rich("s2Index", richTags)}</p>
+        <p className="docs-p">{t.rich("s2Update", richTags)}</p>
       </div>
 
       <div className="docs-section">
-        <h2 className="docs-section-title">3 · CSS inladen</h2>
-        <p className="docs-p">Importeer één stylesheet in je globale CSS. De volgorde maakt niet uit; alles werkt met cascade-vrije klassen.</p>
-        <CodeBlock standalone code={'/* app/globals.css */\n@import "tailwindcss";        /* optioneel: Tailwind als engine */\n@import "./components/ui/ui.css";  /* tokens + alle gekopieerde componenten */'} />
-        <Alert tone="amber" title="Tailwind is niet verplicht" style={{ marginTop: 16 }}>
-          De componenten hebben Tailwind niet nodig — ze gebruiken eigen <code className="docs-inline-code">pxui-</code>klassen.
-          Tailwind v4 staat er alleen voor de reset en voor utilities in je eigen markup.
+        <h2 className="docs-section-title">{t("s3Title")}</h2>
+        <p className="docs-p">{t("s3Text")}</p>
+        <CodeBlock
+          standalone
+          code={'/* app/globals.css */\n@import "tailwindcss";        /* optioneel: Tailwind als engine */\n@import "./components/ui/ui.css";  /* tokens + alle gekopieerde componenten */'}
+        />
+        <Alert tone="amber" title={t("twTitle")} style={{ marginTop: 16 }}>
+          {t.rich("twBody", richTags)}
         </Alert>
       </div>
 
       <div className="docs-section">
-        <h2 className="docs-section-title">4 · Providers</h2>
-        <p className="docs-p">Twee providers zet je één keer bovenaan je app: thema en meldingen.</p>
+        <h2 className="docs-section-title">{t("s4Title")}</h2>
+        <p className="docs-p">{t("s4Text")}</p>
         <CodeBlock
           standalone
           code={`// app/layout.tsx
@@ -99,12 +87,8 @@ export default function RootLayout({ children }) {
       </div>
 
       <div className="docs-section">
-        <h2 className="docs-section-title">Lettertypes</h2>
-        <p className="docs-p">
-          Het design gebruikt <strong>Hanken Grotesk</strong> voor tekst en <strong>JetBrains Mono</strong> voor code.
-          Laad ze via Google Fonts, of pas <code className="docs-inline-code">--font</code> en
-          <code className="docs-inline-code">--mono</code> aan in <code className="docs-inline-code">tokens.css</code>.
-        </p>
+        <h2 className="docs-section-title">{t("fontsTitle")}</h2>
+        <p className="docs-p">{t.rich("fontsText", richTags)}</p>
         <CodeBlock
           standalone
           code={'<link\n  href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400,500,600,700,800&family=JetBrains+Mono:wght@400,600&display=swap"\n  rel="stylesheet"\n/>'}
@@ -114,12 +98,12 @@ export default function RootLayout({ children }) {
       <div className="docs-section">
         <Card>
           <CardContent>
-            <div style={{ fontWeight: 650, marginBottom: 6 }}>Vereisten</div>
+            <div style={{ fontWeight: 650, marginBottom: 6 }}>{t("reqTitle")}</div>
             <ul style={{ margin: 0, paddingLeft: 18, fontSize: 14, color: "var(--text-2)", lineHeight: 1.9 }}>
-              <li>React 18 of 19</li>
-              <li>Node 20 of hoger (voor de CLI)</li>
-              <li>Een bundler die CSS-imports aankan (Next.js, Vite, …)</li>
-              <li>Geen enkele UI- of utility-library — die zitten er bewust niet in</li>
+              <li>{t("req1")}</li>
+              <li>{t("req2")}</li>
+              <li>{t("req3")}</li>
+              <li>{t("req4")}</li>
             </ul>
           </CardContent>
         </Card>

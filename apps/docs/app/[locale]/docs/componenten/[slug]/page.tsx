@@ -29,6 +29,7 @@ export default async function ComponentPage({
   const { slug, locale } = await params;
   setRequestLocale(locale);
   const tNav = await getTranslations("nav");
+  const t = await getTranslations("component");
   const component = componentBySlug(slug);
   if (!component) notFound();
 
@@ -57,19 +58,19 @@ export default async function ComponentPage({
       <p className="docs-lead">{component.description}</p>
 
       <div className="docs-section">
-        <h2 className="docs-section-title">Installatie</h2>
+        <h2 className="docs-section-title">{t("install")}</h2>
         <CodeBlock standalone code={`npx projectx-ui add ${component.slug}`} />
         <p className="docs-p">
-          Kopieert{" "}
+          {t("copies")}{" "}
           {component.files.map((file, fileIndex) => (
             <span key={file}>
               <code className="docs-inline-code">{file.replace("../", "")}</code>
-              {fileIndex < component.files.length - 1 ? " en " : ""}
+              {fileIndex < component.files.length - 1 ? ` ${t("and")} ` : ""}
             </span>
           ))}
           {component.dependsOn?.length ? (
             <>
-              {" "}en neemt{" "}
+              {" "}{t("andTakes")}{" "}
               {component.dependsOn.map((dependency, dependencyIndex) => (
                 <span key={dependency}>
                   <Link href={`/docs/componenten/${dependency}`} style={{ color: "var(--accent)" }}>
@@ -78,10 +79,10 @@ export default async function ComponentPage({
                   {dependencyIndex < (component.dependsOn?.length ?? 0) - 1 ? ", " : ""}
                 </span>
               ))}{" "}
-              mee.
+              {t("along")}
             </>
           ) : (
-            " mee naar je project."
+            t("intoProject")
           )}
         </p>
       </div>
@@ -107,7 +108,7 @@ export default async function ComponentPage({
 
       {component.notes?.length ? (
         <div className="docs-section">
-          <h2 className="docs-section-title">Goed om te weten</h2>
+          <h2 className="docs-section-title">{t("notes")}</h2>
           <div style={{ display: "grid", gap: 12, marginTop: 14 }}>
             {component.notes.map((note) => (
               <Alert key={note} tone="blue" icon={<Icon name="info" size={17} />}>

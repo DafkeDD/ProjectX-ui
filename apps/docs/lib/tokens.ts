@@ -40,25 +40,22 @@ export function readTokens(): TokenEntry[] {
   }));
 }
 
-export const TOKEN_GROUPS: Array<{ title: string; description: string; names: string[] }> = [
+/** `key` verwijst naar de vertaling in messages/<taal>.json onder tokenGroups. */
+export const TOKEN_GROUPS: Array<{ key: string; names: string[] }> = [
   {
-    title: "Accent",
-    description: "De teal-accentkleur van het ProjectX UI-design en zijn tinten.",
+    key: "accent",
     names: ["--accent", "--accent-hover", "--accent-active", "--accent-fg", "--accent-tint", "--accent-tint-2", "--accent-border"],
   },
   {
-    title: "Oppervlakken",
-    description: "Achtergronden, kaarten en randen.",
+    key: "surfaces",
     names: ["--bg", "--surface", "--surface-2", "--surface-3", "--surface-hover", "--border", "--border-strong"],
   },
   {
-    title: "Tekst",
-    description: "Drie tekstniveaus plus de inverse kleur.",
+    key: "text",
     names: ["--text", "--text-2", "--text-3", "--text-inv"],
   },
   {
-    title: "Status",
-    description: "Elke status heeft een kleur, een tint en een rand.",
+    key: "status",
     names: [
       "--green", "--green-tint", "--green-border",
       "--amber", "--amber-tint", "--amber-border",
@@ -68,8 +65,7 @@ export const TOKEN_GROUPS: Array<{ title: string; description: string; names: st
     ],
   },
   {
-    title: "Datavisualisatie",
-    description: "Zes reeksen voor grafieken, afgeleid van dezelfde kleuren.",
+    key: "dataviz",
     names: ["--chart-1", "--chart-2", "--chart-3", "--chart-4", "--chart-5", "--chart-6"],
   },
 ];

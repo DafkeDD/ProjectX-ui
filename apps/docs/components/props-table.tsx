@@ -1,7 +1,9 @@
+import { getTranslations } from "next-intl/server";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@projectx/ui";
 import { propsFor } from "../lib/props";
 
-export function PropsTable({ name }: { name: string }) {
+export async function PropsTable({ name }: { name: string }) {
+  const t = await getTranslations("props");
   const entry = propsFor(name);
   if (!entry || entry.props.length === 0) return null;
 
@@ -18,10 +20,10 @@ export function PropsTable({ name }: { name: string }) {
       <Table dense minWidth={640}>
         <TableHeader>
           <TableRow>
-            <TableHead>Prop</TableHead>
-            <TableHead>Type</TableHead>
-            <TableHead>Standaard</TableHead>
-            <TableHead>Omschrijving</TableHead>
+            <TableHead>{t("prop")}</TableHead>
+            <TableHead>{t("type")}</TableHead>
+            <TableHead>{t("default")}</TableHead>
+            <TableHead>{t("description")}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

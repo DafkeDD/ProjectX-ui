@@ -1,34 +1,58 @@
-import Link from "next/link";
-import { Alert, Badge, Button, Card, CardContent, Icon } from "@projectx/ui";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Alert, Badge, Button, Card, CardContent, Icon } from "@projectx/ui";
 import { COMPONENTS, componentsByCategory, entryTag } from "@/content/catalog";
 import { DocsTag } from "@/components/docs-tag";
+import { richTags } from "@/components/rich";
+import { Link } from "@/i18n/navigation";
 import { ROADMAP } from "@/content/roadmap";
 
 export default async function DocsIntroPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations("intro");
   const tNav = await getTranslations("nav");
+  const tCategory = await getTranslations("categories");
 
   const groups = componentsByCategory();
   const done = ROADMAP.filter((step) => step.done).length;
 
+  const CATEGORY_KEYS: Record<string, string> = {
+    Basis: "basis",
+    Formulieren: "forms",
+    Overlays: "overlays",
+    Navigatie: "navigation",
+    "Datum & planning": "scheduling",
+    Data: "data",
+    Feedback: "feedback",
+    Layout: "layout",
+    Motion: "motion",
+  };
+
+  const kaarten = [
+    { icon: "layers", titel: t("getComponents", { count: COMPONENTS.length }), tekst: t("getComponentsText") },
+    { icon: "code", titel: t("getPrimitives"), tekst: t("getPrimitivesText") },
+    { icon: "moon", titel: t("getTheme"), tekst: t("getThemeText") },
+    { icon: "shield", titel: t("getA11y"), tekst: t("getA11yText") },
+  ] as const;
+
+  const regels = [
+    { tone: "accent", titel: t("rule1Title"), body: t.rich("rule1Body", richTags) },
+    { tone: "green", titel: t("rule2Title"), body: t.rich("rule2Body", richTags) },
+    { tone: "amber", titel: t("rule3Title"), body: t.rich("rule3Body", richTags) },
+  ] as const;
+
   return (
     <div className="docs-body">
-      <Badge tone="accent">Introductie</Badge>
+      <Badge tone="accent">{t("badge")}</Badge>
       <h1 className="docs-title" style={{ marginTop: 14 }}>ProjectX UI</h1>
-      <p className="docs-lead">
-        Een eigen React component library, opgebouwd uit het ProjectX UI-design. De API voelt aan als shadcn —
-        compositie met sub-componenten, <code className="docs-inline-code">asChild</code>, controlled én
-        uncontrolled — maar er zit geen enkele regel externe UI-code in. Geen shadcn, geen Radix, geen
-        Headless UI, geen cva, geen clsx: alles staat in <code className="docs-inline-code">packages/ui/src</code>.
-      </p>
+      <p className="docs-lead">{t.rich("lead", richTags)}</p>
 
       <div className="docs-section">
         <h2 className="docs-section-title">
-          Opbouw <Badge tone="accent" size="sm">{done}/{ROADMAP.length} stappen</Badge>
+          {t("buildTitle")}{" "}
+          <Badge tone="accent" size="sm">{t("buildBadge", { done, total: ROADMAP.length })}</Badge>
         </h2>
-        <p className="docs-section-desc">De library groeit stap voor stap. Elke stap voegt componenten én hun docs toe.</p>
+        <p className="docs-section-desc">{t("buildDesc")}</p>
         <div className="docs-roadmap">
           {ROADMAP.map((step, index) => (
             <div key={step.title} className="docs-roadmap-item" data-done={step.done ? "" : undefined}>
@@ -45,21 +69,16 @@ export default async function DocsIntroPage({ params }: { params: Promise<{ loca
       </div>
 
       <div className="docs-section">
-        <h2 className="docs-section-title">Wat je krijgt</h2>
+        <h2 className="docs-section-title">{t("getTitle")}</h2>
         <div className="docs-grid-2">
-          {[
-            { icon: "layers", title: `${COMPONENTS.length} componenten`, text: "Allemaal met dezelfde tokens, en er komen er elke stap bij." },
-            { icon: "code", title: "Eigen primitieven", text: "cn(), variants(), Slot en hooks — zelf geschreven." },
-            { icon: "moon", title: "Licht + donker", text: "Twee volledige paletten, één ThemeProvider." },
-            { icon: "shield", title: "Toegankelijk", text: "ARIA-rollen, toetsenbordnavigatie en zichtbare focus op elk interactief component." },
-          ].map((item) => (
-            <Card key={item.title}>
+          {kaarten.map((item) => (
+            <Card key={item.titel}>
               <CardContent>
                 <span style={{ display: "inline-flex", color: "var(--accent)", marginBottom: 8 }}>
                   <Icon name={item.icon as "layers"} size={20} />
                 </span>
-                <div style={{ fontWeight: 650, fontSize: 14.5 }}>{item.title}</div>
-                <p style={{ fontSize: 13.5, marginTop: 4 }}>{item.text}</p>
+                <div style={{ fontWeight: 650, fontSize: 14.5 }}>{item.titel}</div>
+                <p style={{ fontSize: 13.5, marginTop: 4 }}>{item.tekst}</p>
               </CardContent>
             </Card>
           ))}
@@ -67,28 +86,23 @@ export default async function DocsIntroPage({ params }: { params: Promise<{ loca
       </div>
 
       <div className="docs-section">
-        <h2 className="docs-section-title">Regels van dit design system</h2>
+        <h2 className="docs-section-title">{t("rulesTitle")}</h2>
         <div style={{ display: "grid", gap: 12, marginTop: 16 }}>
-          <Alert tone="accent" title="Alle kleuren komen uit het ProjectX UI-design">
-            Componenten gebruiken uitsluitend CSS-variabelen (<code className="docs-inline-code">var(--accent)</code>,{" "}
-            <code className="docs-inline-code">var(--surface)</code>, …). Wil je herkleuren? Pas{" "}
-            <code className="docs-inline-code">tokens.css</code> aan en de hele library volgt.
-          </Alert>
-          <Alert tone="green" title="Eén klassenprefix">
-            Elke klasse begint met <code className="docs-inline-code">pxui-</code>, dus niets botst met bestaande CSS in je projecten.
-          </Alert>
-          <Alert tone="amber" title="Tailwind is enkel de engine">
-            Tailwind v4 levert de reset en de utilities voor nieuwe markup. De componenten zelf zijn gewone
-            CSS-klassen — geen utility-soep, wél volledig aanpasbaar.
-          </Alert>
+          {regels.map((regel) => (
+            <Alert key={regel.titel} tone={regel.tone} title={regel.titel}>
+              {regel.body}
+            </Alert>
+          ))}
         </div>
       </div>
 
       <div className="docs-section">
-        <h2 className="docs-section-title">Overzicht</h2>
+        <h2 className="docs-section-title">{t("overviewTitle")}</h2>
         {groups.map((group) => (
           <div key={group.category} style={{ marginTop: 20 }}>
-            <div className="pxui-eyebrow">{group.category}</div>
+            <div className="pxui-eyebrow">
+              {CATEGORY_KEYS[group.category] ? tCategory(CATEGORY_KEYS[group.category]) : group.category}
+            </div>
             <div style={{ display: "grid", gap: 8, marginTop: 10, gridTemplateColumns: "repeat(auto-fill, minmax(210px, 1fr))" }}>
               {group.items.map((item) => (
                 <Link
@@ -113,7 +127,7 @@ export default async function DocsIntroPage({ params }: { params: Promise<{ loca
 
       <div className="docs-section">
         <Button asChild>
-          <Link href="/docs/installatie">Naar de installatie</Link>
+          <Link href="/docs/installatie">{t("cta")}</Link>
         </Button>
       </div>
     </div>
