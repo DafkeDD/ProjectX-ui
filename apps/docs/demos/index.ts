@@ -9,6 +9,7 @@ import AppshellBasic from "./appshell-basic";
 import AuthCentered from "./auth-centered";
 import AuthSplit from "./auth-split";
 import AvatarBasic from "./avatar-basic";
+import AvatarUploadBasic from "./avatar-upload-basic";
 import BadgeTones from "./badge-tones";
 import BadgeUsage from "./badge-usage";
 import BreadcrumbBasic from "./breadcrumb-basic";
@@ -24,6 +25,7 @@ import CheckboxBasic from "./checkbox-basic";
 import ChipBasic from "./chip-basic";
 import ComboboxBasic from "./combobox-basic";
 import CommandBasic from "./command-basic";
+import ComposerBasic from "./composer-basic";
 import ConfettiBasic from "./confetti-basic";
 import CopybuttonBasic from "./copybutton-basic";
 import DatapillBasic from "./datapill-basic";
@@ -36,6 +38,7 @@ import DropdownBasic from "./dropdown-basic";
 import EmptyBasic from "./empty-basic";
 import EntityHeaderBasic from "./entity-header-basic";
 import FieldBasic from "./field-basic";
+import FiledropBasic from "./filedrop-basic";
 import IconGallery from "./icon-gallery";
 import InputAffix from "./input-affix";
 import InputBasic from "./input-basic";
@@ -43,10 +46,12 @@ import KbdBasic from "./kbd-basic";
 import LabelBasic from "./label-basic";
 import ListRowBasic from "./list-row-basic";
 import ModalManagerBasic from "./modal-manager-basic";
+import OtpBasic from "./otp-basic";
 import PaginationBasic from "./pagination-basic";
 import PeriodnavBasic from "./periodnav-basic";
 import PopoverBasic from "./popover-basic";
 import ProgressBasic from "./progress-basic";
+import PulsedotBasic from "./pulsedot-basic";
 import RadioBasic from "./radio-basic";
 import RadioCards from "./radio-cards";
 import ResourceColumnsBasic from "./resource-columns-basic";
@@ -59,9 +64,11 @@ import SeparatorBasic from "./separator-basic";
 import SidebarBasic from "./sidebar-basic";
 import SidebarInverted from "./sidebar-inverted";
 import SkeletonBasic from "./skeleton-basic";
+import SliderBasic from "./slider-basic";
 import SpinnerBasic from "./spinner-basic";
 import StatBasic from "./stat-basic";
 import StepperBasic from "./stepper-basic";
+import SwatchBasic from "./swatch-basic";
 import SwimlanesBasic from "./swimlanes-basic";
 import SwitchBasic from "./switch-basic";
 import TableBasic from "./table-basic";
@@ -74,6 +81,7 @@ import TimeslotBasic from "./timeslot-basic";
 import ToastBasic from "./toast-basic";
 import ToolbarBasic from "./toolbar-basic";
 import TooltipBasic from "./tooltip-basic";
+import VoiceBasic from "./voice-basic";
 import WorkspaceBasic from "./workspace-basic";
 
 export const DEMOS: Record<string, ComponentType> = {
@@ -84,6 +92,7 @@ export const DEMOS: Record<string, ComponentType> = {
   "auth-centered": AuthCentered,
   "auth-split": AuthSplit,
   "avatar-basic": AvatarBasic,
+  "avatar-upload-basic": AvatarUploadBasic,
   "badge-tones": BadgeTones,
   "badge-usage": BadgeUsage,
   "breadcrumb-basic": BreadcrumbBasic,
@@ -99,6 +108,7 @@ export const DEMOS: Record<string, ComponentType> = {
   "chip-basic": ChipBasic,
   "combobox-basic": ComboboxBasic,
   "command-basic": CommandBasic,
+  "composer-basic": ComposerBasic,
   "confetti-basic": ConfettiBasic,
   "copybutton-basic": CopybuttonBasic,
   "datapill-basic": DatapillBasic,
@@ -111,6 +121,7 @@ export const DEMOS: Record<string, ComponentType> = {
   "empty-basic": EmptyBasic,
   "entity-header-basic": EntityHeaderBasic,
   "field-basic": FieldBasic,
+  "filedrop-basic": FiledropBasic,
   "icon-gallery": IconGallery,
   "input-affix": InputAffix,
   "input-basic": InputBasic,
@@ -118,10 +129,12 @@ export const DEMOS: Record<string, ComponentType> = {
   "label-basic": LabelBasic,
   "list-row-basic": ListRowBasic,
   "modal-manager-basic": ModalManagerBasic,
+  "otp-basic": OtpBasic,
   "pagination-basic": PaginationBasic,
   "periodnav-basic": PeriodnavBasic,
   "popover-basic": PopoverBasic,
   "progress-basic": ProgressBasic,
+  "pulsedot-basic": PulsedotBasic,
   "radio-basic": RadioBasic,
   "radio-cards": RadioCards,
   "resource-columns-basic": ResourceColumnsBasic,
@@ -134,9 +147,11 @@ export const DEMOS: Record<string, ComponentType> = {
   "sidebar-basic": SidebarBasic,
   "sidebar-inverted": SidebarInverted,
   "skeleton-basic": SkeletonBasic,
+  "slider-basic": SliderBasic,
   "spinner-basic": SpinnerBasic,
   "stat-basic": StatBasic,
   "stepper-basic": StepperBasic,
+  "swatch-basic": SwatchBasic,
   "swimlanes-basic": SwimlanesBasic,
   "switch-basic": SwitchBasic,
   "table-basic": TableBasic,
@@ -149,5 +164,6 @@ export const DEMOS: Record<string, ComponentType> = {
   "toast-basic": ToastBasic,
   "toolbar-basic": ToolbarBasic,
   "tooltip-basic": TooltipBasic,
+  "voice-basic": VoiceBasic,
   "workspace-basic": WorkspaceBasic,
 };

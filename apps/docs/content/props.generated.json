@@ -316,6 +316,84 @@
       }
     ]
   },
+  "AvatarUploadProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"onChange\" | \"onError\">",
+    "props": [
+      {
+        "name": "value",
+        "required": false,
+        "type": "string | null",
+        "description": "Huidige foto als URL of data-URL."
+      },
+      {
+        "name": "name",
+        "required": false,
+        "type": "string",
+        "description": "Naam voor de initialen wanneer er geen foto is.",
+        "default": "\"\""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "64"
+      },
+      {
+        "name": "onChange",
+        "required": false,
+        "type": "(dataUrl: string | null) => void",
+        "description": "Krijgt de nieuwe data-URL, of null bij verwijderen."
+      },
+      {
+        "name": "onError",
+        "required": false,
+        "type": "(message: string) => void",
+        "description": ""
+      },
+      {
+        "name": "outputSize",
+        "required": false,
+        "type": "number",
+        "description": "Zijde van de bewaarde afbeelding in pixels.",
+        "default": "160"
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "showActions",
+        "required": false,
+        "type": "boolean",
+        "description": "Knoppen naast de avatar tonen.",
+        "default": "true"
+      },
+      {
+        "name": "addLabel",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Foto toevoegen\""
+      },
+      {
+        "name": "changeLabel",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Foto wijzigen\""
+      },
+      {
+        "name": "removeLabel",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Verwijderen\""
+      }
+    ]
+  },
   "AvatarProps": {
     "extends": "React.HTMLAttributes<HTMLSpanElement>",
     "props": [
@@ -1044,6 +1122,87 @@
         "type": "boolean",
         "description": "Opent automatisch met ⌘K / Ctrl+K.",
         "default": "true"
+      }
+    ]
+  },
+  "ComposerProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"onSubmit\">",
+    "props": [
+      {
+        "name": "onSubmit",
+        "required": true,
+        "type": "(text: string) => void",
+        "description": "Wordt aangeroepen bij Enter of een klik op de knop."
+      },
+      {
+        "name": "value",
+        "required": false,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "onValueChange",
+        "required": false,
+        "type": "(value: string) => void",
+        "description": ""
+      },
+      {
+        "name": "placeholder",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Iets toevoegen…\""
+      },
+      {
+        "name": "submitLabel",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Tekst op de knop; laat leeg voor alleen een plus-icoon.",
+        "default": "\"Toevoegen\""
+      },
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Snelkeuzes onder het veld, bv. deadlines of labels."
+      },
+      {
+        "name": "voice",
+        "required": false,
+        "type": "boolean",
+        "description": "Microfoonknop tonen.",
+        "default": "true"
+      },
+      {
+        "name": "voiceLang",
+        "required": false,
+        "type": "string",
+        "description": "Taal van de spraakherkenning."
+      },
+      {
+        "name": "voiceAutoSubmit",
+        "required": false,
+        "type": "boolean",
+        "description": "Ingesproken tekst meteen toevoegen in plaats van in het veld zetten.",
+        "default": "true"
+      },
+      {
+        "name": "onVoiceNotice",
+        "required": false,
+        "type": "(message: string) => void",
+        "description": "Meldingen van de spraakherkenning."
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "autoFocus",
+        "required": false,
+        "type": "boolean",
+        "description": ""
       }
     ]
   },
@@ -1784,6 +1943,91 @@
       }
     ]
   },
+  "FileDropProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"onDrop\" | \"title\">",
+    "props": [
+      {
+        "name": "accept",
+        "required": false,
+        "type": "string",
+        "description": "Toegestane types, bv. \".pdf,.png\" of \"image/*\"."
+      },
+      {
+        "name": "multiple",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "onFiles",
+        "required": false,
+        "type": "(files: File[]) => void",
+        "description": "Wordt aangeroepen met de gekozen of gesleepte bestanden."
+      },
+      {
+        "name": "title",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "",
+        "default": "\"Sleep bestanden hierheen\""
+      },
+      {
+        "name": "description",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "",
+        "default": "\"of klik om te bladeren\""
+      },
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
+  "FileItemProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "name",
+        "required": true,
+        "type": "string",
+        "description": "",
+        "default": "\"upload\""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "progress",
+        "required": false,
+        "type": "number",
+        "description": "Uploadvoortgang 0–100; laat weg als het bestand klaar is."
+      },
+      {
+        "name": "onRemove",
+        "required": false,
+        "type": "() => void",
+        "description": ""
+      },
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
   "InputProps": {
     "extends": "Omit<React.InputHTMLAttributes<HTMLInputElement>, \"size\" | \"prefix\">",
     "props": [
@@ -2034,6 +2278,68 @@
         "type": "number",
         "description": "Maximaal aantal dialogs boven elkaar.",
         "default": "3"
+      }
+    ]
+  },
+  "OtpInputProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"onChange\" | \"defaultValue\">",
+    "props": [
+      {
+        "name": "length",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "6"
+      },
+      {
+        "name": "value",
+        "required": false,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "defaultValue",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"\""
+      },
+      {
+        "name": "onValueChange",
+        "required": false,
+        "type": "(value: string) => void",
+        "description": ""
+      },
+      {
+        "name": "onComplete",
+        "required": false,
+        "type": "(value: string) => void",
+        "description": "Wordt aangeroepen zodra alle vakjes ingevuld zijn."
+      },
+      {
+        "name": "invalid",
+        "required": false,
+        "type": "boolean",
+        "description": "Toont de vakjes in foutstatus (met schud-animatie)."
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "numeric",
+        "required": false,
+        "type": "boolean",
+        "description": "Alleen cijfers toestaan.",
+        "default": "true"
+      },
+      {
+        "name": "autoFocus",
+        "required": false,
+        "type": "boolean",
+        "description": ""
       }
     ]
   },
@@ -2322,6 +2628,37 @@
         "required": false,
         "type": "boolean",
         "description": "Toont het percentage in het midden."
+      }
+    ]
+  },
+  "PulseDotProps": {
+    "extends": "React.HTMLAttributes<HTMLSpanElement>",
+    "props": [
+      {
+        "name": "tone",
+        "required": false,
+        "type": "\"green\" | \"amber\" | \"red\" | \"accent\" | \"blue\" | \"neutral\"",
+        "description": "",
+        "default": "\"green\""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "9"
+      },
+      {
+        "name": "still",
+        "required": false,
+        "type": "boolean",
+        "description": "Zet de kloppende animatie uit; de halo blijft."
+      },
+      {
+        "name": "label",
+        "required": false,
+        "type": "string",
+        "description": ""
       }
     ]
   },
@@ -2835,6 +3172,70 @@
       }
     ]
   },
+  "SliderProps": {
+    "extends": "Omit<React.InputHTMLAttributes<HTMLInputElement>, \"value\" | \"defaultValue\" | \"onChange\" | \"type\">",
+    "props": [
+      {
+        "name": "value",
+        "required": false,
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "defaultValue",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "0"
+      },
+      {
+        "name": "onValueChange",
+        "required": false,
+        "type": "(value: number) => void",
+        "description": ""
+      },
+      {
+        "name": "min",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "0"
+      },
+      {
+        "name": "max",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "100"
+      },
+      {
+        "name": "step",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "1"
+      },
+      {
+        "name": "showValue",
+        "required": false,
+        "type": "boolean",
+        "description": "Toont de actuele waarde rechtsboven."
+      },
+      {
+        "name": "format",
+        "required": false,
+        "type": "(value: number) => string",
+        "description": "Formatteert de getoonde waarde, bv. (v) => `${v}%`."
+      },
+      {
+        "name": "tone",
+        "required": false,
+        "type": "\"accent\" | \"green\" | \"amber\" | \"red\"",
+        "description": "",
+        "default": "\"accent\""
+      }
+    ]
+  },
   "SpinnerProps": {
     "extends": "React.SVGProps<SVGSVGElement>",
     "props": [
@@ -2946,6 +3347,61 @@
         "required": false,
         "type": "(index: number) => void",
         "description": "Klikbare stappen (bv. om terug te gaan)."
+      }
+    ]
+  },
+  "SwatchPickerProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"onChange\" | \"defaultValue\">",
+    "props": [
+      {
+        "name": "colors",
+        "required": true,
+        "type": "string[]",
+        "description": "Kleuren om uit te kiezen; elke geldige CSS-kleur mag."
+      },
+      {
+        "name": "value",
+        "required": false,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "defaultValue",
+        "required": false,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "onValueChange",
+        "required": false,
+        "type": "(color: string) => void",
+        "description": ""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "28"
+      },
+      {
+        "name": "square",
+        "required": false,
+        "type": "boolean",
+        "description": "Vierkant met afgeronde hoeken in plaats van rond."
+      },
+      {
+        "name": "allowCustom",
+        "required": false,
+        "type": "boolean",
+        "description": "Toont een eigen-kleurknop met de systeemkiezer."
+      },
+      {
+        "name": "label",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Kleur\""
       }
     ]
   },
@@ -3873,6 +4329,39 @@
       }
     ]
   },
+  "VoiceButtonProps": {
+    "extends": "Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, \"onError\">,\n    UseVoiceOptions",
+    "props": [
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\" | \"lg\"",
+        "description": "",
+        "default": "\"md\""
+      },
+      {
+        "name": "whenUnsupported",
+        "required": false,
+        "type": "\"hide\" | \"disable\" | \"show\"",
+        "description": "Wat te doen wanneer de browser geen spraak ondersteunt.",
+        "default": "\"hide\""
+      },
+      {
+        "name": "labelStart",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Inspreken\""
+      },
+      {
+        "name": "labelStop",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Stop met luisteren\""
+      }
+    ]
+  },
   "ScheduleChange": {
     "extends": "",
     "props": [
@@ -4173,6 +4662,32 @@
       }
     ]
   },
+  "SquareImageOptions": {
+    "extends": "",
+    "props": [
+      {
+        "name": "size",
+        "required": false,
+        "type": "number",
+        "description": "Zijde van het resultaat in pixels.",
+        "default": "160"
+      },
+      {
+        "name": "quality",
+        "required": false,
+        "type": "number",
+        "description": "JPEG-kwaliteit tussen 0 en 1.",
+        "default": "0.82"
+      },
+      {
+        "name": "type",
+        "required": false,
+        "type": "\"image/jpeg\" | \"image/png\" | \"image/webp\"",
+        "description": "",
+        "default": "\"image/jpeg\""
+      }
+    ]
+  },
   "ScheduleResource": {
     "extends": "",
     "props": [
@@ -4308,6 +4823,78 @@
         "name": "children",
         "required": false,
         "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
+  "UseVoiceOptions": {
+    "extends": "",
+    "props": [
+      {
+        "name": "lang",
+        "required": false,
+        "type": "string",
+        "description": "Taal van de herkenning.",
+        "default": "\"nl-BE\""
+      },
+      {
+        "name": "onInterim",
+        "required": false,
+        "type": "(text: string) => void",
+        "description": "Tekst terwijl er nog gesproken wordt."
+      },
+      {
+        "name": "onFinal",
+        "required": false,
+        "type": "(text: string) => void",
+        "description": "Definitieve tekst wanneer de zin af is."
+      },
+      {
+        "name": "onNotice",
+        "required": false,
+        "type": "(message: string, reason: VoiceNotice) => void",
+        "description": "Meldingen voor de gebruiker (geen microfoon, niets gehoord, …)."
+      },
+      {
+        "name": "continuous",
+        "required": false,
+        "type": "boolean",
+        "description": "Blijft luisteren tot je zelf stopt.",
+        "default": "false"
+      }
+    ]
+  },
+  "VoiceApi": {
+    "extends": "",
+    "props": [
+      {
+        "name": "listening",
+        "required": true,
+        "type": "boolean",
+        "description": "Luistert de microfoon op dit moment?"
+      },
+      {
+        "name": "supported",
+        "required": true,
+        "type": "boolean",
+        "description": "Ondersteunt deze browser spraakherkenning?"
+      },
+      {
+        "name": "start",
+        "required": true,
+        "type": "() => void",
+        "description": ""
+      },
+      {
+        "name": "stop",
+        "required": true,
+        "type": "() => void",
+        "description": ""
+      },
+      {
+        "name": "toggle",
+        "required": true,
+        "type": "() => void",
         "description": ""
       }
     ]

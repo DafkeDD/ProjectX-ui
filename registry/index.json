@@ -735,6 +735,100 @@
       ]
     },
     {
+      "name": "slider",
+      "title": "Slider",
+      "description": "Schuifregelaar met waardeweergave en tonen.",
+      "category": "Formulieren",
+      "dependencies": [],
+      "files": [
+        "components/slider.tsx",
+        "components/slider.css"
+      ]
+    },
+    {
+      "name": "otp-input",
+      "title": "OtpInput",
+      "description": "Invoer van een verificatiecode, één teken per vakje.",
+      "category": "Formulieren",
+      "dependencies": [],
+      "files": [
+        "components/otp-input.tsx",
+        "components/otp-input.css"
+      ]
+    },
+    {
+      "name": "file-drop",
+      "title": "FileDrop",
+      "description": "Sleepzone voor bestanden, met bestandslijst.",
+      "category": "Formulieren",
+      "dependencies": [],
+      "files": [
+        "components/file-drop.tsx",
+        "components/file-drop.css"
+      ]
+    },
+    {
+      "name": "swatch-picker",
+      "title": "SwatchPicker",
+      "description": "Kleur kiezen uit een rij stalen, met optionele eigen kleur.",
+      "category": "Formulieren",
+      "dependencies": [],
+      "files": [
+        "components/swatch-picker.tsx",
+        "components/swatch-picker.css"
+      ]
+    },
+    {
+      "name": "avatar-upload",
+      "title": "AvatarUpload",
+      "description": "Profielfoto kiezen, bijsnijden en verkleinen in de browser.",
+      "category": "Formulieren",
+      "dependencies": [
+        "avatar"
+      ],
+      "files": [
+        "components/avatar-upload.tsx",
+        "components/avatar-upload.css",
+        "lib/image.ts"
+      ]
+    },
+    {
+      "name": "composer",
+      "title": "Composer",
+      "description": "Invoerbalk om snel iets toe te voegen, met microfoon en snelkeuzes.",
+      "category": "Formulieren",
+      "dependencies": [
+        "voice-button"
+      ],
+      "files": [
+        "components/composer.tsx",
+        "components/composer.css"
+      ]
+    },
+    {
+      "name": "voice-button",
+      "title": "VoiceButton",
+      "description": "Microfoonknop op de spraakherkenning van de browser.",
+      "category": "Formulieren",
+      "dependencies": [],
+      "files": [
+        "components/voice-button.tsx",
+        "components/voice-button.css",
+        "lib/use-voice.ts"
+      ]
+    },
+    {
+      "name": "pulse-dot",
+      "title": "PulseDot",
+      "description": "Statusbolletje met kloppende halo, voor live of bezet.",
+      "category": "Feedback",
+      "dependencies": [],
+      "files": [
+        "components/pulse-dot.tsx",
+        "components/pulse-dot.css"
+      ]
+    },
+    {
       "name": "theme",
       "title": "Theme",
       "description": "Licht/donker met ThemeProvider, useTheme en ThemeToggle.",

@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Button, Card, CardContent, Chip, ChipGroup, Icon, Input, TaskItem, TaskList } from "@projectx/ui";
+import { Card, CardContent, Chip, ChipGroup, Composer, Icon, TaskItem, TaskList } from "@projectx/ui";
 
 type Taak = {
   id: number;
@@ -56,8 +56,6 @@ export default function Demo() {
   const zichtbaar = taken.filter((taak) => taak.lijst.naam === lijst);
   const open = zichtbaar.filter((taak) => !taak.klaar).length;
 
-  const [nieuw, setNieuw] = useState("");
-
   const toevoegen = (tekst: string) => {
     const doel = LIJSTEN.find((l) => l.naam === lijst) ?? LIJSTEN[0];
     setTaken((vorige) => [
@@ -81,24 +79,11 @@ export default function Demo() {
           ))}
         </ChipGroup>
 
-        {/* Wordt <Composer> in stap 7. */}
-        <form
-          style={{ display: "flex", gap: 8 }}
-          onSubmit={(event) => {
-            event.preventDefault();
-            const tekst = nieuw.trim();
-            if (!tekst) return;
-            toevoegen(tekst);
-            setNieuw("");
-          }}
-        >
-          <Input
-            value={nieuw}
-            onChange={(event) => setNieuw(event.target.value)}
-            placeholder={`Iets toevoegen aan ${lijst}…`}
-          />
-          <Button type="submit" icon={<Icon name="plus" />} aria-label="Toevoegen" />
-        </form>
+        <Composer
+          onSubmit={toevoegen}
+          placeholder={`Iets toevoegen aan ${lijst}…`}
+          voice={false}
+        />
 
         <TaskList bordered>
           {zichtbaar.map((taak) => (

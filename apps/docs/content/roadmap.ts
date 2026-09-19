@@ -42,6 +42,7 @@ export const ROADMAP: RoadmapStep[] = [
   {
     title: "Extra's",
     description: "Slider, OtpInput, FileDrop, SwatchPicker, AvatarUpload, Composer, VoiceButton, PulseDot.",
+    done: true,
   },
   {
     title: "CLI & registry",

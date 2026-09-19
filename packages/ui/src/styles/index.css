@@ -11,6 +11,7 @@
 @import "../components/alert.css";
 @import "../components/app-shell.css";
 @import "../components/auth-layout.css";
+@import "../components/avatar-upload.css";
 @import "../components/avatar.css";
 @import "../components/badge.css";
 @import "../components/breadcrumb.css";
@@ -22,6 +23,7 @@
 @import "../components/chip.css";
 @import "../components/combobox.css";
 @import "../components/command.css";
+@import "../components/composer.css";
 @import "../components/confetti.css";
 @import "../components/copy-button.css";
 @import "../components/data-pill.css";
@@ -32,14 +34,17 @@
 @import "../components/empty-state.css";
 @import "../components/entity-header.css";
 @import "../components/field.css";
+@import "../components/file-drop.css";
 @import "../components/input.css";
 @import "../components/kbd.css";
 @import "../components/label.css";
 @import "../components/list-row.css";
+@import "../components/otp-input.css";
 @import "../components/pagination.css";
 @import "../components/period-nav.css";
 @import "../components/popover.css";
 @import "../components/progress.css";
+@import "../components/pulse-dot.css";
 @import "../components/radio-group.css";
 @import "../components/resource-columns.css";
 @import "../components/section-header.css";
@@ -48,9 +53,11 @@
 @import "../components/separator.css";
 @import "../components/sidebar.css";
 @import "../components/skeleton.css";
+@import "../components/slider.css";
 @import "../components/spinner.css";
 @import "../components/stat.css";
 @import "../components/stepper.css";
+@import "../components/swatch-picker.css";
 @import "../components/swimlanes.css";
 @import "../components/switch.css";
 @import "../components/table.css";
@@ -63,5 +70,6 @@
 @import "../components/toast.css";
 @import "../components/toolbar.css";
 @import "../components/tooltip.css";
+@import "../components/voice-button.css";
 @import "../components/week-schedule.css";
 @import "../components/workspace.css";
