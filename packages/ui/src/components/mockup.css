@@ -55,6 +55,7 @@
   --pxui-phone-w: 280px;
   --pxui-phone-ring: #74798a;          /* metaalkleur van de rand */
   --pxui-phone-frame: #000000;         /* zwart tussen ring en scherm */
+  --pxui-phone-screen: var(--surface);  /* achtergrond van het scherm */
   --pxui-phone-radius: calc(var(--pxui-phone-w) * 0.195);
   display: inline-block; width: var(--pxui-phone-w); max-width: 100%;
 }
@@ -73,7 +74,31 @@
   position: relative; display: flex; flex-direction: column;
   width: 100%; height: 100%; overflow: hidden;
   border-radius: calc(var(--pxui-phone-radius) * 0.93);
-  background: var(--surface); color: var(--text);
+  background: var(--pxui-phone-screen); color: var(--text);
+}
+
+/* Wallpaper ligt achter de inhoud, over de volle hoogte van het scherm. */
+.pxui-mockup-phone-screen::before {
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  background-image: var(--pxui-phone-wallpaper, none);
+  background-size: cover; background-position: center;
+}
+
+/* Statusbalk, inhoud en veegstreepje staan boven de wallpaper. */
+.pxui-mockup-phone-screen > * { position: relative; z-index: 1; }
+
+/* Donkere achtergrond: statusbalk en streepje in het wit, en omgekeerd. */
+.pxui-mockup-phone-screen[data-tone="dark"] { color: #ffffff; }
+.pxui-mockup-phone-screen[data-tone="dark"] .pxui-mockup-phone-status,
+.pxui-mockup-phone-screen[data-tone="dark"] .pxui-mockup-phone-icons { color: #ffffff; }
+.pxui-mockup-phone-screen[data-tone="dark"] .pxui-mockup-phone-home {
+  background: rgba(255, 255, 255, .55);
+}
+.pxui-mockup-phone-screen[data-tone="light"] { color: #10141c; }
+.pxui-mockup-phone-screen[data-tone="light"] .pxui-mockup-phone-status,
+.pxui-mockup-phone-screen[data-tone="light"] .pxui-mockup-phone-icons { color: #10141c; }
+.pxui-mockup-phone-screen[data-tone="light"] .pxui-mockup-phone-home {
+  background: rgba(16, 20, 28, .4);
 }
 
 /* ---- Statusbalk: houdt de ruimte vrij waar de pil of inkeping staat ---- */

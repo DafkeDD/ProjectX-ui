@@ -2642,6 +2642,25 @@
         "description": "Kleur van de metalen rand, bijvoorbeeld \"#ff8938\"."
       },
       {
+        "name": "screen",
+        "required": false,
+        "type": "string",
+        "description": "Achtergrond van het hele scherm — kleur of verloop. Zonder dit volgt het scherm het thema van de site (var(--surface))."
+      },
+      {
+        "name": "wallpaper",
+        "required": false,
+        "type": "string",
+        "description": "Afbeelding als achtergrond, bijvoorbeeld een wallpaper of een screenshot."
+      },
+      {
+        "name": "screenTone",
+        "required": false,
+        "type": "\"auto\" | \"light\" | \"dark\"",
+        "description": "Kleur van de statusbalk en het veegstreepje. \"auto\" leidt dat af uit de schermachtergrond: bij een donkere achtergrond wordt alles wit.",
+        "default": "\"auto\""
+      },
+      {
         "name": "buttons",
         "required": false,
         "type": "boolean",

@@ -39,10 +39,23 @@ export default function Demo() {
             <span style={{ fontSize: 11.5, color: "var(--text-3)" }}>top=&quot;island&quot;</span>
           </div>
           <div style={{ display: "grid", gap: 8, justifyItems: "center" }}>
-            <MockupPhone width={230} top="notch" frameColor="#3d2a1c">
+            <MockupPhone width={230} top="notch" frameColor="#a06a3c">
               <Scherm compact />
             </MockupPhone>
             <span style={{ fontSize: 11.5, color: "var(--text-3)" }}>top=&quot;notch&quot; + frameColor</span>
+          </div>
+          <div style={{ display: "grid", gap: 8, justifyItems: "center" }}>
+            <MockupPhone width={230} screen="#0b0b0f">
+              <div
+                style={{
+                  height: "100%", display: "grid", placeItems: "center",
+                  color: "#fff", fontSize: 15, letterSpacing: "-0.01em",
+                }}
+              >
+                Vergrendeld
+              </div>
+            </MockupPhone>
+            <span style={{ fontSize: 11.5, color: "var(--text-3)" }}>screen=&quot;#0b0b0f&quot;</span>
           </div>
         </div>
       )}

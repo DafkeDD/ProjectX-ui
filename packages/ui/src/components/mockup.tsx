@@ -71,6 +71,18 @@ export interface MockupPhoneProps extends React.HTMLAttributes<HTMLDivElement> {
   homeBar?: boolean;
   /** Kleur van de metalen rand, bijvoorbeeld "#ff8938". */
   frameColor?: string;
+  /**
+   * Achtergrond van het hele scherm — kleur of verloop. Zonder dit volgt het
+   * scherm het thema van de site (var(--surface)).
+   */
+  screen?: string;
+  /** Afbeelding als achtergrond, bijvoorbeeld een wallpaper of een screenshot. */
+  wallpaper?: string;
+  /**
+   * Kleur van de statusbalk en het veegstreepje. "auto" leidt dat af uit de
+   * schermachtergrond: bij een donkere achtergrond wordt alles wit.
+   */
+  screenTone?: "auto" | "light" | "dark";
   /** Zijknoppen (stil, volume, aan/uit) tonen. Standaard uit. */
   buttons?: boolean;
 }
@@ -85,6 +97,9 @@ export const MockupPhone = React.forwardRef<HTMLDivElement, MockupPhoneProps>(fu
     time = "9:41",
     homeBar = true,
     frameColor,
+    screen,
+    wallpaper,
+    screenTone = "auto",
     buttons = false,
     className,
     children,
@@ -101,6 +116,8 @@ export const MockupPhone = React.forwardRef<HTMLDivElement, MockupPhoneProps>(fu
         {
           "--pxui-phone-w": `${width}px`,
           ...(frameColor ? { "--pxui-phone-ring": frameColor } : {}),
+          ...(screen ? { "--pxui-phone-screen": screen } : {}),
+          ...(wallpaper ? { "--pxui-phone-wallpaper": `url("${wallpaper}")` } : {}),
           ...style,
         } as React.CSSProperties
       }
@@ -116,7 +133,7 @@ export const MockupPhone = React.forwardRef<HTMLDivElement, MockupPhoneProps>(fu
           </>
         )}
 
-        <div className="pxui-mockup-phone-screen" data-top={top}>
+        <div className="pxui-mockup-phone-screen" data-top={top} data-tone={tone(screenTone, screen, wallpaper)}>
           {(statusBar !== false || top !== "none") && (
             <div className="pxui-mockup-phone-status">
               {top !== "none" && <span className={cn("pxui-mockup-phone-top", `pxui-mockup-phone-${top}`)} />}
@@ -143,6 +160,52 @@ export const MockupPhone = React.forwardRef<HTMLDivElement, MockupPhoneProps>(fu
     </div>
   );
 });
+
+/**
+ * Bepaalt of de statusbalk licht of donker moet zijn. Bij "auto" kijken we naar
+ * de opgegeven achtergrond: een wallpaper of een donkere kleur krijgt witte
+ * tekst. Lukt het niet die kleur te lezen (verloop, var(), color-mix), dan
+ * laten we het aan het thema over.
+ */
+function tone(
+  keuze: "auto" | "light" | "dark",
+  screen?: string,
+  wallpaper?: string
+): "light" | "dark" | undefined {
+  if (keuze !== "auto") return keuze;
+  if (wallpaper) return "dark";
+  if (!screen) return undefined;
+  const helderheid = luminantie(screen);
+  if (helderheid === null) return undefined;
+  return helderheid < 0.45 ? "dark" : "light";
+}
+
+/** Relatieve helderheid van #rgb, #rrggbb of rgb()/rgba(); anders null. */
+function luminantie(kleur: string): number | null {
+  const tekst = kleur.trim();
+  let r: number;
+  let g: number;
+  let b: number;
+
+  const hex = tekst.match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i);
+  const rgb = tekst.match(/^rgba?\(\s*([\d.]+)[\s,]+([\d.]+)[\s,]+([\d.]+)/i);
+
+  if (hex) {
+    const cijfers = hex[1];
+    const breed = cijfers.length === 3 ? cijfers.replace(/./g, (c) => c + c) : cijfers;
+    r = parseInt(breed.slice(0, 2), 16);
+    g = parseInt(breed.slice(2, 4), 16);
+    b = parseInt(breed.slice(4, 6), 16);
+  } else if (rgb) {
+    r = Number(rgb[1]);
+    g = Number(rgb[2]);
+    b = Number(rgb[3]);
+  } else {
+    return null;
+  }
+
+  return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+}
 
 /* De statusbalk-icoontjes zijn hier getekend; de icon set van de library
    bevat geen signaal-, wifi- of batterijsymbool. */

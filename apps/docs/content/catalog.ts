@@ -762,6 +762,7 @@ export const COMPONENTS: ComponentEntry[] = [
     notes: [
       "Bedoeld voor documentatie, release-notes en marketingpagina's — niet voor de app zelf.",
       "MockupPhone schaalt op breedte; de hoogte volgt uit ratio (standaard 19,5:9).",
+      "Met screen of wallpaper geef je het hele scherm een achtergrond; de statusbalk wordt dan vanzelf wit op donker. Zonder die props volgt het scherm het thema van de site.",
     ],
     isNew: true,
   },
