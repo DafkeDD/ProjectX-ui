@@ -5,8 +5,20 @@ Werkt zoals shadcn/ui — dezelfde compositie, dezelfde copy-paste-aanpak — ma
 code van shadcn, Radix, Headless UI, cva of clsx**. Alles staat in `packages/ui/src`.
 
 ```
-68 componenten · 2 thema's · 3 dichtheden · 0 UI-dependencies
+85 componenten · 4 talen · 2 thema's · 3 dichtheden · 0 UI-dependencies in de kern
 ```
+
+| Categorie | Aantal | Waarvoor |
+| --- | --- | --- |
+| Basis | 11 | Button, Badge, Card, Avatar, Icon, Kbd, Skeleton … |
+| Formulieren | 18 | Input, Select, Combobox, Toggle, RichEditor, OtpInput … |
+| Overlays | 11 | Dialog, AlertDialog, Drawer, Popover, ContextMenu, HoverCard … |
+| Data | 11 | Table, Chart, Stat, Timeline, MessageThread, Carousel, QrCode … |
+| Navigatie | 10 | Tabs, Sidebar, BottomNav, Collapsible, Stepper … |
+| Datum & planning | 8 | Calendar, WeekSchedule, ResourceColumns, Swimlanes … |
+| Layout | 9 | AppShell, Resizable, ScrollArea, Mockup, AuthLayout … |
+| Feedback | 4 | Alert, EmptyState, Confetti, PulseDot |
+| Motion | 3 | Optioneel, achter `@projectx/ui/motion` |
 
 ---
 
@@ -23,6 +35,7 @@ npm run dev        # documentatiesite op http://localhost:3000 (of 3001, 3002, .
 | `npm run build` | Genereert de registry en bouwt de site |
 | `npm run registry` | Regenereert `registry/`, de props-tabellen en de demo-index |
 | `npm run typecheck` | TypeScript-check op de library |
+| `npm run test:ui` | Bouwt de site en klikt de interactieve componenten na in Chrome |
 | `npm run cli -- <commando>` | De CLI rechtstreeks vanuit de monorepo draaien |
 
 ---
@@ -34,11 +47,12 @@ projectx-ui/
 ├─ packages/
 │  ├─ ui/                 De library
 │  │  └─ src/
-│  │     ├─ components/   68 componenten (.tsx + .css per component)
+│  │     ├─ components/   82 componenten (.tsx + .css per component)
+│  │     ├─ motion/       3 componenten achter @projectx/ui/motion (optioneel)
 │  │     ├─ lib/          cn, variants, Slot, Portal, hooks, positionering, datums
 │  │     ├─ icons/        eigen icon set (één path per glyph)
 │  │     └─ styles/       tokens.css + base.css + index.css
-│  └─ cli/                npx projectx-ui  (init / add / list)
+│  └─ cli/                npx projectx-ui  (init / add / update / list)
 ├─ apps/
 │  └─ docs/               De documentatiesite met live previews
 ├─ registry/              Gegenereerd: bron per component voor de CLI

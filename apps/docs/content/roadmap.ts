@@ -49,4 +49,33 @@ export const ROADMAP: RoadmapStep[] = [
     description: "npx projectx-ui init / add / list — componenten kopiëren naar andere projecten, zoals shadcn.",
     done: true,
   },
+  {
+    title: "Meertalig & labels",
+    description:
+      "next-intl met Nederlands, Frans, Engels en Duits, een taalkiezer in de topbar, en labels \"nieuw\" en \"bijgewerkt\" op componenten en demo's.",
+    done: true,
+  },
+  {
+    title: "De gaten uit de designs",
+    description:
+      "QrCode met een eigen encoder, RichEditor en BottomNav — de drie patronen die wel in de ontwerpen zaten maar nog niet in de library.",
+    done: true,
+  },
+  {
+    title: "Beweging (optioneel)",
+    description:
+      "MotionDrawerContent, ReorderList en MotionSegmented achter @projectx/ui/motion. De kern blijft dependency-vrij; de CLI slaat deze over bij add --all.",
+    done: true,
+  },
+  {
+    title: "Wat shadcn en daisyUI wél hadden",
+    description:
+      "AlertDialog met useConfirm, ContextMenu, HoverCard, Timeline, MessageThread, Mockup (browser, venster, telefoon), Resizable, ScrollArea, Carousel, Toggle en Collapsible.",
+    done: true,
+  },
+  {
+    title: "Volgende ronde",
+    description:
+      "Uitgaande animaties voor Dialog, Popover, Tooltip en Toast, de hoogte-animatie van Accordion, en de documentatieteksten zelf vertalen.",
+  },
 ];

@@ -11,9 +11,11 @@
     "build": "npm run registry && npm run build -w @projectx/docs",
     "registry": "node scripts/build-registry.mjs",
     "typecheck": "tsc -p packages/ui/tsconfig.json --noEmit",
-    "cli": "node packages/cli/bin/projectx-ui.mjs"
+    "cli": "node packages/cli/bin/projectx-ui.mjs",
+    "test:ui": "node scripts/ui-test.mjs --build"
   },
   "devDependencies": {
+    "puppeteer-core": "^24.43.1",
     "typescript": "^5.7.0"
   },
   "engines": {
