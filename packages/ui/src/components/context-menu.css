@@ -1,0 +1,3 @@
+/* ============================ ContextMenu ============================ */
+/* Het menu zelf gebruikt de klassen van DropdownMenu (.pxui-menu). */
+.pxui-context-trigger { display: block; }

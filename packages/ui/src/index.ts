@@ -31,6 +31,7 @@ export { Icon, ICONS, ICON_NAMES, type IconName, type IconProps } from "./icons/
 /* ---------- Componenten ---------- */
 export * from "./components/accordion";
 export * from "./components/alert";
+export * from "./components/alert-dialog";
 export * from "./components/app-shell";
 export * from "./components/auth-layout";
 export * from "./components/avatar-upload";
@@ -56,8 +57,10 @@ export * from "./components/drawer";
 export * from "./components/dropdown-menu";
 export * from "./components/empty-state";
 export * from "./components/entity-header";
+export * from "./components/context-menu";
 export * from "./components/field";
 export * from "./components/file-drop";
+export * from "./components/hover-card";
 export * from "./components/input";
 export * from "./components/kbd";
 export * from "./components/label";

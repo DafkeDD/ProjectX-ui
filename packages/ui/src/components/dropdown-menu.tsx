@@ -22,6 +22,13 @@ function useMenu(component: string): MenuContextValue {
   return context;
 }
 
+/**
+ * Zodat een ander menu (zoals ContextMenu) dezelfde context kan aanbieden en
+ * DropdownMenuItem, -Label, -Separator en -Group daarin gewoon blijven werken.
+ */
+export const MenuProvider = MenuContext.Provider;
+export type { MenuContextValue };
+
 const ITEM_SELECTOR = '[data-pxui-menuitem]:not([data-disabled])';
 
 export interface DropdownMenuProps {
