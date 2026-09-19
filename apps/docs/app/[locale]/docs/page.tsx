@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Alert, Badge, Button, Card, CardContent, Icon } from "@projectx/ui";
-import { COMPONENTS, componentsByCategory } from "../../content/catalog";
-import { ROADMAP } from "../../content/roadmap";
+import { COMPONENTS, componentsByCategory } from "@/content/catalog";
+import { ROADMAP } from "@/content/roadmap";
 
 export default function DocsIntroPage() {
   const groups = componentsByCategory();

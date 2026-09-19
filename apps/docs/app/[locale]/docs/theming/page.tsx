@@ -1,6 +1,6 @@
 import { Alert, Badge, Card, CardContent, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@projectx/ui";
-import { CodeBlock } from "../../../components/code-block";
-import { TOKEN_GROUPS, readTokens } from "../../../lib/tokens";
+import { CodeBlock } from "@/components/code-block";
+import { TOKEN_GROUPS, readTokens } from "@/lib/tokens";
 
 export default function ThemingPage() {
   const tokens = readTokens();

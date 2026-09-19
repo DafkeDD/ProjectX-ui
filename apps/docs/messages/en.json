@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "title": "ProjectX UI",
+    "description": "A fully custom React component library based on the ProjectX UI design. No shadcn, no Radix, no external UI dependencies."
+  },
+  "nav": {
+    "subtitle": "Design system",
+    "search": "Search component…",
+    "start": "Getting started",
+    "intro": "Introduction",
+    "installation": "Installation",
+    "theming": "Theme & tokens",
+    "results": "{count} results",
+    "new": "new"
+  },
+  "categories": {
+    "basis": "Basics",
+    "forms": "Forms",
+    "overlays": "Overlays",
+    "navigation": "Navigation",
+    "scheduling": "Date & scheduling",
+    "data": "Data",
+    "feedback": "Feedback",
+    "layout": "Layout"
+  },
+  "shell": {
+    "docs": "Documentation",
+    "openNav": "Open navigation",
+    "language": "Language"
+  },
+  "home": {
+    "badge": "{count} components · fully custom code",
+    "titleLine1": "Your own component library,",
+    "titleLine2": "built on the ProjectX UI design.",
+    "intro": "Works like shadcn — same composition, same copy-paste approach — but without a single line of code from shadcn, Radix or any other UI library. Everything lives in your own repo.",
+    "ctaComponents": "Browse the components",
+    "ctaInstall": "Installation",
+    "allTitle": "Everything inside",
+    "allDescription": "From button to command palette, from table to donut chart.",
+    "features": {
+      "zeroDeps": {
+        "title": "Zero UI dependencies",
+        "text": "No shadcn, no Radix, no Headless UI. Every component — focus trap, positioning and keyboard navigation included — is written right here."
+      },
+      "tokens": {
+        "title": "Every color from one source",
+        "text": "Every color, radius and shadow comes from the ProjectX UI design. Components use tokens only, never a hardcoded hex."
+      },
+      "copyPaste": {
+        "title": "Copy-paste, your code",
+        "text": "Just like shadcn: `npx projectx-ui add button` copies the source into your project. You own the components and change them whenever you like."
+      },
+      "theme": {
+        "title": "Light and dark",
+        "text": "One ThemeProvider, two complete palettes. Everything follows along, charts and overlays included."
+      }
+    }
+  }
+}

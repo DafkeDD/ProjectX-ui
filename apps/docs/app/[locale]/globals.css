@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* Het volledige ProjectX UI design system (tokens + alle componenten). */
-@import "../../../packages/ui/src/styles/index.css";
+@import "../../../../packages/ui/src/styles/index.css";
 
 /* ------------------------------------------------------------
    Documentatiesite — eigen chrome (alleen voor deze site)

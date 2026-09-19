@@ -1,5 +1,5 @@
 import { Alert, Badge, Card, CardContent, Stepper } from "@projectx/ui";
-import { CodeBlock } from "../../../components/code-block";
+import { CodeBlock } from "@/components/code-block";
 
 export default function InstallatiePage() {
   return (

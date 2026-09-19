@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Alert, Badge, Button, Icon } from "@projectx/ui";
-import { COMPONENTS, componentBySlug } from "../../../../content/catalog";
-import { CodeBlock } from "../../../../components/code-block";
-import { Preview } from "../../../../components/preview";
-import { PropsTable } from "../../../../components/props-table";
-import { demoSource, uiSource } from "../../../../lib/source";
+import { COMPONENTS, componentBySlug } from "@/content/catalog";
+import { CodeBlock } from "@/components/code-block";
+import { Preview } from "@/components/preview";
+import { PropsTable } from "@/components/props-table";
+import { demoSource, uiSource } from "@/lib/source";
 
 export function generateStaticParams() {
   return COMPONENTS.map((component) => ({ slug: component.slug }));

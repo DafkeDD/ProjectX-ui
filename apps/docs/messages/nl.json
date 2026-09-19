@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "title": "ProjectX UI",
+    "description": "Een volledig eigen React component library op basis van het ProjectX UI-design. Geen shadcn, geen Radix, geen externe UI-dependencies."
+  },
+  "nav": {
+    "subtitle": "Design system",
+    "search": "Zoek component…",
+    "start": "Aan de slag",
+    "intro": "Introductie",
+    "installation": "Installatie",
+    "theming": "Thema & tokens",
+    "results": "{count} resultaten",
+    "new": "nieuw"
+  },
+  "categories": {
+    "basis": "Basis",
+    "forms": "Formulieren",
+    "overlays": "Overlays",
+    "navigation": "Navigatie",
+    "scheduling": "Datum & planning",
+    "data": "Data",
+    "feedback": "Feedback",
+    "layout": "Layout"
+  },
+  "shell": {
+    "docs": "Documentatie",
+    "openNav": "Navigatie openen",
+    "language": "Taal"
+  },
+  "home": {
+    "badge": "{count} componenten · volledig eigen code",
+    "titleLine1": "Je eigen component library,",
+    "titleLine2": "gebouwd op het ProjectX UI-design.",
+    "intro": "Werkt zoals shadcn — dezelfde compositie, dezelfde copy-paste-aanpak — maar zonder één regel code van shadcn, Radix of welke UI-library dan ook. Alles staat in jouw repo.",
+    "ctaComponents": "Bekijk de componenten",
+    "ctaInstall": "Installatie",
+    "allTitle": "Alles wat erin zit",
+    "allDescription": "Van knop tot commandopalet, van tabel tot donutgrafiek.",
+    "features": {
+      "zeroDeps": {
+        "title": "Nul UI-dependencies",
+        "text": "Geen shadcn, geen Radix, geen Headless UI. Elk component — inclusief focus-trap, positionering en toetsenbordnavigatie — is hier zelf geschreven."
+      },
+      "tokens": {
+        "title": "Alle kleuren uit één bron",
+        "text": "Elke kleur, radius en schaduw komt uit het ProjectX UI-design. Componenten gebruiken uitsluitend tokens, nooit een hardcoded hex."
+      },
+      "copyPaste": {
+        "title": "Copy-paste, jouw code",
+        "text": "Zoals shadcn: `npx projectx-ui add button` kopieert de bron in je project. Je bezit de componenten en past ze aan wanneer je wil."
+      },
+      "theme": {
+        "title": "Licht én donker",
+        "text": "Eén ThemeProvider, twee volledige paletten. Alles schakelt mee, tot en met grafieken en overlays."
+      }
+    }
+  }
+}

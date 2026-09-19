@@ -1,34 +1,29 @@
-import Link from "next/link";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import {
   Badge, Button, Card, CardDescription, CardHeader, CardTitle, Icon, ThemeToggle,
 } from "@projectx/ui";
-import { COMPONENTS } from "../content/catalog";
-import { CodeBlock } from "../components/code-block";
+import { Link } from "@/i18n/navigation";
+import { COMPONENTS } from "@/content/catalog";
+import { CodeBlock } from "@/components/code-block";
+import { LocaleSwitcher } from "@/components/locale-switcher";
 
 const FEATURES = [
-  {
-    icon: "shield" as const,
-    title: "Nul UI-dependencies",
-    text: "Geen shadcn, geen Radix, geen Headless UI. Elk component — inclusief focus-trap, positionering en toetsenbordnavigatie — is hier zelf geschreven.",
-  },
-  {
-    icon: "layers" as const,
-    title: "Alle kleuren uit één bron",
-    text: "Elke kleur, radius en schaduw komt uit het ProjectX UI-design. Componenten gebruiken uitsluitend tokens, nooit een hardcoded hex.",
-  },
-  {
-    icon: "code" as const,
-    title: "Copy-paste, jouw code",
-    text: "Zoals shadcn: `npx projectx-ui add button` kopieert de bron in je project. Je bezit de componenten en past ze aan wanneer je wil.",
-  },
-  {
-    icon: "moon" as const,
-    title: "Licht én donker",
-    text: "Eén ThemeProvider, twee volledige paletten. Alles schakelt mee, tot en met grafieken en overlays.",
-  },
-];
+  { key: "zeroDeps", icon: "shield" as const },
+  { key: "tokens", icon: "layers" as const },
+  { key: "copyPaste", icon: "code" as const },
+  { key: "theme", icon: "moon" as const },
+] as const;
 
-export default function HomePage() {
+export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  // setRequestLocale blijft op Next 15 nodig voor statische rendering; de
+  // deprecation verwijst naar next/root-params, dat pas in Next 16 bestaat.
+  setRequestLocale(locale);
+
+  const t = await getTranslations("home");
+  const tShell = await getTranslations("shell");
+  const tNav = await getTranslations("nav");
+
   return (
     <>
       <header
@@ -45,31 +40,29 @@ export default function HomePage() {
         <Badge tone="accent" size="sm">v0.1.0</Badge>
         <span style={{ flex: 1 }} />
         <Button variant="ghost" size="sm" asChild>
-          <Link href="/docs">Documentatie</Link>
+          <Link href="/docs">{tShell("docs")}</Link>
         </Button>
+        <LocaleSwitcher />
         <ThemeToggle size="sm" />
       </header>
 
       <section className="docs-hero">
         <div className="docs-hero-inner">
           <Badge tone="accent" icon={<Icon name="sparkles" size={12} />}>
-            {COMPONENTS.length} componenten · volledig eigen code
+            {t("badge", { count: COMPONENTS.length })}
           </Badge>
           <h1 style={{ marginTop: 20 }}>
-            Je eigen component library,
+            {t("titleLine1")}
             <br />
-            gebouwd op het ProjectX UI-design.
+            {t("titleLine2")}
           </h1>
-          <p>
-            Werkt zoals shadcn — dezelfde compositie, dezelfde copy-paste-aanpak — maar zonder één regel code
-            van shadcn, Radix of welke UI-library dan ook. Alles staat in jouw repo.
-          </p>
+          <p>{t("intro")}</p>
           <div className="docs-hero-actions">
             <Button size="lg" asChild>
-              <Link href="/docs/componenten/button">Bekijk de componenten</Link>
+              <Link href="/docs/componenten/button">{t("ctaComponents")}</Link>
             </Button>
             <Button size="lg" variant="secondary" asChild>
-              <Link href="/docs/installatie">Installatie</Link>
+              <Link href="/docs/installatie">{t("ctaInstall")}</Link>
             </Button>
           </div>
           <div style={{ maxWidth: 520, margin: "28px auto 0", textAlign: "left" }}>
@@ -81,7 +74,7 @@ export default function HomePage() {
       <main style={{ maxWidth: 1100, margin: "0 auto", padding: "56px 32px 90px" }}>
         <div className="docs-feature-grid">
           {FEATURES.map((feature) => (
-            <Card key={feature.title}>
+            <Card key={feature.key}>
               <CardHeader>
                 <div>
                   <span
@@ -93,8 +86,8 @@ export default function HomePage() {
                   >
                     <Icon name={feature.icon} size={19} />
                   </span>
-                  <CardTitle>{feature.title}</CardTitle>
-                  <CardDescription>{feature.text}</CardDescription>
+                  <CardTitle>{t(`features.${feature.key}.title`)}</CardTitle>
+                  <CardDescription>{t(`features.${feature.key}.text`)}</CardDescription>
                 </div>
               </CardHeader>
               <div style={{ height: 18 }} />
@@ -102,8 +95,8 @@ export default function HomePage() {
           ))}
         </div>
 
-        <h2 className="docs-section-title" style={{ marginTop: 56 }}>Alles wat erin zit</h2>
-        <p className="docs-section-desc">Van knop tot commandopalet, van tabel tot donutgrafiek.</p>
+        <h2 className="docs-section-title" style={{ marginTop: 56 }}>{t("allTitle")}</h2>
+        <p className="docs-section-desc">{t("allDescription")}</p>
         <div
           style={{
             display: "grid", gap: 10, marginTop: 20,
@@ -122,7 +115,7 @@ export default function HomePage() {
             >
               <Icon name="chevronRight" size={14} />
               {component.name}
-              {component.isNew && <span className="docs-new">nieuw</span>}
+              {component.isNew && <span className="docs-new">{tNav("new")}</span>}
             </Link>
           ))}
         </div>

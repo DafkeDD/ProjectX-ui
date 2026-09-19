@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "title": "ProjectX UI",
+    "description": "Eine vollständig eigene React-Component-Library auf Basis des ProjectX UI-Designs. Kein shadcn, kein Radix, keine externen UI-Abhängigkeiten."
+  },
+  "nav": {
+    "subtitle": "Design System",
+    "search": "Komponente suchen…",
+    "start": "Erste Schritte",
+    "intro": "Einführung",
+    "installation": "Installation",
+    "theming": "Theme & Tokens",
+    "results": "{count} Treffer",
+    "new": "neu"
+  },
+  "categories": {
+    "basis": "Basis",
+    "forms": "Formulare",
+    "overlays": "Overlays",
+    "navigation": "Navigation",
+    "scheduling": "Datum & Planung",
+    "data": "Daten",
+    "feedback": "Feedback",
+    "layout": "Layout"
+  },
+  "shell": {
+    "docs": "Dokumentation",
+    "openNav": "Navigation öffnen",
+    "language": "Sprache"
+  },
+  "home": {
+    "badge": "{count} Komponenten · vollständig eigener Code",
+    "titleLine1": "Deine eigene Component-Library,",
+    "titleLine2": "gebaut auf dem ProjectX UI-Design.",
+    "intro": "Funktioniert wie shadcn — dieselbe Komposition, derselbe Copy-and-paste-Ansatz — aber ohne eine einzige Zeile Code von shadcn, Radix oder irgendeiner anderen UI-Library. Alles liegt in deinem eigenen Repo.",
+    "ctaComponents": "Komponenten ansehen",
+    "ctaInstall": "Installation",
+    "allTitle": "Alles, was drinsteckt",
+    "allDescription": "Vom Button bis zur Befehlspalette, von der Tabelle bis zum Donut-Diagramm.",
+    "features": {
+      "zeroDeps": {
+        "title": "Null UI-Abhängigkeiten",
+        "text": "Kein shadcn, kein Radix, kein Headless UI. Jede Komponente — inklusive Focus-Trap, Positionierung und Tastaturnavigation — ist hier selbst geschrieben."
+      },
+      "tokens": {
+        "title": "Alle Farben aus einer Quelle",
+        "text": "Jede Farbe, jeder Radius und jeder Schatten kommt aus dem ProjectX UI-Design. Komponenten nutzen ausschließlich Tokens, nie einen fest codierten Hex-Wert."
+      },
+      "copyPaste": {
+        "title": "Copy-and-paste, dein Code",
+        "text": "Wie bei shadcn: `npx projectx-ui add button` kopiert die Quelle in dein Projekt. Die Komponenten gehören dir und du passt sie an, wann du willst."
+      },
+      "theme": {
+        "title": "Hell und dunkel",
+        "text": "Ein ThemeProvider, zwei vollständige Paletten. Alles schaltet mit, bis hin zu Diagrammen und Overlays."
+      }
+    }
+  }
+}
