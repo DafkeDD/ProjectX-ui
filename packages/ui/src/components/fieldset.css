@@ -1,0 +1,21 @@
+/* ============================ Fieldset ============================ */
+.pxui-fieldset { min-width: 0; margin: 0; padding: 0; border: none; }
+
+.pxui-fieldset-legend {
+  padding: 0; font-size: 13.5px; font-weight: 650; color: var(--text);
+}
+.pxui-fieldset-description {
+  margin-top: 3px; font-size: 12.5px; color: var(--text-3); line-height: 1.5;
+}
+.pxui-fieldset-velden { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+.pxui-fieldset-row { flex-direction: row; flex-wrap: wrap; align-items: flex-end; }
+.pxui-fieldset-row > * { flex: 1 1 180px; min-width: 0; }
+
+.pxui-fieldset-bordered {
+  padding: 16px 18px 18px; border: 1px solid var(--border); border-radius: var(--r-md);
+  background: var(--surface);
+}
+.pxui-fieldset-bordered .pxui-fieldset-legend { padding: 0 6px; margin-left: -6px; }
+
+.pxui-fieldset:disabled { opacity: .6; }
+.pxui-fieldset:disabled .pxui-fieldset-velden { pointer-events: none; }
