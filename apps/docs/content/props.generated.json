@@ -280,6 +280,18 @@
       }
     ]
   },
+  "AspectRatioProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "ratio",
+        "required": false,
+        "type": "number",
+        "description": "Breedte gedeeld door hoogte. 16 / 9 is breed, 1 is vierkant.",
+        "default": "16"
+      }
+    ]
+  },
   "AuthLayoutProps": {
     "extends": "React.HTMLAttributes<HTMLDivElement>",
     "props": [
@@ -1614,6 +1626,42 @@
       }
     ]
   },
+  "CountdownProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "to",
+        "required": true,
+        "type": "Date | string | number",
+        "description": "Moment waarnaar afgeteld wordt."
+      },
+      {
+        "name": "showDays",
+        "required": false,
+        "type": "boolean",
+        "description": "Toont dagen zolang er meer dan 24 uur over is.",
+        "default": "true"
+      },
+      {
+        "name": "compact",
+        "required": false,
+        "type": "boolean",
+        "description": "Alleen de cijfers, gescheiden door dubbele punten."
+      },
+      {
+        "name": "onComplete",
+        "required": false,
+        "type": "() => void",
+        "description": "Wordt één keer aangeroepen zodra de teller op nul staat."
+      },
+      {
+        "name": "labels",
+        "required": false,
+        "type": "{ days: string; hours: string; minutes: string; seconds: string }",
+        "description": ""
+      }
+    ]
+  },
   "DataPillProps": {
     "extends": "React.HTMLAttributes<HTMLSpanElement>",
     "props": [
@@ -2215,6 +2263,105 @@
       }
     ]
   },
+  "FabProps": {
+    "extends": "React.ButtonHTMLAttributes<HTMLButtonElement>",
+    "props": [
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Tekst naast het icoon; zonder tekst blijft het een ronde knop."
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"md\" | \"lg\"",
+        "description": "",
+        "default": "\"md\""
+      },
+      {
+        "name": "position",
+        "required": false,
+        "type": "\"bottom-right\" | \"bottom-left\" | \"static\"",
+        "description": "Vaste plek rechtsonder (standaard) of gewoon in de stroom.",
+        "default": "\"bottom-right\""
+      },
+      {
+        "name": "asChild",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
+  "SpeedDialProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"onChange\">",
+    "props": [
+      {
+        "name": "open",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "defaultOpen",
+        "required": false,
+        "type": "boolean",
+        "description": "",
+        "default": "false"
+      },
+      {
+        "name": "onOpenChange",
+        "required": false,
+        "type": "(open: boolean) => void",
+        "description": ""
+      },
+      {
+        "name": "position",
+        "required": false,
+        "type": "\"bottom-right\" | \"bottom-left\" | \"static\"",
+        "description": "",
+        "default": "\"bottom-right\""
+      },
+      {
+        "name": "trigger",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Knop die het waaiertje opent."
+      },
+      {
+        "name": "label",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Snelle acties\""
+      }
+    ]
+  },
+  "SpeedDialActionProps": {
+    "extends": "React.ButtonHTMLAttributes<HTMLButtonElement>",
+    "props": [
+      {
+        "name": "icon",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "label",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": "Tekst links van de knop.",
+        "default": "\"Snelle acties\""
+      }
+    ]
+  },
   "FieldProps": {
     "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"id\">",
     "props": [
@@ -2266,6 +2413,35 @@
         "type": "\"vertical\" | \"horizontal\"",
         "description": "Horizontale layout: label links, veld rechts.",
         "default": "\"vertical\""
+      }
+    ]
+  },
+  "FieldsetProps": {
+    "extends": "Omit<React.FieldsetHTMLAttributes<HTMLFieldSetElement>, \"title\">",
+    "props": [
+      {
+        "name": "legend",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "description",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Uitleg onder de titel."
+      },
+      {
+        "name": "bordered",
+        "required": false,
+        "type": "boolean",
+        "description": "Kader rond de groep in plaats van alleen een kopregel."
+      },
+      {
+        "name": "row",
+        "required": false,
+        "type": "boolean",
+        "description": "Velden naast elkaar in plaats van onder elkaar."
       }
     ]
   },
@@ -2439,6 +2615,56 @@
         "type": "number | string",
         "description": "",
         "default": "280"
+      }
+    ]
+  },
+  "IndicatorProps": {
+    "extends": "React.HTMLAttributes<HTMLSpanElement>",
+    "props": [
+      {
+        "name": "badge",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Wat er in het hoekje komt: een getal, een stip of een klein icoon."
+      },
+      {
+        "name": "placement",
+        "required": false,
+        "type": "\"top-right\" | \"top-left\" | \"bottom-right\" | \"bottom-left\"",
+        "description": "Hoek waar het hoekje hangt.",
+        "default": "\"top-right\""
+      },
+      {
+        "name": "tone",
+        "required": false,
+        "type": "\"red\" | \"accent\" | \"green\" | \"amber\" | \"blue\" | \"neutral\"",
+        "description": "",
+        "default": "\"red\""
+      },
+      {
+        "name": "dot",
+        "required": false,
+        "type": "boolean",
+        "description": "Alleen een stip, zonder inhoud."
+      },
+      {
+        "name": "hidden",
+        "required": false,
+        "type": "boolean",
+        "description": "Verbergt het hoekje, bijvoorbeeld bij nul meldingen."
+      },
+      {
+        "name": "max",
+        "required": false,
+        "type": "number",
+        "description": "Getallen boven dit maximum worden als \"99+\" getoond.",
+        "default": "99"
+      },
+      {
+        "name": "label",
+        "required": false,
+        "type": "string",
+        "description": ""
       }
     ]
   },
@@ -2618,6 +2844,39 @@
         "description": ""
       }
     ]
+  },
+  "MenubarProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "label",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Hoofdmenu\""
+      }
+    ]
+  },
+  "MenubarMenuProps": {
+    "extends": "",
+    "props": [
+      {
+        "name": "value",
+        "required": true,
+        "type": "string",
+        "description": "Unieke naam van dit menu; ook wat er op de knop staat als er geen label is."
+      },
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
+  "MenubarTriggerProps": {
+    "extends": "React.ButtonHTMLAttributes<HTMLButtonElement>",
+    "props": []
   },
   "MessageThreadProps": {
     "extends": "React.HTMLAttributes<HTMLDivElement>",
@@ -3455,6 +3714,75 @@
         "required": false,
         "type": "boolean",
         "description": "Rendert de optie als een klikbare kaart."
+      }
+    ]
+  },
+  "RatingProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"onChange\" | \"defaultValue\">",
+    "props": [
+      {
+        "name": "value",
+        "required": false,
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "defaultValue",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "0"
+      },
+      {
+        "name": "onValueChange",
+        "required": false,
+        "type": "(value: number) => void",
+        "description": ""
+      },
+      {
+        "name": "max",
+        "required": false,
+        "type": "number",
+        "description": "Aantal sterren.",
+        "default": "5"
+      },
+      {
+        "name": "half",
+        "required": false,
+        "type": "boolean",
+        "description": "Halve sterren toestaan, bij het tonen en bij het kiezen."
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "18"
+      },
+      {
+        "name": "readOnly",
+        "required": false,
+        "type": "boolean",
+        "description": "Alleen tonen, niet kiezen."
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "caption",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Tekst rechts van de sterren, bijvoorbeeld \"4,2 · 18 beoordelingen\"."
+      },
+      {
+        "name": "label",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Beoordeling\""
       }
     ]
   },
@@ -5132,6 +5460,12 @@
         "required": true,
         "type": "string",
         "description": ""
+      },
+      {
+        "name": "leaving",
+        "required": false,
+        "type": "boolean",
+        "description": "Staat op de uitgaande animatie te wachten voor hij uit de lijst gaat."
       }
     ]
   },

@@ -7,6 +7,7 @@ import AgendaViews from "./agenda-views";
 import AlertBasic from "./alert-basic";
 import AlertdialogBasic from "./alertdialog-basic";
 import AppshellBasic from "./appshell-basic";
+import AspectratioBasic from "./aspectratio-basic";
 import AuthCentered from "./auth-centered";
 import AuthSplit from "./auth-split";
 import AvatarBasic from "./avatar-basic";
@@ -33,6 +34,7 @@ import ComposerBasic from "./composer-basic";
 import ConfettiBasic from "./confetti-basic";
 import ContextmenuBasic from "./contextmenu-basic";
 import CopybuttonBasic from "./copybutton-basic";
+import CountdownBasic from "./countdown-basic";
 import DatapillBasic from "./datapill-basic";
 import DatepickerBasic from "./datepicker-basic";
 import DensityBasic from "./density-basic";
@@ -42,15 +44,19 @@ import DrawerBasic from "./drawer-basic";
 import DropdownBasic from "./dropdown-basic";
 import EmptyBasic from "./empty-basic";
 import EntityHeaderBasic from "./entity-header-basic";
+import FabBasic from "./fab-basic";
 import FieldBasic from "./field-basic";
+import FieldsetBasic from "./fieldset-basic";
 import FiledropBasic from "./filedrop-basic";
 import HovercardBasic from "./hovercard-basic";
 import IconGallery from "./icon-gallery";
+import IndicatorBasic from "./indicator-basic";
 import InputAffix from "./input-affix";
 import InputBasic from "./input-basic";
 import KbdBasic from "./kbd-basic";
 import LabelBasic from "./label-basic";
 import ListRowBasic from "./list-row-basic";
+import MenubarBasic from "./menubar-basic";
 import MessagethreadBasic from "./messagethread-basic";
 import MockupBasic from "./mockup-basic";
 import ModalManagerBasic from "./modal-manager-basic";
@@ -65,6 +71,7 @@ import PulsedotBasic from "./pulsedot-basic";
 import QrBasic from "./qr-basic";
 import RadioBasic from "./radio-basic";
 import RadioCards from "./radio-cards";
+import RatingBasic from "./rating-basic";
 import ReorderBasic from "./reorder-basic";
 import ResizableBasic from "./resizable-basic";
 import ResourceColumnsBasic from "./resource-columns-basic";
@@ -107,6 +114,7 @@ export const DEMOS: Record<string, ComponentType> = {
   "alert-basic": AlertBasic,
   "alertdialog-basic": AlertdialogBasic,
   "appshell-basic": AppshellBasic,
+  "aspectratio-basic": AspectratioBasic,
   "auth-centered": AuthCentered,
   "auth-split": AuthSplit,
   "avatar-basic": AvatarBasic,
@@ -133,6 +141,7 @@ export const DEMOS: Record<string, ComponentType> = {
   "confetti-basic": ConfettiBasic,
   "contextmenu-basic": ContextmenuBasic,
   "copybutton-basic": CopybuttonBasic,
+  "countdown-basic": CountdownBasic,
   "datapill-basic": DatapillBasic,
   "datepicker-basic": DatepickerBasic,
   "density-basic": DensityBasic,
@@ -142,15 +151,19 @@ export const DEMOS: Record<string, ComponentType> = {
   "dropdown-basic": DropdownBasic,
   "empty-basic": EmptyBasic,
   "entity-header-basic": EntityHeaderBasic,
+  "fab-basic": FabBasic,
   "field-basic": FieldBasic,
+  "fieldset-basic": FieldsetBasic,
   "filedrop-basic": FiledropBasic,
   "hovercard-basic": HovercardBasic,
   "icon-gallery": IconGallery,
+  "indicator-basic": IndicatorBasic,
   "input-affix": InputAffix,
   "input-basic": InputBasic,
   "kbd-basic": KbdBasic,
   "label-basic": LabelBasic,
   "list-row-basic": ListRowBasic,
+  "menubar-basic": MenubarBasic,
   "messagethread-basic": MessagethreadBasic,
   "mockup-basic": MockupBasic,
   "modal-manager-basic": ModalManagerBasic,
@@ -165,6 +178,7 @@ export const DEMOS: Record<string, ComponentType> = {
   "qr-basic": QrBasic,
   "radio-basic": RadioBasic,
   "radio-cards": RadioCards,
+  "rating-basic": RatingBasic,
   "reorder-basic": ReorderBasic,
   "resizable-basic": ResizableBasic,
   "resource-columns-basic": ResourceColumnsBasic,

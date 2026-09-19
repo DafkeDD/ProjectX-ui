@@ -17,7 +17,7 @@
     },
     {
       "path": "lib/hooks.ts",
-      "content": "\"use client\";\nimport * as React from \"react\";\n\n/** useLayoutEffect dat niet klaagt tijdens server-rendering. */\nexport const useIsoLayoutEffect =\n  typeof window !== \"undefined\" ? React.useLayoutEffect : React.useEffect;\n\n/** Stabiele client-check (voorkomt hydration-mismatch bij portals). */\nexport function useMounted(): boolean {\n  const [mounted, setMounted] = React.useState(false);\n  React.useEffect(() => setMounted(true), []);\n  return mounted;\n}\n\n/**\n * Werkt zowel controlled (`value` + `onChange`) als uncontrolled\n * (`defaultValue`). Elke interactieve component in ProjectX UI gebruikt dit.\n */\nexport function useControllableState<T>(options: {\n  value?: T;\n  defaultValue: T;\n  onChange?: (value: T) => void;\n}): [T, (next: T | ((prev: T) => T)) => void] {\n  const { value, defaultValue, onChange } = options;\n  const isControlled = value !== undefined;\n  const [internal, setInternal] = React.useState<T>(defaultValue);\n  const current = isControlled ? (value as T) : internal;\n\n  const onChangeRef = React.useRef(onChange);\n  useIsoLayoutEffect(() => {\n    onChangeRef.current = onChange;\n  });\n\n  const setValue = React.useCallback(\n    (next: T | ((prev: T) => T)) => {\n      const resolved =\n        typeof next === \"function\" ? (next as (prev: T) => T)(currentRef.current) : next;\n      if (!isControlled) setInternal(resolved);\n      onChangeRef.current?.(resolved);\n    },\n    [isControlled]\n  );\n\n  const currentRef = React.useRef(current);\n  currentRef.current = current;\n\n  return [current, setValue];\n}\n\n/** Roept `handler` aan bij een klik buiten alle meegegeven refs. */\nexport function useOutsideClick(\n  refs: Array<React.RefObject<HTMLElement | null>>,\n  handler: (event: MouseEvent | TouchEvent) => void,\n  enabled = true\n): void {\n  const handlerRef = React.useRef(handler);\n  handlerRef.current = handler;\n\n  React.useEffect(() => {\n    if (!enabled) return;\n    const listener = (event: MouseEvent | TouchEvent) => {\n      const target = event.target as Node | null;\n      if (!target || !document.contains(target)) return;\n      for (const ref of refs) {\n        if (ref.current && ref.current.contains(target)) return;\n      }\n      handlerRef.current(event);\n    };\n    document.addEventListener(\"mousedown\", listener, true);\n    document.addEventListener(\"touchstart\", listener, true);\n    return () => {\n      document.removeEventListener(\"mousedown\", listener, true);\n      document.removeEventListener(\"touchstart\", listener, true);\n    };\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, [enabled, ...refs]);\n}\n\n/** Escape-toets afhandelen (capture, zodat geneste lagen eerst sluiten). */\nexport function useEscapeKey(handler: () => void, enabled = true): void {\n  const handlerRef = React.useRef(handler);\n  handlerRef.current = handler;\n\n  React.useEffect(() => {\n    if (!enabled) return;\n    const listener = (event: KeyboardEvent) => {\n      if (event.key === \"Escape\") {\n        event.stopPropagation();\n        handlerRef.current();\n      }\n    };\n    document.addEventListener(\"keydown\", listener, true);\n    return () => document.removeEventListener(\"keydown\", listener, true);\n  }, [enabled]);\n}\n\n/** Blokkeert scrollen van de pagina zolang een overlay open staat. */\nexport function useLockScroll(enabled: boolean): void {\n  React.useEffect(() => {\n    if (!enabled) return;\n    const { overflow, paddingRight } = document.body.style;\n    const gap = window.innerWidth - document.documentElement.clientWidth;\n    document.body.style.overflow = \"hidden\";\n    if (gap > 0) document.body.style.paddingRight = `${gap}px`;\n    return () => {\n      document.body.style.overflow = overflow;\n      document.body.style.paddingRight = paddingRight;\n    };\n  }, [enabled]);\n}\n\nconst FOCUSABLE = [\n  \"a[href]\",\n  \"button:not([disabled])\",\n  \"input:not([disabled]):not([type='hidden'])\",\n  \"select:not([disabled])\",\n  \"textarea:not([disabled])\",\n  \"[tabindex]:not([tabindex='-1'])\",\n].join(\",\");\n\n/** Houdt focus binnen een container (dialog, drawer) en herstelt hem daarna. */\nexport function useFocusTrap(\n  ref: React.RefObject<HTMLElement | null>,\n  enabled: boolean\n): void {\n  React.useEffect(() => {\n    if (!enabled || !ref.current) return;\n    const node = ref.current;\n    const previous = document.activeElement as HTMLElement | null;\n\n    const focusables = () => Array.from(node.querySelectorAll<HTMLElement>(FOCUSABLE));\n    const first = focusables()[0];\n    (first ?? node).focus({ preventScroll: true });\n\n    const onKeyDown = (event: KeyboardEvent) => {\n      if (event.key !== \"Tab\") return;\n      const items = focusables();\n      if (items.length === 0) {\n        event.preventDefault();\n        return;\n      }\n      const firstItem = items[0];\n      const lastItem = items[items.length - 1];\n      if (event.shiftKey && document.activeElement === firstItem) {\n        event.preventDefault();\n        lastItem.focus();\n      } else if (!event.shiftKey && document.activeElement === lastItem) {\n        event.preventDefault();\n        firstItem.focus();\n      }\n    };\n\n    node.addEventListener(\"keydown\", onKeyDown);\n    return () => {\n      node.removeEventListener(\"keydown\", onKeyDown);\n      previous?.focus?.({ preventScroll: true });\n    };\n  }, [enabled, ref]);\n}\n\n/** Pijltjes-navigatie voor menu's, listboxen en tabs. */\nexport function useRovingIndex(count: number, initial = -1) {\n  const [index, setIndex] = React.useState(initial);\n\n  const move = React.useCallback(\n    (delta: number) => {\n      setIndex((prev) => {\n        if (count === 0) return -1;\n        const next = prev + delta;\n        if (next < 0) return count - 1;\n        if (next >= count) return 0;\n        return next;\n      });\n    },\n    [count]\n  );\n\n  return { index, setIndex, move };\n}\n\n/** Kopieert tekst naar het klembord en houdt kort een \"gekopieerd\"-status bij. */\nexport function useCopyToClipboard(timeout = 1600) {\n  const [copied, setCopied] = React.useState(false);\n\n  const copy = React.useCallback(\n    async (text: string) => {\n      try {\n        await navigator.clipboard.writeText(text);\n        setCopied(true);\n        window.setTimeout(() => setCopied(false), timeout);\n        return true;\n      } catch {\n        return false;\n      }\n    },\n    [timeout]\n  );\n\n  return { copied, copy };\n}\n"
+      "content": "\"use client\";\nimport * as React from \"react\";\n\n/** useLayoutEffect dat niet klaagt tijdens server-rendering. */\nexport const useIsoLayoutEffect =\n  typeof window !== \"undefined\" ? React.useLayoutEffect : React.useEffect;\n\n/** Stabiele client-check (voorkomt hydration-mismatch bij portals). */\nexport function useMounted(): boolean {\n  const [mounted, setMounted] = React.useState(false);\n  React.useEffect(() => setMounted(true), []);\n  return mounted;\n}\n\n/**\n * Werkt zowel controlled (`value` + `onChange`) als uncontrolled\n * (`defaultValue`). Elke interactieve component in ProjectX UI gebruikt dit.\n */\nexport function useControllableState<T>(options: {\n  value?: T;\n  defaultValue: T;\n  onChange?: (value: T) => void;\n}): [T, (next: T | ((prev: T) => T)) => void] {\n  const { value, defaultValue, onChange } = options;\n  const isControlled = value !== undefined;\n  const [internal, setInternal] = React.useState<T>(defaultValue);\n  const current = isControlled ? (value as T) : internal;\n\n  const onChangeRef = React.useRef(onChange);\n  useIsoLayoutEffect(() => {\n    onChangeRef.current = onChange;\n  });\n\n  const setValue = React.useCallback(\n    (next: T | ((prev: T) => T)) => {\n      const resolved =\n        typeof next === \"function\" ? (next as (prev: T) => T)(currentRef.current) : next;\n      if (!isControlled) setInternal(resolved);\n      onChangeRef.current?.(resolved);\n    },\n    [isControlled]\n  );\n\n  const currentRef = React.useRef(current);\n  currentRef.current = current;\n\n  return [current, setValue];\n}\n\n/** Roept `handler` aan bij een klik buiten alle meegegeven refs. */\nexport function useOutsideClick(\n  refs: Array<React.RefObject<HTMLElement | null>>,\n  handler: (event: MouseEvent | TouchEvent) => void,\n  enabled = true\n): void {\n  const handlerRef = React.useRef(handler);\n  handlerRef.current = handler;\n\n  React.useEffect(() => {\n    if (!enabled) return;\n    const listener = (event: MouseEvent | TouchEvent) => {\n      const target = event.target as Node | null;\n      if (!target || !document.contains(target)) return;\n      for (const ref of refs) {\n        if (ref.current && ref.current.contains(target)) return;\n      }\n      handlerRef.current(event);\n    };\n    document.addEventListener(\"mousedown\", listener, true);\n    document.addEventListener(\"touchstart\", listener, true);\n    return () => {\n      document.removeEventListener(\"mousedown\", listener, true);\n      document.removeEventListener(\"touchstart\", listener, true);\n    };\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, [enabled, ...refs]);\n}\n\n/** Escape-toets afhandelen (capture, zodat geneste lagen eerst sluiten). */\nexport function useEscapeKey(handler: () => void, enabled = true): void {\n  const handlerRef = React.useRef(handler);\n  handlerRef.current = handler;\n\n  React.useEffect(() => {\n    if (!enabled) return;\n    const listener = (event: KeyboardEvent) => {\n      if (event.key === \"Escape\") {\n        event.stopPropagation();\n        handlerRef.current();\n      }\n    };\n    document.addEventListener(\"keydown\", listener, true);\n    return () => document.removeEventListener(\"keydown\", listener, true);\n  }, [enabled]);\n}\n\n/** Blokkeert scrollen van de pagina zolang een overlay open staat. */\nexport function useLockScroll(enabled: boolean): void {\n  React.useEffect(() => {\n    if (!enabled) return;\n    const { overflow, paddingRight } = document.body.style;\n    const gap = window.innerWidth - document.documentElement.clientWidth;\n    document.body.style.overflow = \"hidden\";\n    if (gap > 0) document.body.style.paddingRight = `${gap}px`;\n    return () => {\n      document.body.style.overflow = overflow;\n      document.body.style.paddingRight = paddingRight;\n    };\n  }, [enabled]);\n}\n\nconst FOCUSABLE = [\n  \"a[href]\",\n  \"button:not([disabled])\",\n  \"input:not([disabled]):not([type='hidden'])\",\n  \"select:not([disabled])\",\n  \"textarea:not([disabled])\",\n  \"[tabindex]:not([tabindex='-1'])\",\n].join(\",\");\n\n/** Houdt focus binnen een container (dialog, drawer) en herstelt hem daarna. */\nexport function useFocusTrap(\n  ref: React.RefObject<HTMLElement | null>,\n  enabled: boolean\n): void {\n  React.useEffect(() => {\n    if (!enabled || !ref.current) return;\n    const node = ref.current;\n    const previous = document.activeElement as HTMLElement | null;\n\n    const focusables = () => Array.from(node.querySelectorAll<HTMLElement>(FOCUSABLE));\n    const first = focusables()[0];\n    (first ?? node).focus({ preventScroll: true });\n\n    const onKeyDown = (event: KeyboardEvent) => {\n      if (event.key !== \"Tab\") return;\n      const items = focusables();\n      if (items.length === 0) {\n        event.preventDefault();\n        return;\n      }\n      const firstItem = items[0];\n      const lastItem = items[items.length - 1];\n      if (event.shiftKey && document.activeElement === firstItem) {\n        event.preventDefault();\n        lastItem.focus();\n      } else if (!event.shiftKey && document.activeElement === lastItem) {\n        event.preventDefault();\n        firstItem.focus();\n      }\n    };\n\n    node.addEventListener(\"keydown\", onKeyDown);\n    return () => {\n      node.removeEventListener(\"keydown\", onKeyDown);\n      previous?.focus?.({ preventScroll: true });\n    };\n  }, [enabled, ref]);\n}\n\n/** Pijltjes-navigatie voor menu's, listboxen en tabs. */\nexport function useRovingIndex(count: number, initial = -1) {\n  const [index, setIndex] = React.useState(initial);\n\n  const move = React.useCallback(\n    (delta: number) => {\n      setIndex((prev) => {\n        if (count === 0) return -1;\n        const next = prev + delta;\n        if (next < 0) return count - 1;\n        if (next >= count) return 0;\n        return next;\n      });\n    },\n    [count]\n  );\n\n  return { index, setIndex, move };\n}\n\n/** Kopieert tekst naar het klembord en houdt kort een \"gekopieerd\"-status bij. */\nexport function useCopyToClipboard(timeout = 1600) {\n  const [copied, setCopied] = React.useState(false);\n\n  const copy = React.useCallback(\n    async (text: string) => {\n      try {\n        await navigator.clipboard.writeText(text);\n        setCopied(true);\n        window.setTimeout(() => setCopied(false), timeout);\n        return true;\n      } catch {\n        return false;\n      }\n    },\n    [timeout]\n  );\n\n  return { copied, copy };\n}\n\n/**\n * Houdt een element nog even in de DOM nadat het gesloten is, zodat er een\n * uitgaande animatie kan lopen. Geeft terug of er nog gerenderd moet worden en\n * in welke staat het element staat.\n *\n * De duur komt uit de CSS: het element krijgt data-state=\"closed\" en de hook\n * wacht op animationend/transitionend, met `fallback` als vangnet wanneer er\n * geen animatie draait (bijvoorbeeld bij prefers-reduced-motion).\n */\nexport function usePresence(\n  open: boolean,\n  ref: React.RefObject<HTMLElement | null>,\n  fallback = 220\n): { render: boolean; state: \"open\" | \"closed\" } {\n  const [render, setRender] = React.useState(open);\n\n  // Bij openen meteen tonen, nog tijdens deze render: anders staat de inhoud er\n  // pas een frame later en grijpt code die de focus zet ernaast.\n  if (open && !render) setRender(true);\n\n  React.useEffect(() => {\n    if (open || !render) return;\n\n    const node = ref.current;\n    let timer = 0;\n    let klaar = false;\n\n    const afsluiten = () => {\n      if (klaar) return;\n      klaar = true;\n      window.clearTimeout(timer);\n      node?.removeEventListener(\"animationend\", afsluiten);\n      node?.removeEventListener(\"transitionend\", afsluiten);\n      setRender(false);\n    };\n\n    // Het vangnet mag nooit korter zijn dan de animatie zelf.\n    timer = window.setTimeout(afsluiten, fallback);\n    node?.addEventListener(\"animationend\", afsluiten);\n    node?.addEventListener(\"transitionend\", afsluiten);\n\n    return () => {\n      window.clearTimeout(timer);\n      node?.removeEventListener(\"animationend\", afsluiten);\n      node?.removeEventListener(\"transitionend\", afsluiten);\n    };\n  }, [open, render, ref, fallback]);\n\n  return { render, state: open ? \"open\" : \"closed\" };\n}\n"
     },
     {
       "path": "lib/anchor.ts",
@@ -234,6 +234,18 @@
       ]
     },
     {
+      "name": "fieldset",
+      "title": "Fieldset",
+      "description": "Groepje bij elkaar horende velden met een gedeelde titel.",
+      "category": "Formulieren",
+      "dependencies": [],
+      "requires": [],
+      "files": [
+        "components/fieldset.tsx",
+        "components/fieldset.css"
+      ]
+    },
+    {
       "name": "checkbox",
       "title": "Checkbox",
       "description": "Aanvinkvakje met derde staat en beschrijving.",
@@ -255,6 +267,18 @@
       "files": [
         "components/radio-group.tsx",
         "components/radio-group.css"
+      ]
+    },
+    {
+      "name": "rating",
+      "title": "Rating",
+      "description": "Sterren om iets te beoordelen of een score te tonen.",
+      "category": "Formulieren",
+      "dependencies": [],
+      "requires": [],
+      "files": [
+        "components/rating.tsx",
+        "components/rating.css"
       ]
     },
     {
@@ -318,6 +342,18 @@
       ]
     },
     {
+      "name": "indicator",
+      "title": "Indicator",
+      "description": "Telbadge of stip op de hoek van een knop, avatar of tab.",
+      "category": "Feedback",
+      "dependencies": [],
+      "requires": [],
+      "files": [
+        "components/indicator.tsx",
+        "components/indicator.css"
+      ]
+    },
+    {
       "name": "progress",
       "title": "Progress",
       "description": "Voortgangsbalk en ronde variant, ook onbepaald.",
@@ -375,6 +411,20 @@
       "files": [
         "components/collapsible.tsx",
         "components/collapsible.css"
+      ]
+    },
+    {
+      "name": "menubar",
+      "title": "Menubar",
+      "description": "Vaste menubalk zoals in een desktop-app: Dossier, Bewerken, Beeld.",
+      "category": "Navigatie",
+      "dependencies": [
+        "dropdown-menu"
+      ],
+      "requires": [],
+      "files": [
+        "components/menubar.tsx",
+        "components/menubar.css"
       ]
     },
     {
@@ -764,6 +814,18 @@
       ]
     },
     {
+      "name": "countdown",
+      "title": "Countdown",
+      "description": "Telt af naar een moment en stopt vanzelf op nul.",
+      "category": "Data",
+      "dependencies": [],
+      "requires": [],
+      "files": [
+        "components/countdown.tsx",
+        "components/countdown.css"
+      ]
+    },
+    {
       "name": "carousel",
       "title": "Carousel",
       "description": "Reeks kaarten of beelden met scroll-snap, knoppen en stippen.",
@@ -877,6 +939,20 @@
       ]
     },
     {
+      "name": "fab",
+      "title": "Fab",
+      "description": "Zwevende hoofdactie, met SpeedDial voor een waaier aan acties.",
+      "category": "Navigatie",
+      "dependencies": [
+        "button"
+      ],
+      "requires": [],
+      "files": [
+        "components/fab.tsx",
+        "components/fab.css"
+      ]
+    },
+    {
       "name": "app-shell",
       "title": "AppShell",
       "description": "Layout met vaste zijbalk, bovenbalk en inhoudskolom.",
@@ -886,6 +962,18 @@
       "files": [
         "components/app-shell.tsx",
         "components/app-shell.css"
+      ]
+    },
+    {
+      "name": "aspect-ratio",
+      "title": "AspectRatio",
+      "description": "Houdt een vaste verhouding aan, zodat niets verspringt tijdens het laden.",
+      "category": "Layout",
+      "dependencies": [],
+      "requires": [],
+      "files": [
+        "components/aspect-ratio.tsx",
+        "components/aspect-ratio.css"
       ]
     },
     {
