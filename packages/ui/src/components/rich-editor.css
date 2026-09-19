@@ -1,0 +1,57 @@
+/* ============================ RichEditor ============================ */
+.pxui-editor {
+  display: flex; flex-direction: column;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-md); overflow: hidden;
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.pxui-editor:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-tint);
+}
+.pxui-editor-invalid { border-color: var(--red); }
+.pxui-editor-invalid:focus-within { box-shadow: 0 0 0 3px var(--red-tint); }
+.pxui-editor[data-disabled] { opacity: .6; background: var(--surface-2); }
+.pxui-editor[data-readonly] { background: var(--surface-2); }
+
+.pxui-editor-toolbar {
+  display: flex; align-items: center; gap: 2px; flex-wrap: wrap;
+  padding: 6px 8px; border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+}
+.pxui-editor-tool {
+  display: grid; place-items: center; min-width: 28px; height: 28px; padding: 0 6px;
+  border: 1px solid transparent; border-radius: var(--r-sm);
+  background: transparent; color: var(--text-2);
+  font-size: 13px; font-family: inherit; line-height: 1; cursor: pointer;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.pxui-editor-tool:hover:not(:disabled) { background: var(--surface-3); color: var(--text); }
+.pxui-editor-tool[data-active] {
+  background: var(--accent-tint); color: var(--accent); border-color: var(--accent-border);
+}
+.pxui-editor-tool:disabled { cursor: not-allowed; opacity: .5; }
+.pxui-editor-tool:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.pxui-editor-mark {
+  padding: 0 3px; border-radius: 3px;
+  background: var(--amber-tint); color: var(--amber); font-weight: 700;
+}
+
+.pxui-editor-body {
+  padding: 12px 14px; font-size: 14px; line-height: 1.6; color: var(--text);
+  overflow-y: auto; outline: none;
+}
+.pxui-editor-body[data-empty]::before {
+  content: attr(data-placeholder);
+  color: var(--text-3); pointer-events: none;
+}
+.pxui-editor-body > :first-child { margin-top: 0; }
+.pxui-editor-body > :last-child { margin-bottom: 0; }
+.pxui-editor-body ul, .pxui-editor-body ol { margin: 6px 0; padding-left: 22px; }
+.pxui-editor-body li { margin: 2px 0; }
+.pxui-editor-body a { color: var(--accent); text-decoration: underline; }
+
+.pxui-editor-footer {
+  padding: 8px 14px; border-top: 1px solid var(--border);
+  background: var(--surface-2); color: var(--text-3); font-size: 12px;
+}

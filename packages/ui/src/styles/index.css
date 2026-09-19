@@ -14,6 +14,7 @@
 @import "../components/avatar-upload.css";
 @import "../components/avatar.css";
 @import "../components/badge.css";
+@import "../components/bottom-nav.css";
 @import "../components/breadcrumb.css";
 @import "../components/button.css";
 @import "../components/calendar.css";
@@ -45,8 +46,10 @@
 @import "../components/popover.css";
 @import "../components/progress.css";
 @import "../components/pulse-dot.css";
+@import "../components/qr-code.css";
 @import "../components/radio-group.css";
 @import "../components/resource-columns.css";
+@import "../components/rich-editor.css";
 @import "../components/section-header.css";
 @import "../components/segmented.css";
 @import "../components/select.css";
