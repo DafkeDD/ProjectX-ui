@@ -2,7 +2,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Icon } from "@projectx/ui";
+import { Icon, Input } from "@projectx/ui";
 import { COMPONENTS, componentsByCategory } from "../content/catalog";
 
 const START_LINKS = [
@@ -29,15 +29,13 @@ export function DocsNav({ open }: { open?: boolean }) {
         </span>
       </Link>
 
-      {/* Tijdelijk een gewone input; wordt <Input> zodra dat component bestaat. */}
-      <label className="docs-search">
-        <Icon name="search" size={15} />
-        <input
-          placeholder="Zoek component…"
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-        />
-      </label>
+      <Input
+        size="sm"
+        prefix={<Icon name="search" />}
+        placeholder="Zoek component…"
+        value={query}
+        onChange={(event) => setQuery(event.target.value)}
+      />
 
       {!query && (
         <div className="docs-nav-group">

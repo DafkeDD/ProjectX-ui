@@ -1,4 +1,72 @@
 {
+  "AvatarProps": {
+    "extends": "React.HTMLAttributes<HTMLSpanElement>",
+    "props": [
+      {
+        "name": "name",
+        "required": false,
+        "type": "string",
+        "description": "Naam waaruit de initialen worden afgeleid.",
+        "default": "\"\""
+      },
+      {
+        "name": "src",
+        "required": false,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "alt",
+        "required": false,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "36"
+      },
+      {
+        "name": "square",
+        "required": false,
+        "type": "boolean",
+        "description": "Vierkant met afgeronde hoeken in plaats van rond."
+      },
+      {
+        "name": "color",
+        "required": false,
+        "type": "string",
+        "description": "Overschrijft de achtergrondkleur (standaard de accentkleur)."
+      },
+      {
+        "name": "status",
+        "required": false,
+        "type": "\"online\" | \"busy\" | \"offline\"",
+        "description": "Statusstip rechtsonder."
+      }
+    ]
+  },
+  "AvatarGroupProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "max",
+        "required": false,
+        "type": "number",
+        "description": "Maximaal aantal zichtbare avatars; de rest wordt \"+n\".",
+        "default": "4"
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "36"
+      }
+    ]
+  },
   "BadgeProps": {
     "extends": "React.HTMLAttributes<HTMLSpanElement>",
     "props": [
@@ -106,6 +174,471 @@
       }
     ]
   },
+  "CheckboxProps": {
+    "extends": "Omit<React.InputHTMLAttributes<HTMLInputElement>, \"type\" | \"size\">",
+    "props": [
+      {
+        "name": "label",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "description",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Extra uitleg onder het label."
+      },
+      {
+        "name": "indeterminate",
+        "required": false,
+        "type": "boolean",
+        "description": "Derde staat: gedeeltelijk aangevinkt."
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\"",
+        "description": "",
+        "default": "\"md\""
+      }
+    ]
+  },
+  "ChipProps": {
+    "extends": "React.ButtonHTMLAttributes<HTMLButtonElement>",
+    "props": [
+      {
+        "name": "selected",
+        "required": false,
+        "type": "boolean",
+        "description": "Gekozen staat, bv. een actief filter."
+      },
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "onRemove",
+        "required": false,
+        "type": "() => void",
+        "description": "Toont een kruisje; wordt aangeroepen bij klikken erop."
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\"",
+        "description": "",
+        "default": "\"md\""
+      },
+      {
+        "name": "count",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Telling rechts in de chip."
+      }
+    ]
+  },
+  "ChipGroupProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "scrollable",
+        "required": false,
+        "type": "boolean",
+        "description": "Laat de chips op één regel scrollen in plaats van afbreken."
+      }
+    ]
+  },
+  "CopyButtonProps": {
+    "extends": "Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, \"value\">",
+    "props": [
+      {
+        "name": "value",
+        "required": true,
+        "type": "string",
+        "description": "Tekst die naar het klembord gaat."
+      },
+      {
+        "name": "label",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Toont het label naast het icoon."
+      },
+      {
+        "name": "copiedLabel",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Tekst na het kopiëren.",
+        "default": "\"Gekopieerd\""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\"",
+        "description": "",
+        "default": "\"md\""
+      },
+      {
+        "name": "variant",
+        "required": false,
+        "type": "\"ghost\" | \"outline\"",
+        "description": "",
+        "default": "\"ghost\""
+      },
+      {
+        "name": "onCopied",
+        "required": false,
+        "type": "(value: string) => void",
+        "description": ""
+      }
+    ]
+  },
+  "FieldProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"id\">",
+    "props": [
+      {
+        "name": "label",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "hint",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Uitleg onder het veld."
+      },
+      {
+        "name": "error",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Foutmelding; zet het veld automatisch in foutstatus."
+      },
+      {
+        "name": "required",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "labelAction",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Extra element rechts van het label (bv. een Badge of \"optioneel\")."
+      },
+      {
+        "name": "id",
+        "required": false,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "orientation",
+        "required": false,
+        "type": "\"vertical\" | \"horizontal\"",
+        "description": "Horizontale layout: label links, veld rechts.",
+        "default": "\"vertical\""
+      }
+    ]
+  },
+  "InputProps": {
+    "extends": "Omit<React.InputHTMLAttributes<HTMLInputElement>, \"size\" | \"prefix\">",
+    "props": [
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\" | \"lg\"",
+        "description": "",
+        "default": "\"md\""
+      },
+      {
+        "name": "prefix",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Icoon of tekst links in het veld."
+      },
+      {
+        "name": "suffix",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Icoon of knop rechts in het veld."
+      },
+      {
+        "name": "addon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Vaste tekst tegen het veld aan, bv. \".projectx.be\"."
+      },
+      {
+        "name": "invalid",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
+  "KbdProps": {
+    "extends": "React.HTMLAttributes<HTMLElement>",
+    "props": [
+      {
+        "name": "keys",
+        "required": false,
+        "type": "string[]",
+        "description": "Toetsen als reeks, bv. [\"⌘\", \"K\"]."
+      }
+    ]
+  },
+  "LabelProps": {
+    "extends": "React.LabelHTMLAttributes<HTMLLabelElement>",
+    "props": [
+      {
+        "name": "required",
+        "required": false,
+        "type": "boolean",
+        "description": "Toont een rood sterretje."
+      }
+    ]
+  },
+  "RadioGroupProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"onChange\" | \"defaultValue\">",
+    "props": [
+      {
+        "name": "value",
+        "required": false,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "defaultValue",
+        "required": false,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "onValueChange",
+        "required": false,
+        "type": "(value: string) => void",
+        "description": ""
+      },
+      {
+        "name": "name",
+        "required": false,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "orientation",
+        "required": false,
+        "type": "\"vertical\" | \"horizontal\"",
+        "description": "",
+        "default": "\"vertical\""
+      }
+    ]
+  },
+  "RadioProps": {
+    "extends": "Omit<React.InputHTMLAttributes<HTMLInputElement>, \"type\">",
+    "props": [
+      {
+        "name": "value",
+        "required": true,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "label",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "description",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "card",
+        "required": false,
+        "type": "boolean",
+        "description": "Rendert de optie als een klikbare kaart."
+      }
+    ]
+  },
+  "SelectProps": {
+    "extends": "",
+    "props": [
+      {
+        "name": "value",
+        "required": false,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "defaultValue",
+        "required": false,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "onValueChange",
+        "required": false,
+        "type": "(value: string) => void",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
+  "SelectTriggerProps": {
+    "extends": "React.ButtonHTMLAttributes<HTMLButtonElement>",
+    "props": [
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\" | \"lg\"",
+        "description": "",
+        "default": "\"md\""
+      },
+      {
+        "name": "invalid",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
+  "SelectValueProps": {
+    "extends": "React.HTMLAttributes<HTMLSpanElement>",
+    "props": [
+      {
+        "name": "placeholder",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Kies…\""
+      }
+    ]
+  },
+  "SelectContentProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "searchable",
+        "required": false,
+        "type": "boolean",
+        "description": "Zoekbalk bovenaan de lijst."
+      },
+      {
+        "name": "searchPlaceholder",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Zoeken…\""
+      },
+      {
+        "name": "emptyMessage",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Geen resultaten\""
+      }
+    ]
+  },
+  "SelectItemProps": {
+    "extends": "Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, \"value\">",
+    "props": [
+      {
+        "name": "value",
+        "required": true,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "description",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
+  "SeparatorProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "orientation",
+        "required": false,
+        "type": "\"horizontal\" | \"vertical\"",
+        "description": "",
+        "default": "\"horizontal\""
+      },
+      {
+        "name": "label",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Optioneel label in het midden van de lijn."
+      }
+    ]
+  },
+  "SkeletonProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "width",
+        "required": false,
+        "type": "number | string",
+        "description": ""
+      },
+      {
+        "name": "height",
+        "required": false,
+        "type": "number | string",
+        "description": "",
+        "default": "14"
+      },
+      {
+        "name": "circle",
+        "required": false,
+        "type": "boolean",
+        "description": "Ronde variant, bv. voor avatar-placeholders."
+      },
+      {
+        "name": "lines",
+        "required": false,
+        "type": "number",
+        "description": "Aantal regels; handig voor tekstblokken."
+      }
+    ]
+  },
   "SpinnerProps": {
     "extends": "React.SVGProps<SVGSVGElement>",
     "props": [
@@ -121,6 +654,73 @@
         "required": false,
         "type": "string",
         "description": "Toegankelijk label; laat leeg voor decoratief gebruik."
+      }
+    ]
+  },
+  "SwitchProps": {
+    "extends": "Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, \"onChange\" | \"value\">",
+    "props": [
+      {
+        "name": "checked",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "defaultChecked",
+        "required": false,
+        "type": "boolean",
+        "description": "",
+        "default": "false"
+      },
+      {
+        "name": "onCheckedChange",
+        "required": false,
+        "type": "(checked: boolean) => void",
+        "description": ""
+      },
+      {
+        "name": "label",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "description",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\"",
+        "description": "",
+        "default": "\"md\""
+      },
+      {
+        "name": "labelPosition",
+        "required": false,
+        "type": "\"left\" | \"right\"",
+        "description": "Label links van de schakelaar in plaats van rechts.",
+        "default": "\"right\""
+      }
+    ]
+  },
+  "TextareaProps": {
+    "extends": "React.TextareaHTMLAttributes<HTMLTextAreaElement>",
+    "props": [
+      {
+        "name": "invalid",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "autoResize",
+        "required": false,
+        "type": "boolean",
+        "description": "Groeit automatisch mee met de inhoud."
       }
     ]
   },
@@ -183,6 +783,84 @@
         "required": false,
         "type": "Partial<Record<Density, string>>",
         "description": "Eigen labels, standaard Compact / Normaal / Ruim."
+      }
+    ]
+  },
+  "AnchorOptions": {
+    "extends": "",
+    "props": [
+      {
+        "name": "side",
+        "required": false,
+        "type": "Side",
+        "description": "",
+        "default": "\"bottom\""
+      },
+      {
+        "name": "align",
+        "required": false,
+        "type": "Align",
+        "description": "",
+        "default": "\"start\""
+      },
+      {
+        "name": "offset",
+        "required": false,
+        "type": "number",
+        "description": "Afstand tussen anchor en laag, in px.",
+        "default": "6"
+      },
+      {
+        "name": "padding",
+        "required": false,
+        "type": "number",
+        "description": "Minimale marge tot de rand van het scherm.",
+        "default": "8"
+      },
+      {
+        "name": "matchWidth",
+        "required": false,
+        "type": "boolean",
+        "description": "Laag krijgt exact de breedte van de anchor (select, combobox).",
+        "default": "false"
+      },
+      {
+        "name": "minWidth",
+        "required": false,
+        "type": "boolean",
+        "description": "Laag krijgt minimaal de breedte van de anchor.",
+        "default": "false"
+      }
+    ]
+  },
+  "AnchorPosition": {
+    "extends": "",
+    "props": [
+      {
+        "name": "style",
+        "required": true,
+        "type": "React.CSSProperties",
+        "description": ""
+      },
+      {
+        "name": "side",
+        "required": true,
+        "type": "Side",
+        "description": "",
+        "default": "\"bottom\""
+      },
+      {
+        "name": "align",
+        "required": true,
+        "type": "Align",
+        "description": "",
+        "default": "\"start\""
+      },
+      {
+        "name": "ready",
+        "required": true,
+        "type": "boolean",
+        "description": ""
       }
     ]
   },

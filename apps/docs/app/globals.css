@@ -177,21 +177,9 @@ a { color: inherit; }
 .docs-whatsnew-item span { font-weight: 400; color: var(--text-3); }
 
 /* ------------------------------------------------------------
-   Tijdelijke docs-elementen (stap 1). Worden vervangen door echte
-   componenten (Input, Table, Alert) zodra die gebouwd zijn.
+   Tijdelijke docs-elementen. Worden vervangen door echte
+   componenten (Table, Alert) in stap 3.
    ------------------------------------------------------------ */
-.docs-search {
-  display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 10px;
-  border: 1px solid var(--border-strong); border-radius: var(--r-sm);
-  background: var(--surface); color: var(--text-3);
-  transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
-}
-.docs-search:focus-within { border-color: var(--accent); box-shadow: var(--ring); }
-.docs-search input {
-  flex: 1; min-width: 0; border: 0; outline: 0; background: transparent;
-  font-size: 13px; color: var(--text);
-}
-
 .docs-table-wrap { margin-top: 10px; border: 1px solid var(--border); border-radius: var(--r-md); overflow-x: auto; background: var(--surface); }
 .docs-table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: 13.5px; }
 .docs-table th {

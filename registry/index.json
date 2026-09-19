@@ -20,6 +20,14 @@
       "content": "\"use client\";\nimport * as React from \"react\";\n\n/** useLayoutEffect dat niet klaagt tijdens server-rendering. */\nexport const useIsoLayoutEffect =\n  typeof window !== \"undefined\" ? React.useLayoutEffect : React.useEffect;\n\n/** Stabiele client-check (voorkomt hydration-mismatch bij portals). */\nexport function useMounted(): boolean {\n  const [mounted, setMounted] = React.useState(false);\n  React.useEffect(() => setMounted(true), []);\n  return mounted;\n}\n\n/**\n * Werkt zowel controlled (`value` + `onChange`) als uncontrolled\n * (`defaultValue`). Elke interactieve component in ProjectX UI gebruikt dit.\n */\nexport function useControllableState<T>(options: {\n  value?: T;\n  defaultValue: T;\n  onChange?: (value: T) => void;\n}): [T, (next: T | ((prev: T) => T)) => void] {\n  const { value, defaultValue, onChange } = options;\n  const isControlled = value !== undefined;\n  const [internal, setInternal] = React.useState<T>(defaultValue);\n  const current = isControlled ? (value as T) : internal;\n\n  const onChangeRef = React.useRef(onChange);\n  useIsoLayoutEffect(() => {\n    onChangeRef.current = onChange;\n  });\n\n  const setValue = React.useCallback(\n    (next: T | ((prev: T) => T)) => {\n      const resolved =\n        typeof next === \"function\" ? (next as (prev: T) => T)(currentRef.current) : next;\n      if (!isControlled) setInternal(resolved);\n      onChangeRef.current?.(resolved);\n    },\n    [isControlled]\n  );\n\n  const currentRef = React.useRef(current);\n  currentRef.current = current;\n\n  return [current, setValue];\n}\n\n/** Roept `handler` aan bij een klik buiten alle meegegeven refs. */\nexport function useOutsideClick(\n  refs: Array<React.RefObject<HTMLElement | null>>,\n  handler: (event: MouseEvent | TouchEvent) => void,\n  enabled = true\n): void {\n  const handlerRef = React.useRef(handler);\n  handlerRef.current = handler;\n\n  React.useEffect(() => {\n    if (!enabled) return;\n    const listener = (event: MouseEvent | TouchEvent) => {\n      const target = event.target as Node | null;\n      if (!target || !document.contains(target)) return;\n      for (const ref of refs) {\n        if (ref.current && ref.current.contains(target)) return;\n      }\n      handlerRef.current(event);\n    };\n    document.addEventListener(\"mousedown\", listener, true);\n    document.addEventListener(\"touchstart\", listener, true);\n    return () => {\n      document.removeEventListener(\"mousedown\", listener, true);\n      document.removeEventListener(\"touchstart\", listener, true);\n    };\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, [enabled, ...refs]);\n}\n\n/** Escape-toets afhandelen (capture, zodat geneste lagen eerst sluiten). */\nexport function useEscapeKey(handler: () => void, enabled = true): void {\n  const handlerRef = React.useRef(handler);\n  handlerRef.current = handler;\n\n  React.useEffect(() => {\n    if (!enabled) return;\n    const listener = (event: KeyboardEvent) => {\n      if (event.key === \"Escape\") {\n        event.stopPropagation();\n        handlerRef.current();\n      }\n    };\n    document.addEventListener(\"keydown\", listener, true);\n    return () => document.removeEventListener(\"keydown\", listener, true);\n  }, [enabled]);\n}\n\n/** Blokkeert scrollen van de pagina zolang een overlay open staat. */\nexport function useLockScroll(enabled: boolean): void {\n  React.useEffect(() => {\n    if (!enabled) return;\n    const { overflow, paddingRight } = document.body.style;\n    const gap = window.innerWidth - document.documentElement.clientWidth;\n    document.body.style.overflow = \"hidden\";\n    if (gap > 0) document.body.style.paddingRight = `${gap}px`;\n    return () => {\n      document.body.style.overflow = overflow;\n      document.body.style.paddingRight = paddingRight;\n    };\n  }, [enabled]);\n}\n\nconst FOCUSABLE = [\n  \"a[href]\",\n  \"button:not([disabled])\",\n  \"input:not([disabled]):not([type='hidden'])\",\n  \"select:not([disabled])\",\n  \"textarea:not([disabled])\",\n  \"[tabindex]:not([tabindex='-1'])\",\n].join(\",\");\n\n/** Houdt focus binnen een container (dialog, drawer) en herstelt hem daarna. */\nexport function useFocusTrap(\n  ref: React.RefObject<HTMLElement | null>,\n  enabled: boolean\n): void {\n  React.useEffect(() => {\n    if (!enabled || !ref.current) return;\n    const node = ref.current;\n    const previous = document.activeElement as HTMLElement | null;\n\n    const focusables = () => Array.from(node.querySelectorAll<HTMLElement>(FOCUSABLE));\n    const first = focusables()[0];\n    (first ?? node).focus({ preventScroll: true });\n\n    const onKeyDown = (event: KeyboardEvent) => {\n      if (event.key !== \"Tab\") return;\n      const items = focusables();\n      if (items.length === 0) {\n        event.preventDefault();\n        return;\n      }\n      const firstItem = items[0];\n      const lastItem = items[items.length - 1];\n      if (event.shiftKey && document.activeElement === firstItem) {\n        event.preventDefault();\n        lastItem.focus();\n      } else if (!event.shiftKey && document.activeElement === lastItem) {\n        event.preventDefault();\n        firstItem.focus();\n      }\n    };\n\n    node.addEventListener(\"keydown\", onKeyDown);\n    return () => {\n      node.removeEventListener(\"keydown\", onKeyDown);\n      previous?.focus?.({ preventScroll: true });\n    };\n  }, [enabled, ref]);\n}\n\n/** Pijltjes-navigatie voor menu's, listboxen en tabs. */\nexport function useRovingIndex(count: number, initial = -1) {\n  const [index, setIndex] = React.useState(initial);\n\n  const move = React.useCallback(\n    (delta: number) => {\n      setIndex((prev) => {\n        if (count === 0) return -1;\n        const next = prev + delta;\n        if (next < 0) return count - 1;\n        if (next >= count) return 0;\n        return next;\n      });\n    },\n    [count]\n  );\n\n  return { index, setIndex, move };\n}\n\n/** Kopieert tekst naar het klembord en houdt kort een \"gekopieerd\"-status bij. */\nexport function useCopyToClipboard(timeout = 1600) {\n  const [copied, setCopied] = React.useState(false);\n\n  const copy = React.useCallback(\n    async (text: string) => {\n      try {\n        await navigator.clipboard.writeText(text);\n        setCopied(true);\n        window.setTimeout(() => setCopied(false), timeout);\n        return true;\n      } catch {\n        return false;\n      }\n    },\n    [timeout]\n  );\n\n  return { copied, copy };\n}\n"
     },
     {
+      "path": "lib/anchor.ts",
+      "content": "\"use client\";\n/**\n * Positionering voor zwevende lagen (dropdown, popover, select, tooltip,\n * combobox). Eigen implementatie — geen Floating UI / Popper.\n *\n * Ondersteunt: side + align, offset, automatische flip bij te weinig ruimte,\n * clampen binnen de viewport, breedte gelijk aan de anchor, en herberekenen\n * bij scroll/resize.\n */\nimport * as React from \"react\";\nimport { useIsoLayoutEffect } from \"./hooks\";\n\nexport type Side = \"top\" | \"right\" | \"bottom\" | \"left\";\nexport type Align = \"start\" | \"center\" | \"end\";\n\nexport interface AnchorOptions {\n  side?: Side;\n  align?: Align;\n  /** Afstand tussen anchor en laag, in px. */\n  offset?: number;\n  /** Minimale marge tot de rand van het scherm. */\n  padding?: number;\n  /** Laag krijgt exact de breedte van de anchor (select, combobox). */\n  matchWidth?: boolean;\n  /** Laag krijgt minimaal de breedte van de anchor. */\n  minWidth?: boolean;\n}\n\nexport interface AnchorPosition {\n  style: React.CSSProperties;\n  side: Side;\n  align: Align;\n  ready: boolean;\n}\n\nexport function useAnchorPosition(\n  anchorRef: React.RefObject<HTMLElement | null>,\n  floatingRef: React.RefObject<HTMLElement | null>,\n  open: boolean,\n  options: AnchorOptions = {}\n): AnchorPosition {\n  const {\n    side = \"bottom\",\n    align = \"start\",\n    offset = 6,\n    padding = 8,\n    matchWidth = false,\n    minWidth = false,\n  } = options;\n\n  const [position, setPosition] = React.useState<AnchorPosition>({\n    style: { position: \"fixed\", top: 0, left: 0, opacity: 0, visibility: \"hidden\" },\n    side,\n    align,\n    ready: false,\n  });\n\n  const compute = React.useCallback(() => {\n    const anchor = anchorRef.current;\n    const floating = floatingRef.current;\n    if (!anchor || !floating) return;\n\n    const a = anchor.getBoundingClientRect();\n    const f = floating.getBoundingClientRect();\n    const vw = document.documentElement.clientWidth;\n    const vh = document.documentElement.clientHeight;\n\n    const space = {\n      top: a.top - padding,\n      bottom: vh - a.bottom - padding,\n      left: a.left - padding,\n      right: vw - a.right - padding,\n    };\n\n    // Flip wanneer er aan de gewenste kant te weinig ruimte is.\n    let usedSide: Side = side;\n    const needed = side === \"top\" || side === \"bottom\" ? f.height + offset : f.width + offset;\n    if (space[side] < needed) {\n      const opposite: Record<Side, Side> = { top: \"bottom\", bottom: \"top\", left: \"right\", right: \"left\" };\n      if (space[opposite[side]] > space[side]) usedSide = opposite[side];\n    }\n\n    const width = matchWidth ? a.width : minWidth ? Math.max(a.width, f.width) : f.width;\n\n    let left = 0;\n    let top = 0;\n\n    if (usedSide === \"bottom\" || usedSide === \"top\") {\n      top = usedSide === \"bottom\" ? a.bottom + offset : a.top - offset - f.height;\n      left =\n        align === \"start\" ? a.left : align === \"end\" ? a.right - width : a.left + a.width / 2 - width / 2;\n    } else {\n      left = usedSide === \"right\" ? a.right + offset : a.left - offset - width;\n      top =\n        align === \"start\" ? a.top : align === \"end\" ? a.bottom - f.height : a.top + a.height / 2 - f.height / 2;\n    }\n\n    // Binnen beeld houden.\n    left = clamp(left, padding, Math.max(padding, vw - width - padding));\n    top = clamp(top, padding, Math.max(padding, vh - f.height - padding));\n\n    // Maximale hoogte zodat lange menu's kunnen scrollen in plaats van afgesneden worden.\n    const maxHeight =\n      usedSide === \"bottom\"\n        ? Math.max(120, vh - (a.bottom + offset) - padding)\n        : usedSide === \"top\"\n          ? Math.max(120, a.top - offset - padding)\n          : Math.max(120, vh - 2 * padding);\n\n    setPosition({\n      style: {\n        position: \"fixed\",\n        visibility: \"visible\",\n        top: Math.round(top),\n        left: Math.round(left),\n        ...(matchWidth || minWidth ? { [matchWidth ? \"width\" : \"minWidth\"]: Math.round(width) } : {}),\n        maxHeight: Math.round(maxHeight),\n      },\n      side: usedSide,\n      align,\n      ready: true,\n    });\n  }, [anchorRef, floatingRef, side, align, offset, padding, matchWidth, minWidth]);\n\n  useIsoLayoutEffect(() => {\n    if (!open) {\n      setPosition((p) => ({\n        ...p,\n        ready: false,\n        style: { ...p.style, opacity: 0, visibility: \"hidden\" },\n      }));\n      return;\n    }\n\n    // De zwevende laag zit in een portal en is soms pas een frame later\n    // gemonteerd; daarom proberen we het opnieuw tot beide elementen bestaan.\n    const onChange = () => compute();\n    const observer = typeof ResizeObserver !== \"undefined\" ? new ResizeObserver(onChange) : null;\n\n    let frame = 0;\n    let attempts = 0;\n    const attach = () => {\n      if (anchorRef.current && floatingRef.current) {\n        compute();\n        observer?.observe(floatingRef.current);\n        observer?.observe(anchorRef.current);\n        return;\n      }\n      if (attempts < 20) {\n        attempts += 1;\n        frame = requestAnimationFrame(attach);\n      }\n    };\n    attach();\n\n    window.addEventListener(\"scroll\", onChange, true);\n    window.addEventListener(\"resize\", onChange);\n\n    return () => {\n      cancelAnimationFrame(frame);\n      window.removeEventListener(\"scroll\", onChange, true);\n      window.removeEventListener(\"resize\", onChange);\n      observer?.disconnect();\n    };\n  }, [open, compute, anchorRef, floatingRef]);\n\n  return position;\n}\n\nfunction clamp(value: number, min: number, max: number): number {\n  return Math.min(Math.max(value, min), max);\n}\n"
+    },
+    {
+      "path": "lib/portal.tsx",
+      "content": "\"use client\";\n/** Portal — rendert children in document.body (of een eigen container). */\nimport * as React from \"react\";\nimport { createPortal } from \"react-dom\";\nimport { useMounted } from \"./hooks\";\n\nexport function Portal({\n  children,\n  container,\n}: {\n  children: React.ReactNode;\n  container?: Element | null;\n}) {\n  const mounted = useMounted();\n  if (!mounted) return null;\n  return createPortal(children, container ?? document.body);\n}\n"
+    },
+    {
       "path": "icons/icon.tsx",
       "content": "import * as React from \"react\";\nimport { ICONS, type IconName } from \"./icons\";\n\nexport interface IconProps extends Omit<React.SVGProps<SVGSVGElement>, \"name\"> {\n  name: IconName;\n  size?: number | string;\n  strokeWidth?: number;\n}\n\n/**\n * Icon — rendert één glyph uit de eigen ProjectX UI icon set.\n * Kleur volgt `currentColor`, dus elk component stuurt de kleur via CSS.\n */\nexport const Icon = React.forwardRef<SVGSVGElement, IconProps>(function Icon(\n  { name, size = 16, strokeWidth = 2, className, ...rest },\n  ref\n) {\n  const d = ICONS[name];\n  if (!d) return null;\n\n  return (\n    <svg\n      ref={ref}\n      className={className}\n      width={size}\n      height={size}\n      viewBox=\"0 0 24 24\"\n      fill=\"none\"\n      stroke=\"currentColor\"\n      strokeWidth={strokeWidth}\n      strokeLinecap=\"round\"\n      strokeLinejoin=\"round\"\n      aria-hidden=\"true\"\n      focusable=\"false\"\n      {...rest}\n    >\n      {d.split(\" M\").map((segment, index) => (\n        <path key={index} d={index === 0 ? segment : `M${segment}`} />\n      ))}\n    </svg>\n  );\n});\n\nexport { ICONS, ICON_NAMES } from \"./icons\";\nexport type { IconName } from \"./icons\";\n"
     },
@@ -92,6 +100,166 @@
       "files": [
         "icons/icon.tsx",
         "icons/icons.ts"
+      ]
+    },
+    {
+      "name": "separator",
+      "title": "Separator",
+      "description": "Scheidingslijn, horizontaal of verticaal, met optioneel label.",
+      "category": "Basis",
+      "dependencies": [],
+      "files": [
+        "components/separator.tsx",
+        "components/separator.css"
+      ]
+    },
+    {
+      "name": "kbd",
+      "title": "Kbd",
+      "description": "Toetsaanslag of sneltoets tonen.",
+      "category": "Basis",
+      "dependencies": [],
+      "files": [
+        "components/kbd.tsx",
+        "components/kbd.css"
+      ]
+    },
+    {
+      "name": "skeleton",
+      "title": "Skeleton",
+      "description": "Laadplaceholder met shimmer.",
+      "category": "Basis",
+      "dependencies": [],
+      "files": [
+        "components/skeleton.tsx",
+        "components/skeleton.css"
+      ]
+    },
+    {
+      "name": "avatar",
+      "title": "Avatar",
+      "description": "Foto of initialen, met statusstip en groepsweergave.",
+      "category": "Basis",
+      "dependencies": [],
+      "files": [
+        "components/avatar.tsx",
+        "components/avatar.css"
+      ]
+    },
+    {
+      "name": "chip",
+      "title": "Chip",
+      "description": "Klikbaar filterlabel, of een verwijderbare tag.",
+      "category": "Basis",
+      "dependencies": [],
+      "files": [
+        "components/chip.tsx",
+        "components/chip.css"
+      ]
+    },
+    {
+      "name": "copy-button",
+      "title": "CopyButton",
+      "description": "Kopieert een waarde en bevestigt dat kort met een vinkje.",
+      "category": "Basis",
+      "dependencies": [],
+      "files": [
+        "components/copy-button.tsx",
+        "components/copy-button.css"
+      ]
+    },
+    {
+      "name": "label",
+      "title": "Label",
+      "description": "Bijschrift voor een formulierveld, met verplicht-markering.",
+      "category": "Formulieren",
+      "dependencies": [],
+      "files": [
+        "components/label.tsx",
+        "components/label.css"
+      ]
+    },
+    {
+      "name": "input",
+      "title": "Input",
+      "description": "Tekstveld met iconen, addon, maten en foutstatus.",
+      "category": "Formulieren",
+      "dependencies": [
+        "field"
+      ],
+      "files": [
+        "components/input.tsx",
+        "components/input.css"
+      ]
+    },
+    {
+      "name": "textarea",
+      "title": "Textarea",
+      "description": "Meerregelig tekstveld, optioneel meegroeiend.",
+      "category": "Formulieren",
+      "dependencies": [
+        "field"
+      ],
+      "files": [
+        "components/textarea.tsx",
+        "components/textarea.css"
+      ]
+    },
+    {
+      "name": "field",
+      "title": "Field",
+      "description": "Koppelt label, hint en foutmelding aan één invoerveld.",
+      "category": "Formulieren",
+      "dependencies": [
+        "label"
+      ],
+      "files": [
+        "components/field.tsx",
+        "components/field.css"
+      ]
+    },
+    {
+      "name": "checkbox",
+      "title": "Checkbox",
+      "description": "Aanvinkvakje met derde staat en beschrijving.",
+      "category": "Formulieren",
+      "dependencies": [],
+      "files": [
+        "components/checkbox.tsx",
+        "components/checkbox.css"
+      ]
+    },
+    {
+      "name": "radio-group",
+      "title": "RadioGroup",
+      "description": "Groep keuzerondjes, ook als klikbare kaarten.",
+      "category": "Formulieren",
+      "dependencies": [],
+      "files": [
+        "components/radio-group.tsx",
+        "components/radio-group.css"
+      ]
+    },
+    {
+      "name": "switch",
+      "title": "Switch",
+      "description": "Aan/uit-schakelaar met label en beschrijving.",
+      "category": "Formulieren",
+      "dependencies": [],
+      "files": [
+        "components/switch.tsx",
+        "components/switch.css"
+      ]
+    },
+    {
+      "name": "select",
+      "title": "Select",
+      "description": "Eigen keuzelijst — geen native select, volledig stijlbaar.",
+      "category": "Formulieren",
+      "dependencies": [],
+      "files": [
+        "components/select.tsx",
+        "components/select.css"
       ]
     },
     {

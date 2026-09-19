@@ -17,6 +17,7 @@ export const ROADMAP: RoadmapStep[] = [
   {
     title: "Formulieren & basis",
     description: "Label, Input, Textarea, Field, Checkbox, RadioGroup, Switch, Select, Separator, Kbd, Skeleton, Avatar, Chip, CopyButton.",
+    done: true,
   },
   {
     title: "Navigatie & feedback",
@@ -24,7 +25,7 @@ export const ROADMAP: RoadmapStep[] = [
   },
   {
     title: "Overlays",
-    description: "Portal + positionering, Dialog, Drawer, Popover, Tooltip, DropdownMenu, Toast, Command, Combobox, ModalProvider.",
+    description: "Dialog, Drawer, Popover, Tooltip, DropdownMenu, Toast, Command, Combobox, ModalProvider.",
   },
   {
     title: "Datum & planning",
