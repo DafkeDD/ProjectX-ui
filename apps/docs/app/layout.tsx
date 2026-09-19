@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ThemeProvider, ThemeScript } from "@projectx/ui";
+import { ThemeProvider, ThemeScript, ToastProvider } from "@projectx/ui";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -21,8 +21,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        {/* ToastProvider komt erbij zodra Toast gebouwd is. */}
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <ToastProvider>{children}</ToastProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

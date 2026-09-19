@@ -394,6 +394,222 @@
       }
     ]
   },
+  "ComboboxOption": {
+    "extends": "",
+    "props": [
+      {
+        "name": "value",
+        "required": true,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "label",
+        "required": true,
+        "type": "string",
+        "description": "",
+        "default": "\"Wissen\""
+      },
+      {
+        "name": "description",
+        "required": false,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "group",
+        "required": false,
+        "type": "string",
+        "description": "Optionele groepsnaam; opties met dezelfde groep staan samen."
+      }
+    ]
+  },
+  "ComboboxProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"onChange\" | \"defaultValue\">",
+    "props": [
+      {
+        "name": "options",
+        "required": true,
+        "type": "ComboboxOption[]",
+        "description": ""
+      },
+      {
+        "name": "value",
+        "required": false,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "defaultValue",
+        "required": false,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "onValueChange",
+        "required": false,
+        "type": "(value: string) => void",
+        "description": ""
+      },
+      {
+        "name": "placeholder",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Kies…\""
+      },
+      {
+        "name": "searchPlaceholder",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Zoeken…\""
+      },
+      {
+        "name": "emptyMessage",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Geen resultaten\""
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "invalid",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\" | \"lg\"",
+        "description": "",
+        "default": "\"md\""
+      },
+      {
+        "name": "clearable",
+        "required": false,
+        "type": "boolean",
+        "description": "Toont een wisknop wanneer er een waarde gekozen is."
+      }
+    ]
+  },
+  "CommandProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "value",
+        "required": false,
+        "type": "string",
+        "description": "Externe zoekterm (controlled)."
+      },
+      {
+        "name": "onValueChange",
+        "required": false,
+        "type": "(value: string) => void",
+        "description": ""
+      },
+      {
+        "name": "filter",
+        "required": false,
+        "type": "(text: string, query: string) => boolean",
+        "description": "Eigen filterfunctie; standaard een simpele \"bevat\"-match."
+      }
+    ]
+  },
+  "CommandInputProps": {
+    "extends": "Omit<React.InputHTMLAttributes<HTMLInputElement>, \"value\" | \"onChange\">",
+    "props": [
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
+  "CommandGroupProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "heading",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
+  "CommandItemProps": {
+    "extends": "React.ButtonHTMLAttributes<HTMLButtonElement>",
+    "props": [
+      {
+        "name": "value",
+        "required": false,
+        "type": "string",
+        "description": "Tekst waarop gefilterd wordt (standaard: de children als string)."
+      },
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "shortcut",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "",
+        "default": "true"
+      },
+      {
+        "name": "onSelect",
+        "required": false,
+        "type": "() => void",
+        "description": ""
+      }
+    ]
+  },
+  "CommandDialogProps": {
+    "extends": "CommandProps",
+    "props": [
+      {
+        "name": "open",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "onOpenChange",
+        "required": false,
+        "type": "(open: boolean) => void",
+        "description": ""
+      },
+      {
+        "name": "shortcut",
+        "required": false,
+        "type": "boolean",
+        "description": "Opent automatisch met ⌘K / Ctrl+K.",
+        "default": "true"
+      }
+    ]
+  },
   "CopyButtonProps": {
     "extends": "Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, \"value\">",
     "props": [
@@ -434,6 +650,270 @@
         "name": "onCopied",
         "required": false,
         "type": "(value: string) => void",
+        "description": ""
+      }
+    ]
+  },
+  "DialogProps": {
+    "extends": "",
+    "props": [
+      {
+        "name": "open",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "defaultOpen",
+        "required": false,
+        "type": "boolean",
+        "description": "",
+        "default": "false"
+      },
+      {
+        "name": "onOpenChange",
+        "required": false,
+        "type": "(open: boolean) => void",
+        "description": ""
+      },
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
+  "DialogTriggerProps": {
+    "extends": "React.ButtonHTMLAttributes<HTMLButtonElement>",
+    "props": [
+      {
+        "name": "asChild",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
+  "DialogContentProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"full\"",
+        "description": "",
+        "default": "\"md\""
+      },
+      {
+        "name": "hideClose",
+        "required": false,
+        "type": "boolean",
+        "description": "Verbergt het kruisje rechtsboven."
+      },
+      {
+        "name": "static",
+        "required": false,
+        "type": "boolean",
+        "description": "Klik op de overlay sluit niet."
+      }
+    ]
+  },
+  "DrawerProps": {
+    "extends": "",
+    "props": [
+      {
+        "name": "open",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "defaultOpen",
+        "required": false,
+        "type": "boolean",
+        "description": "",
+        "default": "false"
+      },
+      {
+        "name": "onOpenChange",
+        "required": false,
+        "type": "(open: boolean) => void",
+        "description": ""
+      },
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
+  "DrawerTriggerProps": {
+    "extends": "React.ButtonHTMLAttributes<HTMLButtonElement>",
+    "props": [
+      {
+        "name": "asChild",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
+  "DrawerContentProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "side",
+        "required": false,
+        "type": "\"left\" | \"right\" | \"top\" | \"bottom\"",
+        "description": "",
+        "default": "\"right\""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "number | string",
+        "description": "Breedte (links/rechts) of hoogte (boven/onder).",
+        "default": "\"sm\""
+      },
+      {
+        "name": "hideClose",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
+  "DropdownMenuProps": {
+    "extends": "",
+    "props": [
+      {
+        "name": "open",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "defaultOpen",
+        "required": false,
+        "type": "boolean",
+        "description": "",
+        "default": "false"
+      },
+      {
+        "name": "onOpenChange",
+        "required": false,
+        "type": "(open: boolean) => void",
+        "description": ""
+      },
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
+  "DropdownMenuTriggerProps": {
+    "extends": "React.ButtonHTMLAttributes<HTMLButtonElement>",
+    "props": [
+      {
+        "name": "asChild",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
+  "DropdownMenuContentProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "side",
+        "required": false,
+        "type": "Side",
+        "description": "",
+        "default": "\"bottom\""
+      },
+      {
+        "name": "align",
+        "required": false,
+        "type": "Align",
+        "description": "",
+        "default": "\"start\""
+      },
+      {
+        "name": "offset",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "6"
+      },
+      {
+        "name": "matchWidth",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "minWidth",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "200"
+      }
+    ]
+  },
+  "DropdownMenuItemProps": {
+    "extends": "React.ButtonHTMLAttributes<HTMLButtonElement>",
+    "props": [
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "shortcut",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Sneltoets rechts in het item."
+      },
+      {
+        "name": "destructive",
+        "required": false,
+        "type": "boolean",
+        "description": "Rode variant voor destructieve acties."
+      },
+      {
+        "name": "closeOnSelect",
+        "required": false,
+        "type": "boolean",
+        "description": "Sluit het menu na selectie (standaard aan).",
+        "default": "true"
+      },
+      {
+        "name": "asChild",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
+  "DropdownMenuCheckboxItemProps": {
+    "extends": "Omit<DropdownMenuItemProps, \"icon\">",
+    "props": [
+      {
+        "name": "checked",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "onCheckedChange",
+        "required": false,
+        "type": "(checked: boolean) => void",
         "description": ""
       }
     ]
@@ -586,6 +1066,82 @@
       }
     ]
   },
+  "OpenModal": {
+    "extends": "",
+    "props": [
+      {
+        "name": "id",
+        "required": true,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "kind",
+        "required": true,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "props",
+        "required": true,
+        "type": "Record<string, unknown>",
+        "description": ""
+      }
+    ]
+  },
+  "ModalApi": {
+    "extends": "<R extends ModalRegistry = ModalRegistry>",
+    "props": [
+      {
+        "name": "close",
+        "required": true,
+        "type": "(id?: string) => void",
+        "description": "Sluit de bovenste dialog, of die met dit id."
+      },
+      {
+        "name": "closeAll",
+        "required": true,
+        "type": "() => void",
+        "description": "Sluit alles."
+      },
+      {
+        "name": "isOpen",
+        "required": true,
+        "type": "(kind?: keyof R) => boolean",
+        "description": "Staat er iets open (eventueel: van deze soort)?"
+      },
+      {
+        "name": "stack",
+        "required": true,
+        "type": "OpenModal[]",
+        "description": "De dialogs die nu open staan, onderste eerst."
+      }
+    ]
+  },
+  "ModalProviderProps": {
+    "extends": "<R extends ModalRegistry>",
+    "props": [
+      {
+        "name": "modals",
+        "required": true,
+        "type": "R",
+        "description": ""
+      },
+      {
+        "name": "children",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "maxStack",
+        "required": false,
+        "type": "number",
+        "description": "Maximaal aantal dialogs boven elkaar.",
+        "default": "3"
+      }
+    ]
+  },
   "PaginationProps": {
     "extends": "Omit<React.HTMLAttributes<HTMLElement>, \"onChange\">",
     "props": [
@@ -625,6 +1181,85 @@
         "required": false,
         "type": "React.ReactNode",
         "description": "Tekst links, bv. \"1–10 van 84\"."
+      }
+    ]
+  },
+  "PopoverProps": {
+    "extends": "",
+    "props": [
+      {
+        "name": "open",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "defaultOpen",
+        "required": false,
+        "type": "boolean",
+        "description": "",
+        "default": "false"
+      },
+      {
+        "name": "onOpenChange",
+        "required": false,
+        "type": "(open: boolean) => void",
+        "description": ""
+      },
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
+  "PopoverTriggerProps": {
+    "extends": "React.ButtonHTMLAttributes<HTMLButtonElement>",
+    "props": [
+      {
+        "name": "asChild",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
+  "PopoverContentProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "side",
+        "required": false,
+        "type": "Side",
+        "description": "",
+        "default": "\"bottom\""
+      },
+      {
+        "name": "align",
+        "required": false,
+        "type": "Align",
+        "description": "",
+        "default": "\"start\""
+      },
+      {
+        "name": "offset",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "8"
+      },
+      {
+        "name": "matchWidth",
+        "required": false,
+        "type": "boolean",
+        "description": "Zelfde breedte als de trigger."
+      },
+      {
+        "name": "flush",
+        "required": false,
+        "type": "boolean",
+        "description": "Geen binnenmarge (bv. voor een menu of lijst)."
       }
     ]
   },
@@ -1374,6 +2009,177 @@
         "required": false,
         "type": "Partial<Record<Density, string>>",
         "description": "Eigen labels, standaard Compact / Normaal / Ruim."
+      }
+    ]
+  },
+  "ToastOptions": {
+    "extends": "",
+    "props": [
+      {
+        "name": "title",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "description",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "tone",
+        "required": false,
+        "type": "ToastTone",
+        "description": ""
+      },
+      {
+        "name": "duration",
+        "required": false,
+        "type": "number",
+        "description": "Duur in ms; 0 blijft staan tot de gebruiker sluit.",
+        "default": "4200"
+      },
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "action",
+        "required": false,
+        "type": "{ label: string; onClick: () => void }",
+        "description": ""
+      }
+    ]
+  },
+  "ToastItem": {
+    "extends": "ToastOptions",
+    "props": [
+      {
+        "name": "id",
+        "required": true,
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  "ToastProviderProps": {
+    "extends": "",
+    "props": [
+      {
+        "name": "children",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "max",
+        "required": false,
+        "type": "number",
+        "description": "Maximum aantal zichtbare meldingen.",
+        "default": "4"
+      },
+      {
+        "name": "position",
+        "required": false,
+        "type": "\"bottom-right\" | \"bottom-left\" | \"top-right\" | \"top-left\" | \"bottom-center\" | \"top-center\"",
+        "description": "",
+        "default": "\"bottom-right\""
+      },
+      {
+        "name": "duration",
+        "required": false,
+        "type": "number",
+        "description": "Standaardduur in ms.",
+        "default": "4200"
+      }
+    ]
+  },
+  "ToastApi": {
+    "extends": "",
+    "props": [
+      {
+        "name": "success",
+        "required": true,
+        "type": "(title: React.ReactNode, options?: Omit<ToastOptions, \"title\" | \"tone\">) => string",
+        "description": ""
+      },
+      {
+        "name": "error",
+        "required": true,
+        "type": "(title: React.ReactNode, options?: Omit<ToastOptions, \"title\" | \"tone\">) => string",
+        "description": ""
+      },
+      {
+        "name": "warning",
+        "required": true,
+        "type": "(title: React.ReactNode, options?: Omit<ToastOptions, \"title\" | \"tone\">) => string",
+        "description": ""
+      },
+      {
+        "name": "info",
+        "required": true,
+        "type": "(title: React.ReactNode, options?: Omit<ToastOptions, \"title\" | \"tone\">) => string",
+        "description": ""
+      },
+      {
+        "name": "dismiss",
+        "required": true,
+        "type": "(id: string) => void",
+        "description": ""
+      }
+    ]
+  },
+  "TooltipProps": {
+    "extends": "",
+    "props": [
+      {
+        "name": "content",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": "Inhoud van de tooltip."
+      },
+      {
+        "name": "children",
+        "required": true,
+        "type": "React.ReactElement",
+        "description": ""
+      },
+      {
+        "name": "side",
+        "required": false,
+        "type": "Side",
+        "description": "",
+        "default": "\"top\""
+      },
+      {
+        "name": "align",
+        "required": false,
+        "type": "Align",
+        "description": "",
+        "default": "\"center\""
+      },
+      {
+        "name": "delay",
+        "required": false,
+        "type": "number",
+        "description": "Vertraging in ms voordat de tooltip verschijnt.",
+        "default": "220"
+      },
+      {
+        "name": "offset",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "8"
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
       }
     ]
   },

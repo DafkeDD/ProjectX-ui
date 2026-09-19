@@ -27,6 +27,7 @@ export const ROADMAP: RoadmapStep[] = [
   {
     title: "Overlays",
     description: "Dialog, Drawer, Popover, Tooltip, DropdownMenu, Toast, Command, Combobox, ModalProvider.",
+    done: true,
   },
   {
     title: "Datum & planning",

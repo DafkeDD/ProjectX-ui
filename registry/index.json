@@ -373,6 +373,117 @@
       ]
     },
     {
+      "name": "dialog",
+      "title": "Dialog",
+      "description": "Modaal venster met focus-trap, Escape en overlay.",
+      "category": "Overlays",
+      "dependencies": [
+        "button"
+      ],
+      "files": [
+        "components/dialog.tsx",
+        "components/dialog.css"
+      ]
+    },
+    {
+      "name": "drawer",
+      "title": "Drawer",
+      "description": "Paneel dat vanaf een zijkant inschuift.",
+      "category": "Overlays",
+      "dependencies": [
+        "dialog",
+        "button"
+      ],
+      "files": [
+        "components/drawer.tsx",
+        "components/drawer.css"
+      ]
+    },
+    {
+      "name": "popover",
+      "title": "Popover",
+      "description": "Zwevend paneel dat automatisch flipt bij weinig ruimte.",
+      "category": "Overlays",
+      "dependencies": [],
+      "files": [
+        "components/popover.tsx",
+        "components/popover.css"
+      ]
+    },
+    {
+      "name": "tooltip",
+      "title": "Tooltip",
+      "description": "Korte uitleg bij hover én toetsenbordfocus.",
+      "category": "Overlays",
+      "dependencies": [],
+      "files": [
+        "components/tooltip.tsx",
+        "components/tooltip.css"
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "title": "DropdownMenu",
+      "description": "Actiemenu met pijltjesnavigatie, sneltoetsen en secties.",
+      "category": "Overlays",
+      "dependencies": [
+        "button"
+      ],
+      "files": [
+        "components/dropdown-menu.tsx",
+        "components/dropdown-menu.css"
+      ]
+    },
+    {
+      "name": "toast",
+      "title": "Toast",
+      "description": "Tijdelijke melding met toon, actie en automatische sluiting.",
+      "category": "Overlays",
+      "dependencies": [],
+      "files": [
+        "components/toast.tsx",
+        "components/toast.css"
+      ]
+    },
+    {
+      "name": "command",
+      "title": "Command",
+      "description": "Zoek- en actiepalet met ⌘K-sneltoets.",
+      "category": "Overlays",
+      "dependencies": [
+        "dialog"
+      ],
+      "files": [
+        "components/command.tsx",
+        "components/command.css"
+      ]
+    },
+    {
+      "name": "combobox",
+      "title": "Combobox",
+      "description": "Zoekbare keuzelijst met toetsenbordnavigatie.",
+      "category": "Formulieren",
+      "dependencies": [
+        "select"
+      ],
+      "files": [
+        "components/combobox.tsx",
+        "components/combobox.css"
+      ]
+    },
+    {
+      "name": "modal-manager",
+      "title": "ModalProvider",
+      "description": "Dialogs imperatief openen vanuit één register, met useModal().",
+      "category": "Overlays",
+      "dependencies": [
+        "dialog"
+      ],
+      "files": [
+        "components/modal-manager.tsx"
+      ]
+    },
+    {
       "name": "theme",
       "title": "Theme",
       "description": "Licht/donker met ThemeProvider, useTheme en ThemeToggle.",
