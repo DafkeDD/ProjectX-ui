@@ -1,0 +1,256 @@
+{
+  "BadgeProps": {
+    "extends": "React.HTMLAttributes<HTMLSpanElement>",
+    "props": [
+      {
+        "name": "tone",
+        "required": false,
+        "type": "BadgeTone",
+        "description": "",
+        "default": "\"neutral\""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\"",
+        "description": "",
+        "default": "\"md\""
+      },
+      {
+        "name": "dot",
+        "required": false,
+        "type": "boolean",
+        "description": "Statusbolletje links van het label."
+      },
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
+  "ButtonProps": {
+    "extends": "React.ButtonHTMLAttributes<HTMLButtonElement>",
+    "props": [
+      {
+        "name": "variant",
+        "required": false,
+        "type": "ButtonVariant",
+        "description": "",
+        "default": "\"primary\""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "ButtonSize",
+        "description": "",
+        "default": "\"md\""
+      },
+      {
+        "name": "block",
+        "required": false,
+        "type": "boolean",
+        "description": "Volle breedte.",
+        "default": "false"
+      },
+      {
+        "name": "iconOnly",
+        "required": false,
+        "type": "boolean",
+        "description": "Vierkante knop zonder label (icoonknop). Wordt automatisch gezet zonder children.",
+        "default": "false"
+      },
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Icoon links van het label."
+      },
+      {
+        "name": "iconRight",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Icoon rechts van het label."
+      },
+      {
+        "name": "loading",
+        "required": false,
+        "type": "boolean",
+        "description": "Toont een spinner en blokkeert interactie.",
+        "default": "false"
+      },
+      {
+        "name": "asChild",
+        "required": false,
+        "type": "boolean",
+        "description": "Rendert het child-element in plaats van een <button> (bv. een <a> of <Link>).",
+        "default": "false"
+      }
+    ]
+  },
+  "CardProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "interactive",
+        "required": false,
+        "type": "boolean",
+        "description": "Hover-effect + cursor pointer (voor klikbare kaarten)."
+      },
+      {
+        "name": "flush",
+        "required": false,
+        "type": "boolean",
+        "description": "Verwijdert de standaard binnenmarge (bv. als er een tabel in staat)."
+      }
+    ]
+  },
+  "SpinnerProps": {
+    "extends": "React.SVGProps<SVGSVGElement>",
+    "props": [
+      {
+        "name": "size",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "16"
+      },
+      {
+        "name": "label",
+        "required": false,
+        "type": "string",
+        "description": "Toegankelijk label; laat leeg voor decoratief gebruik."
+      }
+    ]
+  },
+  "ThemeProviderProps": {
+    "extends": "",
+    "props": [
+      {
+        "name": "children",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "defaultTheme",
+        "required": false,
+        "type": "Theme",
+        "description": "",
+        "default": "\"system\""
+      },
+      {
+        "name": "defaultDensity",
+        "required": false,
+        "type": "Density",
+        "description": "",
+        "default": "\"regular\""
+      },
+      {
+        "name": "storageKey",
+        "required": false,
+        "type": "string | null",
+        "description": "Sleutel in localStorage; zet op null om niet te bewaren.",
+        "default": "\"pxui-theme\""
+      }
+    ]
+  },
+  "ThemeToggleProps": {
+    "extends": "React.ButtonHTMLAttributes<HTMLButtonElement>",
+    "props": [
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\"",
+        "description": "",
+        "default": "\"md\""
+      }
+    ]
+  },
+  "DensityToggleProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\"",
+        "description": "",
+        "default": "\"md\""
+      },
+      {
+        "name": "labels",
+        "required": false,
+        "type": "Partial<Record<Density, string>>",
+        "description": "Eigen labels, standaard Compact / Normaal / Ruim."
+      }
+    ]
+  },
+  "SlotProps": {
+    "extends": "React.HTMLAttributes<HTMLElement>",
+    "props": [
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
+  "VariantConfig": {
+    "extends": "<V extends VariantShape>",
+    "props": [
+      {
+        "name": "base",
+        "required": false,
+        "type": "ClassValue",
+        "description": ""
+      },
+      {
+        "name": "variants",
+        "required": false,
+        "type": "V",
+        "description": ""
+      },
+      {
+        "name": "defaultVariants",
+        "required": false,
+        "type": "VariantProps<V>",
+        "description": "",
+        "default": "{}"
+      },
+      {
+        "name": "compoundVariants",
+        "required": false,
+        "type": "Array<VariantProps<V> & { class: ClassValue }>",
+        "description": "",
+        "default": "[]"
+      }
+    ]
+  },
+  "IconProps": {
+    "extends": "Omit<React.SVGProps<SVGSVGElement>, \"name\">",
+    "props": [
+      {
+        "name": "name",
+        "required": true,
+        "type": "IconName",
+        "description": ""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "number | string",
+        "description": "",
+        "default": "16"
+      },
+      {
+        "name": "strokeWidth",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "2"
+      }
+    ]
+  }
+}

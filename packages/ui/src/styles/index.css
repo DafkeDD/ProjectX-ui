@@ -1,0 +1,14 @@
+/* ============================================================
+   ProjectX UI — volledige stylesheet
+   Importeer dit één keer in je app:  @import "@projectx/ui/styles";
+   Nieuwe componenten: voeg hier hun .css toe (alfabetisch).
+   ============================================================ */
+
+@import "./tokens.css";
+@import "./base.css";
+
+@import "../components/badge.css";
+@import "../components/button.css";
+@import "../components/card.css";
+@import "../components/spinner.css";
+@import "../components/theme.css";
