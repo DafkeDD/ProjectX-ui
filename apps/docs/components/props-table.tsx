@@ -1,6 +1,6 @@
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@projectx/ui";
 import { propsFor } from "../lib/props";
 
-/** Props-tabel, gegenereerd uit de TypeScript-bron. (Wordt <Table> zodra dat component bestaat.) */
 export function PropsTable({ name }: { name: string }) {
   const entry = propsFor(name);
   if (!entry || entry.props.length === 0) return null;
@@ -15,31 +15,33 @@ export function PropsTable({ name }: { name: string }) {
           Erft daarnaast alle props van <code className="docs-inline-code">{entry.extends}</code>.
         </p>
       )}
-      <div className="docs-table-wrap">
-        <table className="docs-table">
-          <thead>
-            <tr>
-              <th>Prop</th>
-              <th>Type</th>
-              <th>Standaard</th>
-              <th>Omschrijving</th>
-            </tr>
-          </thead>
-          <tbody>
-            {entry.props.map((prop) => (
-              <tr key={prop.name}>
-                <td className="docs-table-strong">
-                  {prop.name}
-                  {prop.required && <span style={{ color: "var(--red)" }}>*</span>}
-                </td>
-                <td><span className="docs-type">{prop.type}</span></td>
-                <td><span className="docs-default">{prop.default ?? "—"}</span></td>
-                <td>{prop.description || "—"}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <Table dense minWidth={640}>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Prop</TableHead>
+            <TableHead>Type</TableHead>
+            <TableHead>Standaard</TableHead>
+            <TableHead>Omschrijving</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {entry.props.map((prop) => (
+            <TableRow key={prop.name}>
+              <TableCell strong>
+                {prop.name}
+                {prop.required && <span style={{ color: "var(--red)" }}>*</span>}
+              </TableCell>
+              <TableCell>
+                <span className="docs-type">{prop.type}</span>
+              </TableCell>
+              <TableCell>
+                <span className="docs-default">{prop.default ?? "—"}</span>
+              </TableCell>
+              <TableCell>{prop.description || "—"}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </div>
   );
 }

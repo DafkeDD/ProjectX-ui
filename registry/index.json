@@ -263,6 +263,116 @@
       ]
     },
     {
+      "name": "alert",
+      "title": "Alert",
+      "description": "Inline melding met toon, titel en actie.",
+      "category": "Feedback",
+      "dependencies": [],
+      "files": [
+        "components/alert.tsx",
+        "components/alert.css"
+      ]
+    },
+    {
+      "name": "empty-state",
+      "title": "EmptyState",
+      "description": "Lege lijst, geen resultaten of nog niets ingesteld.",
+      "category": "Feedback",
+      "dependencies": [],
+      "files": [
+        "components/empty-state.tsx",
+        "components/empty-state.css"
+      ]
+    },
+    {
+      "name": "progress",
+      "title": "Progress",
+      "description": "Voortgangsbalk en ronde variant, ook onbepaald.",
+      "category": "Data",
+      "dependencies": [],
+      "files": [
+        "components/progress.tsx",
+        "components/progress.css"
+      ]
+    },
+    {
+      "name": "tabs",
+      "title": "Tabs",
+      "description": "Tabbladen in drie stijlen, met pijltjesnavigatie.",
+      "category": "Navigatie",
+      "dependencies": [],
+      "files": [
+        "components/tabs.tsx",
+        "components/tabs.css"
+      ]
+    },
+    {
+      "name": "segmented",
+      "title": "Segmented",
+      "description": "Compacte keuzeschakelaar voor weergaven en filters.",
+      "category": "Navigatie",
+      "dependencies": [],
+      "files": [
+        "components/segmented.tsx",
+        "components/segmented.css"
+      ]
+    },
+    {
+      "name": "accordion",
+      "title": "Accordion",
+      "description": "In- en uitklapbare secties, enkel of meervoudig.",
+      "category": "Navigatie",
+      "dependencies": [],
+      "files": [
+        "components/accordion.tsx",
+        "components/accordion.css"
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "title": "Breadcrumb",
+      "description": "Kruimelpad met scheidingstekens.",
+      "category": "Navigatie",
+      "dependencies": [],
+      "files": [
+        "components/breadcrumb.tsx",
+        "components/breadcrumb.css"
+      ]
+    },
+    {
+      "name": "pagination",
+      "title": "Pagination",
+      "description": "Paginanavigatie met ellipsis en samenvatting.",
+      "category": "Navigatie",
+      "dependencies": [],
+      "files": [
+        "components/pagination.tsx",
+        "components/pagination.css"
+      ]
+    },
+    {
+      "name": "stepper",
+      "title": "Stepper",
+      "description": "Voortgang door een meerstapsflow.",
+      "category": "Navigatie",
+      "dependencies": [],
+      "files": [
+        "components/stepper.tsx",
+        "components/stepper.css"
+      ]
+    },
+    {
+      "name": "table",
+      "title": "Table",
+      "description": "Datatabel met sorteerbare koppen, dichte modus en toolbar.",
+      "category": "Data",
+      "dependencies": [],
+      "files": [
+        "components/table.tsx",
+        "components/table.css"
+      ]
+    },
+    {
       "name": "theme",
       "title": "Theme",
       "description": "Licht/donker met ThemeProvider, useTheme en ThemeToggle.",

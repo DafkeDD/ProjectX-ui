@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { Button, Icon } from "@projectx/ui";
+import { Button, Icon, Segmented } from "@projectx/ui";
 import { DEMOS } from "../demos";
 import { CodeBlock } from "./code-block";
 
@@ -10,31 +10,23 @@ export interface PreviewProps {
   align?: "center" | "start" | "block";
 }
 
-/** Preview — live component, met de echte broncode van de demo achter een tab. */
+/** Preview — live component links, echte broncode rechts achter een tab. */
 export function Preview({ demoKey, code, align = "center" }: PreviewProps) {
-  const [tab, setTab] = React.useState<"preview" | "code">("preview");
+  const [tab, setTab] = React.useState("preview");
   const Demo = DEMOS[demoKey];
 
-  // Tijdelijk twee knoppen; wordt <Segmented> zodra dat component bestaat.
   return (
     <div className="docs-preview">
       <div className="docs-preview-bar">
-        <Button
+        <Segmented
           size="sm"
-          variant={tab === "preview" ? "secondary" : "ghost"}
-          icon={<Icon name="eye" />}
-          onClick={() => setTab("preview")}
-        >
-          Voorbeeld
-        </Button>
-        <Button
-          size="sm"
-          variant={tab === "code" ? "secondary" : "ghost"}
-          icon={<Icon name="code" />}
-          onClick={() => setTab("code")}
-        >
-          Code
-        </Button>
+          value={tab}
+          onValueChange={setTab}
+          options={[
+            { value: "preview", label: "Voorbeeld", icon: <Icon name="eye" /> },
+            { value: "code", label: "Code", icon: <Icon name="code" /> },
+          ]}
+        />
         <span style={{ flex: 1 }} />
         <span style={{ fontSize: 11.5, color: "var(--text-3)", fontFamily: "var(--mono)" }}>
           demos/{demoKey}.tsx

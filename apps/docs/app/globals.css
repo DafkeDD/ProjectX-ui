@@ -176,32 +176,7 @@ a { color: inherit; }
 .docs-whatsnew-item:hover { border-color: var(--accent); box-shadow: var(--sh-xs); }
 .docs-whatsnew-item span { font-weight: 400; color: var(--text-3); }
 
-/* ------------------------------------------------------------
-   Tijdelijke docs-elementen. Worden vervangen door echte
-   componenten (Table, Alert) in stap 3.
-   ------------------------------------------------------------ */
-.docs-table-wrap { margin-top: 10px; border: 1px solid var(--border); border-radius: var(--r-md); overflow-x: auto; background: var(--surface); }
-.docs-table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: 13.5px; }
-.docs-table th {
-  text-align: left; padding: 9px 12px; font-size: 11.5px; font-weight: 650;
-  letter-spacing: .04em; text-transform: uppercase; color: var(--text-3);
-  background: var(--surface-2); border-bottom: 1px solid var(--border);
-}
-.docs-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
-.docs-table tr:last-child td { border-bottom: 0; }
-.docs-table-strong { font-weight: 600; color: var(--text) !important; }
-
-.docs-note {
-  display: flex; gap: 11px; padding: 13px 15px; border-radius: var(--r-md);
-  border: 1px solid var(--accent-border); background: var(--accent-tint); color: var(--accent-active);
-}
-.docs-note[data-tone="green"] { border-color: var(--green-border); background: var(--green-tint); color: var(--green); }
-.docs-note[data-tone="amber"] { border-color: var(--amber-border); background: var(--amber-tint); color: var(--amber); }
-.docs-note[data-tone="blue"] { border-color: var(--blue-border); background: var(--blue-tint); color: var(--blue); }
-.docs-note > svg { flex: none; margin-top: 2px; }
-.docs-note-title { font-weight: 650; font-size: 14px; color: var(--text); }
-.docs-note-body { font-size: 13.5px; color: var(--text-2); line-height: 1.6; margin-top: 2px; }
-
+/* ---------- Stappenplan (introductiepagina) ---------- */
 .docs-roadmap { display: grid; gap: 8px; margin-top: 16px; }
 .docs-roadmap-item {
   display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px;

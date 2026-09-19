@@ -1,6 +1,5 @@
-import { Badge, Card, CardContent } from "@projectx/ui";
+import { Alert, Badge, Card, CardContent, Icon } from "@projectx/ui";
 import { CodeBlock } from "../../../components/code-block";
-import { DocsNote } from "../../../components/docs-note";
 
 export default function InstallatiePage() {
   return (
@@ -44,10 +43,10 @@ import { ThemeProvider, ThemeScript } from "@projectx/ui";
       <div className="docs-section">
         <h2 className="docs-section-title">3 · Kopiëren met de CLI</h2>
         <div style={{ marginTop: 14 }}>
-          <DocsNote tone="amber" icon="clock" title="Komt in de laatste stap">
+          <Alert tone="amber" icon={<Icon name="clock" size={17} />} title="Komt in de laatste stap">
             De CLI (<code className="docs-inline-code">npx projectx-ui add button</code>) bouwen we zodra de
             componenten er staan. De registry wordt nu al bij elke <code className="docs-inline-code">npm run registry</code> gegenereerd.
-          </DocsNote>
+          </Alert>
         </div>
       </div>
 

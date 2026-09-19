@@ -1,8 +1,7 @@
 import Link from "next/link";
-import { Badge, Button, Card, CardContent, Icon } from "@projectx/ui";
+import { Alert, Badge, Button, Card, CardContent, Icon } from "@projectx/ui";
 import { COMPONENTS, componentsByCategory } from "../../content/catalog";
 import { ROADMAP } from "../../content/roadmap";
-import { DocsNote } from "../../components/docs-note";
 
 export default function DocsIntroPage() {
   const groups = componentsByCategory();
@@ -64,18 +63,18 @@ export default function DocsIntroPage() {
       <div className="docs-section">
         <h2 className="docs-section-title">Regels van dit design system</h2>
         <div style={{ display: "grid", gap: 12, marginTop: 16 }}>
-          <DocsNote title="Alle kleuren komen uit het ProjectX UI-design">
+          <Alert tone="accent" title="Alle kleuren komen uit het ProjectX UI-design">
             Componenten gebruiken uitsluitend CSS-variabelen (<code className="docs-inline-code">var(--accent)</code>,{" "}
             <code className="docs-inline-code">var(--surface)</code>, …). Wil je herkleuren? Pas{" "}
             <code className="docs-inline-code">tokens.css</code> aan en de hele library volgt.
-          </DocsNote>
-          <DocsNote tone="green" icon="check" title="Eén klassenprefix">
+          </Alert>
+          <Alert tone="green" title="Eén klassenprefix">
             Elke klasse begint met <code className="docs-inline-code">pxui-</code>, dus niets botst met bestaande CSS in je projecten.
-          </DocsNote>
-          <DocsNote tone="amber" icon="alert" title="Tailwind is enkel de engine">
+          </Alert>
+          <Alert tone="amber" title="Tailwind is enkel de engine">
             Tailwind v4 levert de reset en de utilities voor nieuwe markup. De componenten zelf zijn gewone
             CSS-klassen — geen utility-soep, wél volledig aanpasbaar.
-          </DocsNote>
+          </Alert>
         </div>
       </div>
 

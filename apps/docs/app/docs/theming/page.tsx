@@ -1,5 +1,4 @@
-import { Badge, Card, CardContent } from "@projectx/ui";
-import { DocsNote } from "../../../components/docs-note";
+import { Alert, Badge, Card, CardContent, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@projectx/ui";
 import { CodeBlock } from "../../../components/code-block";
 import { TOKEN_GROUPS, readTokens } from "../../../lib/tokens";
 
@@ -19,13 +18,11 @@ export default function ThemingPage() {
         volledige UI verandert mee, in licht én donker.
       </p>
 
-      <div style={{ marginTop: 22 }}>
-      <DocsNote title="Bron: het ProjectX UI-design">
+      <Alert tone="accent" title="Bron: het ProjectX UI-design" style={{ marginTop: 22 }}>
         De waarden hieronder zijn exact overgenomen uit het admin-paneel-design. Wil je een tweede merk
         ondersteunen? Kopieer het <code className="docs-inline-code">:root</code>-blok en overschrijf het onder een
         eigen selector, bijvoorbeeld <code className="docs-inline-code">[data-brand=&quot;klant-x&quot;]</code>.
-      </DocsNote>
-      </div>
+      </Alert>
 
       {TOKEN_GROUPS.map((group) => (
         <div className="docs-section" key={group.title}>
@@ -144,32 +141,30 @@ export default function ThemingPage() {
 
       <div className="docs-section">
         <h2 className="docs-section-title">Alle tokens</h2>
-        <div className="docs-table-wrap">
-        <table className="docs-table">
-          <thead>
-            <tr>
-              <th>Token</th>
-              <th>Licht</th>
-              <th>Donker</th>
-            </tr>
-          </thead>
-          <tbody>
+        <Table dense minWidth={620}>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Token</TableHead>
+              <TableHead>Licht</TableHead>
+              <TableHead>Donker</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {tokens.map((token) => (
-              <tr key={token.name}>
-                <td className="docs-table-strong">
+              <TableRow key={token.name}>
+                <TableCell strong>
                   <span className="docs-type">{token.name}</span>
-                </td>
-                <td>
+                </TableCell>
+                <TableCell>
                   <span className="docs-default">{token.light}</span>
-                </td>
-                <td>
+                </TableCell>
+                <TableCell>
                   <span className="docs-default">{token.dark ?? "—"}</span>
-                </td>
-              </tr>
+                </TableCell>
+              </TableRow>
             ))}
-          </tbody>
-        </table>
-        </div>
+          </TableBody>
+        </Table>
       </div>
     </div>
   );

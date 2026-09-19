@@ -1,30 +1,23 @@
 "use client";
-import { Badge, Button, Card, CardContent, Icon, ThemeToggle, useTheme } from "@projectx/ui";
+import { Badge, Button, Card, CardContent, Icon, Segmented, ThemeToggle, useTheme } from "@projectx/ui";
 
 export default function Demo() {
   const { theme, resolved, setTheme } = useTheme();
-  const options = [
-    { value: "light", label: "Licht", icon: "sun" },
-    { value: "dark", label: "Donker", icon: "moon" },
-    { value: "system", label: "Systeem", icon: "monitor" },
-  ] as const;
 
   return (
     <Card>
       <CardContent>
-        <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
           <ThemeToggle />
-          {options.map((option) => (
-            <Button
-              key={option.value}
-              size="sm"
-              variant={theme === option.value ? "primary" : "secondary"}
-              icon={<Icon name={option.icon} />}
-              onClick={() => setTheme(option.value)}
-            >
-              {option.label}
-            </Button>
-          ))}
+          <Segmented
+            value={theme}
+            onValueChange={(value) => setTheme(value as "light" | "dark" | "system")}
+            options={[
+              { value: "light", label: "Licht", icon: <Icon name="sun" /> },
+              { value: "dark", label: "Donker", icon: <Icon name="moon" /> },
+              { value: "system", label: "Systeem", icon: <Icon name="monitor" /> },
+            ]}
+          />
           <Badge tone="accent">actief: {resolved}</Badge>
         </div>
         <p style={{ marginTop: 16, fontSize: 14 }}>

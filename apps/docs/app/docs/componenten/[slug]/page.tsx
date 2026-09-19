@@ -1,9 +1,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Badge, Button, Icon } from "@projectx/ui";
+import { Alert, Badge, Button, Icon } from "@projectx/ui";
 import { COMPONENTS, componentBySlug } from "../../../../content/catalog";
 import { CodeBlock } from "../../../../components/code-block";
-import { DocsNote } from "../../../../components/docs-note";
 import { Preview } from "../../../../components/preview";
 import { PropsTable } from "../../../../components/props-table";
 import { demoSource, uiSource } from "../../../../lib/source";
@@ -95,9 +94,9 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
           <h2 className="docs-section-title">Goed om te weten</h2>
           <div style={{ display: "grid", gap: 12, marginTop: 14 }}>
             {component.notes.map((note) => (
-              <DocsNote key={note} tone="blue">
+              <Alert key={note} tone="blue" icon={<Icon name="info" size={17} />}>
                 {note}
-              </DocsNote>
+              </Alert>
             ))}
           </div>
         </div>

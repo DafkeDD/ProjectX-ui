@@ -22,6 +22,7 @@ export const ROADMAP: RoadmapStep[] = [
   {
     title: "Navigatie & feedback",
     description: "Alert, Tabs, Segmented, Accordion, Breadcrumb, Pagination, Stepper, Progress, EmptyState, Table — de docs-site stapt over op eigen componenten.",
+    done: true,
   },
   {
     title: "Overlays",
