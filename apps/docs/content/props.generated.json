@@ -719,6 +719,38 @@
       }
     ]
   },
+  "ButtonGroupProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "orientation",
+        "required": false,
+        "type": "\"horizontal\" | \"vertical\"",
+        "description": "",
+        "default": "\"horizontal\""
+      },
+      {
+        "name": "joined",
+        "required": false,
+        "type": "boolean",
+        "description": "Knoppen tegen elkaar met gedeelde randen (standaard), of los met tussenruimte.",
+        "default": "true"
+      },
+      {
+        "name": "block",
+        "required": false,
+        "type": "boolean",
+        "description": "Vult de beschikbare breedte; elke knop wordt even breed.",
+        "default": "false"
+      },
+      {
+        "name": "label",
+        "required": false,
+        "type": "string",
+        "description": "Toegankelijk label voor de groep, bijvoorbeeld \"Weergave\"."
+      }
+    ]
+  },
   "CardProps": {
     "extends": "React.HTMLAttributes<HTMLDivElement>",
     "props": [
@@ -733,6 +765,61 @@
         "required": false,
         "type": "boolean",
         "description": "Verwijdert de standaard binnenmarge (bv. als er een tabel in staat)."
+      }
+    ]
+  },
+  "CarouselProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "orientation",
+        "required": false,
+        "type": "\"horizontal\" | \"vertical\"",
+        "description": "",
+        "default": "\"horizontal\""
+      },
+      {
+        "name": "loop",
+        "required": false,
+        "type": "boolean",
+        "description": "Terug naar het begin na het laatste item (en omgekeerd)."
+      },
+      {
+        "name": "autoPlay",
+        "required": false,
+        "type": "number",
+        "description": "Automatisch doorschuiven, in ms. 0 zet het uit.",
+        "default": "0"
+      },
+      {
+        "name": "onIndexChange",
+        "required": false,
+        "type": "(index: number) => void",
+        "description": ""
+      }
+    ]
+  },
+  "CarouselItemProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "size",
+        "required": false,
+        "type": "number | string",
+        "description": "Breedte van dit item, bv. \"80%\" of 260. Standaard de volle breedte.",
+        "default": "\"sm\""
+      }
+    ]
+  },
+  "CarouselButtonProps": {
+    "extends": "React.ButtonHTMLAttributes<HTMLButtonElement>",
+    "props": [
+      {
+        "name": "label",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Vorige\""
       }
     ]
   },
@@ -1039,6 +1126,65 @@
         "required": false,
         "type": "boolean",
         "description": "Laat de chips op één regel scrollen in plaats van afbreken."
+      }
+    ]
+  },
+  "CollapsibleProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"onChange\">",
+    "props": [
+      {
+        "name": "open",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "defaultOpen",
+        "required": false,
+        "type": "boolean",
+        "description": "",
+        "default": "false"
+      },
+      {
+        "name": "onOpenChange",
+        "required": false,
+        "type": "(open: boolean) => void",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
+  "CollapsibleTriggerProps": {
+    "extends": "React.ButtonHTMLAttributes<HTMLButtonElement>",
+    "props": [
+      {
+        "name": "asChild",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "chevron",
+        "required": false,
+        "type": "boolean",
+        "description": "Chevron rechts die meedraait."
+      }
+    ]
+  },
+  "CollapsibleContentProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "forceMount",
+        "required": false,
+        "type": "boolean",
+        "description": "Blijft in de DOM staan als hij dicht is (standaard), zodat zoeken op de pagina werkt.",
+        "default": "true"
       }
     ]
   },
@@ -3312,6 +3458,73 @@
       }
     ]
   },
+  "ResizableGroupProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "direction",
+        "required": false,
+        "type": "Richting",
+        "description": "",
+        "default": "\"horizontal\""
+      },
+      {
+        "name": "defaultSizes",
+        "required": false,
+        "type": "number[]",
+        "description": "Beginverdeling in procenten, één getal per paneel."
+      },
+      {
+        "name": "onSizesChange",
+        "required": false,
+        "type": "(sizes: number[]) => void",
+        "description": "Roept de nieuwe verdeling terug na elke sleepbeweging."
+      }
+    ]
+  },
+  "ResizablePanelProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "index",
+        "required": true,
+        "type": "number",
+        "description": "Volgorde in de groep; nodig omdat panelen en grepen door elkaar staan."
+      },
+      {
+        "name": "minSize",
+        "required": false,
+        "type": "number",
+        "description": "Ondergrens in procenten.",
+        "default": "10"
+      },
+      {
+        "name": "maxSize",
+        "required": false,
+        "type": "number",
+        "description": "Bovengrens in procenten.",
+        "default": "90"
+      }
+    ]
+  },
+  "ResizableHandleProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "index",
+        "required": true,
+        "type": "number",
+        "description": "Welke twee panelen deze greep verdeelt: index en index + 1."
+      },
+      {
+        "name": "withGrip",
+        "required": false,
+        "type": "boolean",
+        "description": "Streepje in het midden van de greep.",
+        "default": "true"
+      }
+    ]
+  },
   "ResourceColumnsProps": {
     "extends": "React.HTMLAttributes<HTMLDivElement>",
     "props": [
@@ -3463,6 +3676,43 @@
         "required": false,
         "type": "boolean",
         "description": ""
+      }
+    ]
+  },
+  "ScrollAreaProps": {
+    "extends": "React.HTMLAttributes<HTMLDivElement>",
+    "props": [
+      {
+        "name": "orientation",
+        "required": false,
+        "type": "\"vertical\" | \"horizontal\" | \"both\"",
+        "description": "Welke richting mag scrollen.",
+        "default": "\"vertical\""
+      },
+      {
+        "name": "height",
+        "required": false,
+        "type": "number | string",
+        "description": "Vaste hoogte; zonder dit bepaalt de ouder de hoogte."
+      },
+      {
+        "name": "maxHeight",
+        "required": false,
+        "type": "number | string",
+        "description": ""
+      },
+      {
+        "name": "fade",
+        "required": false,
+        "type": "boolean",
+        "description": "Vervaging aan de randen zolang er meer inhoud is (standaard aan).",
+        "default": "true"
+      },
+      {
+        "name": "alwaysVisible",
+        "required": false,
+        "type": "boolean",
+        "description": "Balk blijft altijd zichtbaar in plaats van alleen bij hoveren."
       }
     ]
   },
@@ -4948,6 +5198,123 @@
         "name": "dismiss",
         "required": true,
         "type": "(id: string) => void",
+        "description": ""
+      }
+    ]
+  },
+  "ToggleProps": {
+    "extends": "Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, \"onChange\">",
+    "props": [
+      {
+        "name": "pressed",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "defaultPressed",
+        "required": false,
+        "type": "boolean",
+        "description": "",
+        "default": "false"
+      },
+      {
+        "name": "onPressedChange",
+        "required": false,
+        "type": "(pressed: boolean) => void",
+        "description": ""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\" | \"lg\"",
+        "description": "",
+        "default": "\"md\""
+      },
+      {
+        "name": "variant",
+        "required": false,
+        "type": "\"ghost\" | \"outline\"",
+        "description": "\"ghost\" is doorzichtig tot je hem indrukt, \"outline\" heeft altijd een rand.",
+        "default": "\"ghost\""
+      },
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "asChild",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
+  "ToggleGroupProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"onChange\" | \"defaultValue\">",
+    "props": [
+      {
+        "name": "type",
+        "required": false,
+        "type": "\"single\" | \"multiple\"",
+        "description": "\"single\" laat één keuze toe, \"multiple\" meerdere.",
+        "default": "\"single\""
+      },
+      {
+        "name": "value",
+        "required": false,
+        "type": "string | string[]",
+        "description": ""
+      },
+      {
+        "name": "defaultValue",
+        "required": false,
+        "type": "string | string[]",
+        "description": ""
+      },
+      {
+        "name": "onValueChange",
+        "required": false,
+        "type": "(value: string & string[]) => void",
+        "description": ""
+      },
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\" | \"lg\"",
+        "description": "",
+        "default": "\"md\""
+      },
+      {
+        "name": "variant",
+        "required": false,
+        "type": "\"ghost\" | \"outline\"",
+        "description": "",
+        "default": "\"ghost\""
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "joined",
+        "required": false,
+        "type": "boolean",
+        "description": "Knoppen aan elkaar geplakt in plaats van los."
+      }
+    ]
+  },
+  "ToggleGroupItemProps": {
+    "extends": "Omit<ToggleProps, \"pressed\" | \"defaultPressed\" | \"onPressedChange\">",
+    "props": [
+      {
+        "name": "value",
+        "required": true,
+        "type": "string",
         "description": ""
       }
     ]

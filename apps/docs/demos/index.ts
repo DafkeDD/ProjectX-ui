@@ -21,10 +21,12 @@ import ButtonVariants from "./button-variants";
 import CalendarBasic from "./calendar-basic";
 import CalendarMultiple from "./calendar-multiple";
 import CardBasic from "./card-basic";
+import CarouselBasic from "./carousel-basic";
 import ChartBar from "./chart-bar";
 import ChartDonut from "./chart-donut";
 import CheckboxBasic from "./checkbox-basic";
 import ChipBasic from "./chip-basic";
+import CollapsibleBasic from "./collapsible-basic";
 import ComboboxBasic from "./combobox-basic";
 import CommandBasic from "./command-basic";
 import ComposerBasic from "./composer-basic";
@@ -64,9 +66,11 @@ import QrBasic from "./qr-basic";
 import RadioBasic from "./radio-basic";
 import RadioCards from "./radio-cards";
 import ReorderBasic from "./reorder-basic";
+import ResizableBasic from "./resizable-basic";
 import ResourceColumnsBasic from "./resource-columns-basic";
 import RicheditorBasic from "./richeditor-basic";
 import ScheduleBasic from "./schedule-basic";
+import ScrollareaBasic from "./scrollarea-basic";
 import SectionHeaderBasic from "./section-header-basic";
 import SegmentedBasic from "./segmented-basic";
 import SelectBasic from "./select-basic";
@@ -91,6 +95,7 @@ import TimefieldBasic from "./timefield-basic";
 import TimelineBasic from "./timeline-basic";
 import TimeslotBasic from "./timeslot-basic";
 import ToastBasic from "./toast-basic";
+import ToggleBasic from "./toggle-basic";
 import ToolbarBasic from "./toolbar-basic";
 import TooltipBasic from "./tooltip-basic";
 import VoiceBasic from "./voice-basic";
@@ -116,10 +121,12 @@ export const DEMOS: Record<string, ComponentType> = {
   "calendar-basic": CalendarBasic,
   "calendar-multiple": CalendarMultiple,
   "card-basic": CardBasic,
+  "carousel-basic": CarouselBasic,
   "chart-bar": ChartBar,
   "chart-donut": ChartDonut,
   "checkbox-basic": CheckboxBasic,
   "chip-basic": ChipBasic,
+  "collapsible-basic": CollapsibleBasic,
   "combobox-basic": ComboboxBasic,
   "command-basic": CommandBasic,
   "composer-basic": ComposerBasic,
@@ -159,9 +166,11 @@ export const DEMOS: Record<string, ComponentType> = {
   "radio-basic": RadioBasic,
   "radio-cards": RadioCards,
   "reorder-basic": ReorderBasic,
+  "resizable-basic": ResizableBasic,
   "resource-columns-basic": ResourceColumnsBasic,
   "richeditor-basic": RicheditorBasic,
   "schedule-basic": ScheduleBasic,
+  "scrollarea-basic": ScrollareaBasic,
   "section-header-basic": SectionHeaderBasic,
   "segmented-basic": SegmentedBasic,
   "select-basic": SelectBasic,
@@ -186,6 +195,7 @@ export const DEMOS: Record<string, ComponentType> = {
   "timeline-basic": TimelineBasic,
   "timeslot-basic": TimeslotBasic,
   "toast-basic": ToastBasic,
+  "toggle-basic": ToggleBasic,
   "toolbar-basic": ToolbarBasic,
   "tooltip-basic": TooltipBasic,
   "voice-basic": VoiceBasic,

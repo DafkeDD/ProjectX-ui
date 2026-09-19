@@ -270,6 +270,18 @@
       ]
     },
     {
+      "name": "toggle",
+      "title": "Toggle",
+      "description": "Knop die ingedrukt blijft staan, los of in een groep.",
+      "category": "Formulieren",
+      "dependencies": [],
+      "requires": [],
+      "files": [
+        "components/toggle.tsx",
+        "components/toggle.css"
+      ]
+    },
+    {
       "name": "select",
       "title": "Select",
       "description": "Eigen keuzelijst — geen native select, volledig stijlbaar.",
@@ -351,6 +363,18 @@
       "files": [
         "components/accordion.tsx",
         "components/accordion.css"
+      ]
+    },
+    {
+      "name": "collapsible",
+      "title": "Collapsible",
+      "description": "Eén stuk inhoud dat open- en dichtklapt, met echte hoogte-animatie.",
+      "category": "Navigatie",
+      "dependencies": [],
+      "requires": [],
+      "files": [
+        "components/collapsible.tsx",
+        "components/collapsible.css"
       ]
     },
     {
@@ -740,6 +764,20 @@
       ]
     },
     {
+      "name": "carousel",
+      "title": "Carousel",
+      "description": "Reeks kaarten of beelden met scroll-snap, knoppen en stippen.",
+      "category": "Data",
+      "dependencies": [
+        "button"
+      ],
+      "requires": [],
+      "files": [
+        "components/carousel.tsx",
+        "components/carousel.css"
+      ]
+    },
+    {
       "name": "timeline",
       "title": "Timeline",
       "description": "Verticale lijn met gebeurtenissen: audit-log, dossierverloop, statuswissels.",
@@ -862,6 +900,30 @@
       "files": [
         "components/workspace.tsx",
         "components/workspace.css"
+      ]
+    },
+    {
+      "name": "resizable",
+      "title": "ResizableGroup",
+      "description": "Panelen met een sleepbare scheiding ertussen.",
+      "category": "Layout",
+      "dependencies": [],
+      "requires": [],
+      "files": [
+        "components/resizable.tsx",
+        "components/resizable.css"
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "title": "ScrollArea",
+      "description": "Scrollbaar vlak met een smalle balk en vervaging aan de randen.",
+      "category": "Layout",
+      "dependencies": [],
+      "requires": [],
+      "files": [
+        "components/scroll-area.tsx",
+        "components/scroll-area.css"
       ]
     },
     {
