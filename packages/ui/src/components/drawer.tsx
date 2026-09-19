@@ -21,6 +21,13 @@ function useDrawer(component: string): DrawerContextValue {
   return context;
 }
 
+/** Zodat een eigen paneel (zoals de motion-variant) in dezelfde Drawer kan hangen. */
+export function useDrawerContext(component = "DrawerContent"): DrawerContextValue {
+  return useDrawer(component);
+}
+
+export type { DrawerContextValue };
+
 export interface DrawerProps {
   open?: boolean;
   defaultOpen?: boolean;

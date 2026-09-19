@@ -1,0 +1,55 @@
+/* ==================== Motion-laag (optioneel) ==================== */
+/* Alleen de extra's die de motion-varianten nodig hebben. De panelen zelf
+   gebruiken dezelfde klassen als Drawer en Segmented. */
+
+/* De CSS-keyframes van Drawer uitzetten: motion regelt de beweging. */
+.pxui-motion-drawer { animation: none !important; }
+
+.pxui-motion-handle {
+  display: grid; place-items: center; padding: 10px 0 4px;
+  cursor: grab; touch-action: none; flex: none;
+}
+.pxui-motion-handle:active { cursor: grabbing; }
+.pxui-motion-handle > span {
+  display: block; width: 42px; height: 4px;
+  border-radius: var(--r-full); background: var(--border-strong);
+}
+.pxui-motion-handle-vertical { padding: 4px 10px 4px 4px; }
+.pxui-motion-handle-vertical > span { width: 4px; height: 42px; }
+
+/* ---------- ReorderList ---------- */
+.pxui-reorder {
+  display: flex; flex-direction: column; gap: 8px;
+  list-style: none; margin: 0; padding: 0;
+}
+.pxui-reorder-x { flex-direction: row; }
+
+.pxui-reorder-item {
+  position: relative; display: flex; align-items: center; gap: 10px;
+  padding: 11px 13px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--r-md);
+  cursor: grab; touch-action: none; user-select: none;
+}
+.pxui-reorder-item:active { cursor: grabbing; }
+.pxui-reorder-item:has(.pxui-reorder-handle) { cursor: default; }
+
+.pxui-reorder-handle {
+  display: inline-grid; place-items: center; flex: none;
+  color: var(--text-3); cursor: grab; touch-action: none;
+}
+.pxui-reorder-handle:active { cursor: grabbing; }
+.pxui-reorder-content { flex: 1; min-width: 0; }
+
+/* ---------- MotionSegmented ---------- */
+/* De meeschuivende achtergrond vervangt de statische van Segmented. */
+.pxui-motion-segmented .pxui-segmented-item { position: relative; }
+.pxui-motion-segmented .pxui-segmented-item[data-state="active"] {
+  background: transparent; box-shadow: none;
+}
+.pxui-motion-segmented-indicator {
+  position: absolute; inset: 0; z-index: 0;
+  border-radius: var(--r-xs); background: var(--surface); box-shadow: var(--sh-xs);
+}
+.pxui-motion-segmented .pxui-segmented-item > *:not(.pxui-motion-segmented-indicator) {
+  position: relative; z-index: 1;
+}

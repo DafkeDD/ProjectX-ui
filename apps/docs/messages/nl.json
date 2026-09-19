@@ -22,7 +22,8 @@
     "scheduling": "Datum & planning",
     "data": "Data",
     "feedback": "Feedback",
-    "layout": "Layout"
+    "layout": "Layout",
+    "motion": "Motion"
   },
   "shell": {
     "docs": "Documentatie",

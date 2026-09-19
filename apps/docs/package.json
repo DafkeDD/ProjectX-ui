@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@projectx/ui": "*",
+    "motion": "^13.4.0",
     "next": "^15.3.0",
     "next-intl": "^4.14.5",
     "react": "^19.0.0",

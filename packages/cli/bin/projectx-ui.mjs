@@ -180,7 +180,8 @@ function ensureIndexExport(config, fileName) {
 function rewriteImports(content) {
   return content
     .replace(/from "\.\.\/lib\/([\w-]+)"/g, 'from "./$1"')
-    .replace(/from "\.\.\/icons\/([\w-]+)"/g, 'from "./$1"');
+    .replace(/from "\.\.\/icons\/([\w-]+)"/g, 'from "./$1"')
+    .replace(/from "\.\.\/components\/([\w-]+)"/g, 'from "./$1"');
 }
 
 function report(status, target) {
@@ -281,8 +282,13 @@ async function cmdAdd(args) {
   const force = args.includes("--force") || args.includes("-f");
   const all = args.includes("--all");
   const registryArg = flag(args, "--registry");
+  // --all pakt alleen wat zonder extra npm-packages werkt; de motion-laag
+  // haal je er bewust bij met de naam of met --with-extras.
+  const withExtras = args.includes("--with-extras");
   const requested = all
-    ? registry.components.map((component) => component.name)
+    ? registry.components
+        .filter((component) => withExtras || (component.requires ?? []).length === 0)
+        .map((component) => component.name)
     : args.filter((argument) => !argument.startsWith("-") && argument !== registryArg);
 
   if (requested.length === 0) fail("Geef minstens een component op, of gebruik --all.");
@@ -319,6 +325,16 @@ async function cmdAdd(args) {
 
   log();
   ok(`${queue.length} component(en) klaar in ${config.componentsDir}/`);
+  meldPackages(queue);
+}
+
+/** Vertelt welke npm-packages de gekopieerde componenten nodig hebben. */
+function meldPackages(components) {
+  const packages = [...new Set(components.flatMap((component) => component.requires ?? []))];
+  if (packages.length === 0) return;
+  log();
+  warn(`Deze componenten hebben een extra package nodig:`);
+  log(`  ${c.teal}npm i ${packages.join(" ")}${c.reset}`);
 }
 
 /**
@@ -342,7 +358,12 @@ async function cmdUpdate(args) {
     component.files.every((file) => existsSync(join(cwd, config.componentsDir, basename(file))));
 
   const bestaande = registry.components.filter(isGeinstalleerd);
-  const nieuwe = alleenBestaande ? [] : registry.components.filter((component) => !isGeinstalleerd(component));
+  const metExtras = args.includes("--with-extras");
+  const nieuwe = alleenBestaande
+    ? []
+    : registry.components.filter(
+        (component) => !isGeinstalleerd(component) && (metExtras || (component.requires ?? []).length === 0)
+      );
   const verdwenen = Object.keys(lock.components).filter(
     (name) => !registry.components.some((component) => component.name === name)
   );
@@ -436,6 +457,8 @@ async function cmdUpdate(args) {
 
   if (!dryRun) writeLock(lock, registry);
 
+  meldPackages([...bestaande, ...nieuwe]);
+
   log();
   const delen = [
     `${telling.bijgewerkt} bijgewerkt`,
@@ -496,7 +519,7 @@ async function main() {
       log(`  ${c.teal}update${c.reset}               alles bijwerken + nieuwe componenten erbij`);
       log(`  ${c.teal}list${c.reset}                 toont alle beschikbare componenten`);
       log();
-      log(`${c.dim}Opties: --force  --yes  --dry-run  --only-installed  --registry <pad|url>${c.reset}`);
+      log(`${c.dim}Opties: --force  --yes  --dry-run  --only-installed  --with-extras  --registry <pad|url>${c.reset}`);
       log();
       return undefined;
   }

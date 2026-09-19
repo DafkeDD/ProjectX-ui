@@ -76,3 +76,6 @@
 @import "../components/voice-button.css";
 @import "../components/week-schedule.css";
 @import "../components/workspace.css";
+
+/* Optionele motion-laag: puur CSS, werkt ook zonder de motion-package. */
+@import "../motion/motion.css";

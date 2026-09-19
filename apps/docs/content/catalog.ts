@@ -20,6 +20,8 @@ export interface ComponentEntry {
   files: string[];
   /** Andere componenten die mee gekopieerd worden. */
   dependsOn?: string[];
+  /** npm-packages die dit component nodig heeft. Alleen de motion-laag gebruikt dit. */
+  requires?: string[];
   demos: DemoEntry[];
   /** Namen van interfaces waarvan de props-tabel getoond wordt. */
   props?: string[];
@@ -39,6 +41,7 @@ export const CATEGORIES = [
   "Data",
   "Feedback",
   "Layout",
+  "Motion",
 ] as const;
 
 /*
@@ -825,6 +828,50 @@ export const COMPONENTS: ComponentEntry[] = [
       "Plaats ThemeScript in je head zodat het opgeslagen thema al vóór de eerste paint staat — geen witte flits bij het laden.",
       "De dichtheid staat in één token: --density. Elke hoogte en padding in de library is calc(Npx * var(--density)), dus compact en ruim werken meteen door in alle componenten.",
     ],
+  },
+  {
+    slug: "motion-drawer",
+    name: "MotionDrawerContent",
+    description: "Drawer met veerbeweging, uitgaande animatie en wegvegen om te sluiten.",
+    category: "Motion",
+    files: ["../motion/motion-drawer.tsx", "../motion/motion.css"],
+    dependsOn: ["drawer", "button"],
+    requires: ["motion"],
+    demos: [{ key: "motiondrawer-basic", title: "Sheet met veeg", description: "Sleep het paneel opzij of aan het greepje naar beneden." }],
+    props: ["MotionDrawerContentProps"],
+    notes: [
+      "Vervangt alleen DrawerContent. Drawer, DrawerHeader, DrawerBody en DrawerFooter blijven dezelfde.",
+      "Respecteert prefers-reduced-motion: dan vervaagt het paneel in plaats van te schuiven en staat slepen uit.",
+    ],
+    isNew: true,
+  },
+  {
+    slug: "reorder-list",
+    name: "ReorderList",
+    description: "Lijst waarvan je de volgorde sleept, met of zonder greepje.",
+    category: "Motion",
+    files: ["../motion/reorder-list.tsx", "../motion/motion.css"],
+    requires: ["motion"],
+    demos: [{ key: "reorder-basic", title: "Taken herschikken", description: "Sleep een rij naar boven of beneden; de rest schuift mee.", align: "block" }],
+    props: ["ReorderListProps", "ReorderListItemProps"],
+    notes: [
+      "Elke waarde in values moet uniek zijn; motion gebruikt ze als identiteit.",
+      "Met handle sleep je alleen aan het greepje, zodat knoppen in de rij klikbaar blijven.",
+    ],
+    isNew: true,
+  },
+  {
+    slug: "motion-segmented",
+    name: "MotionSegmented",
+    description: "Segmented waarbij de actieve achtergrond meeschuift in plaats van verspringt.",
+    category: "Motion",
+    files: ["../motion/motion-segmented.tsx", "../motion/motion.css"],
+    dependsOn: ["segmented"],
+    requires: ["motion"],
+    demos: [{ key: "motionsegmented-basic", title: "Meeschuivende indicator", description: "Zelfde API als Segmented." }],
+    props: ["MotionSegmentedProps"],
+    notes: ["Dezelfde props als Segmented; layoutId alleen nodig als er meerdere naast elkaar staan."],
+    isNew: true,
   },
 ];
 

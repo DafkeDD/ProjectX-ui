@@ -34,7 +34,9 @@ function parseCatalog() {
     const category = block.match(/category:\s*"([^"]*)"/)?.[1] ?? "";
     const files = [...(block.match(/files:\s*\[([^\]]*)\]/)?.[1] ?? "").matchAll(/"([^"]+)"/g)].map((m) => m[1]);
     const dependsOn = [...(block.match(/dependsOn:\s*\[([^\]]*)\]/)?.[1] ?? "").matchAll(/"([^"]+)"/g)].map((m) => m[1]);
-    entries.push({ slug, name, description, category, files, dependsOn });
+    // npm-packages die dit component nodig heeft (alleen de motion-laag).
+    const requires = [...(block.match(/requires:\s*\[([^\]]*)\]/)?.[1] ?? "").matchAll(/"([^"]+)"/g)].map((m) => m[1]);
+    entries.push({ slug, name, description, category, files, dependsOn, requires });
   }
   return entries;
 }
@@ -46,7 +48,7 @@ const components = parseCatalog();
 /* ------------------------------------------------------------------ */
 function collectSourceFiles() {
   const files = [];
-  for (const dir of ["components", "lib", "icons"]) {
+  for (const dir of ["components", "lib", "icons", "motion"]) {
     const full = join(uiSrc, dir);
     if (!existsSync(full)) continue;
     for (const file of readdirSync(full)) {
@@ -213,6 +215,7 @@ for (const entry of components) {
     description: entry.description,
     category: entry.category,
     dependencies: entry.dependsOn,
+    requires: entry.requires,
     files,
   };
   writeFileSync(join(registryDir, "components", `${entry.slug}.json`), `${JSON.stringify(payload, null, 2)}\n`);
@@ -222,6 +225,7 @@ for (const entry of components) {
     description: entry.description,
     category: entry.category,
     dependencies: entry.dependsOn,
+    requires: entry.requires,
     files: files.map((file) => file.path),
   });
 }

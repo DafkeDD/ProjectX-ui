@@ -22,6 +22,7 @@ const CATEGORY_KEYS: Record<string, string> = {
   Data: "data",
   Feedback: "feedback",
   Layout: "layout",
+  Motion: "motion",
 };
 
 export function DocsNav({ open }: { open?: boolean }) {
