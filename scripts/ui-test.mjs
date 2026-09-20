@@ -71,6 +71,7 @@ async function wachtOpServer(basis) {
 /* Controles                                                           */
 /* ------------------------------------------------------------------ */
 const resultaten = [];
+const fouten = [];
 const wacht = (ms) => new Promise((klaar) => setTimeout(klaar, ms));
 
 function check(naam, geslaagd, extra = "") {
@@ -319,6 +320,17 @@ async function testAlles(page, basis) {
   }
 
 
+  // Componenten die met de klok of met toeval werken, renderen op de server iets
+  // anders dan in de browser als je niet oppast. React klaagt dan over hydratie.
+  console.log("\nHydratie");
+  for (const slug of ["countdown", "week-schedule", "swimlanes", "calendar", "date-picker", "confetti"]) {
+    const voor = fouten.length;
+    await ga(`/docs/componenten/${slug}`);
+    await wacht(700);
+    const nieuw = fouten.slice(voor);
+    check(`${slug} hydrateert zonder klacht`, nieuw.length === 0, nieuw[0]?.slice(0, 70) ?? "");
+  }
+
   console.log("\nQrCode");
   await ga("/docs/componenten/qr-code");
   {
@@ -378,11 +390,16 @@ const browser = await puppeteer.launch({
 });
 
 const page = await browser.newPage();
-const fouten = [];
 page.on("pageerror", (error) => fouten.push(String(error)));
 page.on("console", (bericht) => {
+  const tekst = bericht.text();
   // De 404 op favicon.ico hoort niet bij de componenten.
-  if (bericht.type() === "error" && !bericht.text().includes("404")) fouten.push(bericht.text());
+  const telt =
+    (bericht.type() === "error" && !tekst.includes("404")) ||
+    tekst.includes("Hydration failed") ||
+    tekst.includes("hydrated but some attributes") ||
+    tekst.includes("did not match");
+  if (telt) fouten.push(tekst);
 });
 
 let afgebroken = null;

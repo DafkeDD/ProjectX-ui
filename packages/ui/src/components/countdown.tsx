@@ -1,6 +1,7 @@
 "use client";
 import * as React from "react";
 import { cn } from "../lib/cn";
+import { useMounted } from "../lib/hooks";
 
 export interface CountdownProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Moment waarnaar afgeteld wordt. */
@@ -33,6 +34,10 @@ export const Countdown = React.forwardRef<HTMLDivElement, CountdownProps>(functi
   ref
 ) {
   const doel = React.useMemo(() => new Date(to).getTime(), [to]);
+  // De server weet niet hoe laat het in de browser is. Tot de eerste render in
+  // de browser voorbij is tonen we streepjes; anders verschilt de HTML van de
+  // server van die van de client en klaagt React over hydratie.
+  const gemonteerd = useMounted();
   const [tijd, setTijd] = React.useState(() => resterend(doel));
   const gemeld = React.useRef(false);
 
@@ -52,7 +57,7 @@ export const Countdown = React.forwardRef<HTMLDivElement, CountdownProps>(functi
   }, [doel, onComplete]);
 
   const delen = [
-    ...(showDays && tijd.d > 0 ? [{ waarde: tijd.d, label: labels.days }] : []),
+    ...(showDays && (!gemonteerd || tijd.d > 0) ? [{ waarde: tijd.d, label: labels.days }] : []),
     { waarde: tijd.u, label: labels.hours },
     { waarde: tijd.m, label: labels.minutes },
     { waarde: tijd.s, label: labels.seconds },
@@ -62,7 +67,7 @@ export const Countdown = React.forwardRef<HTMLDivElement, CountdownProps>(functi
     <div
       ref={ref}
       role="timer"
-      data-done={tijd.klaar ? "" : undefined}
+      data-done={gemonteerd && tijd.klaar ? "" : undefined}
       className={cn("pxui-countdown", compact && "pxui-countdown-compact", className)}
       {...rest}
     >
@@ -70,7 +75,9 @@ export const Countdown = React.forwardRef<HTMLDivElement, CountdownProps>(functi
         <React.Fragment key={deel.label}>
           {compact && index > 0 && <span className="pxui-countdown-dubbelepunt">:</span>}
           <span className="pxui-countdown-deel">
-            <span className="pxui-countdown-getal">{String(deel.waarde).padStart(2, "0")}</span>
+            <span className="pxui-countdown-getal">
+              {gemonteerd ? String(deel.waarde).padStart(2, "0") : "--"}
+            </span>
             {!compact && <span className="pxui-countdown-label">{deel.label}</span>}
           </span>
         </React.Fragment>

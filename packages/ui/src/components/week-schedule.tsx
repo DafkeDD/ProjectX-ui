@@ -1,6 +1,7 @@
 "use client";
 import * as React from "react";
 import { cn } from "../lib/cn";
+import { useMounted } from "../lib/hooks";
 import { formatTime } from "../lib/date";
 
 import {
@@ -118,6 +119,10 @@ export const WeekSchedule = React.forwardRef<HTMLDivElement, WeekScheduleProps>(
     return () => window.clearInterval(timer);
   }, [now, nowIndicator]);
 
+  // Zonder vaste now-prop kent de server de klok van de bezoeker niet; de
+  // lijn verschijnt daarom pas na de eerste render in de browser.
+  const gemonteerd = useMounted();
+  const toonNu = now != null || gemonteerd;
   const currentMinutes = now ?? clock;
   const hours = Array.from({ length: endHour - startHour + 1 }, (_, index) => startHour + index);
 
@@ -338,7 +343,7 @@ export const WeekSchedule = React.forwardRef<HTMLDivElement, WeekScheduleProps>(
                   )}
 
                   {/* Nu-lijn */}
-                  {nowIndicator && day.today && currentMinutes >= dayStart && currentMinutes <= dayEnd && (
+                  {nowIndicator && toonNu && day.today && currentMinutes >= dayStart && currentMinutes <= dayEnd && (
                     <div className="pxui-schedule-now" style={{ top: toOffset(currentMinutes) }}>
                       <span className="pxui-schedule-now-dot" />
                     </div>

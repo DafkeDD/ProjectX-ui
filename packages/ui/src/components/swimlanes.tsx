@@ -1,6 +1,7 @@
 "use client";
 import * as React from "react";
 import { cn } from "../lib/cn";
+import { useMounted } from "../lib/hooks";
 import { formatTime } from "../lib/date";
 import {
   type ScheduleEvent,
@@ -77,6 +78,10 @@ export const Swimlanes = React.forwardRef<HTMLDivElement, SwimlanesProps>(functi
     const timer = window.setInterval(() => setClock(nowMinutes()), 60_000);
     return () => window.clearInterval(timer);
   }, [now, nowIndicator]);
+  // Zonder vaste now-prop kent de server de klok van de bezoeker niet; de
+  // lijn verschijnt daarom pas na de eerste render in de browser.
+  const gemonteerd = useMounted();
+  const toonNu = now != null || gemonteerd;
   const currentMinutes = now ?? clock;
 
   const byResource = React.useMemo(() => groupByResource(events, resources), [events, resources]);
@@ -202,7 +207,7 @@ export const Swimlanes = React.forwardRef<HTMLDivElement, SwimlanesProps>(functi
                     );
                   })}
 
-                  {nowIndicator && currentMinutes >= dayStart && currentMinutes <= dayEnd && (
+                  {nowIndicator && toonNu && currentMinutes >= dayStart && currentMinutes <= dayEnd && (
                     <div
                       className="pxui-swim-now"
                       style={{ left: (currentMinutes - dayStart) * pxPerMinute }}
