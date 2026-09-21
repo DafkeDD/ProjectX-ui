@@ -6373,6 +6373,108 @@
       }
     ]
   },
+  "AddToCartButtonProps": {
+    "extends": "Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, \"onClick\" | \"children\">",
+    "props": [
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "",
+        "default": "\"In het mandje\""
+      },
+      {
+        "name": "count",
+        "required": false,
+        "type": "number",
+        "description": "Aantal in het mandje; laat weg voor een eigen telling."
+      },
+      {
+        "name": "defaultCount",
+        "required": false,
+        "type": "number",
+        "description": "",
+        "default": "0"
+      },
+      {
+        "name": "onCountChange",
+        "required": false,
+        "type": "(count: number) => void",
+        "description": ""
+      },
+      {
+        "name": "hint",
+        "required": false,
+        "type": "string | null",
+        "description": "Regel onder de knop; `{count}` wordt vervangen. Zet op null om ze weg te laten.",
+        "default": "\"{count} in je mandje\""
+      },
+      {
+        "name": "onAdd",
+        "required": false,
+        "type": "() => boolean | void | Promise<boolean | void>",
+        "description": "Legt het artikel echt in het mandje; `false` of een fout laat de telling ongemoeid."
+      },
+      {
+        "name": "block",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
+  "DeleteButtonProps": {
+    "extends": "Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, \"onClick\" | \"children\">",
+    "props": [
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "",
+        "default": "\"Verwijderen\""
+      },
+      {
+        "name": "deletedLabel",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "",
+        "default": "\"Verwijderd\""
+      },
+      {
+        "name": "errorLabel",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "",
+        "default": "\"Niet gelukt\""
+      },
+      {
+        "name": "onDelete",
+        "required": false,
+        "type": "() => boolean | void | Promise<boolean | void>",
+        "description": "Verwijdert echt; `false` of een fout toont de foutstatus."
+      },
+      {
+        "name": "onDeleted",
+        "required": false,
+        "type": "() => void",
+        "description": ""
+      },
+      {
+        "name": "resetAfter",
+        "required": false,
+        "type": "number | false",
+        "description": "",
+        "default": "2400"
+      },
+      {
+        "name": "tone",
+        "required": false,
+        "type": "\"solid\" | \"soft\"",
+        "description": "Zachte variant: rode tint in plaats van een volle rode knop.",
+        "default": "\"solid\""
+      }
+    ]
+  },
   "MotionDrawerContentProps": {
     "extends": "ZonderBotsingen",
     "props": [
@@ -6427,6 +6529,476 @@
         "type": "string",
         "description": "Eigen id wanneer er meerdere schakelaars naast elkaar staan.",
         "default": "\"pxui-segmented-indicator\""
+      }
+    ]
+  },
+  "OrderButtonProps": {
+    "extends": "Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, \"onClick\" | \"children\">",
+    "props": [
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "",
+        "default": "\"Nu bestellen\""
+      },
+      {
+        "name": "orderedLabel",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Tekst na een geslaagde bestelling.",
+        "default": "\"Besteld\""
+      },
+      {
+        "name": "errorLabel",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "",
+        "default": "\"Niet gelukt\""
+      },
+      {
+        "name": "onOrder",
+        "required": false,
+        "type": "() => boolean | void | Promise<boolean | void>",
+        "description": "Plaatst de bestelling; `false` of een fout toont de foutstatus."
+      },
+      {
+        "name": "onOrdered",
+        "required": false,
+        "type": "() => void",
+        "description": ""
+      },
+      {
+        "name": "resetAfter",
+        "required": false,
+        "type": "number | false",
+        "description": "",
+        "default": "3200"
+      },
+      {
+        "name": "block",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
+  "OtpVerificationTexts": {
+    "extends": "",
+    "props": [
+      {
+        "name": "title",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "description",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "successTitle",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "successDescription",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "error",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": "Melding onder de vakjes wanneer de code niet klopt."
+      },
+      {
+        "name": "resendPrompt",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "resendLabel",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "resendIn",
+        "required": true,
+        "type": "string",
+        "description": "`{time}` wordt vervangen door de resterende tijd, bv. 00:39."
+      },
+      {
+        "name": "secure",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "action",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": "Knop: klaar om te controleren.",
+        "default": "false"
+      },
+      {
+        "name": "actionBusy",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": "Knop: aan het controleren."
+      },
+      {
+        "name": "actionDone",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": "Knop: gelukt."
+      }
+    ]
+  },
+  "OtpVerificationProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"onChange\" | \"title\" | \"defaultValue\">",
+    "props": [
+      {
+        "name": "length",
+        "required": false,
+        "type": "number",
+        "description": "Aantal cijfers.",
+        "default": "4"
+      },
+      {
+        "name": "variant",
+        "required": false,
+        "type": "OtpVerificationVariant",
+        "description": "Choreografie van de controle.",
+        "default": "\"grid\""
+      },
+      {
+        "name": "value",
+        "required": false,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "defaultValue",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"\""
+      },
+      {
+        "name": "onValueChange",
+        "required": false,
+        "type": "(value: string) => void",
+        "description": ""
+      },
+      {
+        "name": "onVerify",
+        "required": false,
+        "type": "(code: string) => boolean | void | Promise<boolean | void>",
+        "description": "Controleert de code zodra alle cijfers ingevuld zijn. Geef `false` terug of gooi een fout voor de foutstatus; alles anders geldt als goed. Mag async zijn: de animatie loopt ondertussen door."
+      },
+      {
+        "name": "onVerified",
+        "required": false,
+        "type": "(code: string) => void",
+        "description": "Wordt aangeroepen zodra de code aanvaard is."
+      },
+      {
+        "name": "onResend",
+        "required": false,
+        "type": "() => void",
+        "description": "Toont de \"opnieuw sturen\"-regel onderaan."
+      },
+      {
+        "name": "resendAfter",
+        "required": false,
+        "type": "number",
+        "description": "Aantal seconden voor \"opnieuw sturen\" weer mag; 0 toont meteen de knop.",
+        "default": "0"
+      },
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode | null",
+        "description": "Icoontje boven de titel; `null` laat het weg."
+      },
+      {
+        "name": "action",
+        "required": false,
+        "type": "boolean",
+        "description": "Knop onder de vakjes, met een eigen staat per fase.",
+        "default": "false"
+      },
+      {
+        "name": "texts",
+        "required": false,
+        "type": "Partial<OtpVerificationTexts>",
+        "description": "Eigen teksten; alles is optioneel."
+      },
+      {
+        "name": "demoCode",
+        "required": false,
+        "type": "string",
+        "description": "Demo: typt deze code vanzelf in, zodat je de animatie ziet."
+      },
+      {
+        "name": "autoPlay",
+        "required": false,
+        "type": "boolean",
+        "description": "Start de demo bij het monteren.",
+        "default": "false"
+      },
+      {
+        "name": "loop",
+        "required": false,
+        "type": "boolean",
+        "description": "Herhaalt de demo na de succesanimatie.",
+        "default": "false"
+      },
+      {
+        "name": "handle",
+        "required": false,
+        "type": "boolean",
+        "description": "Greepje bovenaan, zoals bij een bottom sheet.",
+        "default": "false"
+      },
+      {
+        "name": "celebrate",
+        "required": false,
+        "type": "boolean",
+        "description": "Feest bij succes: snippers (\"grid\") of uitdijende ringen (\"orbit\").",
+        "default": "true"
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
+  "PaymentValues": {
+    "extends": "",
+    "props": [
+      {
+        "name": "name",
+        "required": true,
+        "type": "string",
+        "description": "Naam zoals op de kaart.",
+        "default": "\"arrowRight\""
+      },
+      {
+        "name": "number",
+        "required": true,
+        "type": "string",
+        "description": "Kaartnummer, cijfers zonder spaties."
+      },
+      {
+        "name": "expiry",
+        "required": true,
+        "type": "string",
+        "description": "Vervaldatum als MMJJ."
+      },
+      {
+        "name": "cvc",
+        "required": true,
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  "PaymentCheckoutTexts": {
+    "extends": "",
+    "props": [
+      {
+        "name": "title",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "description",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "name",
+        "required": true,
+        "type": "string",
+        "description": "",
+        "default": "\"arrowRight\""
+      },
+      {
+        "name": "number",
+        "required": true,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "expiry",
+        "required": true,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "cvc",
+        "required": true,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "amount",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "pay",
+        "required": true,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "processing",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "successTitle",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "successDescription",
+        "required": true,
+        "type": "string",
+        "description": "`{amount}` wordt vervangen door het bedrag."
+      },
+      {
+        "name": "errorTitle",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "errorDescription",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "retry",
+        "required": true,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "cardHolder",
+        "required": true,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "cardExpiry",
+        "required": true,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "cardCvc",
+        "required": true,
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  "PaymentCheckoutProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"onChange\" | \"onSubmit\" | \"title\" | \"defaultValue\">",
+    "props": [
+      {
+        "name": "amount",
+        "required": true,
+        "type": "number",
+        "description": "Bedrag in de kleinste eenheid van je munt, of gewoon in euro's."
+      },
+      {
+        "name": "currency",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"EUR\""
+      },
+      {
+        "name": "locale",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"nl-BE\""
+      },
+      {
+        "name": "defaultValues",
+        "required": false,
+        "type": "Partial<PaymentValues>",
+        "description": ""
+      },
+      {
+        "name": "onValuesChange",
+        "required": false,
+        "type": "(values: PaymentValues) => void",
+        "description": ""
+      },
+      {
+        "name": "onPay",
+        "required": false,
+        "type": "(values: PaymentValues) => boolean | void | Promise<boolean | void>",
+        "description": "Voert de betaling uit. `false` of een fout toont de foutstatus."
+      },
+      {
+        "name": "onPaid",
+        "required": false,
+        "type": "(values: PaymentValues) => void",
+        "description": ""
+      },
+      {
+        "name": "demoDuration",
+        "required": false,
+        "type": "number",
+        "description": "Zonder onPay: hoelang het \"verwerken\" duurt, in ms.",
+        "default": "2400"
+      },
+      {
+        "name": "demoValues",
+        "required": false,
+        "type": "Partial<PaymentValues>",
+        "description": "Demo: vult deze gegevens vanzelf in, teken per teken."
+      },
+      {
+        "name": "autoPlay",
+        "required": false,
+        "type": "boolean",
+        "description": "",
+        "default": "false"
+      },
+      {
+        "name": "texts",
+        "required": false,
+        "type": "Partial<PaymentCheckoutTexts>",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
       }
     ]
   },
@@ -6485,6 +7057,255 @@
         "name": "children",
         "required": false,
         "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
+  "SendButtonProps": {
+    "extends": "Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, \"onClick\" | \"children\">",
+    "props": [
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "",
+        "default": "\"Versturen\""
+      },
+      {
+        "name": "sentLabel",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Tekst nadat het gelukt is.",
+        "default": "\"Verzonden\""
+      },
+      {
+        "name": "errorLabel",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Tekst wanneer het misliep.",
+        "default": "\"Niet gelukt\""
+      },
+      {
+        "name": "onSend",
+        "required": false,
+        "type": "() => boolean | void | Promise<boolean | void>",
+        "description": "Verstuurt echt iets; `false` of een fout toont de foutstatus."
+      },
+      {
+        "name": "onSent",
+        "required": false,
+        "type": "() => void",
+        "description": ""
+      },
+      {
+        "name": "resetAfter",
+        "required": false,
+        "type": "number | false",
+        "description": "Terug naar het begin na zoveel ms; `false` blijft op \"verzonden\" staan.",
+        "default": "2600"
+      }
+    ]
+  },
+  "ShareChannel": {
+    "extends": "",
+    "props": [
+      {
+        "name": "id",
+        "required": true,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "label",
+        "required": true,
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "href",
+        "required": false,
+        "type": "string",
+        "description": "Sjabloon met `{url}`; wordt in een nieuw venster geopend."
+      },
+      {
+        "name": "onSelect",
+        "required": false,
+        "type": "(url: string) => boolean | void",
+        "description": "Eigen afhandeling in plaats van href; `false` slaat het kopiëren over."
+      },
+      {
+        "name": "tone",
+        "required": false,
+        "type": "string",
+        "description": "Kleur van het icoon, bv. var(--green)."
+      }
+    ]
+  },
+  "ShareButtonProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"onSelect\" | \"children\">",
+    "props": [
+      {
+        "name": "url",
+        "required": true,
+        "type": "string",
+        "description": "Wat gedeeld wordt."
+      },
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "",
+        "default": "\"Delen\""
+      },
+      {
+        "name": "channels",
+        "required": false,
+        "type": "ShareChannel[]",
+        "description": ""
+      },
+      {
+        "name": "texts",
+        "required": false,
+        "type": "{ pick?: React.ReactNode; copying?: React.ReactNode; copied?: React.ReactNode; close?: string }",
+        "description": ""
+      },
+      {
+        "name": "onShare",
+        "required": false,
+        "type": "(channel: ShareChannel) => void",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
+  "UploadButtonTexts": {
+    "extends": "",
+    "props": [
+      {
+        "name": "placeholder",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": "Tekst in het veld zolang er geen bestand gekozen is."
+      },
+      {
+        "name": "upload",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "uploading",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "done",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "error",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      }
+    ]
+  },
+  "UploadButtonProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"onChange\" | \"onProgress\">",
+    "props": [
+      {
+        "name": "accept",
+        "required": false,
+        "type": "string",
+        "description": "Welke bestanden mogen; gaat rechtstreeks naar het invoerveld."
+      },
+      {
+        "name": "onUpload",
+        "required": false,
+        "type": "(file: File, voortgang: (deel: number) => void) => boolean | void | Promise<boolean | void>",
+        "description": "Doet het echte werk. Roep `voortgang(0…1)` aan om de balk te vullen. Geef `false` terug of gooi een fout voor de foutstatus."
+      },
+      {
+        "name": "onUploaded",
+        "required": false,
+        "type": "(file: File) => void",
+        "description": ""
+      },
+      {
+        "name": "onFileChange",
+        "required": false,
+        "type": "(file: File | null) => void",
+        "description": ""
+      },
+      {
+        "name": "demoDuration",
+        "required": false,
+        "type": "number",
+        "description": "Zonder onUpload: hoelang de nep-upload duurt, in ms.",
+        "default": "2600"
+      },
+      {
+        "name": "resetAfter",
+        "required": false,
+        "type": "number | false",
+        "description": "Springt na zoveel ms terug naar het begin; `false` blijft op \"klaar\" staan.",
+        "default": "2600"
+      },
+      {
+        "name": "texts",
+        "required": false,
+        "type": "Partial<UploadButtonTexts>",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
+  "UseActionOptions": {
+    "extends": "",
+    "props": [
+      {
+        "name": "onAction",
+        "required": false,
+        "type": "() => boolean | void | Promise<boolean | void>",
+        "description": "Het echte werk. `false` of een fout geeft de foutstatus."
+      },
+      {
+        "name": "duration",
+        "required": false,
+        "type": "number",
+        "description": "Minimale duur van de animatie in ms; een snelle backend wacht hierop.",
+        "default": "900"
+      },
+      {
+        "name": "resetAfter",
+        "required": false,
+        "type": "number | false",
+        "description": "Terug naar het begin na zoveel ms; `false` blijft op het resultaat staan.",
+        "default": "2400"
+      },
+      {
+        "name": "onDone",
+        "required": false,
+        "type": "() => void",
         "description": ""
       }
     ]

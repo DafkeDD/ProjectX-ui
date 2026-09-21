@@ -53,3 +53,432 @@
 .pxui-motion-segmented .pxui-segmented-item > *:not(.pxui-motion-segmented-indicator) {
   position: relative; z-index: 1;
 }
+
+/* ---------- OtpVerification ---------- */
+.pxui-otpv {
+  position: relative; width: 100%; max-width: 330px;
+  padding: calc(16px * var(--density)) 24px calc(24px * var(--density));
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-2xl); box-shadow: var(--sh-lg);
+  overflow: hidden; text-align: center;
+}
+.pxui-otpv-handle {
+  display: block; width: 40px; height: 4px; margin: 0 auto 16px;
+  border-radius: var(--r-full); background: var(--border-strong);
+}
+
+.pxui-otpv-head { position: relative; height: 78px; }
+.pxui-otpv-head-layer { position: absolute; inset-inline: 0; top: 0; }
+.pxui-otpv-title { font-size: var(--fs-lg); font-weight: 650; letter-spacing: -0.01em; color: var(--text); }
+.pxui-otpv-title-ok { color: var(--green); }
+.pxui-otpv-text { margin-top: 8px; font-size: var(--fs-sm); line-height: 1.5; color: var(--text-3); }
+
+.pxui-otpv-stage { position: relative; height: 150px; }
+.pxui-otpv-anchor { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
+
+.pxui-otpv-links { position: absolute; left: 50%; top: 50%; overflow: visible; transform: translate(-50%, -50%); }
+.pxui-otpv-links path {
+  fill: none; stroke-width: 1.5; stroke-linecap: round;
+  stroke: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.pxui-otpv-box {
+  position: absolute; left: 0; top: 0; display: grid; place-items: center;
+  border: 1px solid var(--border-strong); border-radius: var(--r-lg);
+  background: var(--surface-2);
+  font-size: 22px; font-weight: 550; color: var(--text);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+              background var(--dur) var(--ease);
+}
+.pxui-otpv-box[data-active] {
+  border-color: var(--accent);
+  box-shadow: 0 0 22px -2px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+.pxui-otpv-box[data-state="checking"] { border-color: color-mix(in srgb, var(--accent) 70%, transparent); }
+.pxui-otpv-box[data-state="error"] { border-color: var(--red); background: var(--red-tint); }
+.pxui-otpv-caret {
+  width: 2px; height: 24px; border-radius: var(--r-full); background: var(--text-2);
+  animation: pxui-otpv-caret 1s steps(1, end) infinite;
+}
+@keyframes pxui-otpv-caret { 0%, 45% { opacity: 1; } 50%, 100% { opacity: 0; } }
+
+.pxui-otpv-badge {
+  position: absolute; left: 0; top: 0; display: grid; place-items: center;
+  border: 1px solid var(--green); border-radius: var(--r-lg);
+  background: color-mix(in srgb, var(--green) 12%, transparent);
+}
+.pxui-otpv-badge path {
+  fill: none; stroke: var(--green); stroke-width: 2.4;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+.pxui-otpv-burst { position: absolute; left: 0; top: 0; pointer-events: none; }
+.pxui-otpv-burst i { position: absolute; left: 0; top: 0; display: block; background: var(--green); }
+
+.pxui-otpv-input {
+  position: absolute; inset-inline: 0; top: 50%; height: 64px;
+  transform: translateY(-50%);
+  border: 0; background: transparent; color: transparent; caret-color: transparent;
+  opacity: 0; outline: none; cursor: text; font: inherit;
+}
+.pxui-otpv-input:disabled { cursor: default; }
+
+.pxui-otpv-foot { position: relative; height: 22px; font-size: var(--fs-sm); }
+.pxui-otpv-foot > * { position: absolute; inset-inline: 0; top: 0; }
+.pxui-otpv-resend { color: var(--text-3); }
+.pxui-otpv-resend button {
+  border: 0; background: none; padding: 0; font: inherit; font-weight: 650;
+  color: var(--text); cursor: pointer; text-underline-offset: 3px;
+}
+.pxui-otpv-resend button:hover:not(:disabled) { text-decoration: underline; }
+.pxui-otpv-resend button:focus-visible { outline: none; box-shadow: var(--ring); border-radius: var(--r-xs); }
+.pxui-otpv-error { color: var(--red); font-weight: 600; line-height: 1.4; }
+.pxui-otpv-secure {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  color: var(--green); font-weight: 600;
+}
+
+/* ---------- OtpVerification: variant "orbit" en de extra's ---------- */
+.pxui-otpv[data-variant="orbit"] .pxui-otpv-stage { height: 186px; }
+.pxui-otpv-orbit { position: absolute; left: 0; top: 0; width: 0; height: 0; }
+
+.pxui-otpv-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(70% 55% at 50% 62%, color-mix(in srgb, var(--green) 16%, transparent), transparent 70%);
+}
+
+.pxui-otpv-chip {
+  display: grid; place-items: center; width: 38px; height: 38px; margin: 0 auto 12px;
+  border: 1px solid var(--accent-border); border-radius: var(--r-full);
+  background: var(--accent-tint); color: var(--accent);
+  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.pxui-otpv-chip[data-ok] {
+  border-color: var(--green-border); background: var(--green-tint); color: var(--green);
+}
+
+/* Woord in de titel dat de accentkleur krijgt: <span className="pxui-otpv-accent">OTP</span> */
+.pxui-otpv-accent { color: var(--accent); }
+
+.pxui-otpv-rings { position: absolute; left: 0; top: 0; pointer-events: none; }
+.pxui-otpv-rings i {
+  position: absolute; left: 50%; top: 50%; display: block;
+  width: 96px; height: 96px; margin: -48px 0 0 -48px;
+  border: 1.5px solid var(--green); border-radius: var(--r-full);
+}
+
+.pxui-otpv-timer { color: var(--text-2); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+.pxui-otpv-cta {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; height: calc(44px * var(--density)); margin-top: 16px;
+  border: 1px solid transparent; border-radius: var(--r-md);
+  background: var(--accent); color: var(--accent-fg);
+  font: inherit; font-size: var(--fs-base); font-weight: 650; cursor: pointer;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease),
+              border-color var(--dur-fast) var(--ease), opacity var(--dur-fast) var(--ease);
+}
+.pxui-otpv-cta:hover:not(:disabled) { background: var(--accent-hover); }
+.pxui-otpv-cta:focus-visible { outline: none; box-shadow: var(--ring); }
+.pxui-otpv-cta:disabled { cursor: not-allowed; opacity: .55; }
+.pxui-otpv-cta[data-state="busy"] {
+  background: var(--surface-2); color: var(--text-2); border-color: var(--border-strong); opacity: 1;
+}
+.pxui-otpv-cta[data-state="done"] {
+  background: var(--green); color: var(--text-inv); opacity: 1; cursor: default;
+}
+.pxui-otpv-cta-spin {
+  width: 15px; height: 15px; flex: none; border-radius: var(--r-full);
+  border: 2px solid color-mix(in srgb, var(--text-3) 45%, transparent);
+  border-top-color: var(--accent);
+  animation: pxui-spin .7s linear infinite;
+}
+
+/* ---------- UploadButton ---------- */
+.pxui-upb {
+  position: relative; display: flex; align-items: center; gap: 6px;
+  width: 100%; max-width: 420px; padding: 5px;
+  border: 1px solid var(--border); border-radius: var(--r-full);
+  background: var(--surface-2); box-shadow: var(--sh-xs);
+}
+.pxui-upb-file { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+
+.pxui-upb-field {
+  display: flex; align-items: center; gap: 9px; flex: 1; min-width: 0;
+  height: calc(38px * var(--density)); padding: 0 14px;
+  border: 0; border-radius: var(--r-full);
+  background: var(--surface); color: var(--text-2);
+  font: inherit; font-size: var(--fs-base); text-align: left; cursor: pointer;
+  transition: color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+}
+.pxui-upb-field:hover:not(:disabled) { color: var(--text); }
+.pxui-upb-field:focus-visible { outline: none; box-shadow: var(--ring); }
+.pxui-upb-field:disabled { cursor: default; }
+.pxui-upb-field > svg { flex: none; color: var(--text-3); }
+.pxui-upb-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pxui-upb[data-stage="uploading"] .pxui-upb-field,
+.pxui-upb[data-stage="done"] .pxui-upb-field,
+.pxui-upb[data-stage="error"] .pxui-upb-field { opacity: 0; }
+
+.pxui-upb-action {
+  position: relative; display: inline-flex; align-items: center; justify-content: center;
+  flex: none; height: calc(38px * var(--density)); padding: 0 18px;
+  border: 0; border-radius: var(--r-full); overflow: hidden;
+  background: var(--accent); color: var(--accent-fg);
+  font: inherit; font-size: var(--fs-base); font-weight: 650; white-space: nowrap; cursor: pointer;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.pxui-upb-action:hover:not(:disabled) { background: var(--accent-hover); }
+.pxui-upb-action:focus-visible { outline: none; box-shadow: var(--ring); }
+.pxui-upb-action:disabled { cursor: default; }
+.pxui-upb-action[data-state="idle"]:disabled { opacity: .55; }
+.pxui-upb-action[data-state="uploading"] { cursor: progress; }
+.pxui-upb-action[data-state="done"] { background: var(--text); color: var(--surface); }
+.pxui-upb-action[data-state="error"] { background: var(--red); color: var(--text-inv); cursor: pointer; }
+
+/* De voortgang vult de knop van links naar rechts. */
+.pxui-upb-progress {
+  position: absolute; inset: 0; transform-origin: left center;
+  background: color-mix(in srgb, var(--text) 22%, transparent);
+}
+.pxui-upb-action[data-state="done"] .pxui-upb-progress { opacity: 0; }
+.pxui-upb-label {
+  position: relative; display: inline-flex; align-items: center; gap: 7px;
+}
+
+/* Zodra het uploaden begint, klapt de knop over het hele veld open. */
+.pxui-upb[data-stage="uploading"] .pxui-upb-action,
+.pxui-upb[data-stage="done"] .pxui-upb-action,
+.pxui-upb[data-stage="error"] .pxui-upb-action {
+  position: absolute; left: 5px; right: 5px; top: 5px; bottom: 5px;
+  height: auto; padding: 0 18px;
+}
+.pxui-upb[data-stage="uploading"],
+.pxui-upb[data-stage="done"],
+.pxui-upb[data-stage="error"] { background: var(--surface); }
+
+/* ---------- PaymentCheckout ---------- */
+.pxui-pay {
+  width: 100%; padding: calc(20px * var(--density)) 22px calc(22px * var(--density));
+  border: 1px solid var(--border); border-radius: var(--r-xl);
+  background: var(--surface); box-shadow: var(--sh-md);
+  container-type: inline-size;
+}
+.pxui-pay-grid {
+  display: grid; gap: 22px; align-items: start;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+}
+.pxui-pay-grid[data-collapsed] { grid-template-columns: minmax(0, 1fr); justify-items: center; }
+@container (max-width: 620px) {
+  .pxui-pay-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ---------- de kaart ---------- */
+.pxui-pay-cardwrap { position: relative; isolation: isolate; perspective: 1100px; width: 100%; max-width: 320px; }
+.pxui-pay-card {
+  position: relative; z-index: 1; width: 100%; aspect-ratio: 1.586;
+  transform-style: preserve-3d; will-change: transform;
+}
+.pxui-pay-face {
+  position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between;
+  padding: 18px 20px; border-radius: var(--r-lg);
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  background: linear-gradient(140deg,
+    color-mix(in srgb, var(--accent-active) 92%, #000) 0%,
+    color-mix(in srgb, var(--accent) 65%, #000) 55%,
+    color-mix(in srgb, var(--accent-active) 96%, #000) 100%);
+  color: var(--text-inv); box-shadow: var(--sh-lg);
+}
+[data-theme="dark"] .pxui-pay-face { color: #fff; }
+.pxui-pay-back { transform: rotateY(180deg); justify-content: flex-start; padding: 0; }
+
+.pxui-pay-row { display: flex; align-items: center; gap: 10px; }
+.pxui-pay-row-foot { justify-content: space-between; gap: 18px; }
+.pxui-pay-chip {
+  width: 34px; height: 25px; flex: none; border-radius: 5px;
+  background: linear-gradient(140deg, var(--amber), color-mix(in srgb, var(--amber) 55%, #fff));
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .18);
+}
+/* Het contactloos-teken: drie boogjes, getekend met randen. */
+.pxui-pay-wave {
+  width: 14px; height: 14px; flex: none; border-radius: var(--r-full);
+  border: 1.5px solid currentColor; border-left-color: transparent; border-bottom-color: transparent;
+  transform: rotate(-45deg); opacity: .8;
+}
+.pxui-pay-brandword {
+  margin-left: auto; font-size: 12px; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase; opacity: .9;
+}
+.pxui-pay-number {
+  font-family: var(--mono); font-size: clamp(15px, 4.6cqw, 19px); letter-spacing: .06em;
+  font-variant-numeric: tabular-nums;
+}
+.pxui-pay-cardlabel {
+  display: block; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; opacity: .65;
+}
+.pxui-pay-cardvalue {
+  display: block; margin-top: 3px; font-size: 12.5px; font-weight: 600;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px;
+}
+.pxui-pay-stripe { display: block; width: 100%; height: 42px; margin-top: 22px; background: rgba(0, 0, 0, .55); }
+.pxui-pay-cvcrow {
+  display: flex; align-items: center; justify-content: flex-end; gap: 10px;
+  margin: 18px 20px 0; padding: 8px 12px;
+  background: rgba(255, 255, 255, .85); border-radius: 5px; color: #14171d;
+}
+.pxui-pay-cvc { font-family: var(--mono); font-size: 14px; letter-spacing: .18em; }
+
+.pxui-pay-glow {
+  position: absolute; inset: -26%; z-index: 0; pointer-events: none; border-radius: var(--r-2xl);
+  background: radial-gradient(75% 75% at 50% 50%, color-mix(in srgb, var(--accent) 60%, transparent), transparent 72%);
+  filter: blur(26px);
+}
+.pxui-pay-glow[data-tone="ok"] {
+  background: radial-gradient(75% 75% at 50% 50%, color-mix(in srgb, var(--green) 62%, transparent), transparent 72%);
+}
+.pxui-pay-glow[data-tone="error"] {
+  background: radial-gradient(75% 75% at 50% 50%, color-mix(in srgb, var(--red) 55%, transparent), transparent 72%);
+}
+
+/* ---------- formulier ---------- */
+.pxui-pay-form { display: grid; gap: 12px; align-content: start; }
+.pxui-pay-head { margin-bottom: 2px; }
+.pxui-pay-title { font-size: var(--fs-lg); font-weight: 650; letter-spacing: -0.01em; color: var(--text); }
+.pxui-pay-text { margin-top: 4px; font-size: var(--fs-sm); color: var(--text-3); line-height: 1.5; }
+.pxui-pay-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pxui-pay-total {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding-top: 10px; margin-top: 2px; border-top: 1px solid var(--border);
+  font-size: var(--fs-sm); color: var(--text-3);
+}
+.pxui-pay-total strong { font-size: var(--fs-xl); font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
+
+/* ---------- status ---------- */
+.pxui-pay-status {
+  display: grid; justify-items: center; gap: 4px; margin-top: 20px;
+  font-size: var(--fs-sm); color: var(--text-2); text-align: center;
+}
+.pxui-pay-status strong { font-size: var(--fs-lg); font-weight: 650; color: var(--text); }
+.pxui-pay-status-ok strong { color: var(--green); }
+.pxui-pay-status-error strong { color: var(--red); }
+.pxui-pay-status-error .pxui-btn { margin-top: 10px; }
+.pxui-pay-spin {
+  width: 16px; height: 16px; border-radius: var(--r-full);
+  border: 2px solid color-mix(in srgb, var(--text-3) 40%, transparent);
+  border-top-color: var(--accent); animation: pxui-spin .7s linear infinite;
+}
+.pxui-pay-check {
+  display: grid; place-items: center; width: 40px; height: 40px; margin-bottom: 6px;
+  border: 1px solid var(--green-border); border-radius: var(--r-full); background: var(--green-tint);
+}
+.pxui-pay-check path { fill: none; stroke: var(--green); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ==================== Actieknoppen ==================== */
+/* Gedeelde basis: zelfde maten en tokens als Button, maar met eigen binnenwerk. */
+.pxui-sendb, .pxui-orderb, .pxui-cartb, .pxui-shareb-trigger, .pxui-delb {
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: calc(40px * var(--density)); padding: 0 18px; border: 1px solid transparent;
+  border-radius: var(--r-full); font: inherit; font-size: var(--fs-base); font-weight: 650;
+  white-space: nowrap; cursor: pointer; overflow: hidden;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease),
+              border-color var(--dur-fast) var(--ease);
+}
+.pxui-sendb:focus-visible, .pxui-orderb:focus-visible, .pxui-cartb:focus-visible,
+.pxui-shareb-trigger:focus-visible, .pxui-delb:focus-visible { outline: none; box-shadow: var(--ring); }
+.pxui-sendb:disabled, .pxui-orderb:disabled, .pxui-cartb:disabled, .pxui-delb:disabled { cursor: default; }
+
+/* ---------- SendButton ---------- */
+.pxui-sendb-wrap { position: relative; display: inline-flex; }
+.pxui-sendb { background: var(--accent); color: var(--accent-fg); }
+.pxui-sendb:hover:not(:disabled) { background: var(--accent-hover); }
+.pxui-sendb[data-state="done"] { background: var(--surface-3); color: var(--text-2); }
+.pxui-sendb[data-state="error"] { background: var(--red-tint); color: var(--red); border-color: var(--red-border); }
+.pxui-sendb-label { display: inline-flex; align-items: center; gap: 7px; }
+.pxui-sendb-plane {
+  position: absolute; left: 50%; top: 50%; margin: -11px 0 0 -11px;
+  color: var(--accent); pointer-events: none;
+}
+
+/* ---------- OrderButton ---------- */
+.pxui-orderb { background: var(--accent); color: var(--accent-fg); min-width: 170px; }
+.pxui-orderb:hover:not(:disabled) { background: var(--accent-hover); }
+.pxui-orderb-block { width: 100%; }
+.pxui-orderb[data-state="busy"] { background: var(--accent); }
+.pxui-orderb[data-state="done"] { background: var(--green-tint); color: var(--green); border-color: var(--green-border); }
+.pxui-orderb[data-state="error"] { background: var(--red-tint); color: var(--red); border-color: var(--red-border); }
+.pxui-orderb-label { display: inline-flex; align-items: center; gap: 8px; }
+.pxui-orderb-truck {
+  position: absolute; left: 50%; top: 50%; margin-top: -11px; margin-left: -11px;
+  display: inline-flex; align-items: center; color: var(--accent-fg); pointer-events: none;
+}
+.pxui-orderb-dust {
+  position: absolute; right: 100%; top: 60%; width: 26px; height: 2px; margin-right: 4px;
+  border-radius: var(--r-full);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent-fg) 55%, transparent));
+}
+
+/* ---------- AddToCartButton ---------- */
+.pxui-cartb-wrap { display: inline-grid; justify-items: center; gap: 8px; }
+.pxui-cartb-wrap-block { width: 100%; }
+.pxui-cartb {
+  background: var(--text); color: var(--surface);
+  letter-spacing: .06em; text-transform: uppercase; font-size: 13px;
+}
+.pxui-cartb:hover:not(:disabled) { background: color-mix(in srgb, var(--text) 88%, var(--accent)); }
+.pxui-cartb-block { width: 100%; }
+.pxui-cartb[data-state="busy"] { padding: 0; width: calc(56px * var(--density)); }
+.pxui-cartb-icon { display: inline-flex; }
+.pxui-cartb-label { display: inline-flex; }
+.pxui-cartb-item {
+  position: absolute; left: 50%; top: 0; width: 13px; height: 13px; margin-left: -6px;
+  border-radius: 3px; background: var(--amber); pointer-events: none;
+}
+.pxui-cartb-hint { font-size: var(--fs-sm); color: var(--text-3); display: inline-flex; gap: 5px; }
+.pxui-cartb-hint strong { color: var(--text); font-variant-numeric: tabular-nums; }
+
+/* ---------- ShareButton ---------- */
+.pxui-shareb { position: relative; display: inline-grid; place-items: center; min-height: calc(40px * var(--density)); }
+.pxui-shareb[data-open] { min-height: 190px; min-width: 240px; }
+.pxui-shareb-trigger {
+  background: var(--surface); color: var(--text);
+  border-color: var(--border-strong); box-shadow: var(--sh-xs);
+  letter-spacing: .08em; text-transform: uppercase; font-size: 12.5px;
+}
+.pxui-shareb-trigger:hover:not(:disabled) { background: var(--surface-hover); }
+.pxui-shareb-fan { position: relative; display: grid; place-items: center; width: 100%; height: 100%; }
+.pxui-shareb-channel {
+  position: absolute; display: grid; place-items: center;
+  width: 44px; height: 44px; border-radius: var(--r-full);
+  border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  cursor: pointer; box-shadow: var(--sh-sm);
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+.pxui-shareb-channel:hover { box-shadow: var(--sh-md); }
+.pxui-shareb-channel:focus-visible { outline: none; box-shadow: var(--ring); }
+.pxui-shareb-close {
+  position: relative; display: grid; place-items: center;
+  width: 44px; height: 44px; border-radius: var(--r-full);
+  border: 1px solid var(--border); background: var(--surface-3); color: var(--text-2); cursor: pointer;
+}
+.pxui-shareb-close:focus-visible { outline: none; box-shadow: var(--ring); }
+.pxui-shareb-hint {
+  position: absolute; top: calc(50% + 34px); left: 0; right: 0; text-align: center;
+  font-size: var(--fs-sm); color: var(--text-3);
+}
+
+/* ---------- DeleteButton ---------- */
+.pxui-delb-solid { background: var(--red); color: var(--text-inv); }
+.pxui-delb-solid:hover:not(:disabled) { filter: brightness(.94); }
+.pxui-delb-soft { background: var(--red-tint); color: var(--red); border-color: var(--red-border); }
+.pxui-delb-soft:hover:not(:disabled) { background: color-mix(in srgb, var(--red) 14%, transparent); }
+.pxui-delb[data-state="done"] { background: var(--surface-3); color: var(--text-2); border-color: var(--border); }
+.pxui-delb[data-state="busy"] { padding: 0; width: calc(46px * var(--density)); }
+.pxui-delb-bin { position: relative; display: inline-flex; z-index: 1; }
+.pxui-delb-lid {
+  position: absolute; left: 50%; top: -1px; width: 15px; height: 2px; margin-left: -7px;
+  border-radius: var(--r-full); background: currentColor; transform-origin: left center;
+}
+.pxui-delb-label { display: inline-block; transform-origin: left center; }
+/* Het dekseltje hoort niet bij het vinkje of het uitroepteken. */
+.pxui-delb[data-state="done"] .pxui-delb-lid,
+.pxui-delb[data-state="error"] .pxui-delb-lid { opacity: 0; }

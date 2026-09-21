@@ -243,3 +243,8 @@ zichtbare focus, licht + donker.
 
 Deze library is in acht stappen opgebouwd (zie `apps/docs/content/roadmap.ts` en de introductiepagina):
 fundament → formulieren & basis → navigatie & feedback → overlays → datum & planning → data & layout → extra's → CLI.
+
+## Labels per release
+
+`isNew` en `isUpdated` in `apps/docs/content/catalog.ts` horen bij één release, niet bij een component.
+Bij elke release: eerst alle vlaggen weghalen, daarna alleen de componenten van die release opnieuw labelen.

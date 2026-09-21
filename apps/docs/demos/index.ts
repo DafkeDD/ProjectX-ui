@@ -3,6 +3,7 @@
 import type { ComponentType } from "react";
 
 import AccordionBasic from "./accordion-basic";
+import AddtocartBasic from "./addtocart-basic";
 import AgendaViews from "./agenda-views";
 import AlertBasic from "./alert-basic";
 import AlertdialogBasic from "./alertdialog-basic";
@@ -37,6 +38,7 @@ import CopybuttonBasic from "./copybutton-basic";
 import CountdownBasic from "./countdown-basic";
 import DatapillBasic from "./datapill-basic";
 import DatepickerBasic from "./datepicker-basic";
+import DeletebuttonBasic from "./deletebutton-basic";
 import DensityBasic from "./density-basic";
 import DialogBasic from "./dialog-basic";
 import DialogForm from "./dialog-form";
@@ -62,8 +64,14 @@ import MockupBasic from "./mockup-basic";
 import ModalManagerBasic from "./modal-manager-basic";
 import MotiondrawerBasic from "./motiondrawer-basic";
 import MotionsegmentedBasic from "./motionsegmented-basic";
+import OrderbuttonBasic from "./orderbutton-basic";
 import OtpBasic from "./otp-basic";
+import OtpverificationBasic from "./otpverification-basic";
+import OtpverificationOrbit from "./otpverification-orbit";
+import OtpverificationVerify from "./otpverification-verify";
 import PaginationBasic from "./pagination-basic";
+import PaymentcheckoutBasic from "./paymentcheckout-basic";
+import PaymentcheckoutReal from "./paymentcheckout-real";
 import PeriodnavBasic from "./periodnav-basic";
 import PopoverBasic from "./popover-basic";
 import ProgressBasic from "./progress-basic";
@@ -82,7 +90,9 @@ import SectionHeaderBasic from "./section-header-basic";
 import SegmentedBasic from "./segmented-basic";
 import SelectBasic from "./select-basic";
 import SelectRich from "./select-rich";
+import SendbuttonBasic from "./sendbutton-basic";
 import SeparatorBasic from "./separator-basic";
+import SharebuttonBasic from "./sharebutton-basic";
 import SidebarBasic from "./sidebar-basic";
 import SidebarInverted from "./sidebar-inverted";
 import SkeletonBasic from "./skeleton-basic";
@@ -105,11 +115,14 @@ import ToastBasic from "./toast-basic";
 import ToggleBasic from "./toggle-basic";
 import ToolbarBasic from "./toolbar-basic";
 import TooltipBasic from "./tooltip-basic";
+import UploadbuttonBasic from "./uploadbutton-basic";
+import UploadbuttonReal from "./uploadbutton-real";
 import VoiceBasic from "./voice-basic";
 import WorkspaceBasic from "./workspace-basic";
 
 export const DEMOS: Record<string, ComponentType> = {
   "accordion-basic": AccordionBasic,
+  "addtocart-basic": AddtocartBasic,
   "agenda-views": AgendaViews,
   "alert-basic": AlertBasic,
   "alertdialog-basic": AlertdialogBasic,
@@ -144,6 +157,7 @@ export const DEMOS: Record<string, ComponentType> = {
   "countdown-basic": CountdownBasic,
   "datapill-basic": DatapillBasic,
   "datepicker-basic": DatepickerBasic,
+  "deletebutton-basic": DeletebuttonBasic,
   "density-basic": DensityBasic,
   "dialog-basic": DialogBasic,
   "dialog-form": DialogForm,
@@ -169,8 +183,14 @@ export const DEMOS: Record<string, ComponentType> = {
   "modal-manager-basic": ModalManagerBasic,
   "motiondrawer-basic": MotiondrawerBasic,
   "motionsegmented-basic": MotionsegmentedBasic,
+  "orderbutton-basic": OrderbuttonBasic,
   "otp-basic": OtpBasic,
+  "otpverification-basic": OtpverificationBasic,
+  "otpverification-orbit": OtpverificationOrbit,
+  "otpverification-verify": OtpverificationVerify,
   "pagination-basic": PaginationBasic,
+  "paymentcheckout-basic": PaymentcheckoutBasic,
+  "paymentcheckout-real": PaymentcheckoutReal,
   "periodnav-basic": PeriodnavBasic,
   "popover-basic": PopoverBasic,
   "progress-basic": ProgressBasic,
@@ -189,7 +209,9 @@ export const DEMOS: Record<string, ComponentType> = {
   "segmented-basic": SegmentedBasic,
   "select-basic": SelectBasic,
   "select-rich": SelectRich,
+  "sendbutton-basic": SendbuttonBasic,
   "separator-basic": SeparatorBasic,
+  "sharebutton-basic": SharebuttonBasic,
   "sidebar-basic": SidebarBasic,
   "sidebar-inverted": SidebarInverted,
   "skeleton-basic": SkeletonBasic,
@@ -212,6 +234,8 @@ export const DEMOS: Record<string, ComponentType> = {
   "toggle-basic": ToggleBasic,
   "toolbar-basic": ToolbarBasic,
   "tooltip-basic": TooltipBasic,
+  "uploadbutton-basic": UploadbuttonBasic,
+  "uploadbutton-real": UploadbuttonReal,
   "voice-basic": VoiceBasic,
   "workspace-basic": WorkspaceBasic,
 };

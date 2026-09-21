@@ -45,6 +45,10 @@ export const CATEGORIES = [
 ] as const;
 
 /*
+ * Labels per release: bij elke release gaan ALLE isNew- en isUpdated-vlaggen eruit,
+ * en krijgen alleen de componenten van díé release er weer een. Zo staat er nooit
+ * "nieuw" op iets van drie releases geleden.
+ *
  * Elke stap van de opbouw voegt hier componenten toe.
  * Houd de opmaak aan (twee spaties + "{" op een eigen regel): scripts/build-registry.mjs leest dit bestand.
  */
@@ -217,7 +221,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "Gebruikt het echte fieldset-element, dus disabled zet in één keer alles erin uit — ook velden van derden.",
       "Met row staan de velden naast elkaar; ze vouwen vanzelf om op smalle schermen.",
     ],
-    isNew: true,
   },
   {
     slug: "checkbox",
@@ -252,7 +255,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "Met half klik je op de linkerhelft van een ster voor een halve punt.",
       "readOnly maakt er een weergave van: de rol wordt img in plaats van slider.",
     ],
-    isNew: true,
   },
   {
     slug: "switch",
@@ -275,7 +277,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "Voor een aan/uit-instelling gebruik je Switch; Toggle is voor een knop die ingedrukt blijft, zoals vet in een werkbalk.",
       "ToggleGroup met type single lijkt op Segmented, maar hier mag ook niets gekozen zijn.",
     ],
-    isNew: true,
   },
   {
     slug: "select",
@@ -319,7 +320,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "Zonder label is het hoekje aria-hidden: het getal hoort dan ook in de knoptekst te staan, anders hoort een schermlezer het niet.",
       "hidden laat het element staan maar toont niets — handig bij nul meldingen.",
     ],
-    isNew: true,
   },
   {
     slug: "progress",
@@ -371,7 +371,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "Gebruik Accordion als er meerdere secties zijn die elkaar afwisselen; Collapsible is voor één blok.",
       "De animatie werkt met grid-template-rows van 0fr naar 1fr, dus ook inhoud die onderweg verandert schuift netjes mee.",
     ],
-    isNew: true,
   },
   {
     slug: "menubar",
@@ -386,7 +385,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "Gebruikt dezelfde items als DropdownMenu: DropdownMenuItem, -Label, -Separator en -Group werken hierbinnen.",
       "Bedoeld voor schermen met een muis; op mobiel is een DropdownMenu of Drawer een betere keuze.",
     ],
-    isNew: true,
   },
   {
     slug: "breadcrumb",
@@ -451,7 +449,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "Geeft onConfirm een belofte terug, dan blijft de knop laden tot ze klaar is en sluit de dialoog daarna.",
       "useConfirm() heeft een ConfirmProvider bovenaan je app nodig.",
     ],
-    isNew: true,
   },
   {
     slug: "drawer",
@@ -484,7 +481,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "Alleen voor aanvullende informatie: op touch bestaat hoveren niet, en de kaart opent daar dus nooit.",
       "Toetsenbordgebruikers krijgen de kaart bij focus op de trigger.",
     ],
-    isNew: true,
   },
   {
     slug: "tooltip",
@@ -518,7 +514,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "Gebruikt dezelfde items als DropdownMenu: DropdownMenuItem, -Label, -Separator en -Group werken hierbinnen.",
       "Op touch bestaat rechtsklikken niet; zorg dat elke actie ook ergens anders bereikbaar is.",
     ],
-    isNew: true,
   },
   {
     slug: "toast",
@@ -732,7 +727,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "onComplete wordt precies één keer aangeroepen; daarna stopt de interval.",
       "Dagen verschijnen alleen zolang er meer dan 24 uur over is.",
     ],
-    isNew: true,
   },
   {
     slug: "carousel",
@@ -748,7 +742,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "Met size per item toon je er meerdere tegelijk, bijvoorbeeld size=\"70%\" voor een glimp van de volgende.",
       "autoPlay staat standaard uit; zet het alleen aan als de inhoud niet belangrijk is om te lezen.",
     ],
-    isNew: true,
   },
   {
     slug: "timeline",
@@ -759,7 +752,6 @@ export const COMPONENTS: ComponentEntry[] = [
     demos: [{ key: "timeline-basic", title: "Verloop van een dossier", description: "Stippen met icoon, tijd, auteur en een onderbroken lijn voor wat nog komt.", align: "block" }],
     props: ["TimelineProps", "TimelineItemProps"],
     notes: ["Niet te verwarren met TimeSlotList: die toont een dag in uren, dit toont gebeurtenissen na elkaar."],
-    isNew: true,
   },
   {
     slug: "message-thread",
@@ -773,7 +765,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "Combineert met Composer voor de invoer eronder.",
       "Een bericht met internal krijgt een amber bel met het label \"Interne notitie\" — handig voor wat de klant niet ziet.",
     ],
-    isNew: true,
   },
   {
     slug: "qr-code",
@@ -788,7 +779,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "De code blijft altijd zwart op wit, ook in donkere modus — scanners hebben dat contrast nodig.",
       "De stille zone van 4 modules zit standaard in de afbeelding; maak ze niet kleiner.",
     ],
-    isNew: true,
   },
   {
     slug: "toolbar",
@@ -842,7 +832,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "Verschijnt onder 860px breed. Met always toon je hem altijd, bijvoorbeeld in een telefoonvoorbeeld.",
       "Geef je pagina onderaan evenveel padding als de hoogte van de balk, anders valt de laatste inhoud eronder.",
     ],
-    isNew: true,
   },
   {
     slug: "fab",
@@ -857,7 +846,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "Standaard hangt de knop vast rechtsonder, met ruimte voor de iOS-homebalk. Met position static zet je hem gewoon in de stroom.",
       "Een Fab hoort één actie te zijn; heb je er meer, gebruik dan SpeedDial.",
     ],
-    isNew: true,
   },
   {
     slug: "app-shell",
@@ -877,7 +865,6 @@ export const COMPONENTS: ComponentEntry[] = [
     demos: [{ key: "aspectratio-basic", title: "Drie verhoudingen", description: "16:9, 4:3 en vierkant." }],
     props: ["AspectRatioProps"],
     notes: ["Een img, video of iframe erin vult automatisch het vlak met object-fit cover."],
-    isNew: true,
   },
   {
     slug: "workspace",
@@ -904,7 +891,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "Panelen en grepen krijgen een index mee, omdat ze in dezelfde rij door elkaar staan: greep index={0} verdeelt paneel 0 en 1.",
       "Maten zijn percentages, dus de verdeling blijft kloppen als het venster verandert.",
     ],
-    isNew: true,
   },
   {
     slug: "scroll-area",
@@ -918,7 +904,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "Dit is de echte scrollbalk van de browser, alleen anders opgemaakt: vegen, scrollwiel en toetsenbord blijven werken zoals gebruikers gewend zijn.",
       "De vervaging gebruikt mask-image; zet fade uit als je inhoud met eigen maskers werkt.",
     ],
-    isNew: true,
   },
   {
     slug: "mockup",
@@ -933,7 +918,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "MockupPhone schaalt op breedte; de hoogte volgt uit ratio (standaard 19,5:9).",
       "Met screen of wallpaper geef je het hele scherm een achtergrond; de statusbalk wordt dan vanzelf wit op donker. Zonder die props volgt het scherm het thema van de site.",
     ],
-    isNew: true,
   },
   {
     slug: "auth-layout",
@@ -1043,7 +1027,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "Plakken gebeurt standaard als platte tekst, zodat opmaak uit Word of een webpagina niet meelift.",
       "Gebouwd op document.execCommand. Dat is als verouderd gemarkeerd, maar werkt in elke browser en heeft geen standaardopvolger.",
     ],
-    isNew: true,
   },
   {
     slug: "voice-button",
@@ -1097,6 +1080,129 @@ export const COMPONENTS: ComponentEntry[] = [
       "Vervangt alleen DrawerContent. Drawer, DrawerHeader, DrawerBody en DrawerFooter blijven dezelfde.",
       "Respecteert prefers-reduced-motion: dan vervaagt het paneel in plaats van te schuiven en staat slepen uit.",
     ],
+  },
+  {
+    slug: "otp-verification",
+    name: "OtpVerification",
+    description: "Verificatiekaart die zichzelf controleert: rij, raster, samensmelten, bevestiging.",
+    category: "Motion",
+    files: ["../motion/otp-verification.tsx", "../motion/motion.css"],
+    requires: ["motion"],
+    demos: [
+      { key: "otpverification-basic", title: "De volledige animatie", description: "Typt zichzelf in en herhaalt; typ gerust mee." },
+      { key: "otpverification-verify", title: "Met echte controle", description: "onVerify beslist; een foute code schudt en wist zichzelf.", align: "block" },
+      { key: "otpverification-orbit", title: "Variant orbit", description: "De cijfers draaien rond het midden terwijl je backend antwoordt, met tellertje en knop." },
+    ],
+    props: ["OtpVerificationProps", "OtpVerificationTexts"],
+    notes: [
+      "onVerify mag async zijn: de raster-animatie loopt door terwijl je backend antwoordt. false of een fout geeft de foutstatus.",
+      "Zonder demoCode blijft de kaart stil staan wachten op invoer — demoCode, autoPlay en loop zijn er alleen voor voorbeelden.",
+      "OtpInput is het kale invoerveld; dit is de volledige kaart met animatie eromheen.",
+      "variant=\"orbit\" laat de vakjes rond het midden draaien in plaats van naar een raster te schuiven; action, icon en resendAfter voegen de knop, het icoontje en het tellertje toe.",
+      "Bij \"verminderde beweging\" vervallen de veren en de snippers; de statuswissels blijven.",
+    ],
+    isNew: true,
+  },
+  {
+    slug: "upload-button",
+    name: "UploadButton",
+    description: "Bestandsveld waarvan de knop over het veld openklapt en zich vult met de voortgang.",
+    category: "Motion",
+    files: ["../motion/upload-button.tsx", "../motion/motion.css"],
+    requires: ["motion"],
+    demos: [
+      { key: "uploadbutton-basic", title: "Kiezen en uploaden" },
+      { key: "uploadbutton-real", title: "Met een echte upload", description: "onUpload krijgt het bestand en een functie voor de voortgang.", align: "block" },
+    ],
+    props: ["UploadButtonProps", "UploadButtonTexts"],
+    notes: [
+      "Zonder onUpload loopt er een nep-voortgang van demoDuration ms — handig voor voorbeelden en prototypes.",
+      "resetAfter={false} laat de knop op \"klaar\" staan; anders springt hij na die tijd terug naar het begin.",
+    ],
+    isNew: true,
+  },
+  {
+    slug: "payment-checkout",
+    name: "PaymentCheckout",
+    description: "Kaartgegevens invullen met een kaart die meeschrijft, omdraait voor de CVC en de betaling afrondt.",
+    category: "Motion",
+    files: ["../motion/payment-checkout.tsx", "../motion/motion.css"],
+    dependsOn: ["field", "input", "button"],
+    requires: ["motion"],
+    demos: [
+      { key: "paymentcheckout-basic", title: "De volledige flow", description: "Vult zichzelf in en betaalt; de kaart blijft over tijdens het verwerken.", align: "block" },
+      { key: "paymentcheckout-real", title: "Zelf invullen", description: "onPay beslist of de betaling lukt.", align: "block" },
+    ],
+    props: ["PaymentCheckoutProps", "PaymentValues", "PaymentCheckoutTexts"],
+    notes: [
+      "Het merk (visa, mastercard, amex) volgt uit de eerste cijfers; amex krijgt de 4-6-5-groepering.",
+      "De kaart draait om zodra het CVC-veld focus krijgt en weer terug bij blur.",
+      "Het bedrag wordt opgemaakt met Intl.NumberFormat — geef currency en locale mee voor een andere munt.",
+      "De kaart gebruikt de accentkleur van je thema als verloop; één token aanpassen herkleurt ze.",
+    ],
+    isNew: true,
+  },
+  {
+    slug: "send-button",
+    name: "SendButton",
+    description: "De knop vouwt zich tot een papieren vliegtuigje dat wegvliegt, en komt terug als \"verzonden\".",
+    category: "Motion",
+    files: ["../motion/send-button.tsx", "../motion/use-action.ts", "../motion/motion.css"],
+    requires: ["motion"],
+    demos: [{ key: "sendbutton-basic", title: "Versturen en mislukken" }],
+    props: ["SendButtonProps"],
+    notes: ["onSend mag async zijn; false of een fout geeft de rode staat. Met resetAfter={false} blijft het resultaat staan."],
+    isNew: true,
+  },
+  {
+    slug: "order-button",
+    name: "OrderButton",
+    description: "Bestelknop waar een bestelwagen doorheen rijdt voor ze op groen \"besteld\" springt.",
+    category: "Motion",
+    files: ["../motion/order-button.tsx", "../motion/use-action.ts", "../motion/motion.css"],
+    requires: ["motion"],
+    demos: [{ key: "orderbutton-basic", title: "Bestellen" }],
+    props: ["OrderButtonProps"],
+    notes: ["De rit duurt 1,5 seconde; een sneller antwoord van je backend wacht netjes tot de wagen buiten beeld is."],
+    isNew: true,
+  },
+  {
+    slug: "add-to-cart-button",
+    name: "AddToCartButton",
+    description: "Knop die samentrekt tot een mandje, het artikel erin laat vallen en de teller optelt.",
+    category: "Motion",
+    files: ["../motion/add-to-cart-button.tsx", "../motion/use-action.ts", "../motion/motion.css"],
+    requires: ["motion"],
+    demos: [{ key: "addtocart-basic", title: "Toevoegen" }],
+    props: ["AddToCartButtonProps"],
+    notes: ["De teller werkt controlled (count + onCountChange) of uncontrolled (defaultCount); hint={null} laat de regel eronder weg."],
+    isNew: true,
+  },
+  {
+    slug: "share-button",
+    name: "ShareButton",
+    description: "Deelknop die openwaaiert naar je kanalen en de link op het klembord zet.",
+    category: "Motion",
+    files: ["../motion/share-button.tsx", "../motion/motion.css"],
+    requires: ["motion"],
+    demos: [{ key: "sharebutton-basic", title: "Kanalen kiezen" }],
+    props: ["ShareButtonProps", "ShareChannel"],
+    notes: [
+      "Een kanaal met href opent een venster ({url} wordt vervangen); zonder href wordt de link gekopieerd.",
+      "Escape of een klik ernaast klapt de waaier weer dicht.",
+    ],
+    isNew: true,
+  },
+  {
+    slug: "delete-button",
+    name: "DeleteButton",
+    description: "De vuilnisbak schuift over het label heen en eet het op, daarna volgt de bevestiging.",
+    category: "Motion",
+    files: ["../motion/delete-button.tsx", "../motion/use-action.ts", "../motion/motion.css"],
+    requires: ["motion"],
+    demos: [{ key: "deletebutton-basic", title: "Vol en zacht" }],
+    props: ["DeleteButtonProps"],
+    notes: ["Voor iets dat echt weg is: combineer met AlertDialog om te laten bevestigen vóór onDelete draait."],
     isNew: true,
   },
   {
@@ -1112,7 +1218,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "Elke waarde in values moet uniek zijn; motion gebruikt ze als identiteit.",
       "Met handle sleep je alleen aan het greepje, zodat knoppen in de rij klikbaar blijven.",
     ],
-    isNew: true,
   },
   {
     slug: "motion-segmented",
@@ -1125,7 +1230,6 @@ export const COMPONENTS: ComponentEntry[] = [
     demos: [{ key: "motionsegmented-basic", title: "Meeschuivende indicator", description: "Zelfde API als Segmented." }],
     props: ["MotionSegmentedProps"],
     notes: ["Dezelfde props als Segmented; layoutId alleen nodig als er meerdere naast elkaar staan."],
-    isNew: true,
   },
 ];
 
