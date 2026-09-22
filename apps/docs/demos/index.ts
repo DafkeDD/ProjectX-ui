@@ -50,13 +50,16 @@ import FabBasic from "./fab-basic";
 import FieldBasic from "./field-basic";
 import FieldsetBasic from "./fieldset-basic";
 import FiledropBasic from "./filedrop-basic";
+import FilterpanelBasic from "./filterpanel-basic";
 import HovercardBasic from "./hovercard-basic";
 import IconGallery from "./icon-gallery";
 import IndicatorBasic from "./indicator-basic";
 import InputAffix from "./input-affix";
 import InputBasic from "./input-basic";
 import KbdBasic from "./kbd-basic";
+import KeyvalueBasic from "./keyvalue-basic";
 import LabelBasic from "./label-basic";
+import LayoutBasic from "./layout-basic";
 import ListRowBasic from "./list-row-basic";
 import MenubarBasic from "./menubar-basic";
 import MessagethreadBasic from "./messagethread-basic";
@@ -106,6 +109,7 @@ import SwitchBasic from "./switch-basic";
 import TableBasic from "./table-basic";
 import TabsBasic from "./tabs-basic";
 import TaskBasic from "./task-basic";
+import TextBasic from "./text-basic";
 import TextareaBasic from "./textarea-basic";
 import ThemeBasic from "./theme-basic";
 import TimefieldBasic from "./timefield-basic";
@@ -169,13 +173,16 @@ export const DEMOS: Record<string, ComponentType> = {
   "field-basic": FieldBasic,
   "fieldset-basic": FieldsetBasic,
   "filedrop-basic": FiledropBasic,
+  "filterpanel-basic": FilterpanelBasic,
   "hovercard-basic": HovercardBasic,
   "icon-gallery": IconGallery,
   "indicator-basic": IndicatorBasic,
   "input-affix": InputAffix,
   "input-basic": InputBasic,
   "kbd-basic": KbdBasic,
+  "keyvalue-basic": KeyvalueBasic,
   "label-basic": LabelBasic,
+  "layout-basic": LayoutBasic,
   "list-row-basic": ListRowBasic,
   "menubar-basic": MenubarBasic,
   "messagethread-basic": MessagethreadBasic,
@@ -225,6 +232,7 @@ export const DEMOS: Record<string, ComponentType> = {
   "table-basic": TableBasic,
   "tabs-basic": TabsBasic,
   "task-basic": TaskBasic,
+  "text-basic": TextBasic,
   "textarea-basic": TextareaBasic,
   "theme-basic": ThemeBasic,
   "timefield-basic": TimefieldBasic,

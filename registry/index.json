@@ -1314,6 +1314,54 @@
       ]
     },
     {
+      "name": "layout",
+      "title": "Stack, Row & Grid",
+      "description": "Layout-primitieven: Container, Stack, Row, Grid en Spacer op één afstandsschaal.",
+      "category": "Layout",
+      "dependencies": [],
+      "requires": [],
+      "files": [
+        "components/layout.tsx",
+        "components/layout.css"
+      ]
+    },
+    {
+      "name": "text",
+      "title": "Text",
+      "description": "Eén component voor alle tekst: variant, toon, gewicht, uitlijning en afkappen.",
+      "category": "Basis",
+      "dependencies": [],
+      "requires": [],
+      "files": [
+        "components/text.tsx",
+        "components/text.css"
+      ]
+    },
+    {
+      "name": "key-value",
+      "title": "KeyValueList",
+      "description": "Labels met hun waarde, zoals in een dossierkop of detailpaneel.",
+      "category": "Data",
+      "dependencies": [],
+      "requires": [],
+      "files": [
+        "components/key-value.tsx",
+        "components/key-value.css"
+      ]
+    },
+    {
+      "name": "filter-panel",
+      "title": "FilterPanel",
+      "description": "Filterkolom met groepen, tellers, avatars, \\",
+      "category": "Navigatie",
+      "dependencies": [],
+      "requires": [],
+      "files": [
+        "components/filter-panel.tsx",
+        "components/filter-panel.css"
+      ]
+    },
+    {
       "name": "reorder-list",
       "title": "ReorderList",
       "description": "Lijst waarvan je de volgorde sleept, met of zonder greepje.",

@@ -1,0 +1,23 @@
+/* ============================ Text ============================ */
+.pxui-text { margin: 0; color: var(--text); font-size: var(--fs-base); line-height: 1.6; }
+.pxui-text.pxui-display, .pxui-text.pxui-h1, .pxui-text.pxui-h2, .pxui-text.pxui-h3 { line-height: 1.15; }
+
+.pxui-text-sm { font-size: var(--fs-sm); }
+.pxui-text-caption { font-size: var(--fs-xs); color: var(--text-3); line-height: 1.45; }
+
+.pxui-text-muted { color: var(--text-2); }
+.pxui-text-subtle { color: var(--text-3); }
+.pxui-text-accent { color: var(--accent); }
+.pxui-text-green { color: var(--green); }
+.pxui-text-amber { color: var(--amber); }
+.pxui-text-red { color: var(--red); }
+.pxui-text-inverse { color: var(--text-inv); }
+
+.pxui-text-medium { font-weight: 500; }
+.pxui-text-semibold { font-weight: 650; }
+.pxui-text-bold { font-weight: 750; }
+
+.pxui-text-center { text-align: center; }
+.pxui-text-right { text-align: right; }
+
+.pxui-text-truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

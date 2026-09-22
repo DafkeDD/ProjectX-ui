@@ -5,6 +5,8 @@ import { cn } from "../lib/cn";
 export interface AvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
   /** Naam waaruit de initialen worden afgeleid. */
   name?: string;
+  /** Eigen letters in plaats van de afgeleide initialen, bv. een trigram. */
+  initials?: string;
   src?: string;
   alt?: string;
   size?: number;
@@ -28,7 +30,7 @@ export function initialsFrom(name: string): string {
 
 /** Avatar — foto of initialen, met optionele statusstip. */
 export const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
-  { name = "", src, alt, size = 36, square, color, status, className, style, children, ...rest },
+  { name = "", initials, src, alt, size = 36, square, color, status, className, style, children, ...rest },
   ref
 ) {
   const [failed, setFailed] = React.useState(false);
@@ -50,7 +52,7 @@ export const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>(function Av
       {showImage ? (
         <img className="pxui-avatar-img" src={src} alt={alt ?? name} onError={() => setFailed(true)} />
       ) : (
-        (children ?? initialsFrom(name))
+        (children ?? initials ?? initialsFrom(name))
       )}
       {status && (
         <span

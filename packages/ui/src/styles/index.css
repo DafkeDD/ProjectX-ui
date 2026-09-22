@@ -44,11 +44,14 @@
 @import "../components/field.css";
 @import "../components/fieldset.css";
 @import "../components/file-drop.css";
+@import "../components/filter-panel.css";
 @import "../components/hover-card.css";
 @import "../components/indicator.css";
 @import "../components/input.css";
 @import "../components/kbd.css";
+@import "../components/key-value.css";
 @import "../components/label.css";
+@import "../components/layout.css";
 @import "../components/list-row.css";
 @import "../components/menubar.css";
 @import "../components/message-thread.css";
@@ -82,6 +85,7 @@
 @import "../components/table.css";
 @import "../components/tabs.css";
 @import "../components/task-item.css";
+@import "../components/text.css";
 @import "../components/textarea.css";
 @import "../components/theme.css";
 @import "../components/time-field.css";

@@ -1,0 +1,72 @@
+/* ============================ FilterPanel ============================ */
+.pxui-filter {
+  display: flex; flex-direction: column; gap: 4px;
+  width: 100%; max-width: 280px; padding: calc(14px * var(--density)) 14px;
+  border: 1px solid var(--border); border-radius: var(--r-lg);
+  background: var(--surface);
+}
+.pxui-filter[data-tone="inverted"] {
+  background: var(--sidebar-ink); border-color: var(--sidebar-ink-border); color: var(--sidebar-ink-text);
+}
+
+.pxui-filter-head { display: flex; align-items: center; gap: 8px; padding: 2px 6px 10px; }
+.pxui-filter-title {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: var(--fs-md); font-weight: 650; color: var(--text); letter-spacing: -0.01em;
+}
+.pxui-filter[data-tone="inverted"] .pxui-filter-title { color: var(--sidebar-ink-strong); }
+.pxui-filter-count {
+  display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 6px;
+  border-radius: var(--r-full); background: var(--accent); color: var(--accent-fg);
+  font-size: 11.5px; font-weight: 700;
+}
+.pxui-filter-clear {
+  margin-left: auto; border: 0; background: none; padding: 4px 6px; border-radius: var(--r-xs);
+  font: inherit; font-size: var(--fs-sm); font-weight: 600; color: var(--accent); cursor: pointer;
+}
+.pxui-filter-clear:hover { background: var(--accent-tint); }
+.pxui-filter-clear:focus-visible { outline: none; box-shadow: var(--ring); }
+
+.pxui-filter-group { padding: 6px 0; border-top: 1px solid var(--border); }
+.pxui-filter-group:first-of-type { border-top: 0; }
+.pxui-filter[data-tone="inverted"] .pxui-filter-group { border-color: var(--sidebar-ink-border); }
+.pxui-filter-group-label {
+  display: flex; align-items: center; gap: 8px; width: 100%;
+  padding: 7px 6px; border: 0; background: none; text-align: left;
+  font: inherit; font-size: 11.5px; font-weight: 650; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--text-3); cursor: default;
+}
+button.pxui-filter-group-label { cursor: pointer; }
+button.pxui-filter-group-label:focus-visible { outline: none; box-shadow: var(--ring); border-radius: var(--r-xs); }
+.pxui-filter-chevron { margin-left: auto; transition: transform var(--dur) var(--ease); }
+.pxui-filter-group[data-open] .pxui-filter-chevron { transform: rotate(180deg); }
+.pxui-filter-items { display: flex; flex-direction: column; gap: 1px; }
+
+.pxui-filter-option {
+  display: flex; align-items: center; gap: 10px;
+  padding: calc(7px * var(--density)) 8px; border-radius: var(--r-sm);
+  font-size: var(--fs-base); color: var(--text); cursor: pointer;
+  transition: background var(--dur-fast) var(--ease);
+}
+.pxui-filter-option:hover { background: var(--surface-3); }
+.pxui-filter[data-tone="inverted"] .pxui-filter-option { color: var(--sidebar-ink-text); }
+.pxui-filter[data-tone="inverted"] .pxui-filter-option:hover { background: var(--sidebar-ink-hover); }
+.pxui-filter-option[data-disabled] { opacity: .5; cursor: not-allowed; }
+
+.pxui-filter-input { position: absolute; opacity: 0; width: 0; height: 0; }
+.pxui-filter-box {
+  display: grid; place-items: center; width: 17px; height: 17px; flex: none;
+  border: 1.5px solid var(--border-strong); border-radius: 5px; background: var(--surface);
+  color: transparent; transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.pxui-filter-input[type="radio"] ~ .pxui-filter-box { border-radius: var(--r-full); }
+.pxui-filter-input:checked ~ .pxui-filter-box,
+.pxui-filter-input:indeterminate ~ .pxui-filter-box {
+  background: var(--accent); border-color: var(--accent); color: var(--accent-fg);
+}
+.pxui-filter-input:focus-visible ~ .pxui-filter-box { box-shadow: var(--ring); }
+.pxui-filter-lead { display: inline-flex; flex: none; }
+.pxui-filter-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pxui-filter-badge {
+  flex: none; font-size: var(--fs-xs); color: var(--text-3); font-variant-numeric: tabular-nums;
+}

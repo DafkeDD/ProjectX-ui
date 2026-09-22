@@ -144,6 +144,8 @@ export const COMPONENTS: ComponentEntry[] = [
     files: ["avatar.tsx", "avatar.css"],
     demos: [{ key: "avatar-basic", title: "Maten, status en groep" }],
     props: ["AvatarProps", "AvatarGroupProps"],
+    notes: ["Met initials zet je zelf de letters, bijvoorbeeld een trigram van drie tekens in plaats van de afgeleide initialen."],
+    isUpdated: true,
   },
   {
     slug: "chip",
@@ -421,6 +423,11 @@ export const COMPONENTS: ComponentEntry[] = [
     files: ["table.tsx", "table.css"],
     demos: [{ key: "table-basic", title: "Sorteerbare tabel", align: "block" }],
     props: ["TableProps", "TableHeadProps", "TableRowProps"],
+    notes: [
+      "striped geeft om de andere rij een lichte achtergrond; stickyHeader laat de kop staan zodra je maxHeight meegeeft.",
+      "Een selectiekolom maak je met een gewone Checkbox in de eerste cel — zo blijft de logica bij jou.",
+    ],
+    isUpdated: true,
   },
   {
     slug: "dialog",
@@ -1101,7 +1108,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "variant=\"orbit\" laat de vakjes rond het midden draaien in plaats van naar een raster te schuiven; action, icon en resendAfter voegen de knop, het icoontje en het tellertje toe.",
       "Bij \"verminderde beweging\" vervallen de veren en de snippers; de statuswissels blijven.",
     ],
-    isNew: true,
   },
   {
     slug: "upload-button",
@@ -1119,7 +1125,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "Zonder onUpload loopt er een nep-voortgang van demoDuration ms — handig voor voorbeelden en prototypes.",
       "resetAfter={false} laat de knop op \"klaar\" staan; anders springt hij na die tijd terug naar het begin.",
     ],
-    isNew: true,
   },
   {
     slug: "payment-checkout",
@@ -1140,7 +1145,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "Het bedrag wordt opgemaakt met Intl.NumberFormat — geef currency en locale mee voor een andere munt.",
       "De kaart gebruikt de accentkleur van je thema als verloop; één token aanpassen herkleurt ze.",
     ],
-    isNew: true,
   },
   {
     slug: "send-button",
@@ -1152,7 +1156,6 @@ export const COMPONENTS: ComponentEntry[] = [
     demos: [{ key: "sendbutton-basic", title: "Versturen en mislukken" }],
     props: ["SendButtonProps"],
     notes: ["onSend mag async zijn; false of een fout geeft de rode staat. Met resetAfter={false} blijft het resultaat staan."],
-    isNew: true,
   },
   {
     slug: "order-button",
@@ -1164,7 +1167,6 @@ export const COMPONENTS: ComponentEntry[] = [
     demos: [{ key: "orderbutton-basic", title: "Bestellen" }],
     props: ["OrderButtonProps"],
     notes: ["De rit duurt 1,5 seconde; een sneller antwoord van je backend wacht netjes tot de wagen buiten beeld is."],
-    isNew: true,
   },
   {
     slug: "add-to-cart-button",
@@ -1176,7 +1178,6 @@ export const COMPONENTS: ComponentEntry[] = [
     demos: [{ key: "addtocart-basic", title: "Toevoegen" }],
     props: ["AddToCartButtonProps"],
     notes: ["De teller werkt controlled (count + onCountChange) of uncontrolled (defaultCount); hint={null} laat de regel eronder weg."],
-    isNew: true,
   },
   {
     slug: "share-button",
@@ -1191,7 +1192,6 @@ export const COMPONENTS: ComponentEntry[] = [
       "Een kanaal met href opent een venster ({url} wordt vervangen); zonder href wordt de link gekopieerd.",
       "Escape of een klik ernaast klapt de waaier weer dicht.",
     ],
-    isNew: true,
   },
   {
     slug: "delete-button",
@@ -1203,6 +1203,63 @@ export const COMPONENTS: ComponentEntry[] = [
     demos: [{ key: "deletebutton-basic", title: "Vol en zacht" }],
     props: ["DeleteButtonProps"],
     notes: ["Voor iets dat echt weg is: combineer met AlertDialog om te laten bevestigen vóór onDelete draait."],
+  },
+  {
+    slug: "layout",
+    name: "Stack, Row & Grid",
+    description: "Layout-primitieven: Container, Stack, Row, Grid en Spacer op één afstandsschaal.",
+    category: "Layout",
+    files: ["layout.tsx", "layout.css"],
+    demos: [{ key: "layout-basic", title: "De vijf samen", align: "block" }],
+    props: ["ContainerProps", "StackProps", "RowProps", "GridProps", "SpacerProps"],
+    notes: [
+      "gap gaat van xs tot xl en gebruikt dezelfde schaal als de rest van de library, dus geen losse pixelwaarden in je markup.",
+      "Grid zonder cols schikt zijn kolommen vanzelf: min bepaalt hoe smal een kolom mag worden.",
+      "Met as render je een ander element, bijvoorbeeld <Stack as=\"ul\"> voor een echte lijst.",
+    ],
+    isNew: true,
+  },
+  {
+    slug: "text",
+    name: "Text",
+    description: "Eén component voor alle tekst: variant, toon, gewicht, uitlijning en afkappen.",
+    category: "Basis",
+    files: ["text.tsx", "text.css"],
+    demos: [{ key: "text-basic", title: "Varianten en afkappen", align: "block" }],
+    props: ["TextProps"],
+    notes: [
+      "De variant kiest ook het element: h2 wordt een <h2>, body een <p>. Met as overschrijf je dat.",
+      "truncate kapt één regel af, lines={2} kapt af na een vast aantal regels.",
+    ],
+    isNew: true,
+  },
+  {
+    slug: "key-value",
+    name: "KeyValueList",
+    description: "Labels met hun waarde, zoals in een dossierkop of detailpaneel.",
+    category: "Data",
+    files: ["key-value.tsx", "key-value.css"],
+    demos: [{ key: "keyvalue-basic", title: "Horizontaal en in kolommen", align: "block" }],
+    props: ["KeyValueListProps", "KeyValueProps"],
+    notes: [
+      "Rendert een echte <dl> met <dt> en <dd>, dus schermlezers lezen label en waarde als paar.",
+      "Een lege waarde wordt automatisch een streepje; met empty kies je zelf wat er staat.",
+    ],
+    isNew: true,
+  },
+  {
+    slug: "filter-panel",
+    name: "FilterPanel",
+    description: "Filterkolom met groepen, tellers, avatars, \"toon meer\" en een wisknop.",
+    category: "Navigatie",
+    files: ["filter-panel.tsx", "filter-panel.css"],
+    demos: [{ key: "filterpanel-basic", title: "Dossiers filteren", align: "block" }],
+    props: ["FilterPanelProps", "FilterGroupProps", "FilterOptionProps"],
+    notes: [
+      "maxVisible zet de rest van een groep achter \"toon meer\"; collapsible maakt de hele groep inklapbaar.",
+      "FilterOption werkt als checkbox of radio en kent ook de derde staat (indeterminate) voor een groep die half aan staat.",
+      "tone=\"inverted\" geeft dezelfde donkere rail als de Sidebar.",
+    ],
     isNew: true,
   },
   {

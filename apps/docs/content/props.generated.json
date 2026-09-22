@@ -503,6 +503,12 @@
         "default": "\"\""
       },
       {
+        "name": "initials",
+        "required": false,
+        "type": "string",
+        "description": "Eigen letters in plaats van de afgeleide initialen, bv. een trigram."
+      },
+      {
         "name": "src",
         "required": false,
         "type": "string",
@@ -2530,6 +2536,148 @@
       }
     ]
   },
+  "FilterPanelProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"title\">",
+    "props": [
+      {
+        "name": "title",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "activeCount",
+        "required": false,
+        "type": "number",
+        "description": "Aantal actieve filters; toont de wisknop zodra het meer dan nul is.",
+        "default": "0"
+      },
+      {
+        "name": "onClear",
+        "required": false,
+        "type": "() => void",
+        "description": "Wist alle filters."
+      },
+      {
+        "name": "clearLabel",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Wissen\""
+      },
+      {
+        "name": "tone",
+        "required": false,
+        "type": "\"surface\" | \"inverted\"",
+        "description": "Donkere rail, zoals de ingeklapte Sidebar.",
+        "default": "\"surface\""
+      }
+    ]
+  },
+  "FilterGroupProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"onToggle\">",
+    "props": [
+      {
+        "name": "label",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "collapsible",
+        "required": false,
+        "type": "boolean",
+        "description": "Inklapbaar maken."
+      },
+      {
+        "name": "defaultOpen",
+        "required": false,
+        "type": "boolean",
+        "description": "",
+        "default": "true"
+      },
+      {
+        "name": "open",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "onOpenChange",
+        "required": false,
+        "type": "(open: boolean) => void",
+        "description": ""
+      },
+      {
+        "name": "maxVisible",
+        "required": false,
+        "type": "number",
+        "description": "Toont zoveel opties en zet de rest achter \"toon meer\"."
+      },
+      {
+        "name": "moreLabel",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Toon meer\""
+      },
+      {
+        "name": "lessLabel",
+        "required": false,
+        "type": "string",
+        "description": "",
+        "default": "\"Toon minder\""
+      }
+    ]
+  },
+  "FilterOptionProps": {
+    "extends": "Omit<React.InputHTMLAttributes<HTMLInputElement>, \"type\" | \"onChange\">",
+    "props": [
+      {
+        "name": "label",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": ""
+      },
+      {
+        "name": "type",
+        "required": false,
+        "type": "\"checkbox\" | \"radio\"",
+        "description": "Vinkje of bolletje.",
+        "default": "\"button\""
+      },
+      {
+        "name": "checked",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "indeterminate",
+        "required": false,
+        "type": "boolean",
+        "description": "Deels aangevinkt, bv. een groep met een deel van de kinderen aan."
+      },
+      {
+        "name": "onCheckedChange",
+        "required": false,
+        "type": "(checked: boolean) => void",
+        "description": ""
+      },
+      {
+        "name": "count",
+        "required": false,
+        "type": "number",
+        "description": "Aantal resultaten rechts."
+      },
+      {
+        "name": "lead",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Avatar of icoontje voor het label."
+      }
+    ]
+  },
   "HoverCardProps": {
     "extends": "",
     "props": [
@@ -2715,6 +2863,78 @@
       }
     ]
   },
+  "KeyValueListProps": {
+    "extends": "React.HTMLAttributes<HTMLDListElement>",
+    "props": [
+      {
+        "name": "horizontal",
+        "required": false,
+        "type": "boolean",
+        "description": "Labels naast de waarden in plaats van eronder."
+      },
+      {
+        "name": "labelWidth",
+        "required": false,
+        "type": "string",
+        "description": "Breedte van de labelkolom bij horizontaal, bv. \"38%\" of \"150px\".",
+        "default": "\"38%\""
+      },
+      {
+        "name": "columns",
+        "required": false,
+        "type": "number",
+        "description": "Meerdere kolommen naast elkaar; schakelt terug naar één bij weinig ruimte."
+      },
+      {
+        "name": "divided",
+        "required": false,
+        "type": "boolean",
+        "description": "Lijn tussen de rijen."
+      },
+      {
+        "name": "dense",
+        "required": false,
+        "type": "boolean",
+        "description": ""
+      }
+    ]
+  },
+  "KeyValueProps": {
+    "extends": "Omit<React.HTMLAttributes<HTMLDivElement>, \"children\">",
+    "props": [
+      {
+        "name": "label",
+        "required": true,
+        "type": "React.ReactNode",
+        "description": "Het label links (of boven)."
+      },
+      {
+        "name": "children",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "De waarde; laat leeg voor het streepje."
+      },
+      {
+        "name": "empty",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Wat er in plaats van een lege waarde komt.",
+        "default": "\"—\""
+      },
+      {
+        "name": "icon",
+        "required": false,
+        "type": "React.ReactNode",
+        "description": "Icoontje voor het label."
+      },
+      {
+        "name": "truncate",
+        "required": false,
+        "type": "boolean",
+        "description": "Laat de waarde op één regel afkappen."
+      }
+    ]
+  },
   "LabelProps": {
     "extends": "React.LabelHTMLAttributes<HTMLLabelElement>",
     "props": [
@@ -2723,6 +2943,84 @@
         "required": false,
         "type": "boolean",
         "description": "Toont een rood sterretje."
+      }
+    ]
+  },
+  "ContainerProps": {
+    "extends": "React.HTMLAttributes<HTMLElement>, GemeenschappelijkeProps",
+    "props": [
+      {
+        "name": "size",
+        "required": false,
+        "type": "\"sm\" | \"md\" | \"lg\" | \"full\"",
+        "description": "Maximale breedte; \"full\" laat de container meegroeien.",
+        "default": "\"md\""
+      },
+      {
+        "name": "padded",
+        "required": false,
+        "type": "boolean",
+        "description": "Binnenmarge links en rechts.",
+        "default": "true"
+      }
+    ]
+  },
+  "StackProps": {
+    "extends": "React.HTMLAttributes<HTMLElement>, GemeenschappelijkeProps",
+    "props": [
+      {
+        "name": "divided",
+        "required": false,
+        "type": "boolean",
+        "description": "Scheidingslijn tussen de kinderen."
+      }
+    ]
+  },
+  "RowProps": {
+    "extends": "React.HTMLAttributes<HTMLElement>, GemeenschappelijkeProps",
+    "props": [
+      {
+        "name": "wrap",
+        "required": false,
+        "type": "boolean",
+        "description": "Laat de kinderen afbreken naar een volgende regel.",
+        "default": "true"
+      }
+    ]
+  },
+  "GridProps": {
+    "extends": "React.HTMLAttributes<HTMLElement>, GemeenschappelijkeProps",
+    "props": [
+      {
+        "name": "cols",
+        "required": false,
+        "type": "number",
+        "description": "Vast aantal kolommen; laat weg voor kolommen die zich vanzelf schikken."
+      },
+      {
+        "name": "min",
+        "required": false,
+        "type": "number",
+        "description": "Minimumbreedte per kolom wanneer `cols` niet gezet is.",
+        "default": "220"
+      }
+    ]
+  },
+  "SpacerProps": {
+    "extends": "React.HTMLAttributes<HTMLElement>",
+    "props": [
+      {
+        "name": "size",
+        "required": false,
+        "type": "number",
+        "description": "Vaste hoogte of breedte in pixels; zonder waarde duwt de Spacer de rest uit elkaar.",
+        "default": "\"md\""
+      },
+      {
+        "name": "horizontal",
+        "required": false,
+        "type": "boolean",
+        "description": "Horizontale ruimte in plaats van verticale."
       }
     ]
   },
@@ -4817,6 +5115,24 @@
         "type": "number",
         "description": "Minimale breedte voordat er horizontaal gescrold wordt.",
         "default": "560"
+      },
+      {
+        "name": "striped",
+        "required": false,
+        "type": "boolean",
+        "description": "Om de andere rij een lichte achtergrond."
+      },
+      {
+        "name": "stickyHeader",
+        "required": false,
+        "type": "boolean",
+        "description": "Kop blijft staan bij het scrollen; geef maxHeight mee om te scrollen."
+      },
+      {
+        "name": "maxHeight",
+        "required": false,
+        "type": "number",
+        "description": "Maximale hoogte van de scrollcontainer, bv. 420."
       }
     ]
   },
@@ -5055,6 +5371,58 @@
         "required": false,
         "type": "boolean",
         "description": "Rand en schaduw rond de lijst."
+      }
+    ]
+  },
+  "TextProps": {
+    "extends": "React.HTMLAttributes<HTMLElement>",
+    "props": [
+      {
+        "name": "variant",
+        "required": false,
+        "type": "TextVariant",
+        "description": "Grootte en gewicht; kiest ook een passend element als je `as` weglaat.",
+        "default": "\"body\""
+      },
+      {
+        "name": "tone",
+        "required": false,
+        "type": "TextTone",
+        "description": "",
+        "default": "\"default\""
+      },
+      {
+        "name": "weight",
+        "required": false,
+        "type": "\"regular\" | \"medium\" | \"semibold\" | \"bold\"",
+        "description": "",
+        "default": "\"regular\""
+      },
+      {
+        "name": "align",
+        "required": false,
+        "type": "\"left\" | \"center\" | \"right\"",
+        "description": "",
+        "default": "\"left\""
+      },
+      {
+        "name": "truncate",
+        "required": false,
+        "type": "boolean",
+        "description": "Kapt één regel af met drie puntjes.",
+        "default": "false"
+      },
+      {
+        "name": "lines",
+        "required": false,
+        "type": "number",
+        "description": "Kapt af na zoveel regels; overschrijft `truncate`."
+      },
+      {
+        "name": "as",
+        "required": false,
+        "type": "React.ElementType",
+        "description": "Eigen element, bv. \"span\", \"label\" of \"h2\"."
       }
     ]
   },

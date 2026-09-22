@@ -50,3 +50,13 @@
   margin-bottom: 14px;
 }
 .pxui-table-toolbar > .pxui-pagination { margin-left: auto; }
+
+/* ---------- Zebra en plakkende kop ---------- */
+.pxui-table-striped .pxui-table-body tr:nth-child(even) { background: var(--surface-2); }
+.pxui-table-striped .pxui-table-body tr:nth-child(even):hover { background: var(--surface-hover); }
+
+.pxui-table-sticky .pxui-table-head {
+  position: sticky; top: 0; z-index: 1;
+  background: var(--surface-2);
+  box-shadow: inset 0 -1px 0 var(--border);
+}

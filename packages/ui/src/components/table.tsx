@@ -10,17 +10,29 @@ export interface TableProps extends React.TableHTMLAttributes<HTMLTableElement> 
   wrapped?: boolean;
   /** Minimale breedte voordat er horizontaal gescrold wordt. */
   minWidth?: number;
+  /** Om de andere rij een lichte achtergrond. */
+  striped?: boolean;
+  /** Kop blijft staan bij het scrollen; geef maxHeight mee om te scrollen. */
+  stickyHeader?: boolean;
+  /** Maximale hoogte van de scrollcontainer, bv. 420. */
+  maxHeight?: number;
 }
 
 /** Table — datatabel met sticky-vriendelijke kop en scrollcontainer. */
 export const Table = React.forwardRef<HTMLTableElement, TableProps>(function Table(
-  { dense, wrapped = true, minWidth = 560, className, children, ...rest },
+  { dense, wrapped = true, minWidth = 560, striped, stickyHeader, maxHeight, className, children, ...rest },
   ref
 ) {
   const table = (
     <table
       ref={ref}
-      className={cn("pxui-table", dense && "pxui-table-dense", className)}
+      className={cn(
+        "pxui-table",
+        dense && "pxui-table-dense",
+        striped && "pxui-table-striped",
+        stickyHeader && "pxui-table-sticky",
+        className
+      )}
       style={{ minWidth }}
       {...rest}
     >
@@ -28,12 +40,14 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(function Tab
     </table>
   );
 
-  if (!wrapped) return <div className="pxui-table-scroll">{table}</div>;
-  return (
-    <div className="pxui-table-wrap">
-      <div className="pxui-table-scroll">{table}</div>
+  const scroll = (
+    <div className="pxui-table-scroll" style={maxHeight ? { maxHeight, overflowY: "auto" } : undefined}>
+      {table}
     </div>
   );
+
+  if (!wrapped) return scroll;
+  return <div className="pxui-table-wrap">{scroll}</div>;
 });
 
 export const TableHeader = React.forwardRef<

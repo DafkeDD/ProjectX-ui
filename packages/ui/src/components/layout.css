@@ -1,0 +1,48 @@
+/* ============================ Layout ============================ */
+/* Eén afstandsschaal voor Stack, Row, Grid en Container. */
+.pxui-stack, .pxui-row, .pxui-grid, .pxui-container {
+  --pxui-gap: 16px;
+  min-width: 0;
+}
+[data-gap="none"] { --pxui-gap: 0; }
+[data-gap="xs"] { --pxui-gap: 6px; }
+[data-gap="sm"] { --pxui-gap: 10px; }
+[data-gap="md"] { --pxui-gap: 16px; }
+[data-gap="lg"] { --pxui-gap: 24px; }
+[data-gap="xl"] { --pxui-gap: 36px; }
+
+.pxui-stack { display: flex; flex-direction: column; gap: var(--pxui-gap); }
+.pxui-row { display: flex; flex-direction: row; gap: var(--pxui-gap); }
+.pxui-row[data-wrap] { flex-wrap: wrap; }
+.pxui-grid {
+  display: grid; gap: var(--pxui-gap);
+  grid-template-columns: var(--pxui-grid-cols, repeat(auto-fit, minmax(min(var(--pxui-grid-min, 220px), 100%), 1fr)));
+}
+
+.pxui-stack[data-align="start"], .pxui-row[data-align="start"], .pxui-grid[data-align="start"] { align-items: flex-start; }
+.pxui-stack[data-align="center"], .pxui-row[data-align="center"], .pxui-grid[data-align="center"] { align-items: center; }
+.pxui-stack[data-align="end"], .pxui-row[data-align="end"], .pxui-grid[data-align="end"] { align-items: flex-end; }
+.pxui-stack[data-align="stretch"], .pxui-row[data-align="stretch"], .pxui-grid[data-align="stretch"] { align-items: stretch; }
+.pxui-stack[data-align="baseline"], .pxui-row[data-align="baseline"] { align-items: baseline; }
+
+[data-justify="start"] { justify-content: flex-start; }
+[data-justify="center"] { justify-content: center; }
+[data-justify="end"] { justify-content: flex-end; }
+[data-justify="between"] { justify-content: space-between; }
+[data-justify="around"] { justify-content: space-around; }
+
+/* Scheidingslijnen tussen de kinderen van een Stack. */
+.pxui-stack[data-divided] > * + * {
+  border-top: 1px solid var(--border);
+  padding-top: var(--pxui-gap);
+}
+
+.pxui-container { width: 100%; margin-inline: auto; }
+.pxui-container[data-size="sm"] { max-width: 640px; }
+.pxui-container[data-size="md"] { max-width: var(--maxw); }
+.pxui-container[data-size="lg"] { max-width: 1400px; }
+.pxui-container[data-size="full"] { max-width: none; }
+.pxui-container[data-padded] { padding-inline: 20px; }
+@media (max-width: 640px) { .pxui-container[data-padded] { padding-inline: 16px; } }
+
+.pxui-spacer { display: block; }
